@@ -11,16 +11,16 @@ export default function Hero() {
   };
 
   return (
-    <section id="hero" className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+    <section id="hero" className="pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden relative">
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent-blue/20 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-        <h1 className="text-4xl md:text-6xl font-heading font-extrabold text-slate-900 tracking-tight mb-6">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold text-slate-900 tracking-tight mb-4 md:mb-6">
           Measurable AI Systems. <br className="hidden md:block" />
           <span className="bg-gradient-to-br from-blue-600 via-indigo-500 to-purple-600 bg-clip-text text-transparent">Engineered for Scale.</span>
         </h1>
-        <p className="mt-4 max-w-2xl mx-auto text-xl text-slate-600 mb-10">
+        <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-slate-600 mb-8 md:mb-10 px-4 md:px-0">
           We translate high-level business goals into operational AI solutions that live inside your business.
         </p>
         <div className="flex justify-center mb-20">

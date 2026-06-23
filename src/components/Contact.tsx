@@ -48,17 +48,17 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-white">
+    <section id="contact" className="py-16 md:py-24 bg-white">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 relative z-10">
+        <div className="text-center mb-10 md:mb-12 relative z-10">
           <span className="text-xs font-bold uppercase tracking-widest text-blue-500 mb-2 block">Contact Us</span>
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-slate-900 tracking-tight">Let's Build Together</h2>
-          <p className="mt-4 text-lg text-slate-600">
+          <p className="mt-4 text-lg text-slate-600 px-4 md:px-0">
             Fill out the form below and our team will get back to you within 24 hours.
           </p>
         </div>
 
-        <div className="bg-white/60 backdrop-blur-2xl border border-white/40 shadow-[0_8px_40px_rgb(0,0,0,0.06)] rounded-[2rem] p-8 md:p-12 relative z-10">
+        <div className="bg-white/60 backdrop-blur-2xl border border-white/40 shadow-[0_8px_40px_rgb(0,0,0,0.06)] rounded-[2rem] p-6 md:p-12 relative z-10">
           {success ? (
             <div className="text-center py-12">
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
