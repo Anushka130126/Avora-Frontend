@@ -57,7 +57,7 @@ export default function Contact() {
           </p>
         </div>
 
-        <div className="bg-white/60 dark:bg-slate-900/60 backdrop-blur-md p-8 rounded-2xl border border-white/20 dark:border-slate-700/50 shadow-xl relative z-10">
+        <div className="bg-white/60 backdrop-blur-2xl border border-white/40 shadow-[0_8px_40px_rgb(0,0,0,0.06)] rounded-[2rem] p-8 md:p-12 relative z-10">
           {success ? (
             <div className="text-center py-12">
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -90,7 +90,7 @@ export default function Contact() {
                     name="name"
                     id="name"
                     required
-                    className="w-full px-4 py-2 text-slate-900 bg-white border border-slate-300 rounded-md focus:ring-2 focus:ring-accent-blue focus:border-transparent outline-none transition-all"
+                    className="w-full bg-black/[0.02] hover:bg-black/[0.04] border border-black/[0.05] rounded-2xl px-4 py-3 focus:bg-white focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all text-slate-900 outline-none"
                     placeholder="Jane Doe"
                   />
                 </div>
@@ -101,7 +101,7 @@ export default function Contact() {
                     name="email"
                     id="email"
                     required
-                    className="w-full px-4 py-2 text-slate-900 bg-white border border-slate-300 rounded-md focus:ring-2 focus:ring-accent-blue focus:border-transparent outline-none transition-all"
+                    className="w-full bg-black/[0.02] hover:bg-black/[0.04] border border-black/[0.05] rounded-2xl px-4 py-3 focus:bg-white focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all text-slate-900 outline-none"
                     placeholder="jane@example.com"
                   />
                 </div>
@@ -113,7 +113,7 @@ export default function Contact() {
                   type="text"
                   name="company"
                   id="company"
-                  className="w-full px-4 py-2 text-slate-900 bg-white border border-slate-300 rounded-md focus:ring-2 focus:ring-accent-blue focus:border-transparent outline-none transition-all"
+                  className="w-full bg-black/[0.02] hover:bg-black/[0.04] border border-black/[0.05] rounded-2xl px-4 py-3 focus:bg-white focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all text-slate-900 outline-none"
                   placeholder="Acme Corp"
                 />
               </div>
@@ -125,7 +125,7 @@ export default function Contact() {
                   id="message"
                   required
                   rows={4}
-                  className="w-full px-4 py-2 text-slate-900 bg-white border border-slate-300 rounded-md focus:ring-2 focus:ring-accent-blue focus:border-transparent outline-none transition-all resize-none"
+                  className="w-full bg-black/[0.02] hover:bg-black/[0.04] border border-black/[0.05] rounded-2xl px-4 py-3 focus:bg-white focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all text-slate-900 outline-none resize-none"
                   placeholder="Tell us about your project requirements..."
                 />
               </div>
@@ -133,7 +133,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-3 px-4 bg-accent-blue text-white rounded-md font-medium hover:bg-accent-blue-hover transition-colors shadow-sm disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center"
+                className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium transition-transform hover:scale-[1.02] shadow-[0_8px_20px_rgb(37,99,235,0.2)] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center"
               >
                 {isSubmitting ? (
                   <>

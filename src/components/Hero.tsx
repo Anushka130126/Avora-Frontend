@@ -18,7 +18,7 @@ export default function Hero() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <h1 className="text-4xl md:text-6xl font-heading font-extrabold text-slate-900 tracking-tight mb-6">
           Intelligent Outsourcing. <br className="hidden md:block" />
-          <span className="bg-gradient-to-r from-blue-600 to-indigo-500 bg-clip-text text-transparent">Powered by AI.</span>
+          <span className="bg-gradient-to-br from-blue-600 via-indigo-500 to-purple-600 bg-clip-text text-transparent">Powered by AI.</span>
         </h1>
         <p className="mt-4 max-w-2xl mx-auto text-xl text-slate-600 mb-10">
           Scale your operations with top-tier engineering talent and bespoke AI automation.
@@ -26,7 +26,7 @@ export default function Hero() {
         <div className="flex justify-center">
           <button
             onClick={scrollToContact}
-            className="group px-8 py-4 bg-accent-blue text-white rounded-full font-semibold text-lg hover:bg-accent-blue-hover transition-all shadow-lg shadow-blue-500/25 flex items-center justify-center gap-2"
+            className="group bg-blue-600 hover:bg-blue-700 text-white rounded-full px-8 py-3 font-medium transition-transform hover:scale-105 shadow-[0_8px_20px_rgb(37,99,235,0.2)] flex items-center justify-center gap-2"
           >
             Start a Project
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
