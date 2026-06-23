@@ -17,11 +17,11 @@ export default function Hero() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <h1 className="text-4xl md:text-6xl font-heading font-extrabold text-slate-900 tracking-tight mb-6">
-          Intelligent Outsourcing. <br className="hidden md:block" />
-          <span className="bg-gradient-to-br from-blue-600 via-indigo-500 to-purple-600 bg-clip-text text-transparent">Powered by AI.</span>
+          Measurable AI Systems. <br className="hidden md:block" />
+          <span className="bg-gradient-to-br from-blue-600 via-indigo-500 to-purple-600 bg-clip-text text-transparent">Engineered for Scale.</span>
         </h1>
         <p className="mt-4 max-w-2xl mx-auto text-xl text-slate-600 mb-10">
-          Scale your operations with top-tier engineering talent and bespoke AI automation.
+          We translate high-level business goals into operational AI solutions that live inside your business.
         </p>
         <div className="flex justify-center mb-20">
           <button
