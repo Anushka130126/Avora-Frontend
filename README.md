@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Avora Launch MVP
 
-## Getting Started
+Welcome to the Avora Minimalist Launch MVP. This repository contains the highly-optimized, single-page Next.js application designed to capture leads directly into Google Sheets, alongside a fully architected enterprise dashboard sitting securely in the background.
 
-First, run the development server:
+## 🚀 Quick Start
+
+Ensure you have Node.js 18+ installed.
 
 ```bash
+# Install dependencies
+npm install
+
+# Run the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Navigate to [http://localhost:3000](http://localhost:3000) to view the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project utilizes the **Next.js App Router** architecture.
 
-## Learn More
+- `src/app/page.tsx` - The main entry point for the public-facing landing page MVP.
+- `src/components/` - Reusable UI components (Navbar, Hero, Services, Contact, etc.).
+- `src/actions/` - Secure Server Actions for the backend dashboard operations.
+- `prisma/` - Database schema (MongoDB).
+- `ai-processor/` - A separate Python FastAPI microservice scaffolding for future AI workloads.
 
-To learn more about Next.js, take a look at the following resources:
+## 🔗 Google Sheets Lead Capture
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The Contact Form (`src/components/Contact.tsx`) is hardwired to bypass traditional databases entirely for the public launch, pushing data straight to a Google Sheet via Google Apps Script.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**To configure your Google Sheet:**
+1. Create a Google Sheet with columns: `Name`, `Email`, `Company`, `Message`, `Timestamp`.
+2. Go to **Extensions > Apps Script** and deploy the `doPost` webhook (configured to allow access to "Anyone").
+3. Paste your generated Web App URL into `src/components/Contact.tsx` at the `GOOGLE_SCRIPT_URL` variable.
 
-## Deploy on Vercel
+## 🛠 Tech Stack
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Framework**: Next.js 16 (App Router)
+- **Styling**: Tailwind CSS
+- **Icons**: Lucide React
+- **Language**: TypeScript
+- **Database**: MongoDB & Prisma (for Dashboard routes)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🌐 Deployment
+
+The fastest way to deploy this application is via [Vercel](https://vercel.com).
+1. Push this repository to GitHub.
+2. Import the project into Vercel.
+3. Deploy (Zero configuration required for the MVP landing page).

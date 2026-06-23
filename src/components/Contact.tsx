@@ -30,7 +30,7 @@ export default function Contact() {
         method: 'POST',
         mode: 'no-cors',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'text/plain;charset=utf-8',
         },
         body: JSON.stringify(data),
       });
@@ -90,7 +90,7 @@ export default function Contact() {
                     name="name"
                     id="name"
                     required
-                    className="w-full px-4 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-accent-blue focus:border-transparent outline-none transition-all"
+                    className="w-full px-4 py-2 text-slate-900 border border-slate-300 rounded-md focus:ring-2 focus:ring-accent-blue focus:border-transparent outline-none transition-all"
                     placeholder="Jane Doe"
                   />
                 </div>
@@ -101,7 +101,7 @@ export default function Contact() {
                     name="email"
                     id="email"
                     required
-                    className="w-full px-4 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-accent-blue focus:border-transparent outline-none transition-all"
+                    className="w-full px-4 py-2 text-slate-900 border border-slate-300 rounded-md focus:ring-2 focus:ring-accent-blue focus:border-transparent outline-none transition-all"
                     placeholder="jane@example.com"
                   />
                 </div>
@@ -113,7 +113,7 @@ export default function Contact() {
                   type="text"
                   name="company"
                   id="company"
-                  className="w-full px-4 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-accent-blue focus:border-transparent outline-none transition-all"
+                  className="w-full px-4 py-2 text-slate-900 border border-slate-300 rounded-md focus:ring-2 focus:ring-accent-blue focus:border-transparent outline-none transition-all"
                   placeholder="Acme Corp"
                 />
               </div>
@@ -125,7 +125,7 @@ export default function Contact() {
                   id="message"
                   required
                   rows={4}
-                  className="w-full px-4 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-accent-blue focus:border-transparent outline-none transition-all resize-none"
+                  className="w-full px-4 py-2 text-slate-900 border border-slate-300 rounded-md focus:ring-2 focus:ring-accent-blue focus:border-transparent outline-none transition-all resize-none"
                   placeholder="Tell us about your project requirements..."
                 />
               </div>
