@@ -24,13 +24,13 @@ export default function Contact() {
     try {
       // Hardcoded fetch URL as per the prompt instructions. 
       // Replace with your actual Google Apps Script Web App URL.
-      const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_URL_HERE';
-      
+      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzdt6LMsh3XZ6eBUAmns_WBtqd8ORR-uDizVZhaUDqWG9bAqYa5LtbpSpZX-iVrnRlI/exec';
+
       await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
         headers: {
-          'Content-Type': 'text/plain;charset=utf-8',
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
       });
@@ -67,7 +67,7 @@ export default function Contact() {
               </div>
               <h3 className="text-2xl font-bold text-slate-900 mb-2">Message Sent!</h3>
               <p className="text-slate-600">Thank you for reaching out. We will be in touch shortly.</p>
-              <button 
+              <button
                 onClick={() => setSuccess(false)}
                 className="mt-6 text-accent-blue font-medium hover:underline"
               >
@@ -81,7 +81,7 @@ export default function Contact() {
                   Something went wrong. Please try again later.
                 </div>
               )}
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-1">Full Name</label>
@@ -90,7 +90,7 @@ export default function Contact() {
                     name="name"
                     id="name"
                     required
-                    className="w-full px-4 py-2 text-slate-900 border border-slate-300 rounded-md focus:ring-2 focus:ring-accent-blue focus:border-transparent outline-none transition-all"
+                    className="w-full px-4 py-2 text-slate-900 bg-white border border-slate-300 rounded-md focus:ring-2 focus:ring-accent-blue focus:border-transparent outline-none transition-all"
                     placeholder="Jane Doe"
                   />
                 </div>
@@ -101,7 +101,7 @@ export default function Contact() {
                     name="email"
                     id="email"
                     required
-                    className="w-full px-4 py-2 text-slate-900 border border-slate-300 rounded-md focus:ring-2 focus:ring-accent-blue focus:border-transparent outline-none transition-all"
+                    className="w-full px-4 py-2 text-slate-900 bg-white border border-slate-300 rounded-md focus:ring-2 focus:ring-accent-blue focus:border-transparent outline-none transition-all"
                     placeholder="jane@example.com"
                   />
                 </div>
@@ -113,7 +113,7 @@ export default function Contact() {
                   type="text"
                   name="company"
                   id="company"
-                  className="w-full px-4 py-2 text-slate-900 border border-slate-300 rounded-md focus:ring-2 focus:ring-accent-blue focus:border-transparent outline-none transition-all"
+                  className="w-full px-4 py-2 text-slate-900 bg-white border border-slate-300 rounded-md focus:ring-2 focus:ring-accent-blue focus:border-transparent outline-none transition-all"
                   placeholder="Acme Corp"
                 />
               </div>
@@ -125,7 +125,7 @@ export default function Contact() {
                   id="message"
                   required
                   rows={4}
-                  className="w-full px-4 py-2 text-slate-900 border border-slate-300 rounded-md focus:ring-2 focus:ring-accent-blue focus:border-transparent outline-none transition-all resize-none"
+                  className="w-full px-4 py-2 text-slate-900 bg-white border border-slate-300 rounded-md focus:ring-2 focus:ring-accent-blue focus:border-transparent outline-none transition-all resize-none"
                   placeholder="Tell us about your project requirements..."
                 />
               </div>
