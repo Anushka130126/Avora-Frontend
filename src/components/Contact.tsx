@@ -3,171 +3,141 @@
 import { useState } from 'react';
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    projectType: 'custom-dev',
-    message: '',
-  });
-  
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setStatus('loading');
+    setIsSubmitting(true);
+    setSuccess(false);
+    setError(false);
 
-    const payload = {
-      ...formData,
-      timestamp: new Date().toISOString()
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      company: formData.get('company'),
+      message: formData.get('message'),
     };
 
     try {
-      await fetch('YOUR_GOOGLE_APPS_SCRIPT_URL', {
+      // Hardcoded fetch URL as per the prompt instructions. 
+      // Replace with your actual Google Apps Script Web App URL.
+      const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_URL_HERE';
+      
+      await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
+        mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(payload),
-        mode: 'no-cors',
+        body: JSON.stringify(data),
       });
-      
-      // With no-cors, fetch doesn't return a readable response so we assume success if no error is thrown
-      setStatus('success');
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        projectType: 'custom-dev',
-        message: '',
-      });
-    } catch (error) {
-      console.error('Submission error:', error);
-      setStatus('error');
+
+      // Since mode: 'no-cors' always returns an opaque response, 
+      // we assume success if no exception was thrown.
+      setSuccess(true);
+      (e.target as HTMLFormElement).reset();
+    } catch (err) {
+      console.error('Submission error:', err);
+      setError(true);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   return (
-    <section id="contact" className="py-24 bg-slate-50">
-      <div className="max-w-3xl mx-auto px-6">
+    <section id="contact" className="py-20 bg-white">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 mb-4">Let's Build Together</h2>
-          <p className="text-lg text-slate-600">
-            Tell us about your project and our team will get back to you within 24 hours.
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">Let's Build Together</h2>
+          <p className="mt-4 text-lg text-slate-600">
+            Fill out the form below and our team will get back to you within 24 hours.
           </p>
         </div>
 
-        <div className="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-slate-200">
-          {status === 'success' ? (
-            <div className="text-center py-16">
-              <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="bg-slate-50 p-8 rounded-xl border border-slate-200">
+          {success ? (
+            <div className="text-center py-12">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-2">Thanks for reaching out!</h3>
-              <p className="text-slate-600">We have received your message and will be in touch shortly.</p>
+              <h3 className="text-2xl font-bold text-slate-900 mb-2">Message Sent!</h3>
+              <p className="text-slate-600">Thank you for reaching out. We will be in touch shortly.</p>
               <button 
-                onClick={() => setStatus('idle')}
-                className="mt-8 px-6 py-3 bg-slate-100 text-slate-900 rounded-md hover:bg-slate-200 transition-colors font-medium"
+                onClick={() => setSuccess(false)}
+                className="mt-6 text-accent-blue font-medium hover:underline"
               >
                 Send another message
               </button>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
+              {error && (
+                <div className="p-4 bg-red-50 text-red-700 rounded-md border border-red-200 text-sm">
+                  Something went wrong. Please try again later.
+                </div>
+              )}
+              
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">Full Name</label>
+                  <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-1">Full Name</label>
                   <input
                     type="text"
-                    id="name"
                     name="name"
+                    id="name"
                     required
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-md border border-slate-300 focus:ring-2 focus:ring-accent-blue focus:border-accent-blue outline-none transition-shadow"
-                    placeholder="John Doe"
+                    className="w-full px-4 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-accent-blue focus:border-transparent outline-none transition-all"
+                    placeholder="Jane Doe"
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">Email Address</label>
+                  <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-1">Email Address</label>
                   <input
                     type="email"
-                    id="email"
                     name="email"
+                    id="email"
                     required
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-md border border-slate-300 focus:ring-2 focus:ring-accent-blue focus:border-accent-blue outline-none transition-shadow"
-                    placeholder="john@company.com"
+                    className="w-full px-4 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-accent-blue focus:border-transparent outline-none transition-all"
+                    placeholder="jane@example.com"
                   />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="company" className="block text-sm font-medium text-slate-700 mb-2">Company</label>
-                  <input
-                    type="text"
-                    id="company"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-md border border-slate-300 focus:ring-2 focus:ring-accent-blue focus:border-accent-blue outline-none transition-shadow"
-                    placeholder="Acme Corp"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="projectType" className="block text-sm font-medium text-slate-700 mb-2">Project Type</label>
-                  <select
-                    id="projectType"
-                    name="projectType"
-                    value={formData.projectType}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-md border border-slate-300 focus:ring-2 focus:ring-accent-blue focus:border-accent-blue outline-none transition-shadow bg-white"
-                  >
-                    <option value="custom-dev">Custom Software Development</option>
-                    <option value="ai-solution">AI & Machine Learning Solution</option>
-                    <option value="data-analytics">Data Analytics & BI</option>
-                    <option value="bpo">Dedicated Engineering Team / BPO</option>
-                    <option value="other">Other</option>
-                  </select>
                 </div>
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-2">Project Details</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  rows={4}
-                  value={formData.message}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-md border border-slate-300 focus:ring-2 focus:ring-accent-blue focus:border-accent-blue outline-none transition-shadow resize-none"
-                  placeholder="Tell us about your goals, timeline, and requirements..."
-                ></textarea>
+                <label htmlFor="company" className="block text-sm font-medium text-slate-700 mb-1">Company (Optional)</label>
+                <input
+                  type="text"
+                  name="company"
+                  id="company"
+                  className="w-full px-4 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-accent-blue focus:border-transparent outline-none transition-all"
+                  placeholder="Acme Corp"
+                />
               </div>
 
-              {status === 'error' && (
-                <div className="p-4 bg-red-50 text-red-700 rounded-md border border-red-200">
-                  There was an error sending your message. Please try again or email us directly.
-                </div>
-              )}
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-1">Project Details</label>
+                <textarea
+                  name="message"
+                  id="message"
+                  required
+                  rows={4}
+                  className="w-full px-4 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-accent-blue focus:border-transparent outline-none transition-all resize-none"
+                  placeholder="Tell us about your project requirements..."
+                />
+              </div>
 
               <button
                 type="submit"
-                disabled={status === 'loading'}
-                className="w-full py-4 bg-accent-blue text-white rounded-md font-medium text-lg hover:bg-accent-blue-hover transition-colors disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center"
+                disabled={isSubmitting}
+                className="w-full py-3 px-4 bg-accent-blue text-white rounded-md font-medium hover:bg-accent-blue-hover transition-colors shadow-sm disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center"
               >
-                {status === 'loading' ? (
+                {isSubmitting ? (
                   <>
-                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>

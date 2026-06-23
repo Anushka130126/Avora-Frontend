@@ -3,22 +3,36 @@
 import Link from 'next/link';
 
 export default function Navbar() {
+  const scrollTo = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <nav className="sticky top-0 z-50 w-full backdrop-blur-md bg-white/80 border-b border-slate-200">
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <div className="font-bold text-2xl tracking-tight text-slate-900">
-          <Link href="/">Avora</Link>
-        </div>
-        <div className="hidden md:flex gap-8 text-sm font-medium text-slate-600">
-          <Link href="#hero" className="hover:text-accent-blue transition-colors">
-            Home
-          </Link>
-          <Link href="#services" className="hover:text-accent-blue transition-colors">
-            Services
-          </Link>
-          <Link href="#contact" className="hover:text-accent-blue transition-colors">
-            Contact
-          </Link>
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          <div className="flex-shrink-0 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+            <span className="text-2xl font-bold text-slate-900 tracking-tight">Avora</span>
+          </div>
+          <div className="hidden md:flex space-x-8">
+            <button onClick={() => scrollTo('hero')} className="text-sm font-medium text-slate-600 hover:text-accent-blue transition-colors">
+              Home
+            </button>
+            <button onClick={() => scrollTo('services')} className="text-sm font-medium text-slate-600 hover:text-accent-blue transition-colors">
+              Services
+            </button>
+            <button onClick={() => scrollTo('contact')} className="text-sm font-medium text-slate-600 hover:text-accent-blue transition-colors">
+              Contact
+            </button>
+          </div>
+          <div className="md:hidden flex items-center">
+            <button onClick={() => scrollTo('contact')} className="text-sm font-medium text-accent-blue">
+              Contact Us
+            </button>
+          </div>
         </div>
       </div>
     </nav>
