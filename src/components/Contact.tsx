@@ -51,6 +51,7 @@ export default function Contact() {
     <section id="contact" className="py-20 bg-white">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 relative z-10">
+          <span className="text-xs font-bold uppercase tracking-widest text-blue-500 mb-2 block">Contact Us</span>
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-slate-900 tracking-tight">Let's Build Together</h2>
           <p className="mt-4 text-lg text-slate-600">
             Fill out the form below and our team will get back to you within 24 hours.

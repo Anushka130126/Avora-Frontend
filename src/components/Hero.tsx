@@ -23,7 +23,7 @@ export default function Hero() {
         <p className="mt-4 max-w-2xl mx-auto text-xl text-slate-600 mb-10">
           Scale your operations with top-tier engineering talent and bespoke AI automation.
         </p>
-        <div className="flex justify-center">
+        <div className="flex justify-center mb-20">
           <button
             onClick={scrollToContact}
             className="group bg-blue-600 hover:bg-blue-700 text-white rounded-full px-8 py-3 font-medium transition-transform hover:scale-105 shadow-[0_8px_20px_rgb(37,99,235,0.2)] flex items-center justify-center gap-2"
@@ -31,6 +31,18 @@ export default function Hero() {
             Start a Project
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>
+        </div>
+
+        {/* Trust Banner */}
+        <div className="pt-10 border-t border-black/5">
+          <p className="text-sm font-medium text-slate-400 mb-6 uppercase tracking-wider">Powered by industry-leading technologies</p>
+          <div className="flex justify-center gap-8 md:gap-16 opacity-50 grayscale flex-wrap">
+            <span className="font-heading font-bold text-xl text-slate-700">Next.js</span>
+            <span className="font-heading font-bold text-xl text-slate-700">React</span>
+            <span className="font-heading font-bold text-xl text-slate-700">AWS</span>
+            <span className="font-heading font-bold text-xl text-slate-700">OpenAI</span>
+            <span className="font-heading font-bold text-xl text-slate-700">Stripe</span>
+          </div>
         </div>
       </div>
     </section>
