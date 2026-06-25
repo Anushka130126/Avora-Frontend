@@ -1,126 +1,130 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
+import { siteConfig } from '@/config/site';
 import { cn } from '@/lib/cn';
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollTo = (id: string) => {
-    setMobileMenuOpen(false);
-    if (id === 'home') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
-    }
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+    setMobileMenuOpen(false);
   };
 
-  const navLinks = [
-    { label: 'Home', id: 'home' },
-    { label: 'Services', id: 'services' },
-    { label: 'Ventures', id: 'ventures' },
-    { label: 'Contact', id: 'contact' },
-  ];
-
   return (
-    <header
-      className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        isScrolled
-          ? 'h-16 bg-white/70 backdrop-blur-xl border-b border-slate-200/50 shadow-sm'
-          : 'h-20 bg-transparent'
-      )}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
-        <div className="flex justify-between items-center h-full">
-          {/* Logo */}
-          <button
-            onClick={() => scrollTo('home')}
-            className="flex-shrink-0 flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/10 rounded-lg"
-            aria-label="Avora Ventures Home"
-          >
-            <Image
-              src="/logo.png"
-              alt="Avora Ventures Logo"
-              width={140}
-              height={40}
-              className="w-auto h-8 md:h-10 object-contain"
-              priority
-            />
-          </button>
+    <>
+      <nav
+        className={cn(
+          'fixed top-0 w-full z-50 transition-all duration-300',
+          isScrolled
+            ? 'bg-white/95 backdrop-blur-xl border-b border-slate-200/50 shadow-sm'
+            : 'bg-white/70 backdrop-blur-xl border-b border-transparent'
+        )}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className={cn('flex justify-between items-center transition-all duration-300', isScrolled ? 'h-16' : 'h-20')}>
+            {/* Logo */}
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="text-2xl font-bold font-heading text-slate-900 hover:text-primary-600 transition-colors"
+            >
+              {siteConfig.shortName}
+            </button>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
+            {/* Desktop Nav */}
+            <div className="hidden md:flex gap-8">
+              {siteConfig.nav.map((item) => (
+                <button
+                  key={item.label}
+                  onClick={() => scrollTo(item.href.replace('#', ''))}
+                  className="text-sm font-medium text-slate-600 hover:text-slate-900 relative group transition-colors px-1 py-2"
+                >
+                  {item.label}
+                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                </button>
+              ))}
+            </div>
+
+            {/* CTA Desktop */}
+            <div className="hidden md:block">
               <button
-                key={link.id}
-                onClick={() => scrollTo(link.id)}
-                className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/10 rounded px-2 py-1"
+                onClick={() => scrollTo('contact')}
+                className="btn btn-primary px-6 py-2.5 rounded-lg text-sm"
               >
-                {link.label}
+                Start a Conversation
+              </button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              aria-label="Open navigation menu"
+              className="md:hidden p-2 text-slate-600 hover:text-slate-900 transition-colors"
+              onClick={() => setMobileMenuOpen(true)}
+            >
+              <Menu className="w-6 h-6" />
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Mobile Nav Overlay */}
+      <div 
+        className={cn(
+          'fixed inset-0 z-[60] bg-slate-900/50 backdrop-blur-sm transition-opacity duration-300 md:hidden',
+          mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        )}
+        onClick={() => setMobileMenuOpen(false)}
+      >
+        <div 
+          className={cn(
+            'absolute top-0 right-0 w-[280px] h-full bg-white shadow-2xl transition-transform duration-500 ease-in-out flex flex-col',
+            mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          )}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="flex justify-between items-center p-6 border-b border-slate-100">
+            <span className="text-xl font-heading font-bold text-slate-900">{siteConfig.shortName}</span>
+            <button
+              aria-label="Close navigation menu"
+              onClick={() => setMobileMenuOpen(false)}
+              className="p-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-full transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+          <div className="flex flex-col p-6 gap-6">
+            {siteConfig.nav.map((item) => (
+              <button
+                key={item.label}
+                onClick={() => scrollTo(item.href.replace('#', ''))}
+                className="text-lg font-medium text-slate-600 text-left hover:text-primary-600 transition-colors py-2"
+              >
+                {item.label}
               </button>
             ))}
             <button
               onClick={() => scrollTo('contact')}
-              className="bg-primary-600 hover:bg-primary-700 text-white text-sm font-medium px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500/10 focus:border-primary-600"
+              className="btn btn-primary w-full mt-4 py-3 rounded-lg"
             >
-              Get Started
-            </button>
-          </nav>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-slate-600 hover:text-slate-900 focus:outline-none rounded-lg"
-            aria-expanded={mobileMenuOpen}
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu Overlay */}
-      <div
-        className={cn(
-          'fixed inset-x-0 top-[calc(100%-1px)] bg-white shadow-lg border-b border-slate-200 transition-all duration-300 md:hidden overflow-hidden',
-          mobileMenuOpen ? 'max-h-screen border-t border-slate-100' : 'max-h-0 border-transparent border-t-0'
-        )}
-      >
-        <nav className="flex flex-col px-4 py-6 gap-4">
-          {navLinks.map((link) => (
-            <button
-              key={link.id}
-              onClick={() => scrollTo(link.id)}
-              className="text-left text-base font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 px-4 py-3 rounded-lg transition-colors"
-            >
-              {link.label}
-            </button>
-          ))}
-          <div className="pt-4 mt-2 border-t border-slate-100 px-4">
-            <button
-              onClick={() => scrollTo('contact')}
-              className="w-full bg-primary-600 hover:bg-primary-700 text-white text-base font-medium px-6 py-4 rounded-lg shadow-md transition-colors"
-            >
-              Get Started
+              Start a Conversation
             </button>
           </div>
-        </nav>
+        </div>
       </div>
-    </header>
+    </>
   );
 }
