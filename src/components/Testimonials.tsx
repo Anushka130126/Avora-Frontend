@@ -11,28 +11,24 @@ const testimonials = [
     author: "Michael Roberts",
     role: "VP of Operations, TechFlow (USA)",
     avatar: "MR",
-    color: "bg-blue-100 text-blue-700",
   },
   {
     quote: "The deep understanding of both manufacturing constraints and modern data science allowed them to deliver an incredibly effective optimization model for our supply chain.",
     author: "Kenji Sato",
     role: "Director of Engineering, Industrial Solutions (Japan)",
     avatar: "KS",
-    color: "bg-red-100 text-red-700",
   },
   {
     quote: "Avora fundamentally transformed how we approach AI. Their ability to bridge complex technical challenges with business realities is exactly what we needed in the APAC market.",
     author: "Priya Sharma",
     role: "CTO, FinEdge Innovations (India)",
     avatar: "PS",
-    color: "bg-orange-100 text-orange-700",
   },
   {
     quote: "Their specialized talent sourcing helped us build a high-performing remote engineering team in record time. We couldn't have scaled our platform without them.",
     author: "David Jenkins",
     role: "Founder, ScaleTech (USA)",
     avatar: "DJ",
-    color: "bg-emerald-100 text-emerald-700",
   }
 ];
 
@@ -63,11 +59,11 @@ export default function Testimonials() {
   };
 
   return (
-    <section id="testimonials" className="py-16 md:py-28 bg-slate-900 dark:bg-black relative overflow-hidden text-white">
-      {/* Background decoration */}
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-      <div className="absolute -top-40 -right-40 w-96 h-96 bg-white/5 rounded-full blur-[100px]" />
-      <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-slate-500/10 rounded-full blur-[100px]" />
+    <section id="testimonials" className="py-24 md:py-32 bg-slate-950 dark:bg-[#050508] relative overflow-hidden text-white border-t border-slate-900">
+      {/* Subtle top edge highlight */}
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      {/* Ambient glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-indigo-500/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div 
@@ -77,10 +73,10 @@ export default function Testimonials() {
             isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           )}
         >
-          <span className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 block animate-fade-in">
+          <span className="section-eyebrow text-slate-500">
             Client Success
           </span>
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-white tracking-tight">
+          <h2 className="section-heading text-white">
             Global Impact
           </h2>
         </div>

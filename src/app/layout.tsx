@@ -63,7 +63,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(generateSchema()) }}
         />
       </head>
-      <body className="min-h-full flex flex-col font-sans bg-slate-50 dark:bg-[#0f1115] text-slate-900 dark:text-slate-100 selection:bg-primary-500/30 selection:text-primary-900 dark:selection:text-primary-100">
+      <body className="min-h-full flex flex-col font-sans bg-white dark:bg-[#0a0a0f] text-slate-900 dark:text-slate-100 selection:bg-indigo-100 dark:selection:bg-indigo-900 selection:text-indigo-900 dark:selection:text-indigo-100">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <Navbar />
           <main className="flex-grow flex flex-col relative z-0">

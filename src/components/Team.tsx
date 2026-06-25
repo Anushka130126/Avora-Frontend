@@ -8,7 +8,7 @@ export default function Team() {
   const { ref, isInView } = useInView({ once: true, threshold: 0.2 });
 
   return (
-    <section id="team" className="py-16 md:py-28 bg-slate-50 dark:bg-slate-900/50 relative border-t border-slate-200 dark:border-slate-800 overflow-hidden">
+    <section id="team" className="py-24 md:py-32 bg-white dark:bg-[#0a0a0f] relative border-t border-slate-100 dark:border-slate-900 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div 
           ref={ref}
