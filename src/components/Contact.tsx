@@ -1,77 +1,115 @@
 'use client';
 
 import { useState } from 'react';
+import { CheckCircle, AlertCircle } from 'lucide-react';
 import { cn } from '@/lib/cn';
-import { CheckCircle2, ChevronDown } from 'lucide-react';
+import { useInView } from '@/hooks/useInView';
 
 export default function Contact() {
+  const { ref, isInView } = useInView({ once: true, threshold: 0.1 });
+  
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [focusedField, setFocusedField] = useState<string | null>(null);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: '',
+    serviceType: '',
+    budgetRange: '',
+    message: '',
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const validateEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setSuccess(false);
-    setError(false);
+    setError(null);
 
-    const formData = new FormData(e.currentTarget);
-    const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      company: formData.get('company'),
-      serviceType: formData.get('serviceType'),
-      budget: formData.get('budget'),
-      message: formData.get('message'),
-    };
+    if (!formData.name.trim()) {
+      setError('Please enter your name.');
+      return;
+    }
+    if (!validateEmail(formData.email)) {
+      setError('Please enter a valid email address.');
+      return;
+    }
+    if (!formData.message.trim()) {
+      setError('Please tell us about your project.');
+      return;
+    }
+
+    setIsSubmitting(true);
 
     try {
-      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzdt6LMsh3XZ6eBUAmns_WBtqd8ORR-uDizVZhaUDqWG9bAqYa5LtbpSpZX-iVrnRlI/exec';
+      const GOOGLE_SCRIPT_URL =
+        'https://script.google.com/macros/s/AKfycbzdt6LMsh3XZ6eBUAmns_WBtqd8ORR-uDizVZhaUDqWG9bAqYa5LtbpSpZX-iVrnRlI/exec';
 
       await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
       });
 
       setSuccess(true);
-      (e.target as HTMLFormElement).reset();
+      setFormData({ name: '', email: '', company: '', serviceType: '', budgetRange: '', message: '' });
     } catch (err) {
-      console.error('Submission error:', err);
-      setError(true);
+      setError('Something went wrong. Please try again later.');
+      console.error('Form submission error:', err);
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const inputClass = "w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-base text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/10 focus:border-primary-600 transition-all duration-200";
-  const labelClass = "block text-sm font-medium text-slate-700 mb-2";
-
   return (
-    <section id="contact" className="py-16 md:py-28 bg-white relative">
+    <section ref={ref} id="contact" className="py-16 md:py-28 bg-white border-t border-slate-200 overflow-hidden relative">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-10 md:mb-16">
-          <span className="text-xs font-bold uppercase tracking-widest text-primary-600 mb-2 block">Contact Us</span>
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-slate-900 tracking-tight">Let's Build Together</h2>
-          <p className="mt-4 text-lg text-slate-600">
-            Fill out the form below and our team will get back to you within 24 hours.
+        <div 
+          className={cn(
+            'text-center mb-12 transition-all duration-700',
+            isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          )}
+        >
+          <span className="text-xs font-bold uppercase tracking-widest text-primary-600 block mb-3">
+            Let's Work Together
+          </span>
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-slate-900 mb-6 tracking-tight">
+            Start a Conversation
+          </h2>
+          <p className="text-lg text-slate-600">
+            Fill out the form below and we'll get back to you within 24 hours.
           </p>
         </div>
 
-        <div className="bg-white border border-slate-200 shadow-xl shadow-slate-200/40 rounded-2xl p-6 md:p-10">
+        <div 
+          className={cn(
+            'bg-white border border-slate-200 p-8 md:p-12 shadow-xl rounded-2xl transition-all duration-700 delay-100',
+            isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          )}
+        >
           {success ? (
-            <div className="text-center py-16">
-              <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6 border border-green-100">
-                <CheckCircle2 className="w-8 h-8 text-green-600" />
+            <div className="text-center py-12 animate-scale-in">
+              <div className="flex justify-center mb-6">
+                <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center animate-bounce-subtle">
+                  <CheckCircle className="w-10 h-10 text-green-600" />
+                </div>
               </div>
-              <h3 className="text-2xl font-heading font-bold text-slate-900 mb-3">Thank you!</h3>
-              <p className="text-slate-600 text-lg">We'll reach out within 24 hours.</p>
+              <h3 className="text-2xl font-bold text-slate-900 mb-3">Inquiry Sent!</h3>
+              <p className="text-slate-600 mb-8 max-w-sm mx-auto">
+                Thank you. Our team will reach out within 24 hours to discuss your needs.
+              </p>
               <button
                 onClick={() => setSuccess(false)}
-                className="mt-8 text-primary-600 font-medium hover:text-primary-700 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/10 rounded px-2"
+                className="btn btn-secondary px-6 py-2.5 rounded-full text-sm font-medium"
               >
                 Send another inquiry
               </button>
@@ -79,118 +117,180 @@ export default function Contact() {
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
               {error && (
-                <div className="p-4 bg-red-50 text-red-700 rounded-lg border border-red-200 text-sm font-medium flex items-start gap-3">
-                  <svg className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  Something went wrong. Please try again later or email us directly.
+                <div className="p-4 bg-red-50 border border-red-200 rounded-lg flex gap-3 animate-slide-in-down">
+                  <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+                  <p className="text-sm text-red-700">{error}</p>
                 </div>
               )}
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="name" className={labelClass}>Full Name</label>
+                <div className="transition-all duration-300">
+                  <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">
+                    Full Name <span className="text-red-500">*</span>
+                  </label>
                   <input
                     type="text"
-                    name="name"
                     id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    onFocus={() => setFocusedField('name')}
+                    onBlur={() => setFocusedField(null)}
                     required
-                    className={inputClass}
                     placeholder="Jane Doe"
+                    className={cn(
+                      'w-full px-4 py-3 text-base rounded-lg border transition-all duration-300 outline-none',
+                      focusedField === 'name'
+                        ? 'border-primary-500 ring-2 ring-primary-500/10 bg-white shadow-sm'
+                        : 'border-slate-200 bg-slate-50 hover:bg-slate-100 hover:border-slate-300'
+                    )}
                   />
                 </div>
-                <div>
-                  <label htmlFor="email" className={labelClass}>Email Address</label>
+                <div className="transition-all duration-300">
+                  <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
+                    Email Address <span className="text-red-500">*</span>
+                  </label>
                   <input
                     type="email"
-                    name="email"
                     id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    onFocus={() => setFocusedField('email')}
+                    onBlur={() => setFocusedField(null)}
                     required
-                    className={inputClass}
                     placeholder="jane@example.com"
+                    className={cn(
+                      'w-full px-4 py-3 text-base rounded-lg border transition-all duration-300 outline-none',
+                      focusedField === 'email'
+                        ? 'border-primary-500 ring-2 ring-primary-500/10 bg-white shadow-sm'
+                        : 'border-slate-200 bg-slate-50 hover:bg-slate-100 hover:border-slate-300'
+                    )}
                   />
                 </div>
+              </div>
+
+              <div>
+                <label htmlFor="company" className="block text-sm font-medium text-slate-700 mb-2">
+                  Company (Optional)
+                </label>
+                <input
+                  type="text"
+                  id="company"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleChange}
+                  onFocus={() => setFocusedField('company')}
+                  onBlur={() => setFocusedField(null)}
+                  placeholder="Acme Corp"
+                  className={cn(
+                    'w-full px-4 py-3 text-base rounded-lg border transition-all duration-300 outline-none',
+                    focusedField === 'company'
+                      ? 'border-primary-500 ring-2 ring-primary-500/10 bg-white shadow-sm'
+                      : 'border-slate-200 bg-slate-50 hover:bg-slate-100 hover:border-slate-300'
+                  )}
+                />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="company" className={labelClass}>Company (Optional)</label>
-                  <input
-                    type="text"
-                    name="company"
-                    id="company"
-                    className={inputClass}
-                    placeholder="Acme Corp"
-                  />
+                  <label htmlFor="serviceType" className="block text-sm font-medium text-slate-700 mb-2">
+                    Service Type (Optional)
+                  </label>
+                  <select
+                    id="serviceType"
+                    name="serviceType"
+                    value={formData.serviceType}
+                    onChange={handleChange}
+                    onFocus={() => setFocusedField('serviceType')}
+                    onBlur={() => setFocusedField(null)}
+                    className={cn(
+                      'w-full px-4 py-3 text-base rounded-lg border transition-all duration-300 outline-none appearance-none bg-no-repeat',
+                      focusedField === 'serviceType'
+                        ? 'border-primary-500 ring-2 ring-primary-500/10 bg-white shadow-sm'
+                        : 'border-slate-200 bg-slate-50 hover:bg-slate-100 hover:border-slate-300'
+                    )}
+                    style={{ backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e\")", backgroundPosition: "right 0.5rem center", backgroundSize: "1.5em 1.5em", paddingRight: "2.5rem" }}
+                  >
+                    <option value="">Select a service</option>
+                    <option value="outsourcing">Specialized Outsourcing</option>
+                    <option value="skill-hiring">Specialized Skill Hiring</option>
+                    <option value="ai-solutions">AI Solutions & Automation</option>
+                    <option value="data-annotations">Data Annotation & Labeling</option>
+                  </select>
                 </div>
                 <div>
-                  <label htmlFor="budget" className={labelClass}>Budget Range (Optional)</label>
-                  <div className="relative">
-                    <select
-                      name="budget"
-                      id="budget"
-                      className={cn(inputClass, "appearance-none cursor-pointer")}
-                      defaultValue=""
-                    >
-                      <option value="" disabled>Select a range</option>
-                      <option value="<$5k">&lt;$5k</option>
-                      <option value="$5–25k">$5–25k</option>
-                      <option value="$25–100k">$25–100k</option>
-                      <option value=">$100k">&gt;$100k</option>
-                    </select>
-                    <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 pointer-events-none" />
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <label htmlFor="serviceType" className={labelClass}>Service Type</label>
-                <div className="relative">
+                  <label htmlFor="budgetRange" className="block text-sm font-medium text-slate-700 mb-2">
+                    Budget Range (Optional)
+                  </label>
                   <select
-                    name="serviceType"
-                    id="serviceType"
-                    required
-                    className={cn(inputClass, "appearance-none cursor-pointer")}
-                    defaultValue=""
+                    id="budgetRange"
+                    name="budgetRange"
+                    value={formData.budgetRange}
+                    onChange={handleChange}
+                    onFocus={() => setFocusedField('budgetRange')}
+                    onBlur={() => setFocusedField(null)}
+                    className={cn(
+                      'w-full px-4 py-3 text-base rounded-lg border transition-all duration-300 outline-none appearance-none bg-no-repeat',
+                      focusedField === 'budgetRange'
+                        ? 'border-primary-500 ring-2 ring-primary-500/10 bg-white shadow-sm'
+                        : 'border-slate-200 bg-slate-50 hover:bg-slate-100 hover:border-slate-300'
+                    )}
+                    style={{ backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e\")", backgroundPosition: "right 0.5rem center", backgroundSize: "1.5em 1.5em", paddingRight: "2.5rem" }}
                   >
-                    <option value="" disabled>Select a service</option>
-                    <option value="Outsourcing">Outsourcing</option>
-                    <option value="Skill Hiring">Skill Hiring</option>
-                    <option value="AI Solutions">AI Solutions</option>
-                    <option value="Data Annotations">Data Annotations</option>
+                    <option value="">Select a range</option>
+                    <option value="under-5k">&lt;$5k</option>
+                    <option value="5k-25k">$5k–$25k</option>
+                    <option value="25k-100k">$25k–$100k</option>
+                    <option value="over-100k">&gt;$100k</option>
                   </select>
-                  <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 pointer-events-none" />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="message" className={labelClass}>Project Details</label>
+                <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-2">
+                  Project Details <span className="text-red-500">*</span>
+                </label>
                 <textarea
-                  name="message"
                   id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  onFocus={() => setFocusedField('message')}
+                  onBlur={() => setFocusedField(null)}
                   required
-                  rows={4}
-                  className={cn(inputClass, "resize-none")}
-                  placeholder="Tell us about your requirements..."
+                  rows={5}
+                  placeholder="Tell us about your project, timeline, and goals..."
+                  className={cn(
+                    'w-full px-4 py-3 text-base rounded-lg border resize-none transition-all duration-300 outline-none',
+                    focusedField === 'message'
+                      ? 'border-primary-500 ring-2 ring-primary-500/10 bg-white shadow-sm'
+                      : 'border-slate-200 bg-slate-50 hover:bg-slate-100 hover:border-slate-300'
+                  )}
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium transition-all duration-300 hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-primary-500/10 focus:border-primary-600"
-              >
-                {isSubmitting ? (
-                  <>
-                    <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    Sending...
-                  </>
-                ) : (
-                  'Send Inquiry'
+                className={cn(
+                  'w-full btn btn-primary btn-lg rounded-xl overflow-hidden group',
+                  isSubmitting && 'opacity-70 cursor-not-allowed'
                 )}
+              >
+                <span className="relative z-10 flex items-center justify-center">
+                  {isSubmitting ? (
+                    <>
+                      <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Sending...
+                    </>
+                  ) : (
+                    'Send Inquiry'
+                  )}
+                </span>
               </button>
             </form>
           )}
