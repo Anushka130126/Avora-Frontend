@@ -2,43 +2,51 @@ export default function Process() {
   const steps = [
     {
       number: "01",
-      title: "Discovery & Strategy",
-      description: "Mapping workflows and identifying AI leverage points to maximize your operational efficiency.",
+      title: "Discovery",
+      description: "Map workflows & identify AI leverage points",
     },
     {
       number: "02",
-      title: "Engineering & AI",
-      description: "Building robust software and integrating custom LLM pipelines tailored to your specific needs.",
+      title: "Implementation",
+      description: "Build robust software & custom LLM pipelines",
     },
     {
       number: "03",
-      title: "Deployment & Scale",
-      description: "Seamless launch with ongoing BPO and technical support to ensure long-term success.",
+      title: "Scaling",
+      description: "Deploy & provide ongoing support",
     },
   ];
 
   return (
-    <section id="process" className="py-16 md:py-24 bg-white relative">
+    <section id="process" className="py-16 md:py-28 bg-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-12 md:mb-16">
-          <span className="text-xs font-bold uppercase tracking-widest text-blue-500 mb-2 block">Our Methodology</span>
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-slate-900 tracking-tight mb-4">The Avora A.I.M. Framework</h2>
+        <div className="text-center mb-16 md:mb-20">
+          <span className="text-xs font-bold uppercase tracking-widest text-primary-600 mb-2 block">Our Methodology</span>
+          <h2 className="text-3xl md:text-4xl font-heading font-bold text-slate-900 tracking-tight mb-4">The A.I.M. Framework</h2>
           <p className="mt-4 text-lg text-slate-600 max-w-2xl mx-auto px-4 md:px-0">
             A repeatable, enterprise-grade system for moving from ambition to live deployment.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <div className="flex flex-col md:flex-row relative">
+          {/* Desktop connecting line */}
+          <div className="hidden md:block absolute top-[28px] left-[40px] right-[40px] h-px bg-slate-200 z-0"></div>
+          
+          {/* Mobile connecting line */}
+          <div className="md:hidden absolute left-[28px] top-[40px] bottom-[40px] w-px bg-slate-200 z-0"></div>
+
           {steps.map((step, index) => (
             <div
               key={index}
-              className="bg-white/80 backdrop-blur-xl border border-black/5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-3xl p-6 md:p-8 transition-all duration-300"
+              className="flex-1 flex flex-row md:flex-col items-start md:items-center relative z-10 mb-12 md:mb-0 px-4"
             >
-              <div className="w-12 h-12 rounded-2xl bg-blue-50/50 border border-blue-100 flex items-center justify-center mb-6 text-blue-600 font-bold text-lg">
+              <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center justify-center text-primary-600 font-bold text-lg mb-0 md:mb-6 mr-6 md:mr-0">
                 {step.number}
               </div>
-              <h3 className="text-lg md:text-xl font-heading font-bold text-slate-900 mb-3">{step.title}</h3>
-              <p className="text-slate-600 leading-relaxed text-sm md:text-base">{step.description}</p>
+              <div className="text-left md:text-center mt-1 md:mt-0">
+                <h3 className="text-xl font-heading font-bold text-slate-900 mb-3">{step.title}</h3>
+                <p className="text-slate-600 leading-relaxed text-base max-w-xs mx-auto">{step.description}</p>
+              </div>
             </div>
           ))}
         </div>

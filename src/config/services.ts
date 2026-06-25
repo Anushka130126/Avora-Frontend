@@ -1,0 +1,38 @@
+export const services = [
+  {
+    id: "outsourcing",
+    title: "Specialized Outsourcing",
+    subtitle: "Top-tier remote engineering talent",
+    description: "Access verified senior engineers and specialized developers for your critical projects. From backend architects to DevOps specialists, we handle vetting, onboarding, and management.",
+    metrics: "+500 engineers vetted",
+    features: ["Technical vetting", "Agile integration", "24/7 support", "Transparent billing"],
+    icon: "Users",
+  },
+  {
+    id: "skill-hiring",
+    title: "Specialized Skill Hiring",
+    subtitle: "Fractional experts on-demand",
+    description: "Hire domain experts for specific initiatives: ML engineers, security specialists, data architects. Pay only for the expertise you need, when you need it.",
+    metrics: "5–50 day engagements",
+    features: ["Deep expertise", "Project-focused", "No long-term commitment", "Seamless handoff"],
+    icon: "Briefcase",
+  },
+  {
+    id: "ai-solutions",
+    title: "AI Solutions & Automation",
+    subtitle: "Custom LLM pipelines & workflows",
+    description: "Custom RAG systems, agentic workflows, and LLM integrations tailored to your ops. We build measurable AI that reduces overhead and unlocks efficiency.",
+    metrics: "2–6 week MVP",
+    features: ["RAG pipelines", "Agentic systems", "Data annotation", "Live deployment"],
+    icon: "BrainCircuit",
+  },
+  {
+    id: "data-annotations",
+    title: "Data Annotation & Labeling",
+    subtitle: "High-quality, at-scale training data",
+    description: "Precision annotation for ML/AI training. Image segmentation, NER, classification, bounding boxes—managed QA, on-time delivery, HIPAA-compliant if needed.",
+    metrics: "10M+ labels processed",
+    features: ["Multilingual support", "Quality assurance", "Compliance-ready", "Fast turnaround"],
+    icon: "Layers",
+  },
+];

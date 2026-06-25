@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import { cn } from '@/lib/cn';
+import { CheckCircle2, ChevronDown } from 'lucide-react';
 
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -18,12 +20,12 @@ export default function Contact() {
       name: formData.get('name'),
       email: formData.get('email'),
       company: formData.get('company'),
+      serviceType: formData.get('serviceType'),
+      budget: formData.get('budget'),
       message: formData.get('message'),
     };
 
     try {
-      // Hardcoded fetch URL as per the prompt instructions. 
-      // Replace with your actual Google Apps Script Web App URL.
       const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzdt6LMsh3XZ6eBUAmns_WBtqd8ORR-uDizVZhaUDqWG9bAqYa5LtbpSpZX-iVrnRlI/exec';
 
       await fetch(GOOGLE_SCRIPT_URL, {
@@ -35,8 +37,6 @@ export default function Contact() {
         body: JSON.stringify(data),
       });
 
-      // Since mode: 'no-cors' always returns an opaque response, 
-      // we assume success if no exception was thrown.
       setSuccess(true);
       (e.target as HTMLFormElement).reset();
     } catch (err) {
@@ -47,94 +47,138 @@ export default function Contact() {
     }
   };
 
+  const inputClass = "w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-base text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/10 focus:border-primary-600 transition-all duration-200";
+  const labelClass = "block text-sm font-medium text-slate-700 mb-2";
+
   return (
-    <section id="contact" className="py-16 md:py-24 bg-white">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10 md:mb-12 relative z-10">
-          <span className="text-xs font-bold uppercase tracking-widest text-blue-500 mb-2 block">Contact Us</span>
+    <section id="contact" className="py-16 md:py-28 bg-white relative">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center mb-10 md:mb-16">
+          <span className="text-xs font-bold uppercase tracking-widest text-primary-600 mb-2 block">Contact Us</span>
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-slate-900 tracking-tight">Let's Build Together</h2>
-          <p className="mt-4 text-lg text-slate-600 px-4 md:px-0">
+          <p className="mt-4 text-lg text-slate-600">
             Fill out the form below and our team will get back to you within 24 hours.
           </p>
         </div>
 
-        <div className="bg-white/60 backdrop-blur-2xl border border-white/40 shadow-[0_8px_40px_rgb(0,0,0,0.06)] rounded-[2rem] p-6 md:p-12 relative z-10">
+        <div className="bg-white border border-slate-200 shadow-xl shadow-slate-200/40 rounded-2xl p-6 md:p-10">
           {success ? (
-            <div className="text-center py-12">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
+            <div className="text-center py-16">
+              <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6 border border-green-100">
+                <CheckCircle2 className="w-8 h-8 text-green-600" />
               </div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-2">Message Sent!</h3>
-              <p className="text-slate-600">Thank you for reaching out. We will be in touch shortly.</p>
+              <h3 className="text-2xl font-heading font-bold text-slate-900 mb-3">Thank you!</h3>
+              <p className="text-slate-600 text-lg">We'll reach out within 24 hours.</p>
               <button
                 onClick={() => setSuccess(false)}
-                className="mt-6 text-accent-blue font-medium hover:underline"
+                className="mt-8 text-primary-600 font-medium hover:text-primary-700 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/10 rounded px-2"
               >
-                Send another message
+                Send another inquiry
               </button>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
               {error && (
-                <div className="p-4 bg-red-50 text-red-700 rounded-md border border-red-200 text-sm">
-                  Something went wrong. Please try again later.
+                <div className="p-4 bg-red-50 text-red-700 rounded-lg border border-red-200 text-sm font-medium flex items-start gap-3">
+                  <svg className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  Something went wrong. Please try again later or email us directly.
                 </div>
               )}
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-1">Full Name</label>
+                  <label htmlFor="name" className={labelClass}>Full Name</label>
                   <input
                     type="text"
                     name="name"
                     id="name"
                     required
-                    className="w-full bg-black/[0.02] hover:bg-black/[0.04] border border-black/[0.05] rounded-2xl px-4 py-3 focus:bg-white focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all text-slate-900 outline-none"
+                    className={inputClass}
                     placeholder="Jane Doe"
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-1">Email Address</label>
+                  <label htmlFor="email" className={labelClass}>Email Address</label>
                   <input
                     type="email"
                     name="email"
                     id="email"
                     required
-                    className="w-full bg-black/[0.02] hover:bg-black/[0.04] border border-black/[0.05] rounded-2xl px-4 py-3 focus:bg-white focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all text-slate-900 outline-none"
+                    className={inputClass}
                     placeholder="jane@example.com"
                   />
                 </div>
               </div>
 
-              <div>
-                <label htmlFor="company" className="block text-sm font-medium text-slate-700 mb-1">Company (Optional)</label>
-                <input
-                  type="text"
-                  name="company"
-                  id="company"
-                  className="w-full bg-black/[0.02] hover:bg-black/[0.04] border border-black/[0.05] rounded-2xl px-4 py-3 focus:bg-white focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all text-slate-900 outline-none"
-                  placeholder="Acme Corp"
-                />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="company" className={labelClass}>Company (Optional)</label>
+                  <input
+                    type="text"
+                    name="company"
+                    id="company"
+                    className={inputClass}
+                    placeholder="Acme Corp"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="budget" className={labelClass}>Budget Range (Optional)</label>
+                  <div className="relative">
+                    <select
+                      name="budget"
+                      id="budget"
+                      className={cn(inputClass, "appearance-none cursor-pointer")}
+                      defaultValue=""
+                    >
+                      <option value="" disabled>Select a range</option>
+                      <option value="<$5k">&lt;$5k</option>
+                      <option value="$5–25k">$5–25k</option>
+                      <option value="$25–100k">$25–100k</option>
+                      <option value=">$100k">&gt;$100k</option>
+                    </select>
+                    <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 pointer-events-none" />
+                  </div>
+                </div>
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-1">Project Details</label>
+                <label htmlFor="serviceType" className={labelClass}>Service Type</label>
+                <div className="relative">
+                  <select
+                    name="serviceType"
+                    id="serviceType"
+                    required
+                    className={cn(inputClass, "appearance-none cursor-pointer")}
+                    defaultValue=""
+                  >
+                    <option value="" disabled>Select a service</option>
+                    <option value="Outsourcing">Outsourcing</option>
+                    <option value="Skill Hiring">Skill Hiring</option>
+                    <option value="AI Solutions">AI Solutions</option>
+                    <option value="Data Annotations">Data Annotations</option>
+                  </select>
+                  <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 pointer-events-none" />
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="message" className={labelClass}>Project Details</label>
                 <textarea
                   name="message"
                   id="message"
                   required
                   rows={4}
-                  className="w-full bg-black/[0.02] hover:bg-black/[0.04] border border-black/[0.05] rounded-2xl px-4 py-3 focus:bg-white focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all text-slate-900 outline-none resize-none"
-                  placeholder="Tell us about your project requirements..."
+                  className={cn(inputClass, "resize-none")}
+                  placeholder="Tell us about your requirements..."
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium transition-transform hover:scale-[1.02] shadow-[0_8px_20px_rgb(37,99,235,0.2)] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center"
+                className="w-full py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium transition-all duration-300 hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-primary-500/10 focus:border-primary-600"
               >
                 {isSubmitting ? (
                   <>
@@ -145,7 +189,7 @@ export default function Contact() {
                     Sending...
                   </>
                 ) : (
-                  'Send Message'
+                  'Send Inquiry'
                 )}
               </button>
             </form>
