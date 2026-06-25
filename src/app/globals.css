@@ -18,6 +18,79 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading;
+    @apply font-heading tracking-tight;
+  }
+}
+
+@layer components {
+  /* Primary Button Enhanced */
+  .btn {
+    @apply inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 disabled:pointer-events-none disabled:opacity-50;
+  }
+  .btn-lg {
+    @apply h-12 px-8 text-lg;
+  }
+  .btn-round {
+    @apply rounded-full;
+  }
+
+  .btn-primary {
+    @apply bg-primary-600 text-white relative overflow-hidden transition-all duration-300 ease-out;
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s ease-in-out;
+  }
+
+  .btn-primary:hover::before {
+    left: 100%;
+  }
+
+  .btn-primary:hover {
+    @apply -translate-y-0.5 shadow-xl bg-primary-700;
+  }
+
+  .btn-primary:active {
+    @apply translate-y-0 shadow-md;
+  }
+
+  /* Secondary Button */
+  .btn-secondary {
+    @apply bg-slate-100 text-slate-900 transition-all duration-300;
+  }
+
+  .btn-secondary:hover {
+    @apply -translate-y-0.5 shadow-md bg-slate-200;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-600 via-secondary-500 to-primary-700 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-alt {
+    @apply bg-gradient-to-br from-primary-600 to-secondary-600 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-subtle {
+    @apply bg-gradient-to-r from-slate-900 via-primary-600 to-slate-900 bg-clip-text text-transparent;
+  }
+  
+  .hover-glow {
+    @apply relative transition-all duration-300;
+  }
+
+  .hover-glow:hover {
+    @apply shadow-[0_0_30px_rgba(79,70,229,0.3)];
+  }
+
+  .hover-glow-lg:hover {
+    @apply shadow-[0_0_50px_rgba(79,70,229,0.4)];
   }
 }
