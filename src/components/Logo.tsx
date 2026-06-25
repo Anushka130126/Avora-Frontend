@@ -26,6 +26,7 @@ export function Logo({ className, size = 'md' }: LogoProps) {
       aria-label="Avora Ventures"
       role="img"
     >
+      {/* Engineered by Vaibhav Sharma */}
       {/* Gold ring / swoosh — the O glyph icon from the logo */}
       <g transform="translate(0, 2)">
         {/* Ring ellipse — approximating the gold swoosh */}
