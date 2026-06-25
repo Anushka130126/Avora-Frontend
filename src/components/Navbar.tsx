@@ -32,20 +32,26 @@ export default function Navbar() {
   return (
     <>
       <nav className={cn(
-        'fixed top-0 w-full z-50 transition-all duration-300',
+        'fixed top-0 w-full z-50 transition-all duration-500 ease-out',
         isScrolled
-          ? 'bg-white/95 dark:bg-[#0a0a0f]/95 backdrop-blur-xl border-b border-slate-200/80 dark:border-slate-800/80'
-          : 'bg-white/80 dark:bg-[#0a0a0f]/80 backdrop-blur-xl border-b border-transparent'
+          ? 'bg-white/35 dark:bg-[#0a0a0f]/35 backdrop-blur-[30px] border-b border-white/20 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.03)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.25)]'
+          : 'bg-white/10 dark:bg-[#0a0a0f]/10 backdrop-blur-[12px] border-b border-transparent'
       )}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Apple liquid-glass glare/shine overlay (glossy top-to-bottom shine) */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white/25 via-white/5 to-transparent dark:from-white/10 dark:via-white/5 dark:to-transparent pointer-events-none" />
+        
+        {/* Liquid-glass top border reflection line */}
+        <div className="absolute top-0 inset-x-0 h-[1.5px] bg-gradient-to-r from-transparent via-white/50 to-transparent dark:via-white/25 pointer-events-none" />
+
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className={cn(
-            'flex justify-between items-center transition-all duration-300',
-            isScrolled ? 'h-14' : 'h-16'
+            'flex justify-between items-center transition-all duration-500',
+            isScrolled ? 'h-14' : 'h-18'
           )}>
             {/* Logo */}
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="flex items-center hover:opacity-80 transition-opacity"
+              className="flex items-center hover:opacity-85 transition-opacity"
               aria-label="Avora Ventures home"
             >
               <Logo size="sm" className="h-10 w-auto text-slate-900 dark:text-white" />
@@ -57,7 +63,7 @@ export default function Navbar() {
                 <button
                   key={item.label}
                   onClick={() => handleNavClick(item.href)}
-                  className="px-3 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-md hover:bg-slate-100 dark:hover:bg-white/5 transition-all duration-150"
+                  className="px-3 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white rounded-md hover:bg-slate-100/40 dark:hover:bg-white/5 transition-all duration-150"
                 >
                   {item.label}
                 </button>
@@ -69,8 +75,10 @@ export default function Navbar() {
               <ThemeToggle />
               <button
                 onClick={() => handleNavClick('#contact')}
-                className="px-4 py-2 rounded-lg bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-semibold hover:bg-slate-700 dark:hover:bg-slate-100 transition-all duration-200"
+                className="px-4 py-2 rounded-lg bg-slate-900/90 dark:bg-white/95 text-white dark:text-slate-900 text-sm font-semibold hover:bg-slate-950 dark:hover:bg-white transition-all duration-200 shadow-sm relative overflow-hidden group"
               >
+                {/* Micro-reflective sheen */}
+                <div className="absolute inset-0 bg-white/10 dark:bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                 Get in Touch
               </button>
             </div>
@@ -80,7 +88,7 @@ export default function Navbar() {
               <ThemeToggle />
               <button
                 aria-label="Toggle navigation"
-                className="p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 transition-colors"
+                className="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100/50 dark:hover:bg-white/5 transition-colors"
                 onClick={() => setMobileMenuOpen(true)}
               >
                 <Menu className="w-5 h-5" />
