@@ -63,11 +63,11 @@ export default function Testimonials() {
   };
 
   return (
-    <section id="testimonials" className="py-16 md:py-28 bg-slate-900 relative overflow-hidden text-white">
+    <section id="testimonials" className="py-16 md:py-28 bg-slate-900 dark:bg-black relative overflow-hidden text-white">
       {/* Background decoration */}
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-      <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary-600/20 rounded-full blur-[100px]" />
-      <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-sky-600/20 rounded-full blur-[100px]" />
+      <div className="absolute -top-40 -right-40 w-96 h-96 bg-white/5 rounded-full blur-[100px]" />
+      <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-slate-500/10 rounded-full blur-[100px]" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div 
@@ -77,7 +77,7 @@ export default function Testimonials() {
             isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           )}
         >
-          <span className="text-xs font-bold uppercase tracking-widest text-sky-400 mb-2 block animate-fade-in">
+          <span className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 block animate-fade-in">
             Client Success
           </span>
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-white tracking-tight">
@@ -102,7 +102,6 @@ export default function Testimonials() {
                     index === currentIndex 
                       ? "opacity-100 translate-x-0 scale-100 z-10" 
                       : "opacity-0 scale-95 pointer-events-none z-0",
-                    // Move out to left if previous, right if next (simplified logic for fade/scale)
                     index !== currentIndex && index < currentIndex ? "-translate-x-8" : "",
                     index !== currentIndex && index > currentIndex ? "translate-x-8" : ""
                   )}
@@ -111,7 +110,7 @@ export default function Testimonials() {
                     "{testimonial.quote}"
                   </p>
                   <div className="flex items-center gap-4 mt-auto">
-                    <div className={cn("w-12 h-12 rounded-full flex items-center justify-center font-bold text-sm", testimonial.color)}>
+                    <div className={cn("w-12 h-12 rounded-full flex items-center justify-center font-bold text-sm bg-white/10 text-white")}>
                       {testimonial.avatar}
                     </div>
                     <div className="text-left">
@@ -127,7 +126,7 @@ export default function Testimonials() {
             <div className="flex justify-center items-center gap-6 mt-10 pt-8 border-t border-white/10">
               <button 
                 onClick={handlePrev}
-                className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center transition-colors text-white focus:outline-none focus:ring-2 focus:ring-sky-500/50"
+                className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center transition-colors text-white focus:outline-none focus:ring-2 focus:ring-white/50"
                 aria-label="Previous testimonial"
               >
                 <ChevronLeft className="w-5 h-5" />
@@ -146,7 +145,7 @@ export default function Testimonials() {
                     }}
                     className={cn(
                       "w-2.5 h-2.5 rounded-full transition-all duration-300",
-                      index === currentIndex ? "bg-sky-400 w-6" : "bg-white/20 hover:bg-white/40"
+                      index === currentIndex ? "bg-white w-6" : "bg-white/20 hover:bg-white/40"
                     )}
                     aria-label={`Go to testimonial ${index + 1}`}
                   />
@@ -155,7 +154,7 @@ export default function Testimonials() {
 
               <button 
                 onClick={handleNext}
-                className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center transition-colors text-white focus:outline-none focus:ring-2 focus:ring-sky-500/50"
+                className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center transition-colors text-white focus:outline-none focus:ring-2 focus:ring-white/50"
                 aria-label="Next testimonial"
               >
                 <ChevronRight className="w-5 h-5" />

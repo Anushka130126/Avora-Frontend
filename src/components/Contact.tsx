@@ -71,40 +71,41 @@ export default function Contact() {
   };
 
   return (
-    <section ref={ref} id="contact" className="py-16 md:py-28 bg-white border-t border-slate-200 overflow-hidden relative">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="contact" className="py-16 md:py-28 bg-white dark:bg-[#0f1115] border-t border-slate-200 dark:border-slate-800 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div 
+          ref={ref}
           className={cn(
-            'text-center mb-12 transition-all duration-700',
+            'text-center mb-16 transition-all duration-700',
             isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           )}
         >
-          <span className="text-xs font-bold uppercase tracking-widest text-primary-600 block mb-3">
-            Let's Work Together
+          <span className="text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400 mb-2 block animate-fade-in">
+            Get in touch
           </span>
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-slate-900 mb-6 tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-heading font-bold text-slate-900 dark:text-white tracking-tight mb-4">
             Start a Conversation
           </h2>
-          <p className="text-lg text-slate-600">
-            Fill out the form below and we'll get back to you within 24 hours.
+          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+            Ready to scale your operations with specialized talent? Let's discuss your requirements.
           </p>
         </div>
 
         <div 
           className={cn(
-            'bg-white border border-slate-200 p-8 md:p-12 shadow-xl rounded-2xl transition-all duration-700 delay-100',
+            'max-w-3xl mx-auto bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 p-8 md:p-12 shadow-sm hover:shadow-xl hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-700 delay-100 rounded-3xl',
             isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
           )}
         >
           {success ? (
             <div className="text-center py-12 animate-scale-in">
               <div className="flex justify-center mb-6">
-                <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center animate-bounce-subtle">
-                  <CheckCircle className="w-10 h-10 text-green-600" />
+                <div className="w-20 h-20 bg-slate-100 dark:bg-slate-900 rounded-full flex items-center justify-center animate-bounce-subtle">
+                  <CheckCircle className="w-10 h-10 text-slate-900 dark:text-white" />
                 </div>
               </div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-3">Inquiry Sent!</h3>
-              <p className="text-slate-600 mb-8 max-w-sm mx-auto">
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">Inquiry Sent!</h3>
+              <p className="text-slate-600 dark:text-slate-400 mb-8 max-w-sm mx-auto">
                 Thank you. Our team will reach out within 24 hours to discuss your needs.
               </p>
               <button
@@ -117,15 +118,15 @@ export default function Contact() {
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
               {error && (
-                <div className="p-4 bg-red-50 border border-red-200 rounded-lg flex gap-3 animate-slide-in-down">
-                  <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
-                  <p className="text-sm text-red-700">{error}</p>
+                <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-900/50 rounded-lg flex gap-3 animate-slide-in-down">
+                  <AlertCircle className="w-5 h-5 text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5" />
+                  <p className="text-sm text-red-700 dark:text-red-300">{error}</p>
                 </div>
               )}
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="transition-all duration-300">
-                  <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">
+                  <label htmlFor="name" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                     Full Name <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -141,13 +142,13 @@ export default function Contact() {
                     className={cn(
                       'w-full px-4 py-3 text-base rounded-lg border transition-all duration-300 outline-none',
                       focusedField === 'name'
-                        ? 'border-primary-500 ring-2 ring-primary-500/10 bg-white shadow-sm'
-                        : 'border-slate-200 bg-slate-50 hover:bg-slate-100 hover:border-slate-300'
+                        ? 'border-slate-500 dark:border-slate-400 ring-2 ring-slate-500/10 bg-white dark:bg-slate-900 shadow-sm'
+                        : 'border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800'
                     )}
                   />
                 </div>
                 <div className="transition-all duration-300">
-                  <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
+                  <label htmlFor="email" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                     Email Address <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -163,15 +164,15 @@ export default function Contact() {
                     className={cn(
                       'w-full px-4 py-3 text-base rounded-lg border transition-all duration-300 outline-none',
                       focusedField === 'email'
-                        ? 'border-primary-500 ring-2 ring-primary-500/10 bg-white shadow-sm'
-                        : 'border-slate-200 bg-slate-50 hover:bg-slate-100 hover:border-slate-300'
+                        ? 'border-slate-500 dark:border-slate-400 ring-2 ring-slate-500/10 bg-white dark:bg-slate-900 shadow-sm'
+                        : 'border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800'
                     )}
                   />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="company" className="block text-sm font-medium text-slate-700 mb-2">
+                <label htmlFor="company" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                   Company (Optional)
                 </label>
                 <input
@@ -186,15 +187,15 @@ export default function Contact() {
                   className={cn(
                     'w-full px-4 py-3 text-base rounded-lg border transition-all duration-300 outline-none',
                     focusedField === 'company'
-                      ? 'border-primary-500 ring-2 ring-primary-500/10 bg-white shadow-sm'
-                      : 'border-slate-200 bg-slate-50 hover:bg-slate-100 hover:border-slate-300'
+                      ? 'border-slate-500 dark:border-slate-400 ring-2 ring-slate-500/10 bg-white dark:bg-slate-900 shadow-sm'
+                      : 'border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800'
                   )}
                 />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="serviceType" className="block text-sm font-medium text-slate-700 mb-2">
+                  <label htmlFor="serviceType" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                     Service Type (Optional)
                   </label>
                   <select
@@ -207,8 +208,8 @@ export default function Contact() {
                     className={cn(
                       'w-full px-4 py-3 text-base rounded-lg border transition-all duration-300 outline-none appearance-none bg-no-repeat',
                       focusedField === 'serviceType'
-                        ? 'border-primary-500 ring-2 ring-primary-500/10 bg-white shadow-sm'
-                        : 'border-slate-200 bg-slate-50 hover:bg-slate-100 hover:border-slate-300'
+                        ? 'border-slate-500 dark:border-slate-400 ring-2 ring-slate-500/10 bg-white dark:bg-slate-900 shadow-sm'
+                        : 'border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800'
                     )}
                     style={{ backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e\")", backgroundPosition: "right 0.5rem center", backgroundSize: "1.5em 1.5em", paddingRight: "2.5rem" }}
                   >
@@ -220,7 +221,7 @@ export default function Contact() {
                   </select>
                 </div>
                 <div>
-                  <label htmlFor="budgetRange" className="block text-sm font-medium text-slate-700 mb-2">
+                  <label htmlFor="budgetRange" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                     Budget Range (Optional)
                   </label>
                   <select
@@ -233,8 +234,8 @@ export default function Contact() {
                     className={cn(
                       'w-full px-4 py-3 text-base rounded-lg border transition-all duration-300 outline-none appearance-none bg-no-repeat',
                       focusedField === 'budgetRange'
-                        ? 'border-primary-500 ring-2 ring-primary-500/10 bg-white shadow-sm'
-                        : 'border-slate-200 bg-slate-50 hover:bg-slate-100 hover:border-slate-300'
+                        ? 'border-slate-500 dark:border-slate-400 ring-2 ring-slate-500/10 bg-white dark:bg-slate-900 shadow-sm'
+                        : 'border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800'
                     )}
                     style={{ backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e\")", backgroundPosition: "right 0.5rem center", backgroundSize: "1.5em 1.5em", paddingRight: "2.5rem" }}
                   >
@@ -248,7 +249,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-2">
+                <label htmlFor="message" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                   Project Details <span className="text-red-500">*</span>
                 </label>
                 <textarea
@@ -264,8 +265,8 @@ export default function Contact() {
                   className={cn(
                     'w-full px-4 py-3 text-base rounded-lg border resize-none transition-all duration-300 outline-none',
                     focusedField === 'message'
-                      ? 'border-primary-500 ring-2 ring-primary-500/10 bg-white shadow-sm'
-                      : 'border-slate-200 bg-slate-50 hover:bg-slate-100 hover:border-slate-300'
+                      ? 'border-slate-500 dark:border-slate-400 ring-2 ring-slate-500/10 bg-white dark:bg-slate-900 shadow-sm'
+                      : 'border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800'
                   )}
                 />
               </div>
@@ -281,7 +282,7 @@ export default function Contact() {
                 <span className="relative z-10 flex items-center justify-center">
                   {isSubmitting ? (
                     <>
-                      <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white dark:text-primary-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>

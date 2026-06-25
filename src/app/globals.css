@@ -4,7 +4,12 @@
 @layer base {
   :root {
     --background: #f8fafc;
-    --foreground: #0f172a;
+    --foreground: #020617;
+  }
+  
+  .dark {
+    --background: #020617;
+    --foreground: #f8fafc;
   }
 
   html {
@@ -14,7 +19,7 @@
   body {
     background-color: var(--background);
     color: var(--foreground);
-    @apply font-sans antialiased;
+    @apply font-sans antialiased transition-colors duration-300;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -35,7 +40,7 @@
   }
 
   .btn-primary {
-    @apply bg-primary-600 text-white relative overflow-hidden transition-all duration-300 ease-out;
+    @apply bg-primary-900 dark:bg-white text-white dark:text-primary-900 relative overflow-hidden transition-all duration-300 ease-out border border-transparent dark:border-primary-200;
   }
 
   .btn-primary::before {
@@ -45,8 +50,12 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
     transition: left 0.5s ease-in-out;
+  }
+  
+  .dark .btn-primary::before {
+    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
   }
 
   .btn-primary:hover::before {
@@ -54,32 +63,33 @@
   }
 
   .btn-primary:hover {
-    @apply -translate-y-0.5 shadow-xl bg-primary-700;
+    @apply -translate-y-0.5 shadow-lg bg-black dark:bg-primary-50;
   }
 
   .btn-primary:active {
-    @apply translate-y-0 shadow-md;
+    @apply translate-y-0 shadow-sm;
   }
 
   /* Secondary Button */
   .btn-secondary {
-    @apply bg-slate-100 text-slate-900 transition-all duration-300;
+    @apply bg-white dark:bg-primary-900 text-primary-900 dark:text-white border border-primary-200 dark:border-primary-800 transition-all duration-300;
   }
 
   .btn-secondary:hover {
-    @apply -translate-y-0.5 shadow-md bg-slate-200;
+    @apply -translate-y-0.5 shadow-md bg-primary-50 dark:bg-primary-800;
   }
 
+  /* Elegant Monochromatic Gradients */
   .text-gradient {
-    @apply bg-gradient-to-r from-primary-600 via-secondary-500 to-primary-700 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary-900 via-primary-700 to-primary-950 dark:from-white dark:via-primary-200 dark:to-primary-400 bg-clip-text text-transparent;
   }
 
   .text-gradient-alt {
-    @apply bg-gradient-to-br from-primary-600 to-secondary-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-br from-primary-800 to-secondary-600 dark:from-primary-100 dark:to-secondary-400 bg-clip-text text-transparent;
   }
 
   .text-gradient-subtle {
-    @apply bg-gradient-to-r from-slate-900 via-primary-600 to-slate-900 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary-900 via-primary-600 to-primary-900 dark:from-white dark:via-primary-300 dark:to-white bg-clip-text text-transparent;
   }
   
   .hover-glow {
@@ -87,10 +97,10 @@
   }
 
   .hover-glow:hover {
-    @apply shadow-[0_0_30px_rgba(79,70,229,0.3)];
+    @apply shadow-[0_0_30px_rgba(15,23,42,0.08)] dark:shadow-[0_0_30px_rgba(255,255,255,0.08)];
   }
 
   .hover-glow-lg:hover {
-    @apply shadow-[0_0_50px_rgba(79,70,229,0.4)];
+    @apply shadow-[0_0_50px_rgba(15,23,42,0.1)] dark:shadow-[0_0_50px_rgba(255,255,255,0.1)];
   }
 }

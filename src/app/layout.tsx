@@ -2,16 +2,22 @@ import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import { siteConfig } from '@/config/site';
 import { generateSchema } from '@/app/schema';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import PageTransition from '@/components/PageTransition';
+import { ThemeProvider } from '@/components/ThemeProvider';
 import "./globals.css";
 
 const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
 });
 
 const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
-  subsets: ["latin"],
+  subsets: ['latin'],
+  variable: '--font-space-grotesk',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -41,7 +47,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport = {
-  themeColor: '#4f46e5',
+  themeColor: '#8C1515',
 };
 
 export default function RootLayout({
@@ -50,17 +56,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${spaceGrotesk.variable} h-full antialiased`}
-    >
+    <html lang="en" suppressHydrationWarning className={`scroll-smooth ${inter.variable} ${spaceGrotesk.variable}`}>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(generateSchema()) }}
         />
       </head>
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+      <body className="min-h-full flex flex-col font-sans bg-slate-50 dark:bg-[#0f1115] text-slate-900 dark:text-slate-100 selection:bg-primary-500/30 selection:text-primary-900 dark:selection:text-primary-100">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          <Navbar />
+          <main className="flex-grow flex flex-col relative z-0">
+            <PageTransition>
+              {children}
+            </PageTransition>
+          </main>
+          <Footer />
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

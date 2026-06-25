@@ -1,81 +1,81 @@
 'use client';
 
-import { ArrowRight, CheckCircle2, Clock, Users } from 'lucide-react';
-import { useInView } from '@/hooks/useInView';
+import { ArrowRight, ChevronRight } from 'lucide-react';
+import { PatternGrid } from './BackgroundPatterns';
 import { cn } from '@/lib/cn';
-import { PatternGrid } from '@/components/BackgroundPatterns';
+import { useInView } from '@/hooks/useInView';
+import Link from 'next/link';
 
 export default function Hero() {
   const { ref, isInView } = useInView({ once: true, threshold: 0.1 });
 
-  const scrollToContact = () => {
-    const element = document.getElementById('contact');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
-    <section ref={ref} id="hero" className="pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden relative">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-white dark:bg-[#0f1115]">
       <PatternGrid />
-      {/* Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary-600/10 rounded-full blur-[100px] -z-10 pointer-events-none animate-pulse"></div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-        <div
-          className={cn(
-            'transition-all duration-700',
-            isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          )}
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+        <div 
+          ref={ref}
+          className="text-center max-w-4xl mx-auto"
         >
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-slate-900 mb-6 max-w-4xl mx-auto leading-[1.1]">
-            Scale your operations. <br className="hidden md:block" />
-            <span className="text-gradient">Powered by specialized talent and AI.</span>
+          <div className={cn(
+            "inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm font-medium text-slate-700 dark:text-slate-300 mb-8 transition-all duration-700",
+            isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          )}>
+            <span className="flex h-2 w-2 rounded-full bg-primary-500 animate-pulse"></span>
+            Elevating Global Operations
+            <ChevronRight className="w-4 h-4 text-slate-400" />
+          </div>
+          
+          <h1 className={cn(
+            "text-5xl md:text-7xl font-heading font-bold tracking-tight text-slate-900 dark:text-white mb-6 transition-all duration-700 delay-100",
+            isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          )}>
+            Scale your vision with <br className="hidden md:block" />
+            <span className="text-gradient">precision engineering.</span>
           </h1>
           
-          <p className="max-w-2xl mx-auto text-lg md:text-xl text-slate-600 mb-10 px-4 md:px-0 leading-relaxed">
-            Avora Ventures combines outsourcing, skill hiring, AI solutions, and data annotations into one unified platform.
+          <p className={cn(
+            "text-xl md:text-2xl text-slate-600 dark:text-slate-400 mb-10 max-w-3xl mx-auto leading-relaxed transition-all duration-700 delay-200",
+            isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          )}>
+            We combine elite engineering talent, specialized AI solutions, and rigorous data operations to build the products that define your future.
           </p>
-        </div>
-        
-        <div 
-          className={cn(
-            'flex justify-center mb-20 transition-all duration-700 delay-200',
-            isInView ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-          )}
-        >
-          <button
-            onClick={scrollToContact}
-            className="group btn btn-primary btn-lg btn-round shadow-lg"
-          >
-            Start a Conversation
-            <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-          </button>
-        </div>
+          
+          <div className={cn(
+            "flex flex-col sm:flex-row gap-4 justify-center items-center transition-all duration-700 delay-300",
+            isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          )}>
+            <Link href="#contact" className="btn btn-primary btn-lg w-full sm:w-auto group">
+              Start a Conversation
+              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <Link href="#services" className="btn btn-secondary btn-lg w-full sm:w-auto">
+              Explore Our Services
+            </Link>
+          </div>
 
-        {/* 3-Stat Mini Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          {[
-            { icon: Users, stat: "500+", label: "Verified Engineers" },
-            { icon: CheckCircle2, stat: "95%", label: "Client Retention" },
-            { icon: Clock, stat: "2–6 Weeks", label: "AI Implementation" }
-          ].map((item, index) => {
-            const Icon = item.icon;
-            return (
-              <div 
-                key={index}
-                className={cn(
-                  'bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex flex-col items-center justify-center transition-all duration-700',
-                  isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                )}
-                style={{ transitionDelay: isInView ? `${(index + 1) * 150}ms` : '0ms' }}
-              >
-                <Icon className="w-8 h-8 text-primary-600 mb-3" />
-                <span className="text-xl font-heading font-bold text-slate-900">{item.stat}</span>
-                <span className="text-sm text-slate-500 font-medium">{item.label}</span>
+          {/* Stats/Social Proof */}
+          <div className={cn(
+            "mt-20 pt-10 border-t border-slate-200 dark:border-slate-800 grid grid-cols-2 md:grid-cols-4 gap-8 transition-all duration-700 delay-500",
+            isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          )}>
+            {[
+              { label: 'Stanford Alumni', value: 'Founded' },
+              { label: 'AI & Data Ops', value: 'Specialized' },
+              { label: 'Global Talent', value: 'Sourced' },
+              { label: 'Product Lifecycle', value: 'End-to-End' },
+            ].map((stat, i) => (
+              <div key={i} className="flex flex-col items-center justify-center hover-glow p-4 rounded-xl dark:hover:bg-slate-900/50">
+                <div className="text-2xl md:text-3xl font-heading font-bold text-slate-900 dark:text-white mb-1">
+                  {stat.value}
+                </div>
+                <div className="text-sm font-medium text-slate-500 dark:text-slate-400">
+                  {stat.label}
+                </div>
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
       </div>
     </section>
