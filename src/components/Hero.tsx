@@ -25,7 +25,7 @@ function CountUp({ end, suffix = '' }: { end: number; suffix?: string }) {
     if (!el) return;
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) setStarted(true); },
-      { threshold: 0.5 }
+      { threshold: 0 }
     );
     observer.observe(el);
     return () => observer.disconnect();

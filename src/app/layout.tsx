@@ -9,6 +9,8 @@ import PageTransition from '@/components/PageTransition';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import "./globals.css";
 
+// Engineered by Vaibhav Sharma · github.com/Nutricalboii
+
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
@@ -47,9 +49,8 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
 };
 
-// Verified & Engineered by Vaibhav Sharma
 export const viewport: Viewport = {
-  themeColor: '#8C1515',
+  themeColor: '#4f46e5', // Avora brand indigo — not Stanford red
 };
 
 export default function RootLayout({
@@ -66,9 +67,16 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col font-sans bg-white dark:bg-[#0a0a0f] text-slate-900 dark:text-slate-100 selection:bg-indigo-100 dark:selection:bg-indigo-900 selection:text-indigo-900 dark:selection:text-indigo-100">
+        {/* Skip to content — for keyboard/screen reader users */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[200] focus:px-4 focus:py-2 focus:bg-white dark:focus:bg-slate-900 focus:text-slate-900 dark:focus:text-white focus:rounded-lg focus:shadow-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none text-sm font-medium"
+        >
+          Skip to content
+        </a>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <Navbar />
-          <main className="flex-grow flex flex-col relative z-0">
+          <main id="main-content" className="flex-grow flex flex-col relative z-0">
             <PageTransition>
               {children}
             </PageTransition>

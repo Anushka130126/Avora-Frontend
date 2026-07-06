@@ -1,5 +1,6 @@
-// Designed & Engineered by Vaibhav Sharma (https://github.com/Nutricalboii)
 'use client';
+
+// Designed & Engineered by Vaibhav Sharma · github.com/Nutricalboii
 
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
@@ -8,10 +9,12 @@ import { cn } from '@/lib/cn';
 import { ThemeToggle } from './ThemeToggle';
 import Link from 'next/link';
 import { Logo } from './Logo';
+import { useRouter } from 'next/navigation';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -19,10 +22,17 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Lock body scroll when drawer is open
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileMenuOpen]);
+
   const handleNavClick = (href: string) => {
     setMobileMenuOpen(false);
-    if (href.startsWith('/')) {
-      window.location.href = href;
+    if (href.startsWith('/') && !href.includes('#')) {
+      // ponytail: use router.push for internal pages, not window.location.href (no full reload)
+      router.push(href);
       return;
     }
     const id = href.replace('/#', '').replace('#', '');
@@ -32,16 +42,19 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className={cn(
-        'fixed top-0 w-full z-50 transition-all duration-500 ease-out',
-        isScrolled
-          ? 'bg-white/35 dark:bg-[#0a0a0f]/35 backdrop-blur-[30px] border-b border-white/20 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.03)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.25)]'
-          : 'bg-white/10 dark:bg-[#0a0a0f]/10 backdrop-blur-[12px] border-b border-transparent'
-      )}>
-        {/* Apple liquid-glass glare/shine overlay (glossy top-to-bottom shine) */}
+      <nav
+        className={cn(
+          'fixed top-0 w-full z-50 transition-all duration-500 ease-out',
+          isScrolled
+            ? 'bg-white/35 dark:bg-[#0a0a0f]/35 backdrop-blur-[30px] border-b border-white/20 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.03)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.25)]'
+            : 'bg-white/10 dark:bg-[#0a0a0f]/10 backdrop-blur-[12px] border-b border-transparent'
+        )}
+        role="navigation"
+        aria-label="Main navigation"
+      >
+        {/* Glass glare overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-white/25 via-white/5 to-transparent dark:from-white/10 dark:via-white/5 dark:to-transparent pointer-events-none" />
-        
-        {/* Liquid-glass top border reflection line */}
+        {/* Top border reflection */}
         <div className="absolute top-0 inset-x-0 h-[1.5px] bg-gradient-to-r from-transparent via-white/50 to-transparent dark:via-white/25 pointer-events-none" />
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -53,46 +66,59 @@ export default function Navbar() {
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               className="flex items-center hover:opacity-85 transition-opacity"
-              aria-label="Avora Ventures home"
+              aria-label="Avora Ventures — scroll to top"
             >
               <Logo size="sm" className="h-10 w-auto text-slate-900 dark:text-white" />
             </button>
 
-            {/* Desktop Nav */}
-            <div className="hidden md:flex items-center gap-1">
-              {siteConfig.nav.map((item) => (
-                <button
-                  key={item.label}
-                  onClick={() => handleNavClick(item.href)}
-                  className="px-3 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white rounded-md hover:bg-slate-100/40 dark:hover:bg-white/5 transition-all duration-150"
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
+            {/* Desktop Nav — use <a> tags for anchor links so middle-click works */}
+            <nav className="hidden md:flex items-center gap-1" aria-label="Site sections">
+              {siteConfig.nav.map((item) =>
+                item.href.startsWith('/') && !item.href.includes('#') ? (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    className="px-3 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white rounded-md hover:bg-slate-100/40 dark:hover:bg-white/5 transition-all duration-150"
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={item.label}
+                    href={item.href.replace('/', '')}
+                    onClick={(e) => { e.preventDefault(); handleNavClick(item.href); }}
+                    className="px-3 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white rounded-md hover:bg-slate-100/40 dark:hover:bg-white/5 transition-all duration-150"
+                  >
+                    {item.label}
+                  </a>
+                )
+              )}
+            </nav>
 
             {/* Desktop actions */}
             <div className="hidden md:flex items-center gap-3">
               <ThemeToggle />
-              <button
-                onClick={() => handleNavClick('#contact')}
+              <a
+                href="#contact"
+                onClick={(e) => { e.preventDefault(); handleNavClick('#contact'); }}
                 className="px-4 py-2 rounded-lg bg-slate-900/90 dark:bg-white/95 text-white dark:text-slate-900 text-sm font-semibold hover:bg-slate-950 dark:hover:bg-white transition-all duration-200 shadow-sm relative overflow-hidden group"
               >
-                {/* Micro-reflective sheen */}
                 <div className="absolute inset-0 bg-white/10 dark:bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                 Get in Touch
-              </button>
+              </a>
             </div>
 
             {/* Mobile row */}
             <div className="md:hidden flex items-center gap-2">
               <ThemeToggle />
               <button
-                aria-label="Toggle navigation"
+                aria-label="Open navigation menu"
+                aria-expanded={mobileMenuOpen}
+                aria-controls="mobile-menu"
                 className="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100/50 dark:hover:bg-white/5 transition-colors"
                 onClick={() => setMobileMenuOpen(true)}
               >
-                <Menu className="w-5 h-5" />
+                <Menu className="w-5 h-5" aria-hidden="true" />
               </button>
             </div>
           </div>
@@ -101,10 +127,12 @@ export default function Navbar() {
 
       {/* Mobile drawer */}
       <div
+        id="mobile-menu"
         className={cn(
           'fixed inset-0 z-[60] md:hidden transition-all duration-300',
           mobileMenuOpen ? 'pointer-events-auto' : 'pointer-events-none'
         )}
+        aria-hidden={!mobileMenuOpen}
       >
         {/* Backdrop */}
         <div
@@ -117,16 +145,17 @@ export default function Navbar() {
 
         {/* Drawer */}
         <div className={cn(
-          'absolute top-0 right-0 w-72 h-full bg-white dark:bg-[#0a0a0f] border-l border-slate-200 dark:border-slate-800 flex flex-col transition-transform duration-400 ease-in-out',
+          'absolute top-0 right-0 w-72 h-full bg-white dark:bg-[#0a0a0f] border-l border-slate-200 dark:border-slate-800 flex flex-col transition-transform duration-300 ease-in-out',
           mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
         )}>
           <div className="flex justify-between items-center p-4 border-b border-slate-100 dark:border-slate-800">
             <Logo size="sm" className="h-10 w-auto text-slate-900 dark:text-white" />
             <button
               onClick={() => setMobileMenuOpen(false)}
+              aria-label="Close navigation menu"
               className="p-2 text-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 rounded-lg transition-colors"
             >
-              <X className="w-5 h-5" />
+              <X className="w-5 h-5" aria-hidden="true" />
             </button>
           </div>
           <div className="flex flex-col p-3 gap-1 flex-1">
