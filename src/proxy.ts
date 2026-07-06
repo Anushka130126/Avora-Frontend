@@ -1,6 +1,6 @@
 import { withAuth } from "next-auth/middleware";
 
-// ponytail: renamed from proxy.ts → middleware.ts (Next.js requires this exact filename)
+// Next.js 16 uses "proxy.ts" for middleware (middleware.ts was the older convention)
 // Engineered by Vaibhav Sharma · github.com/Nutricalboii
 
 export default withAuth({
