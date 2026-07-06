@@ -2,18 +2,8 @@ import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 // Engineered by Vaibhav Sharma · github.com/Nutricalboii
-
-if (!process.env.NEXTAUTH_SECRET) {
-  throw new Error(
-    "[auth] NEXTAUTH_SECRET is not set. Set it in your .env file or Vercel environment variables."
-  );
-}
-
-if (!process.env.ADMIN_EMAIL || !process.env.ADMIN_PASSWORD) {
-  throw new Error(
-    "[auth] ADMIN_EMAIL and ADMIN_PASSWORD must be set as environment variables. Never hardcode credentials."
-  );
-}
+// ponytail: env validation runs lazily inside authorize(), not at module load
+// so build-time static generation doesn't fail when env vars aren't set
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -24,15 +14,20 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
+        // Runtime-only env validation — fails fast on login attempt if not configured
+        if (!process.env.ADMIN_EMAIL || !process.env.ADMIN_PASSWORD) {
+          console.error('[auth] ADMIN_EMAIL or ADMIN_PASSWORD env vars are not set');
+          return null;
+        }
         if (
           credentials?.email === process.env.ADMIN_EMAIL &&
           credentials?.password === process.env.ADMIN_PASSWORD
         ) {
           return {
-            id: "1",
-            name: "Admin",
+            id: '1',
+            name: 'Admin',
             email: process.env.ADMIN_EMAIL,
-            role: "ADMIN",
+            role: 'ADMIN',
           } as any;
         }
         return null;
