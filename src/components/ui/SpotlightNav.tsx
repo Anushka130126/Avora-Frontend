@@ -42,7 +42,7 @@ export function SpotlightNav() {
             "transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex items-center overflow-hidden",
             isScrolled
               ? "opacity-100 w-[140px] md:w-[160px] translate-x-0 pointer-events-auto mr-4"
-              : "opacity-100 w-[140px] translate-x-0 pointer-events-auto mr-4 md:opacity-0 md:w-0 md:-translate-x-4 md:pointer-events-none md:mr-0"
+              : "w-[140px] opacity-100 md:w-0 md:opacity-0 md:-translate-x-4 md:pointer-events-none md:mr-0"
           )}>
             <Link href="/" aria-label="Avora Ventures" className="block">
               <Logo className="h-8 md:h-9 w-auto text-slate-900 dark:text-white" />
