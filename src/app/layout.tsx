@@ -7,6 +7,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import PageTransition from '@/components/PageTransition';
 import { ThemeProvider } from '@/components/ThemeProvider';
+import { ChatbotWidget } from '@/components/ChatbotWidget';
 import "./globals.css";
 
 // Engineered by Vaibhav Sharma · github.com/Nutricalboii
@@ -82,6 +83,7 @@ export default function RootLayout({
             </PageTransition>
           </main>
           <Footer />
+          <ChatbotWidget />
         </ThemeProvider>
         <Analytics />
       </body>

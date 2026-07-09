@@ -121,7 +121,14 @@ export async function updateVentureStage(id: string, stage: VentureStage) {
   }
 }
 
-export async function updateCapTable(id: string, capTable: any) {
+export type CapTable = {
+  avora: number;
+  founders: number;
+  investors: number;
+  optionsPool: number;
+};
+
+export async function updateCapTable(id: string, capTable: CapTable) {
   const session = await getServerSession(authOptions);
   if (!session) {
     throw new Error('Unauthorized');
