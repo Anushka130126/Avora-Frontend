@@ -68,9 +68,9 @@ export default function Ventures() {
         </div>
 
         {/* Console Dashboard Layout */}
-        <div className="border border-slate-800 bg-[#121218]/90 rounded-xl overflow-hidden backdrop-blur-sm">
+        <div className="border border-slate-850 bg-slate-950/80 backdrop-blur-md rounded-2xl overflow-hidden shadow-2xl">
           {/* Dashboard Header Bar */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between px-6 py-4 border-b border-slate-800 bg-[#0a0e16] gap-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between px-6 py-4 border-b border-slate-850 bg-slate-900/30 gap-4">
             <div className="flex items-center gap-2">
               <Server className="w-4 h-4 text-[#B08D57]" />
               <span className="text-xs font-mono font-bold text-slate-300">SYSTEM ARCHITECTURE METRIC REPORT</span>

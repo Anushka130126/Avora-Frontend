@@ -95,7 +95,7 @@ export default function Contact() {
           </p>
         </div>
 
-        <div className="bg-[#0e1322]/80 border border-slate-800 p-8 md:p-12 shadow-sm rounded-xl backdrop-blur-sm">
+        <div className="bg-slate-950/80 border border-slate-850 p-8 md:p-12 shadow-2xl rounded-2xl backdrop-blur-md">
           {success ? (
             <div className="text-center py-12">
               <div className="flex justify-center mb-6">

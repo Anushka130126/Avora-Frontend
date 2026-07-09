@@ -44,10 +44,10 @@ export default function Services() {
         </div>
 
         {/* Tabular Specification Console */}
-        <div className="border border-slate-800 bg-[#121218]/90 backdrop-blur-md rounded-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[500px]">
+        <div className="border border-slate-850 bg-slate-950/80 backdrop-blur-md rounded-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[500px] shadow-2xl">
           
           {/* Left Panel: Service Selection (Tab navigation) */}
-          <div className="lg:col-span-4 border-r border-slate-800 divide-y divide-slate-850 bg-[#0a0a0f]">
+          <div className="lg:col-span-4 border-r border-slate-850 divide-y divide-slate-850/60 bg-slate-950/30">
             {services.map((service) => {
               const isActive = service.id === activeTab;
               return (
