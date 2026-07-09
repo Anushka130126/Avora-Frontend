@@ -47,3 +47,8 @@ graphify-out/
 .agent/
 ai-processor/__pycache__/
 ai-processor/.venv/
+AVORA_PHASE2_BRAND_BLUEPRINT.md
+Avora_Phase2_Strategy_Report.docx
+Avora_Post_Implementation_Audit_Report.docx
+avora_deep_audit_report.md
+gemini-svg.svg
