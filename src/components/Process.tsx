@@ -35,7 +35,7 @@ export default function Process() {
   const { ref, isInView } = useInView({ once: true, threshold: 0.1 });
 
   return (
-    <section id="process" className="relative py-24 md:py-32 overflow-hidden border-t border-slate-800 bg-[#0a0a0f]">
+    <section id="process" className="relative py-24 md:py-32 overflow-hidden bg-[#0a0a0f]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section header */}
