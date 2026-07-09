@@ -20,12 +20,7 @@ export default function Hero() {
   return (
     <section 
       id="hero" 
-      className="relative min-h-screen flex items-center justify-center pt-28 pb-16 overflow-hidden bg-[#0a0a0f]"
-      style={{
-        backgroundImage: "radial-gradient(circle at center, rgba(10, 10, 15, 0.35) 0%, rgba(10, 10, 15, 0.85) 100%), url('/Gold_Flow.jpg.jpeg')",
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
+      className="relative min-h-screen flex items-center justify-center pt-28 pb-16 overflow-hidden hero-bg"
     >
       {/* Precision blueprint background grid */}
       <TechnicalGrid showDots={true} />

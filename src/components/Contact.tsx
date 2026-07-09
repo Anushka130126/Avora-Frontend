@@ -72,12 +72,7 @@ export default function Contact() {
   return (
     <section 
       id="contact" 
-      className="py-24 md:py-32 relative overflow-hidden"
-      style={{
-        backgroundImage: "radial-gradient(circle at center, rgba(8, 11, 18, 0.45) 0%, rgba(8, 11, 18, 0.95) 100%), url('/Structural_Precision.jpg.jpeg')",
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
+      className="py-24 md:py-32 relative overflow-hidden contact-bg"
     >
       <TechnicalGrid showDots={true} />
 

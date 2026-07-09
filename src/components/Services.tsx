@@ -15,12 +15,7 @@ export default function Services() {
   return (
     <section
       id="services"
-      className="relative py-24 md:py-32 overflow-hidden bg-[#0a0a0f]"
-      style={{
-        backgroundImage: "radial-gradient(circle at center, rgba(10, 10, 15, 0.4) 0%, rgba(10, 10, 15, 0.9) 100%), url('/Institutional_Network.jpg.jpeg')",
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
+      className="relative py-24 md:py-32 overflow-hidden services-bg"
     >
       <TechnicalGrid showDots={false} />
 

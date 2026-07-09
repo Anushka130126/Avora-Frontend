@@ -43,12 +43,7 @@ export default function Ventures() {
   return (
     <section 
       id="ventures" 
-      className="relative py-24 md:py-32 overflow-hidden bg-[#0a0a0f]"
-      style={{
-        backgroundImage: "radial-gradient(circle at center, rgba(10, 10, 15, 0.4) 0%, rgba(10, 10, 15, 0.9) 100%), url('/Silicone_Gold.jpg.jpeg')",
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
+      className="relative py-24 md:py-32 overflow-hidden ventures-bg"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         

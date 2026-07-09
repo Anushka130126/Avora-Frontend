@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avora Ventures - Institutional AI Infrastructure</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* LIGHT MODE AVORA PALETTE */
+            --bg-light: #F8F5EE; /* Rich Cream/Alabaster */
+            --bg-card: rgba(255, 255, 255, 0.65); /* Bright Frosted Glass */
+            --text-main: #3D2616; /* A lighter, warmer chestnut brown */
+            --text-muted: #735440; /* A softer milk-chocolate brown for small text */
+            --accent: #B88A44; /* Deepened Gold for contrast */
+            --spacing: 120px;
+            
+            /* Typography Variables */
+            --font-head: 'Outfit', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Utility */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .section { padding: var(--spacing) 0; position: relative; z-index: 2; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
+
+        /* Typography Hierarchy */
+        h1, h2, h3, h4 { font-family: var(--font-head); }
+        
+        h1 { 
+            font-size: clamp(3.5rem, 7vw, 6.5rem); 
+            font-weight: 800; 
+            line-height: 1.05; 
+            letter-spacing: -0.04em; 
+            margin-bottom: 1.5rem; 
+            color: var(--text-main);
+        }
+        
+        h2 { 
+            font-size: clamp(2.25rem, 4vw, 3.25rem); 
+            font-weight: 600; 
+            letter-spacing: -0.03em; 
+            margin-bottom: 1rem; 
+        }
+        
+        h3 { 
+            font-size: 1.4rem; 
+            font-weight: 600; 
+            letter-spacing: -0.01em;
+            margin-bottom: 0.75rem; 
+            color: var(--text-main); 
+        }
+        
+        p { 
+            color: var(--text-muted); 
+            font-size: 1.125rem; 
+            margin-bottom: 1.5rem; 
+            font-weight: 400;
+        }
+
+        /* Monotony Breakers (Targeted Text Classes) */
+        p.lead {
+            font-size: clamp(1.15rem, 2vw, 1.35rem);
+            line-height: 1.5;
+            color: rgba(42, 26, 16, 0.85); /* Deep Brown Lead */
+            max-width: 600px;
+            font-weight: 400;
+        }
+
+        .eyebrow {
+            display: block;
+            color: var(--accent);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .meta-text {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(184, 138, 68, 0.2); /* Subtle Gold border */
+            padding-top: 1rem;
+            margin-bottom: 0;
+            margin-top: 1.5rem;
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            z-index: 3;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.03);
+        }
+        
+        .glass-card:hover { 
+            transform: translateY(-5px); 
+            border-color: rgba(184, 138, 68, 0.4); /* Gold hover border */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        .glass-card p {
+            font-size: 1.05rem; 
+            margin-bottom: 0;
+            line-height: 1.5;
+        }
+
+        .glass-card h3 + p { margin-bottom: 1rem; }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background-color: var(--bg-light);
+            /* Reduced overlay opacity to make image more visible, changed to jpg */
+            background-image: linear-gradient(rgba(248, 245, 238, 0.4), rgba(248, 245, 238, 0.8)), url('Gold_Flow_Light.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .hero-nav { 
+            position: absolute; 
+            top: 0; 
+            width: 100%; 
+            padding: 2rem 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            z-index: 10;
+        }
+        
+        .hero-nav span { 
+            font-family: var(--font-head);
+            font-weight: 800; 
+            letter-spacing: 0.1em; 
+            font-size: 1.1rem;
+            color: var(--text-main);
+        }
+        
+        .nav-links { 
+            display: flex; 
+            gap: 2.5rem; 
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--text-main);
+            color: var(--bg-light);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-family: var(--font-head);
+            font-weight: 600;
+            font-size: 1.05rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            position: relative;
+            z-index: 3;
+        }
+        .btn:hover { 
+            background: var(--accent); 
+            color: #fff;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Stats Grid */
+        .stats-grid { 
+            text-align: center; 
+            border-top: 1px solid rgba(42,26,16,0.08); /* Deep brown borders */
+            border-bottom: 1px solid rgba(42,26,16,0.08); 
+            padding: 4rem 0; 
+            margin-top: -5rem; 
+            position: relative; 
+            z-index: 2; 
+            background: var(--bg-light); 
+        }
+        
+        .stat-item h4 { 
+            font-size: clamp(3rem, 5vw, 4.5rem); 
+            font-weight: 800; 
+            color: var(--accent); 
+            line-height: 1; 
+            letter-spacing: -0.02em;
+        }
+        
+        .stat-item p { 
+            text-transform: uppercase; 
+            font-size: 0.8rem; 
+            font-weight: 600;
+            letter-spacing: 0.15em; 
+            margin-top: 1.25rem; 
+            color: var(--text-muted);
+        }
+
+        /* BACKGROUND IMAGE SECTIONS */
+        .bg-section-1 {
+            position: relative;
+            background-color: var(--bg-light);
+            background-image: linear-gradient(rgba(248, 245, 238, 0.65), rgba(248, 245, 238, 0.85)), url('Institutional_Network_Light.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .bg-section-2 {
+            position: relative;
+            background-color: var(--bg-light);
+            background-image: linear-gradient(rgba(248, 245, 238, 0.65), rgba(248, 245, 238, 0.85)), url('Structural_Precision_Light.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .bg-section-3 {
+            position: relative;
+            background-color: var(--bg-light);
+            background-image: linear-gradient(rgba(248, 245, 238, 0.75), rgba(248, 245, 238, 0.9)), url('Silicone_Gold_Light.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        /* Contact Form */
+        input, select, textarea {
+            width: 100%; 
+            background: rgba(255,255,255,0.5); 
+            border: 1px solid rgba(42,26,16,0.15); /* Deep brown borders */
+            color: var(--text-main); 
+            padding: 1.2rem; 
+            border-radius: 12px; 
+            margin-bottom: 1.25rem; 
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+        
+        input:focus, select:focus, textarea:focus { 
+            outline: none; 
+            border-color: var(--accent); 
+            background: rgba(255,255,255,0.9);
+        }
+
+        @media (max-width: 768px) {
+            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+            .hero { text-align: center; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <nav class="hero-nav">
+            <span>AVORA VENTURES</span>
+            <div class="nav-links">
+                <span>Services</span>
+                <span>Process</span>
+                <span>Contact</span>
+            </div>
+        </nav>
+        <div class="container reveal">
+            <span class="eyebrow">Institutional AI Infrastructure</span>
+            <h1>Scale your vision <br>with precision.</h1>
+            <p class="lead">Elite engineering talent, custom machine learning integrations, and high-fidelity data operations under one roof. We build the infrastructure that defines your operational future.</p>
+            <a href="#contact" class="btn">Start a Conversation &rarr;</a>
+        </div>
+    </section>
+
+    <section class="stats-grid container grid-4 reveal">
+        <div class="stat-item"><h4>12+</h4><p>Markets Scaled</p></div>
+        <div class="stat-item"><h4>95%</h4><p>Enterprise Retention</p></div>
+        <div class="stat-item"><h4>50+</h4><p>Systems Deployed</p></div>
+        <div class="stat-item"><h4>3x</h4><p>Accelerated Delivery</p></div>
+    </section>
+
+    <section class="section container">
+        <h2 class="reveal">Data Engine Schematic</h2>
+        <div class="grid-3">
+            <div class="glass-card reveal">
+                <span class="eyebrow">SOURCE LAYER</span>
+                <h3>Multi-Modal Raw Ingest</h3>
+                <p>Image sequences, lidar streams, unstructured text corpora.</p>
+            </div>
+            <div class="glass-card reveal">
+                <span class="eyebrow">PROCESSING LAYER</span>
+                <h3>Double-Blind Consensus</h3>
+                <p>Cross-annotator validation schemas with 99.9% precision.</p>
+            </div>
+            <div class="glass-card reveal">
+                <span class="eyebrow">DELIVERY LAYER</span>
+                <h3>Secure Telemetry Egress</h3>
+                <p>Private cloud deployment with continuous SLA monitoring.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-section-1">
+        <div class="container">
+            <div class="reveal" style="max-width: 700px; margin-bottom: 4rem;">
+                <h2>System Operations Specification</h2>
+                <p class="lead">Avora operates four core execution pillars designed for deep system safety, technical rigor, and zero marketing abstractions.</p>
+            </div>
+            <div class="grid-2">
+                <div class="glass-card reveal">
+                    <h3>Specialized Outsourcing</h3>
+                    <p>Top-tier remote engineering talent. Deploy embedded engineering teams of senior developers and systems architects. We manage the screening, onboarding, and operational lifecycle to scale your technical capacity.</p>
+                </div>
+                <div class="glass-card reveal">
+                    <h3>Specialized Skill Hiring</h3>
+                    <p>Fractional experts on-demand, integrated seamlessly into your existing product pipelines.</p>
+                </div>
+                <div class="glass-card reveal">
+                    <h3>AI Solutions & Automation</h3>
+                    <p>Custom LLM pipelines & workflows optimized for latency and enterprise-grade security.</p>
+                </div>
+                <div class="glass-card reveal">
+                    <h3>Data Annotation & Labeling</h3>
+                    <p>High-quality, at-scale training data processed through strict consensus protocols.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section container">
+        <div class="reveal" style="text-align: center; margin-bottom: 4rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+            <h2>The Avora A.I.M. Framework</h2>
+            <p class="lead" style="margin: 0 auto;">A three-stage framework optimized for engineering safety, pipeline predictability, and verifiable data precision.</p>
+        </div>
+        <div class="grid-3">
+            <div class="glass-card reveal">
+                <h3 style="color: var(--accent);">Phase 01: Discovery</h3>
+                <p>We audit your architectural constraints, data modalities, and operational requirements. Every engagement begins with a deep, zero-assumption discovery session.</p>
+                <p class="meta-text">Target Artifact:<br>Technical Integration Spec</p>
+            </div>
+            <div class="glass-card reveal">
+                <h3 style="color: var(--accent);">Phase 02: Implementation</h3>
+                <p>Our systems engineers build clean, robust models and pipelines, executing rapid iteration cycles under transparent metrics and strict quality consensus rules.</p>
+                <p class="meta-text">Target Artifact:<br>Consensus Verification Logs</p>
+            </div>
+            <div class="glass-card reveal">
+                <h3 style="color: var(--accent);">Phase 03: Scaling</h3>
+                <p>We deploy secure code and pipelines directly into your private cloud infrastructure, establishing telemetry monitoring, drift guards, and SLA optimization.</p>
+                <p class="meta-text">Target Artifact:<br>Latency Telemetry Dashboard</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-section-2">
+        <div class="container">
+            <h2 class="reveal">Avora Ventures Studio</h2>
+            <p class="reveal lead" style="margin-bottom: 4rem;">We partner with, build, and deploy machine learning infrastructure for high-performance enterprise teams.</p>
+            <div class="grid-3">
+                <div class="glass-card reveal">
+                    <h3>NexusAI</h3>
+                    <p>Automated customer success and support ticketing platform powered by enterprise LLM routing.</p>
+                    <p class="meta-text">140k queries / hour <br> +82% AI Referral Traffic</p>
+                </div>
+                <div class="glass-card reveal">
+                    <h3>HealthSync</h3>
+                    <p>Secure data warehousing and real-time medical record analytics for distributed clinics.</p>
+                    <p class="meta-text">85k patient records / sec <br> Reduced Costs 10x</p>
+                </div>
+                <div class="glass-card reveal">
+                    <h3>Nexus Build</h3>
+                    <p>Automated CI/CD validation and telemetry pipelines for distributed web3 applications.</p>
+                    <p class="meta-text">12k pipelines / day <br> 10k+ Deployments</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section container grid-2">
+        <div class="reveal">
+            <h2>Meet the Founder</h2>
+            <h3>Abhay Jain</h3>
+            <p>A global professional with extensive experience in management consulting (McKinsey & Co.), energy & sustainability, and tech. Educated at Stanford University (MBA, MS) and IIT Kanpur. Previously with Mitsubishi Heavy Industries, NextEra Energy, and Autogrid.</p>
+        </div>
+        <div class="glass-card reveal">
+            <span class="eyebrow">Client Success</span>
+            <p style="font-size: 1.2rem; font-style: italic; margin-bottom: 2rem;">"Avora's specialized skill hiring platform matched us with top-tier ML engineers within days. Their screening process is incredibly thorough and saved us weeks of interview cycles."</p>
+            <p style="color: var(--text-main); font-weight: 600; margin-bottom: 0;">&mdash; Aditi Rao</p>
+            <p style="font-size: 0.9rem;">Co-Founder, HealthMatrix India</p>
+        </div>
+    </section>
+
+    <section id="contact" class="section bg-section-3">
+        <div class="container grid-2">
+            <div class="reveal">
+                <h2>Start a Conversation</h2>
+                <p class="lead">Discuss your pipeline requirements, annotations, or embedded placement specifications directly with our technical leads.</p>
+            </div>
+            <div class="glass-card reveal">
+                <form>
+                    <input type="text" placeholder="Full Name (Jane Doe) *" required>
+                    <input type="email" placeholder="Email Address (jane@example.com) *" required>
+                    <input type="text" placeholder="Company (Optional)">
+                    <select><option>Select a service</option></select>
+                    <select><option>Select a range</option></select>
+                    <textarea rows="4" placeholder="Tell us about your project, timeline, and goals... *" required></textarea>
+                    <button type="submit" class="btn" style="width: 100%; border:none; cursor:pointer;">Send Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="section container reveal" style="text-align: center; border-top: 1px solid rgba(223, 177, 91, 0.1); padding-top: 3rem; margin-top: 2rem;">
+        <p style="font-size: 0.95rem;">&copy; 2026 Avora Ventures Inc. All rights reserved. Designed & Engineered by Vaibhav Sharma</p>
+        <p class="eyebrow" style="margin-top: 1.5rem; letter-spacing: 0.2em;">ALL SYSTEMS OPERATIONAL</p>
+    </footer>
+
+    <script>
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        reveals.forEach(reveal => observer.observe(reveal));
+    </script>
+</body>
+</html>

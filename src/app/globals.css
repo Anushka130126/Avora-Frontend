@@ -3,11 +3,11 @@
 
 @layer base {
   :root {
-    --background: #ffffff;
-    --foreground: #0a0a0f;
-    --surface: #f8fafc;
-    --surface-raised: #f1f5f9;
-    --accent: #B08D57;
+    --background: #F8F5EE; /* Rich Cream/Alabaster */
+    --foreground: #3D2616; /* Warm chestnut brown */
+    --surface: rgba(255, 255, 255, 0.65);
+    --surface-raised: #ffffff;
+    --accent: #B88A44;
   }
 
   .dark {
@@ -34,6 +34,73 @@
 
   ::selection {
     @apply bg-amber-900/20 text-amber-100;
+  }
+}
+
+@layer utilities {
+  /* Dynamic Blended Backgrounds (Seamless transitions between sections) */
+  .hero-bg {
+    background-image: 
+      linear-gradient(to bottom, var(--background) 0%, transparent 15%, transparent 85%, var(--background) 100%),
+      radial-gradient(circle at center, rgba(248, 245, 238, 0.35) 0%, rgba(248, 245, 238, 0.75) 100%), 
+      url('/Gold_Flow_Light.jpg.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+  .dark .hero-bg {
+    background-image: 
+      linear-gradient(to bottom, var(--background) 0%, transparent 15%, transparent 85%, var(--background) 100%),
+      radial-gradient(circle at center, rgba(10, 10, 15, 0.35) 0%, rgba(10, 10, 15, 0.85) 100%), 
+      url('/Gold_Flow.jpg.jpeg');
+  }
+
+  .services-bg {
+    background-image: 
+      linear-gradient(to bottom, var(--background) 0%, transparent 15%, transparent 85%, var(--background) 100%),
+      radial-gradient(circle at center, rgba(248, 245, 238, 0.5) 0%, rgba(248, 245, 238, 0.85) 100%), 
+      url('/Institutional_Network_Light.jpg.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+  .dark .services-bg {
+    background-image: 
+      linear-gradient(to bottom, var(--background) 0%, transparent 15%, transparent 85%, var(--background) 100%),
+      radial-gradient(circle at center, rgba(10, 10, 15, 0.4) 0%, rgba(10, 10, 15, 0.9) 100%), 
+      url('/Institutional_Network.jpg.jpeg');
+  }
+
+  .ventures-bg {
+    background-image: 
+      linear-gradient(to bottom, var(--background) 0%, transparent 15%, transparent 85%, var(--background) 100%),
+      radial-gradient(circle at center, rgba(248, 245, 238, 0.5) 0%, rgba(248, 245, 238, 0.85) 100%), 
+      url('/Silicone_Gold_Light.jpg.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+  .dark .ventures-bg {
+    background-image: 
+      linear-gradient(to bottom, var(--background) 0%, transparent 15%, transparent 85%, var(--background) 100%),
+      radial-gradient(circle at center, rgba(10, 10, 15, 0.4) 0%, rgba(10, 10, 15, 0.9) 100%), 
+      url('/Silicone_Gold.jpg.jpeg');
+  }
+
+  .contact-bg {
+    background-image: 
+      linear-gradient(to bottom, var(--background) 0%, transparent 15%, transparent 85%, var(--background) 100%),
+      radial-gradient(circle at center, rgba(248, 245, 238, 0.5) 0%, rgba(248, 245, 238, 0.85) 100%), 
+      url('/Structural_Precision_Light.jpg.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+  .dark .contact-bg {
+    background-image: 
+      linear-gradient(to bottom, var(--background) 0%, transparent 15%, transparent 85%, var(--background) 100%),
+      radial-gradient(circle at center, rgba(8, 11, 18, 0.45) 0%, rgba(8, 11, 18, 0.95) 100%), 
+      url('/Structural_Precision.jpg.jpeg');
   }
 }
 
