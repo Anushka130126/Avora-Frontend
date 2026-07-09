@@ -88,7 +88,7 @@ export default function Contact() {
         </div>
 
         {/* Contact Intake Console Card */}
-        <div className="max-w-2xl mx-auto bg-slate-950/80 border border-slate-850 p-6 md:p-10 shadow-2xl rounded-2xl backdrop-blur-md">
+        <div className="max-w-2xl mx-auto glass-panel p-6 md:p-10 rounded-2xl">
           {success ? (
             <div className="text-center py-12">
               <div className="flex justify-center mb-6">

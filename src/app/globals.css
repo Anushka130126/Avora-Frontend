@@ -38,7 +38,7 @@
 }
 
 @layer utilities {
-  /* Dynamic Blended Backgrounds (Seamless transitions between sections) */
+  /* Dynamic Blended Backgrounds (Seamless transitions between sections) - scroll attachment is used for buttery smooth scrolling performance */
   .hero-bg {
     background-image: 
       linear-gradient(to bottom, var(--background) 0%, transparent 15%, transparent 85%, var(--background) 100%),
@@ -102,16 +102,28 @@
       radial-gradient(circle at center, rgba(8, 11, 18, 0.45) 0%, rgba(8, 11, 18, 0.95) 100%), 
       url('/Structural_Precision.jpg.jpeg');
   }
-
-  /* Fixed backgrounds only on desktop viewports to prevent scaling issues on iOS/Android */
-  @media (min-width: 1024px) {
-    .hero-bg, .services-bg, .ventures-bg, .contact-bg {
-      background-attachment: fixed;
-    }
-  }
 }
 
 @layer components {
+  /* Apple iOS 26 High-Fidelity Frosted Glassmorphism with GPU Hardware Acceleration */
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.04);
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+  }
+  
+  .dark .glass-panel {
+    background: rgba(10, 10, 15, 0.65);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  }
+
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg
       bg-[#B08D57] hover:bg-[#937343]

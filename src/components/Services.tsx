@@ -39,7 +39,7 @@ export default function Services() {
         </div>
 
         {/* Tabular Specification Console */}
-        <div className="border border-slate-850 bg-slate-950/80 backdrop-blur-md rounded-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[500px] shadow-2xl">
+        <div className="glass-panel rounded-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[500px]">
           
           {/* Left Panel: Service Selection (Tab navigation) */}
           <div className="lg:col-span-4 border-r border-slate-850 divide-y divide-slate-850/60 bg-slate-950/30">

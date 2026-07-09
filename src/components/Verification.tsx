@@ -96,12 +96,12 @@ export default function Verification() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
           
           {/* Left Column: Verification Logs */}
-          <div className="border border-slate-850 bg-slate-950/80 p-8 rounded-2xl backdrop-blur-md shadow-2xl flex flex-col justify-between">
+          <div className="glass-panel p-8 rounded-2xl flex flex-col justify-between">
             <div>
               <span className="text-[10px] font-mono text-slate-500 font-bold uppercase tracking-widest block mb-6">
                 Verification Log // {t.verification}
               </span>
-              <p className="text-base font-sans text-slate-300 leading-relaxed italic">
+              <p className="text-base font-sans text-slate-305 leading-relaxed italic">
                 &ldquo;{t.quote}&rdquo;
               </p>
             </div>
@@ -123,7 +123,7 @@ export default function Verification() {
           </div>
 
           {/* Right Column: FAQs Accordion Card */}
-          <div className="border border-slate-850 bg-slate-950/80 p-8 rounded-2xl backdrop-blur-md shadow-2xl flex flex-col justify-between">
+          <div className="glass-panel p-8 rounded-2xl flex flex-col justify-between">
             <div>
               <span className="text-[10px] font-mono text-slate-500 font-bold uppercase tracking-widest block mb-6">
                 Frequently Asked Questions
