@@ -1,5 +1,3 @@
-// Designed & Engineered by Vaibhav Sharma (https://github.com/Nutricalboii)
-import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import Services from '@/components/Services';
 import Process from '@/components/Process';
