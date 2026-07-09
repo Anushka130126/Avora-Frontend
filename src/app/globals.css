@@ -11,11 +11,11 @@
   }
 
   .dark {
-    --background: #140F0A; /* Dark warm cocoa/brown instead of slate/black */
-    --foreground: #F5EFEB; /* Soft warm off-white */
-    --surface: #1E1712;    /* Dark brown card background */
-    --surface-raised: #281F18;
-    --accent: #D4AF37;     /* Highly saturated classic gold */
+    --background: #0a0a0f; /* Reverted back to Tinted graphite dark mode */
+    --foreground: #f8fafc; /* High contrast off-white */
+    --surface: #121218;    /* Dark card background */
+    --surface-raised: #181822;
+    --accent: #D4AF37;     /* Saturated classic gold */
   }
 
   html {
@@ -210,10 +210,10 @@
     will-change: transform;
   }
   .dark .glass-panel {
-    background: rgba(30, 23, 18, 0.88);
+    background: rgba(10, 10, 18, 0.88);
     backdrop-filter: blur(24px) saturate(180%);
     -webkit-backdrop-filter: blur(24px) saturate(180%);
-    border: 1px solid rgba(212, 175, 55, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.48);
   }
 
@@ -252,7 +252,7 @@
   }
 
   .card {
-    @apply bg-white dark:bg-[#1E1712] border border-slate-200 dark:border-slate-800/80 rounded-2xl;
+    @apply bg-white dark:bg-[#121218] border border-slate-200 dark:border-slate-800/80 rounded-2xl;
   }
 
   .card-hover {
