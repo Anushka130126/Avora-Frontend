@@ -35,8 +35,8 @@ export function SpotlightNav() {
         <div className={cn(
           "relative flex items-center justify-between px-4 md:px-6 py-3 mx-auto transition-all duration-500 rounded-2xl border",
           isScrolled 
-            ? "bg-[#0a0a0f]/90 backdrop-blur-md border-slate-800/85 shadow-lg shadow-black/30"
-            : "bg-transparent border-transparent md:border-transparent"
+            ? "glass-panel shadow-2xl"
+            : "bg-transparent border-transparent"
         )}>
           
           {/* Logo: Always visible on Mobile/Tablet for vertical alignment with Menu; slides out on Desktop scroll */}
@@ -111,7 +111,7 @@ export function SpotlightNav() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute top-full left-0 right-0 px-4 pt-2 pb-6 bg-[#0a0a0f] border-b border-slate-800 shadow-2xl z-40 md:hidden"
+            className="absolute top-full left-4 right-4 mt-2 px-4 pt-2 pb-6 glass-panel rounded-2xl z-40 md:hidden"
           >
             <div className="flex flex-col gap-4 p-4">
               {navItems.map((item) => (
@@ -119,7 +119,7 @@ export function SpotlightNav() {
                   key={item.name}
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-base font-medium text-slate-300 hover:text-white transition-colors py-2 border-b border-slate-900"
+                  className="text-base font-medium text-slate-350 hover:text-white transition-colors py-2 border-b border-slate-800/20"
                 >
                   {item.name}
                 </Link>
