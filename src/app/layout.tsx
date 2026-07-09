@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Space_Grotesk, IBM_Plex_Mono } from "next/font/google";
 import { Analytics } from '@vercel/analytics/next';
 import { siteConfig } from '@/config/site';
 import { generateSchema } from '@/app/schema';
@@ -21,6 +21,13 @@ const inter = Inter({
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   variable: '--font-space-grotesk',
+  display: 'swap',
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-ibm-plex-mono',
   display: 'swap',
 });
 
@@ -51,7 +58,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#4f46e5', // Avora brand indigo — not Stanford red
+  themeColor: '#080b12',
 };
 
 export default function RootLayout({
@@ -60,18 +67,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`scroll-smooth ${inter.variable} ${spaceGrotesk.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`scroll-smooth ${inter.variable} ${spaceGrotesk.variable} ${ibmPlexMono.variable}`}>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(generateSchema()) }}
         />
       </head>
-      <body className="min-h-full flex flex-col font-sans bg-white dark:bg-[#0a0a0f] text-slate-900 dark:text-slate-100 selection:bg-indigo-100 dark:selection:bg-indigo-900 selection:text-indigo-900 dark:selection:text-indigo-100">
+      <body className="min-h-full flex flex-col font-sans bg-[#080b12] text-slate-100">
         {/* Skip to content — for keyboard/screen reader users */}
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[200] focus:px-4 focus:py-2 focus:bg-white dark:focus:bg-slate-900 focus:text-slate-900 dark:focus:text-white focus:rounded-lg focus:shadow-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none text-sm font-medium"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[200] focus:px-4 focus:py-2 focus:bg-slate-900 focus:text-white focus:rounded-lg focus:shadow-lg focus:ring-2 focus:ring-teal-500 focus:outline-none text-sm font-medium"
         >
           Skip to content
         </a>

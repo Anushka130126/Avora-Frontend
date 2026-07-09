@@ -1,71 +1,127 @@
-import { ArrowUpRight } from 'lucide-react';
+'use client';
+
 import { cn } from '@/lib/cn';
+import { useInView } from '@/hooks/useInView';
+import { Server, Activity, ShieldCheck, AreaChart } from 'lucide-react';
+
+const projects = [
+  {
+    name: "NexusAI",
+    architecture: "Generative Customer Success Engine",
+    throughput: "140k queries / hour",
+    metric: "+82% AI Referral Traffic",
+    status: "Scaling",
+    statusColor: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
+    id: "AV-0849",
+    spec: "Automated customer success and support ticketing platform powered by enterprise LLM routing."
+  },
+  {
+    name: "HealthSync",
+    architecture: "HIPAA-Compliant Secure Data Warehouse",
+    throughput: "85k patient records / sec",
+    metric: "Reduced Costs 10x",
+    status: "Growing",
+    statusColor: "text-teal-400 bg-teal-500/10 border-teal-500/20",
+    id: "AV-9172",
+    spec: "Secure data warehousing and real-time medical record analytics for distributed clinics."
+  },
+  {
+    name: "NexusBuild",
+    architecture: "Decentralized CI/CD Deployment Pipeline",
+    throughput: "12k pipelines / day",
+    metric: "10k+ Deployments",
+    status: "Alpha",
+    statusColor: "text-amber-400 bg-amber-500/10 border-amber-500/20",
+    id: "AV-4183",
+    spec: "Automated CI/CD validation and telemetry pipelines for distributed web3 applications."
+  }
+];
 
 export default function Ventures() {
-  const ventures = [
-    {
-      name: "NexusAI",
-      description: "Automated customer success platform using generative AI.",
-      metric: "+82% AI Referral Traffic",
-      status: "Scaling",
-      statusColor: "text-green-700 bg-green-50 border-green-200",
-    },
-    {
-      name: "HealthSync",
-      description: "HIPAA-compliant data warehousing for digital clinics.",
-      metric: "Reduced Costs 10x",
-      status: "Growing",
-      statusColor: "text-primary-700 bg-primary-50 border-primary-200",
-    },
-    {
-      name: "NexusBuild",
-      description: "Next-generation CI/CD pipeline automation for web3 native applications.",
-      metric: "10k+ Deployments",
-      status: "Alpha",
-      statusColor: "text-amber-700 bg-amber-50 border-amber-200",
-    },
-  ];
+  const { ref, isInView } = useInView({ once: true, threshold: 0.1 });
 
   return (
-    <section id="ventures" className="py-24 md:py-32 bg-slate-50 dark:bg-[#0d0d12] relative border-t border-slate-100 dark:border-slate-900">
+    <section id="ventures" className="py-24 md:py-32 relative overflow-hidden border-t border-slate-800 bg-[#0a0a0f]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="mb-16">
-          <span className="section-eyebrow">Co-Founder Approach</span>
+        
+        {/* Section header */}
+        <div
+          ref={ref}
+          className={cn(
+            'mb-16 transition-all duration-500',
+            isInView ? 'opacity-100' : 'opacity-0'
+          )}
+        >
+          <span className="section-eyebrow">Case Studies &amp; Co-Development</span>
           <h2 className="section-heading mt-2 mb-4">Avora Ventures Studio</h2>
           <p className="section-subtext max-w-xl">
-            We don't just build for clients. We co-create and scale high-growth tech companies. Equity-based partnerships for the right founders.
+            We partner with, build, and deploy machine learning infrastructure for high-performance enterprise teams.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
-          {ventures.map((venture, index) => (
-            <div
-              key={index}
-              className={cn(
-                "card card-hover p-6 md:p-8 flex flex-col justify-between h-full cursor-pointer group",
-                index === 2 && "md:col-span-2 md:max-w-xl md:mx-auto w-full"
-              )}
-            >
-              <div>
-                <div className="flex justify-between items-start mb-6">
-                  <div>
-                    <h3 className="text-xl font-heading font-bold text-slate-900 dark:text-white mb-2">{venture.name}</h3>
-                    <span className={cn("inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold border", venture.statusColor)}>
-                      {venture.status}
+        {/* Console Dashboard Layout */}
+        <div className="border border-slate-800 bg-[#121218]/90 rounded-xl overflow-hidden backdrop-blur-sm">
+          {/* Dashboard Header Bar */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between px-6 py-4 border-b border-slate-800 bg-[#0a0e16] gap-4">
+            <div className="flex items-center gap-2">
+              <Server className="w-4 h-4 text-[#B08D57]" />
+              <span className="text-xs font-mono font-bold text-slate-300">SYSTEM ARCHITECTURE METRIC REPORT</span>
+            </div>
+            <div className="flex items-center gap-6 text-[10px] font-mono text-slate-500">
+              <span className="flex items-center gap-1.5"><Activity className="w-3.5 h-3.5 text-emerald-400" /> Live Clusters: 3/3</span>
+              <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-[#B08D57]" /> Encryption: TLS_1.3</span>
+            </div>
+          </div>
+
+          {/* Project Spec Cards */}
+          <div className="divide-y divide-slate-800">
+            {projects.map((proj, i) => (
+              <div 
+                key={i} 
+                className="p-6 md:p-8 flex flex-col lg:flex-row justify-between gap-8 hover:bg-white/[0.01] transition-all duration-150"
+              >
+                
+                {/* Project Details */}
+                <div className="space-y-4 max-w-xl">
+                  <div className="flex items-center gap-3">
+                    <span className="font-heading font-extrabold text-xl text-white">
+                      {proj.name}
+                    </span>
+                    <span className={cn("px-2 py-0.5 border text-[9px] font-mono font-bold rounded uppercase", proj.statusColor)}>
+                      {proj.status}
                     </span>
                   </div>
-                  <div className="w-10 h-10 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-400 group-hover:bg-slate-900 dark:group-hover:bg-white group-hover:text-white dark:group-hover:text-slate-900 transition-all duration-300">
-                    <ArrowUpRight className="w-5 h-5" />
+                  
+                  <p className="text-sm text-slate-400 font-sans leading-relaxed">
+                    {proj.spec}
+                  </p>
+                  
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[10px] text-slate-500">
+                    <span className="flex items-center gap-1.5"><AreaChart className="w-3.5 h-3.5 text-slate-500" /> Deployment ID: {proj.id}</span>
+                    <span>•</span>
+                    <span>Architecture: {proj.architecture}</span>
                   </div>
                 </div>
-                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-8">{venture.description}</p>
+
+                {/* Technical Metrics Panel */}
+                <div className="flex flex-col sm:flex-row gap-4 flex-shrink-0 justify-end items-stretch lg:items-center">
+                  <div className="border border-slate-800 bg-[#0a0e16] p-4 rounded-lg min-w-[140px] text-center flex flex-col justify-center">
+                    <span className="block text-[9px] font-mono font-bold text-slate-500 uppercase tracking-wider">Pipeline Speed</span>
+                    <span className="text-sm font-mono font-bold text-white mt-1">{proj.throughput}</span>
+                  </div>
+                  
+                  <div className="border border-slate-800 bg-[#0a0e16] p-4 rounded-lg min-w-[160px] text-center flex flex-col justify-center border-[#B08D57]/25 shadow-[0_0_15px_rgba(176,141,87,0.05)]">
+                    <span className="block text-[9px] font-mono font-bold text-[#B08D57] uppercase tracking-wider">Performance Metric</span>
+                    <span className="text-sm font-mono font-extrabold text-[#B08D57] mt-1">{proj.metric}</span>
+                  </div>
+                </div>
+
               </div>
-              <div className="pt-4 border-t border-slate-100 dark:border-slate-800/50">
-                <span className="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-widest">{venture.metric}</span>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
+
         </div>
+
       </div>
     </section>
   );

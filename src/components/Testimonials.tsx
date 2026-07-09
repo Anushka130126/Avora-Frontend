@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/cn';
 import { useInView } from '@/hooks/useInView';
-import { Quote, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Quote, ChevronLeft, ChevronRight, MessageSquareCode } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const testimonials = [
   {
@@ -11,183 +12,186 @@ const testimonials = [
     author: "Michael Roberts",
     role: "VP of Operations, TechFlow (USA)",
     avatar: "MR",
+    verification: "OPERATIONAL_SCALING"
   },
   {
     quote: "The deep understanding of both manufacturing constraints and modern data science allowed them to deliver an incredibly effective optimization model for our supply chain.",
     author: "Kenji Sato",
     role: "Director of Engineering, Industrial Solutions (Japan)",
     avatar: "KS",
+    verification: "SUPPLY_CHAIN_OPT"
   },
   {
     quote: "Avora fundamentally transformed how we approach AI. Their ability to bridge complex technical challenges with business realities is exactly what we needed in the APAC market.",
     author: "Priya Sharma",
     role: "CTO, FinEdge Innovations (India)",
     avatar: "PS",
+    verification: "APAC_AI_STRATEGY"
   },
   {
     quote: "Their specialized talent sourcing helped us build a high-performing remote engineering team in record time. We couldn't have scaled our platform without them.",
     author: "David Jenkins",
     role: "Founder, ScaleTech (USA)",
     avatar: "DJ",
+    verification: "TALENT_PLACEMENT"
   },
   {
     quote: "The custom AI predictive analytics dashboard designed by Avora gave our team absolute clarity on resource allocation. Their work is highly professional and delivered on budget.",
     author: "Rohan Mehta",
     role: "VP of Product, ZetaLogistics (India)",
     avatar: "RM",
+    verification: "ANALYTICS_DASHBOARD"
   },
   {
     quote: "Avora's specialized skill hiring platform matched us with top-tier ML engineers within days. Their screening process is incredibly thorough and saved us weeks of interview cycles.",
     author: "Aditi Rao",
     role: "Co-Founder, HealthMatrix (India)",
     avatar: "AR",
+    verification: "ML_TALENT_VETTING"
   },
   {
     quote: "Their consulting experience shone through in how they structured our transition to modern cloud workflows. A team of exceptional caliber.",
     author: "Lukas Weber",
     role: "Head of Infrastructure, NexaAuto (Germany)",
     avatar: "LW",
+    verification: "CLOUD_TRANSITION"
   },
   {
     quote: "Outstanding execution from start to finish. They built a custom data annotation engine that reduced our training latency by over 40%.",
     author: "Sarah Hamilton",
     role: "Chief Data Officer, Quantum Finance (UK)",
     avatar: "SH",
+    verification: "DATA_ANNOTATION_ENG"
   },
   {
     quote: "Avora acted as an extension of our core team. Their commitment to building clean, maintainable architecture was exactly what we needed to secure our Series A.",
     author: "Oliver Campbell",
     role: "VP of Engineering, CloudVentures (Australia)",
     avatar: "OC",
+    verification: "ARCHITECTURE_COMPLIANCE"
   }
 ];
 
 export default function Testimonials() {
-  const { ref, isInView } = useInView({ once: true, threshold: 0.2 });
+  const { ref, isInView } = useInView({ once: true, threshold: 0.1 });
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      handleNext();
-    }, 6000);
-    return () => clearInterval(timer);
-  }, [currentIndex]);
 
   const handleNext = () => {
-    if (isAnimating) return;
-    setIsAnimating(true);
     setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-    setTimeout(() => setIsAnimating(false), 500);
   };
 
   const handlePrev = () => {
-    if (isAnimating) return;
-    setIsAnimating(true);
     setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-    setTimeout(() => setIsAnimating(false), 500);
   };
 
-  return (
-    <section id="testimonials" className="py-24 md:py-32 bg-slate-950 dark:bg-[#050508] relative overflow-hidden text-white border-t border-slate-900">
-      {/* Subtle top edge highlight */}
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-      {/* Ambient glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-indigo-500/5 rounded-full blur-[120px] pointer-events-none" />
+  // Auto-advance slideshow every 8 seconds
+  useEffect(() => {
+    const timer = setInterval(handleNext, 8000);
+    return () => clearInterval(timer);
+  }, []);
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+  return (
+    <section id="testimonials" className="py-24 md:py-32 relative overflow-hidden border-t border-slate-800 bg-[#0a0a0f]">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Section header */}
         <div 
           ref={ref}
           className={cn(
-            'text-center mb-16 transition-all duration-700',
-            isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            'text-center mb-12 transition-all duration-500',
+            isInView ? 'opacity-100' : 'opacity-0'
           )}
         >
-          <span className="section-eyebrow text-slate-500">
-            Client Success
-          </span>
-          <h2 className="section-heading text-white">
-            Global Impact
-          </h2>
+          <span className="section-eyebrow">Client Success</span>
+          <h2 className="section-heading">Operational Verification</h2>
+          <p className="section-subtext max-w-xl mx-auto mt-2">
+            Verified case outcomes compiled directly from partner platform engineering logs.
+          </p>
         </div>
 
-        <div className={cn(
-          "max-w-4xl mx-auto relative transition-all duration-700 delay-100",
-          isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-        )}>
-          {/* Slider Container */}
-          <div className="relative bg-white/5 border border-white/10 backdrop-blur-xl rounded-3xl p-8 md:p-12 shadow-2xl">
-            <Quote className="absolute top-6 left-6 md:top-10 md:left-10 w-12 h-12 md:w-16 md:h-16 text-white/10 rotate-180" />
-            
-            <div className="relative min-h-[220px] md:min-h-[180px] flex items-center justify-center">
-              {testimonials.map((testimonial, index) => (
-                <div
-                  key={index}
-                  className={cn(
-                    "absolute inset-0 transition-all duration-500 flex flex-col items-center text-center",
-                    index === currentIndex 
-                      ? "opacity-100 translate-x-0 scale-100 z-10" 
-                      : "opacity-0 scale-95 pointer-events-none z-0",
-                    index !== currentIndex && index < currentIndex ? "-translate-x-8" : "",
-                    index !== currentIndex && index > currentIndex ? "translate-x-8" : ""
-                  )}
-                >
-                  <p className="text-lg md:text-2xl font-medium leading-relaxed text-slate-200 mb-8 max-w-3xl pt-4">
-                    "{testimonial.quote}"
-                  </p>
-                  <div className="flex items-center gap-4 mt-auto">
-                    <div className={cn("w-12 h-12 rounded-full flex items-center justify-center font-bold text-sm bg-white/10 text-white")}>
-                      {testimonial.avatar}
-                    </div>
-                    <div className="text-left">
-                      <p className="font-heading font-bold text-white">{testimonial.author}</p>
-                      <p className="text-sm text-slate-400">{testimonial.role}</p>
-                    </div>
+        {/* Slideshow Container Card */}
+        <div className="relative border border-slate-800 bg-[#121218]/90 rounded-2xl p-8 md:p-12 shadow-2xl backdrop-blur-md overflow-hidden min-h-[360px] md:min-h-[320px] flex flex-col justify-between">
+          <Quote className="absolute top-6 left-6 md:top-10 md:left-10 w-12 h-12 text-[#B08D57]/5 rotate-180" />
+
+          {/* Testimonial Content Panel */}
+          <div className="relative flex-1 flex flex-col justify-center">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentIndex}
+                initial={{ opacity: 0, x: 15 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -15 }}
+                transition={{ type: 'tween', ease: [0.16, 1, 0.3, 1], duration: 0.4 }}
+                className="space-y-6"
+              >
+                {/* Log Tag header */}
+                <div className="flex justify-between items-center text-[10px] font-mono text-slate-500 border-b border-slate-850 pb-3">
+                  <span className="flex items-center gap-1.5">
+                    <MessageSquareCode className="w-3.5 h-3.5 text-[#B08D57]" />
+                    VERIFICATION_LOG
+                  </span>
+                  <span className="text-[#B08D57] font-bold uppercase tracking-wider">
+                    {testimonials[currentIndex].verification}
+                  </span>
+                </div>
+
+                {/* Quote Text */}
+                <p className="text-base md:text-lg text-slate-300 leading-relaxed font-sans font-medium max-w-3xl pt-2">
+                  &ldquo;{testimonials[currentIndex].quote}&rdquo;
+                </p>
+
+                {/* Author Info */}
+                <div className="flex items-center gap-3 pt-2">
+                  <div className="w-9 h-9 rounded-full bg-[#B08D57]/10 flex items-center justify-center font-mono font-bold text-xs text-[#B08D57] border border-[#B08D57]/20 flex-shrink-0">
+                    {testimonials[currentIndex].avatar}
+                  </div>
+                  <div>
+                    <p className="font-heading font-bold text-white text-sm leading-none">{testimonials[currentIndex].author}</p>
+                    <p className="font-mono text-[9px] text-slate-500 mt-1.5 uppercase tracking-wider">{testimonials[currentIndex].role}</p>
                   </div>
                 </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Controls Footer */}
+          <div className="flex justify-between items-center mt-8 pt-6 border-t border-slate-800/80">
+            {/* Slide Indicators */}
+            <div className="flex gap-2">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  className={cn(
+                    "h-1.5 transition-all duration-300 rounded-full",
+                    index === currentIndex ? "bg-[#B08D57] w-8" : "bg-slate-800 hover:bg-slate-700 w-2"
+                  )}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
               ))}
             </div>
 
-            {/* Navigation Controls */}
-            <div className="flex justify-center items-center gap-6 mt-10 pt-8 border-t border-white/10">
+            {/* Navigation buttons */}
+            <div className="flex gap-2">
               <button 
                 onClick={handlePrev}
-                className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center transition-colors text-white focus:outline-none focus:ring-2 focus:ring-white/50"
-                aria-label="Previous testimonial"
+                className="w-10 h-10 bg-white/[0.02] hover:bg-white/[0.05] border border-slate-800 rounded-lg flex items-center justify-center transition-all duration-150 text-slate-400 hover:text-white"
+                aria-label="Previous slide"
               >
-                <ChevronLeft className="w-5 h-5" />
+                <ChevronLeft className="w-4 h-4" />
               </button>
-              
-              <div className="flex gap-2">
-                {testimonials.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => {
-                      if (!isAnimating) {
-                        setIsAnimating(true);
-                        setCurrentIndex(index);
-                        setTimeout(() => setIsAnimating(false), 500);
-                      }
-                    }}
-                    className={cn(
-                      "w-2.5 h-2.5 rounded-full transition-all duration-300",
-                      index === currentIndex ? "bg-white w-6" : "bg-white/20 hover:bg-white/40"
-                    )}
-                    aria-label={`Go to testimonial ${index + 1}`}
-                  />
-                ))}
-              </div>
-
               <button 
                 onClick={handleNext}
-                className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center transition-colors text-white focus:outline-none focus:ring-2 focus:ring-white/50"
-                aria-label="Next testimonial"
+                className="w-10 h-10 bg-white/[0.02] hover:bg-white/[0.05] border border-slate-800 rounded-lg flex items-center justify-center transition-all duration-150 text-slate-400 hover:text-white"
+                aria-label="Next slide"
               >
-                <ChevronRight className="w-5 h-5" />
+                <ChevronRight className="w-4 h-4" />
               </button>
             </div>
           </div>
+
         </div>
+
       </div>
     </section>
   );

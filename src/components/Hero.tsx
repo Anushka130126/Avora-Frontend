@@ -1,132 +1,144 @@
 'use client';
 
-import { ArrowRight } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
-import { PatternDot, HeroGlow } from './BackgroundPatterns';
-import { Logo } from './Logo';
+import { ArrowRight, ChevronRight, Activity, ShieldCheck, Database, Layers } from 'lucide-react';
 import { cn } from '@/lib/cn';
 import { useInView } from '@/hooks/useInView';
 import Link from 'next/link';
+import { Logo } from './Logo';
+import { TechnicalGrid } from './ui/TechnicalGrid';
 
 const stats = [
-  { value: 12, suffix: '+', label: 'Countries Served' },
-  { value: 95, suffix: '%', label: 'Client Retention' },
-  { value: 50, suffix: '+', label: 'AI Projects Delivered' },
-  { value: 3, suffix: 'x', label: 'Faster Than In-House Hiring' },
+  { value: '12+', label: 'Markets Scaled' },
+  { value: '95%', label: 'Enterprise Retention' },
+  { value: '50+', label: 'Systems Deployed' },
+  { value: '3x', label: 'Accelerated Delivery' },
 ];
-
-function CountUp({ end, suffix = '' }: { end: number; suffix?: string }) {
-  const [count, setCount] = useState(0);
-  const [started, setStarted] = useState(false);
-  const ref = useRef<HTMLSpanElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setStarted(true); },
-      { threshold: 0 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (!started) return;
-    let frame: number;
-    const duration = 1600;
-    const start = performance.now();
-    const tick = (now: number) => {
-      const p = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - p, 3);
-      setCount(Math.round(eased * end));
-      if (p < 1) frame = requestAnimationFrame(tick);
-    };
-    frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
-  }, [started, end]);
-
-  return <span ref={ref}>{count}{suffix}</span>;
-}
 
 export default function Hero() {
   const { ref, isInView } = useInView({ once: true, threshold: 0.1 });
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden bg-white dark:bg-[#0a0a0f]">
-      <PatternDot />
-      <HeroGlow />
+    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-28 pb-16 overflow-hidden bg-[#0a0a0f]">
+      {/* Precision blueprint background grid */}
+      <TechnicalGrid showDots={true} />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div ref={ref} className="text-center">
+        <div ref={ref} className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          {/* Left Column: Headline and Enterprise Value Prop */}
+          <div className="lg:col-span-7 text-left space-y-8">
+            
+            {/* Logo: Hidden on mobile/tablet to avoid duplicate logos in viewport */}
+            <div className="hidden md:flex items-center">
+              <Logo size="lg" className="h-12 w-auto text-white" />
+            </div>
 
-          {/* Eyebrow badge — single indigo accent */}
-          <div className={cn(
-            "inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-indigo-200 dark:border-indigo-800 bg-indigo-50 dark:bg-indigo-950/50 text-xs font-semibold tracking-widest uppercase text-indigo-600 dark:text-indigo-400 mb-8 transition-all duration-700",
-            isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-          )}>
-            <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
-            Avora Ventures
-          </div>
+            <div className="space-y-4">
+              {/* Eyebrow */}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-800 bg-white/[0.02] backdrop-blur-sm text-xs font-mono font-bold tracking-wider text-[#B08D57]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#B08D57]" />
+                Institutional AI Infrastructure
+              </div>
 
-          {/* Main headline */}
-          <h1 className={cn(
-            "text-5xl sm:text-6xl md:text-7xl lg:text-[80px] font-heading font-bold tracking-[-0.03em] leading-[1.05] text-slate-900 dark:text-white mb-6 transition-all duration-700 delay-100",
-            isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          )}>
-            Scale your vision
-            <br />
-            <span className="text-slate-400 dark:text-slate-600">with precision.</span>
-          </h1>
+              {/* Title */}
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-heading font-extrabold tracking-tight text-white leading-[1.1]">
+                Scale your vision <br />
+                <span className="text-slate-400">with precision.</span>
+              </h1>
 
-          {/* Subtext */}
-          <p className={cn(
-            "text-lg md:text-xl text-slate-500 dark:text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed transition-all duration-700 delay-200",
-            isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          )}>
-            Elite engineering talent, AI solutions, and data operations — under one roof. From strategy to deployment, we build what defines your future.
-          </p>
+              {/* Description */}
+              <p className="text-slate-400 text-base md:text-lg leading-relaxed max-w-xl font-sans">
+                Elite engineering talent, custom machine learning integrations, and high-fidelity data operations under one roof. We build the infrastructure that defines your operational future.
+              </p>
+            </div>
 
-          {/* CTAs */}
-          <div className={cn(
-            "flex flex-col sm:flex-row gap-3 justify-center items-center transition-all duration-700 delay-300",
-            isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          )}>
-            <Link
-              href="#contact"
-              className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-semibold hover:bg-slate-700 dark:hover:bg-slate-100 transition-all duration-200 group shadow-sm"
-            >
-              Start a Conversation
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-            </Link>
-            <Link
-              href="#services"
-              className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg border border-slate-200 dark:border-slate-800 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-white/5 transition-all duration-200"
-            >
-              Explore Services
-            </Link>
-          </div>
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link
+                href="#contact"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-[#B08D57] hover:bg-[#937343] text-white text-sm font-semibold transition-all duration-150"
+              >
+                Start a Conversation
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                href="#services"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg border border-slate-700/50 hover:bg-white/5 text-slate-300 text-sm font-semibold transition-all duration-150"
+              >
+                Explore Services
+              </Link>
+            </div>
 
-          {/* Maintained by Vaibhav Sharma */}
-          {/* Stats strip — animated counters in a bordered grid */}
-          <div className={cn(
-            "mt-20 pt-10 border-t border-slate-100 dark:border-slate-800/50 transition-all duration-700 delay-500",
-            isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          )}>
-            <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-slate-100 dark:divide-slate-800/50 border border-slate-100 dark:border-slate-800/50 rounded-2xl overflow-hidden">
+            {/* Stats list */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-slate-800/60">
               {stats.map((stat, i) => (
-                <div
-                  key={i}
-                  className="flex flex-col items-center justify-center py-8 px-4 bg-slate-50/50 dark:bg-white/[0.02] hover:bg-slate-50 dark:hover:bg-white/[0.04] transition-colors"
-                >
-                  <div className="text-3xl md:text-4xl font-heading font-bold text-slate-900 dark:text-white mb-1.5 tabular-nums">
-                    <CountUp end={stat.value} suffix={stat.suffix} />
-                  </div>
-                  <div className="text-xs font-medium text-slate-500 dark:text-slate-500 text-center leading-snug">
-                    {stat.label}
-                  </div>
+                <div key={i} className="space-y-1">
+                  <span className="block text-2xl font-mono font-bold text-white">{stat.value}</span>
+                  <span className="block text-[10px] text-slate-500 uppercase tracking-wider font-semibold font-sans leading-tight">{stat.label}</span>
                 </div>
               ))}
+            </div>
+
+          </div>
+
+          {/* Right Column: Clean, Restrained Data Pipeline Diagram */}
+          <div className="lg:col-span-5 w-full">
+            <div className="border border-slate-850 bg-[#121218]/90 rounded-2xl p-6 shadow-2xl backdrop-blur-md space-y-6">
+              
+              <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+                <span className="text-xs font-mono font-bold text-slate-400">DATA_ENGINE_SCHEMATIC</span>
+                <span className="text-[10px] font-mono text-[#B08D57] uppercase font-bold">
+                  ACTIVE
+                </span>
+              </div>
+
+              {/* Data Flow Diagram */}
+              <div className="space-y-6 py-2">
+                
+                {/* Node 1 */}
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-white/[0.02] border border-slate-800 flex items-center justify-center flex-shrink-0">
+                    <Database className="w-5 h-5 text-[#B08D57]" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <span className="text-[10px] font-mono text-slate-500 uppercase block">Source Layer</span>
+                    <span className="text-xs font-bold text-white block">Multi-Modal Raw Ingest</span>
+                    <p className="text-[11px] text-slate-400 truncate">Image sequences, lidar streams, unstructured text corpora.</p>
+                  </div>
+                </div>
+
+                {/* Connector */}
+                <div className="h-4 w-px bg-slate-800 ml-5" />
+
+                {/* Node 2 */}
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-[#B08D57]/10 border border-[#B08D57]/20 flex items-center justify-center flex-shrink-0">
+                    <Layers className="w-5 h-5 text-[#B08D57]" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <span className="text-[10px] font-mono text-slate-500 uppercase block">Processing Layer</span>
+                    <span className="text-xs font-bold text-white block">Double-Blind Consensus Labeling</span>
+                    <p className="text-[11px] text-slate-400 truncate">Cross-annotator validation schemas with 99.9% precision.</p>
+                  </div>
+                </div>
+
+                {/* Connector */}
+                <div className="h-4 w-px bg-slate-800 ml-5" />
+
+                {/* Node 3 */}
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-white/[0.02] border border-slate-800 flex items-center justify-center flex-shrink-0">
+                    <ShieldCheck className="w-5 h-5 text-[#B08D57]" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <span className="text-[10px] font-mono text-slate-500 uppercase block">Delivery Layer</span>
+                    <span className="text-xs font-bold text-white block">Secure Telemetry Egress</span>
+                    <p className="text-[11px] text-slate-400 truncate">Private cloud deployment with continuous SLA monitoring.</p>
+                  </div>
+                </div>
+
+              </div>
+
             </div>
           </div>
 

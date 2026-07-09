@@ -34,19 +34,19 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-white dark:bg-[#0a0a0f] border-t border-slate-100 dark:border-slate-900">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="bg-[#060910] border-t border-slate-800/40 relative z-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main footer content */}
         <div className="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8">
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link href="/" className="inline-block mb-4 hover:opacity-80 transition-opacity">
-              <Logo size="md" className="h-9 w-auto text-slate-900 dark:text-white" />
+              <Logo size="md" className="h-9 w-auto text-white" />
             </Link>
-            <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-6 max-w-xs">
+            <p className="text-sm text-slate-400 leading-relaxed mb-6 max-w-xs font-sans">
               Outsourcing, specialized skill hiring, AI solutions, and data annotations — built to scale your operations.
             </p>
-            <div className="flex gap-2">
+            <div className="flex gap-3">
               {socialLinks.map(({ label, href, icon }) => (
                 <a
                   key={label}
@@ -54,7 +54,7 @@ export default function Footer() {
                   target={href.startsWith('http') ? '_blank' : undefined}
                   rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
                   aria-label={label}
-                  className="w-9 h-9 rounded-lg border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50 dark:hover:bg-white/5 transition-all duration-200"
+                  className="w-10 h-10 rounded-lg border border-slate-700/40 flex items-center justify-center text-slate-500 hover:text-teal-400 hover:border-teal-500/30 hover:bg-teal-500/5 transition-all duration-300"
                 >
                   {icon}
                 </a>
@@ -65,15 +65,15 @@ export default function Footer() {
           {/* Link columns */}
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
-              <h4 className="text-xs font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-500 mb-4">
+              <h4 className="text-xs font-mono font-bold uppercase tracking-[0.15em] text-slate-400 mb-6">
                 {category}
               </h4>
-              <ul className="space-y-3">
+              <ul className="space-y-4">
                 {links.map(({ label, href }) => (
                   <li key={label}>
                     <Link
                       href={href}
-                      className="text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
+                      className="text-sm font-sans text-slate-500 hover:text-white transition-colors duration-200"
                     >
                       {label}
                     </Link>
@@ -85,13 +85,12 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="py-6 border-t border-slate-100 dark:border-slate-900 flex flex-col sm:flex-row justify-between items-center gap-3">
-          {/* Maintained by Vaibhav Sharma */}
-          <p className="text-xs text-slate-400 dark:text-slate-500">
+        <div className="py-8 border-t border-slate-800/40 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p className="text-xs font-sans text-slate-500">
             &copy; {new Date().getFullYear()} Avora Ventures Inc. All rights reserved. • Designed & Engineered by Vaibhav Sharma
           </p>
-          <div className="flex items-center gap-1.5 text-xs text-slate-400 dark:text-slate-500">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          <div className="flex items-center gap-2 text-xs font-mono font-medium text-slate-400 tracking-wider uppercase bg-white/[0.03] px-3 py-1.5 border border-slate-700/40 rounded-lg">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
             All systems operational
           </div>
         </div>

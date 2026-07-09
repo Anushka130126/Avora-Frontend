@@ -14,7 +14,7 @@ export default function CapTable({ capTable }: { capTable: any }) {
       
       {/* Progress Bar Visual */}
       <div className="h-4 w-full flex rounded-full overflow-hidden mb-6 bg-slate-100">
-        <div style={{ width: `${avora}%` }} className="bg-indigo-600 transition-all duration-500"></div>
+        <div style={{ width: `${avora}%` }} className="bg-slate-900 dark:bg-white transition-all duration-500"></div>
         <div style={{ width: `${founders}%` }} className="bg-emerald-500 transition-all duration-500"></div>
         <div style={{ width: `${investors}%` }} className="bg-amber-500 transition-all duration-500"></div>
         <div style={{ width: `${options}%` }} className="bg-slate-400 transition-all duration-500"></div>
@@ -24,8 +24,8 @@ export default function CapTable({ capTable }: { capTable: any }) {
       <div className="space-y-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-indigo-600"></div>
-            <span className="text-sm font-medium text-slate-700">Avora (Studio)</span>
+            <div className="w-3 h-3 rounded-full bg-slate-900 dark:bg-white"></div>
+            <span className="text-sm font-medium text-slate-700">Avora Ventures</span>
           </div>
           <span className="text-sm font-bold text-slate-900">{avora}%</span>
         </div>

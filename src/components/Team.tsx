@@ -4,36 +4,42 @@ import Image from 'next/image';
 import { cn } from '@/lib/cn';
 import { useInView } from '@/hooks/useInView';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 export default function Team() {
   const { ref, isInView } = useInView({ once: true, threshold: 0.2 });
 
   return (
-    <section id="team" className="py-24 md:py-32 bg-white dark:bg-[#0a0a0f] relative border-t border-slate-100 dark:border-slate-900 overflow-hidden">
+    <section id="team" className="py-24 md:py-32 relative overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 -z-10 bg-[#080b12]" />
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgba(148,163,184,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.02)_1px,transparent_1px)] bg-[size:5rem_5rem]" />
+
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Section header */}
-        <div
+        <motion.div
           ref={ref}
-          className={cn(
-            'mb-14 transition-all duration-700',
-            isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          )}
+          initial={{ opacity: 0, y: 16 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-14"
         >
           <span className="section-eyebrow">Leadership</span>
           <h2 className="section-heading mt-2">Meet the Founder</h2>
-        </div>
+        </motion.div>
 
         {/* Founder card */}
-        <div className={cn(
-          "transition-all duration-700 delay-100",
-          isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-        )}>
-          <div className="border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden bg-white dark:bg-white/[0.02] hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-500 group">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+        >
+          <div className="border border-slate-700/40 rounded-2xl overflow-hidden bg-white/[0.03] backdrop-blur-sm hover:border-slate-600/60 transition-all duration-500 group">
             <div className="flex flex-col md:flex-row">
 
               {/* Photo panel */}
-              <div className="relative md:w-64 lg:w-72 flex-shrink-0 bg-slate-100 dark:bg-slate-900 overflow-hidden">
+              <div className="relative md:w-64 lg:w-72 flex-shrink-0 bg-[#0c1018] overflow-hidden">
                 <div className="aspect-square md:aspect-auto md:h-full min-h-[240px]">
                   <Image
                     src="/abhay-jain.jpg"
@@ -48,20 +54,19 @@ export default function Team() {
 
               {/* Content panel */}
               <div className="flex-1 p-8 md:p-10 lg:p-12 flex flex-col justify-center">
-                {/* Content signature: Vaibhav Sharma */}
                 <div className="mb-1">
-                  <span className="text-xs font-semibold uppercase tracking-widest text-indigo-500 dark:text-indigo-400">
+                  <span className="text-xs font-mono font-semibold uppercase tracking-widest text-teal-400/70">
                     Founder &amp; CEO
                   </span>
                 </div>
-                <h3 className="text-2xl md:text-3xl font-heading font-bold text-slate-900 dark:text-white mb-1">
+                <h3 className="text-2xl md:text-3xl font-heading font-bold text-white mb-1">
                   Abhay Jain
                 </h3>
-                <p className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-5">
+                <p className="text-sm font-medium text-slate-400 mb-5">
                   Avora Ventures
                 </p>
 
-                <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-6 text-sm md:text-base">
+                <p className="text-slate-400 leading-relaxed mb-6 text-sm md:text-base">
                   A global professional with extensive experience in management consulting (McKinsey &amp; Co.), energy &amp; sustainability, and tech. Educated at Stanford University (MBA, MS) and IIT Kanpur. Previously with Mitsubishi Heavy Industries, NextEra Energy, and Autogrid.
                 </p>
 
@@ -70,7 +75,7 @@ export default function Team() {
                   {['McKinsey & Co.', 'Stanford MBA', 'IIT Kanpur', 'NextEra Energy'].map((tag) => (
                     <span
                       key={tag}
-                      className="px-3 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800"
+                      className="px-3 py-1 rounded-full text-xs font-medium bg-white/[0.04] text-slate-300 border border-slate-700/40"
                     >
                       {tag}
                     </span>
@@ -79,7 +84,7 @@ export default function Team() {
 
                 <Link
                   href="/founder"
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-slate-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors group/link"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-teal-400 hover:text-teal-300 transition-colors group/link"
                 >
                   Read Full Profile
                   <svg
@@ -92,7 +97,7 @@ export default function Team() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

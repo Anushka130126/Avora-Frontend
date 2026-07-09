@@ -51,7 +51,7 @@ export default function VentureModal() {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors font-medium text-sm shadow-sm flex items-center gap-2"
+        className="px-4 py-2 bg-slate-900 text-white rounded-md hover:bg-slate-800 transition-colors font-medium text-sm shadow-sm flex items-center gap-2"
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -79,7 +79,7 @@ export default function VentureModal() {
                 <label className="block text-sm font-semibold text-slate-700 mb-1">Venture Name</label>
                 <input
                   {...register('name')}
-                  className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500"
                   placeholder="e.g. NextGen AI"
                 />
                 {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
@@ -90,7 +90,7 @@ export default function VentureModal() {
                 <textarea
                   {...register('problem')}
                   rows={3}
-                  className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
+                  className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 resize-none"
                   placeholder="What is the core problem this venture solves?"
                 />
                 {errors.problem && <p className="text-red-500 text-xs mt-1">{errors.problem.message}</p>}
@@ -101,7 +101,7 @@ export default function VentureModal() {
                 <textarea
                   {...register('vision')}
                   rows={3}
-                  className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
+                  className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 resize-none"
                   placeholder="How does this venture solve the problem?"
                 />
                 {errors.vision && <p className="text-red-500 text-xs mt-1">{errors.vision.message}</p>}
@@ -112,7 +112,7 @@ export default function VentureModal() {
                 <input
                   type="number"
                   {...register('fundingTarget', { valueAsNumber: true })}
-                  className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500"
                   placeholder="0.00"
                 />
                 {errors.fundingTarget && <p className="text-red-500 text-xs mt-1">{errors.fundingTarget.message}</p>}
@@ -129,7 +129,7 @@ export default function VentureModal() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="px-4 py-2 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md disabled:opacity-50"
+                  className="px-4 py-2 text-sm font-medium text-white bg-slate-900 hover:bg-slate-800 rounded-md disabled:opacity-50"
                 >
                   {isSubmitting ? 'Submitting...' : 'Submit Pitch'}
                 </button>

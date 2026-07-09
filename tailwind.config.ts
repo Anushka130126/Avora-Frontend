@@ -11,28 +11,28 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          50: '#f8fafc',
-          100: '#f1f5f9',
-          200: '#e2e8f0',
-          300: '#cbd5e1',
-          400: '#94a3b8',
-          500: '#64748b',
-          600: '#475569',
-          700: '#334155',
-          800: '#1e293b',
-          900: '#0f172a',
-          950: '#020617',
-        },
-        secondary: {
+          50: '#fcfcfc',
+          100: '#f4f4f5',
+          200: '#e4e4e7',
+          300: '#d4d4d8',
           400: '#a1a1aa',
           500: '#71717a',
           600: '#52525b',
           700: '#3f3f46',
+          800: '#27272a',
+          900: '#18181b',
+          950: '#09090b',
+        },
+        accent: {
+          DEFAULT: '#B08D57', // Metallurgical Bronze signature (warm, restrained)
+          light: '#C9A84C',
+          dark: '#937343',
         },
       },
       fontFamily: {
-        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
-        heading: ['var(--font-space-grotesk)', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-ibm-plex-mono)', 'IBM Plex Mono', 'monospace'],
+        heading: ['var(--font-space-grotesk)', 'Space Grotesk', 'system-ui', 'sans-serif'],
       },
       borderRadius: {
         xs: '4px',
@@ -54,66 +54,19 @@ const config: Config = {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
         },
-        'fade-out': {
-          '0%': { opacity: '1' },
-          '100%': { opacity: '0' },
-        },
         'slide-in-up': {
           '0%': { transform: 'translateY(20px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
-        },
-        'slide-in-down': {
-          '0%': { transform: 'translateY(-20px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' },
-        },
-        'slide-in-left': {
-          '0%': { transform: 'translateX(-20px)', opacity: '0' },
-          '100%': { transform: 'translateX(0)', opacity: '1' },
-        },
-        'slide-in-right': {
-          '0%': { transform: 'translateX(20px)', opacity: '0' },
-          '100%': { transform: 'translateX(0)', opacity: '1' },
         },
         'scale-in': {
           '0%': { transform: 'scale(0.95)', opacity: '0' },
           '100%': { transform: 'scale(1)', opacity: '1' },
         },
-        'glow-pulse': {
-          '0%, 100%': { boxShadow: '0 0 20px rgba(79, 70, 229, 0.3)' },
-          '50%': { boxShadow: '0 0 30px rgba(79, 70, 229, 0.5)' },
-        },
-        'bounce-subtle': {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-4px)' },
-        },
-        'shimmer': {
-          '0%': { backgroundPosition: '-1000px 0' },
-          '100%': { backgroundPosition: '1000px 0' },
-        },
-        'float': {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-6px)' },
-        },
-        'counter': {
-          '0%': { opacity: '0' },
-          '10%': { opacity: '1' },
-          '90%': { opacity: '1' },
-          '100%': { opacity: '1' },
-        },
       },
       animation: {
-        'fade-in': 'fade-in 0.6s ease-out',
-        'fade-out': 'fade-out 0.4s ease-out',
-        'slide-in-up': 'slide-in-up 0.6s ease-out',
-        'slide-in-down': 'slide-in-down 0.6s ease-out',
-        'slide-in-left': 'slide-in-left 0.6s ease-out',
-        'slide-in-right': 'slide-in-right 0.6s ease-out',
-        'scale-in': 'scale-in 0.5s ease-out',
-        'glow-pulse': 'glow-pulse 3s ease-in-out infinite',
-        'bounce-subtle': 'bounce-subtle 2s ease-in-out infinite',
-        'shimmer': 'shimmer 2s infinite',
-        'float': 'float 3s ease-in-out infinite',
-        'counter': 'counter 0.3s ease-out',
+        'fade-in': 'fade-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        'slide-in-up': 'slide-in-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        'scale-in': 'scale-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',
       },
     },
   },

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/cn';
 import { useInView } from '@/hooks/useInView';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const faqs = [
   {
@@ -37,69 +38,85 @@ export default function FAQ() {
   const { ref, isInView } = useInView({ once: true, threshold: 0.1 });
 
   return (
-    <section id="faq" className="py-24 md:py-32 bg-slate-50 dark:bg-[#0d0d12] border-t border-slate-100 dark:border-slate-900">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="faq" className="relative py-24 md:py-32 overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 -z-10 bg-[#080b12]" />
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgba(148,163,184,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+      
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section header */}
-        <div
+        <motion.div
           ref={ref}
-          className={cn(
-            'mb-12 text-center transition-all duration-700',
-            isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          )}
+          initial={{ opacity: 0, y: 16 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-16 text-center"
         >
           <span className="section-eyebrow">FAQ</span>
-          <h2 className="section-heading mt-2">Frequently Asked Questions</h2>
-        </div>
+          <h2 className="section-heading">
+            Frequently Asked Questions
+          </h2>
+        </motion.div>
 
         {/* Accordion */}
-        <div className="space-y-2">
+        <div className="space-y-0 border border-slate-700/40 rounded-2xl overflow-hidden bg-white/[0.02] backdrop-blur-sm">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
-              <div
+              <motion.div
                 key={index}
                 className={cn(
-                  'border rounded-xl overflow-hidden transition-all duration-300',
+                  'group border-b border-slate-700/30 last:border-b-0 transition-colors duration-300',
                   isOpen
-                    ? 'border-indigo-200 dark:border-indigo-800/60 bg-white dark:bg-white/[0.03]'
-                    : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-white/[0.02] hover:border-slate-300 dark:hover:border-slate-700',
-                  isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                    ? 'bg-white/[0.04]'
+                    : 'hover:bg-white/[0.02]'
                 )}
-                style={{ transitionDelay: isInView ? `${index * 60}ms` : '0ms' }}
+                initial={{ opacity: 0, y: 12 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+                transition={{ type: 'tween', ease: [0.16, 1, 0.3, 1], duration: 0.5, delay: index * 0.05 }}
               >
                 <button
-                  className="w-full px-6 py-5 text-left flex justify-between items-center gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/30 focus-visible:ring-inset"
+                  className="w-full px-6 py-5 text-left flex justify-between items-center gap-4 focus:outline-none"
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                   aria-expanded={isOpen}
                 >
                   <span className={cn(
-                    'font-semibold text-sm md:text-base transition-colors',
-                    isOpen ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-900 dark:text-white'
+                    'font-sans font-semibold text-base transition-colors',
+                    isOpen ? 'text-white' : 'text-slate-300 group-hover:text-white'
                   )}>
                     {faq.question}
                   </span>
-                  <ChevronDown
-                    className={cn(
-                      'w-4 h-4 flex-shrink-0 transition-all duration-300',
-                      isOpen
-                        ? 'rotate-180 text-indigo-500'
-                        : 'text-slate-400 dark:text-slate-500'
-                    )}
-                  />
+                  <motion.div
+                    animate={{ rotate: isOpen ? 180 : 0 }}
+                    transition={{ type: 'tween', ease: [0.16, 1, 0.3, 1], duration: 0.4 }}
+                  >
+                    <ChevronDown
+                      className={cn(
+                        'w-5 h-5 flex-shrink-0 transition-colors duration-300',
+                        isOpen ? 'text-teal-400' : 'text-slate-500 group-hover:text-slate-300'
+                      )}
+                    />
+                  </motion.div>
                 </button>
 
-                <div className={cn(
-                  'overflow-hidden transition-all duration-300 ease-in-out',
-                  isOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
-                )}>
-                  <div className="px-6 pb-6 pt-0">
-                    <div className="h-px bg-slate-100 dark:bg-slate-800 mb-4" />
-                    <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-                      {faq.answer}
-                    </p>
-                  </div>
-                </div>
-              </div>
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ type: 'tween', ease: [0.16, 1, 0.3, 1], duration: 0.4 }}
+                    >
+                      <div className="px-6 pb-6 pt-0 font-sans">
+                        <div className="h-px bg-slate-700/30 mb-4" />
+                        <p className="text-sm md:text-base text-slate-400 leading-relaxed">
+                          {faq.answer}
+                        </p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
             );
           })}
         </div>
