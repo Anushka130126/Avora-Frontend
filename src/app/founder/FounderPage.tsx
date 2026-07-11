@@ -48,27 +48,24 @@ export default function FounderPage() {
               </p>
 
               {/* Credential logos strip */}
-              <div className="flex flex-wrap items-center gap-3 mb-5 py-4 px-5 bg-white dark:bg-slate-950 border border-slate-205 dark:border-slate-855 rounded-xl shadow-sm">
-                <span className="text-[10px] font-mono font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mr-2">Credentials</span>
+              <div className="flex flex-wrap items-center gap-4 mb-5 py-4 px-5 bg-white dark:bg-slate-950 border border-[#D4AF37]/35 rounded-xl shadow-sm">
+                <span className="text-[10px] font-mono font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mr-1">Credentials</span>
                 
                 {/* Stanford */}
-                <div className="flex items-center gap-1.5 px-3 py-1 bg-[#8c1515]/10 rounded-full border border-[#8c1515]/20">
-                  <span className="w-2 h-2 rounded-full bg-[#8c1515]" />
-                  <span className="text-xs font-heading font-bold text-[#8c1515]">Stanford</span>
-                  <span className="text-[10px] text-slate-500 dark:text-slate-400 font-sans font-medium">MBA &middot; MS</span>
+                <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-slate-900 rounded-lg border border-[#D4AF37]/25 shadow-sm">
+                  <img src="/logos/stanford.svg" alt="Stanford University Logo" className="h-5 w-auto" />
+                  <span className="text-[10px] text-slate-500 dark:text-slate-400 font-sans font-bold">MBA &middot; MS</span>
                 </div>
 
                 {/* IIT Kanpur */}
-                <div className="flex items-center gap-1.5 px-3 py-1 bg-sky-600/10 rounded-full border border-sky-600/20">
-                  <span className="w-2 h-2 rounded-full bg-sky-600" />
-                  <span className="text-xs font-heading font-bold text-sky-700 dark:text-sky-400">IIT Kanpur</span>
-                  <span className="text-[10px] text-slate-500 dark:text-slate-400 font-sans font-medium">B.Tech</span>
+                <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-slate-900 rounded-lg border border-[#D4AF37]/25 shadow-sm">
+                  <img src="/logos/iitk.svg" alt="IIT Kanpur Logo" className="h-5 w-auto" />
+                  <span className="text-[10px] text-slate-500 dark:text-slate-400 font-sans font-bold">B.Tech</span>
                 </div>
 
                 {/* McKinsey */}
-                <div className="flex items-center gap-1.5 px-3 py-1 bg-blue-900/10 rounded-full border border-blue-900/20">
-                  <span className="w-2 h-2 rounded-full bg-[#051c2c]" />
-                  <span className="text-xs font-heading font-bold text-[#051c2c] dark:text-[#3399ff]">McKinsey</span>
+                <div className="flex items-center px-3 py-1.5 bg-white dark:bg-slate-900 rounded-lg border border-[#D4AF37]/25 shadow-sm">
+                  <img src="/logos/mckinsey.svg" alt="McKinsey Logo" className="h-4 w-auto dark:invert" />
                 </div>
               </div>
 
@@ -97,21 +94,18 @@ export default function FounderPage() {
                 company: "McKinsey & Co.",
                 role: "Consultant",
                 logo: (
-                  <div className="w-16 h-12 bg-[#051c2c] rounded-lg flex items-center justify-center border border-slate-700/50 shadow-sm">
-                    <span className="text-xs font-sans font-black text-white tracking-tighter">McKinsey</span>
+                  <div className="w-20 h-12 bg-white dark:bg-slate-900 rounded-lg flex items-center justify-center border border-[#D4AF37]/25 shadow-sm p-1.5">
+                    <img src="/logos/mckinsey.svg" alt="McKinsey & Co. Logo" className="max-h-full max-w-full object-contain dark:invert" />
                   </div>
                 ),
-                accent: "border-l-4 border-l-blue-700",
+                accent: "border-l-4 border-l-[#D4AF37]",
               },
               {
                 company: "Mitsubishi Heavy Industries",
                 role: "Sales and Marketing Executive; Compressor & Steam Turbine Engineer",
                 logo: (
-                  <div className="w-16 h-12 bg-white rounded-lg flex flex-col items-center justify-center border border-slate-300 shadow-sm p-1">
-                    <svg viewBox="0 0 24 24" className="w-6 h-6" aria-label="Mitsubishi">
-                      <polygon points="12,2 20,8 12,14 4,8" fill="#e8001c"/>
-                      <polygon points="12,10 20,16 12,22 4,16" fill="#e8001c" opacity="0.8"/>
-                    </svg>
+                  <div className="w-20 h-12 bg-white dark:bg-slate-900 rounded-lg flex items-center justify-center border border-[#D4AF37]/25 shadow-sm p-1.5">
+                    <img src="/logos/mitsubishi.svg" alt="Mitsubishi Logo" className="max-h-full max-w-full object-contain" />
                   </div>
                 ),
                 accent: "border-l-4 border-l-red-650",
@@ -120,9 +114,8 @@ export default function FounderPage() {
                 company: "NextEra Energy",
                 role: "MBA Intern, Renewable Energy Innovation and Strategy Team",
                 logo: (
-                  <div className="w-16 h-12 bg-[#003057] rounded-lg flex flex-col items-center justify-center border border-slate-850 shadow-sm leading-none">
-                    <span className="text-[7px] font-sans font-black text-[#5fc2ae] tracking-widest uppercase">NEXT</span>
-                    <span className="text-[7px] font-sans font-black text-white tracking-widest uppercase mt-0.5">ERA</span>
+                  <div className="w-20 h-12 bg-white dark:bg-slate-900 rounded-lg flex items-center justify-center border border-[#D4AF37]/25 shadow-sm p-1.5">
+                    <img src="/logos/nextera.svg" alt="NextEra Energy Logo" className="max-h-full max-w-full object-contain" />
                   </div>
                 ),
                 accent: "border-l-4 border-l-sky-500",
@@ -131,29 +124,28 @@ export default function FounderPage() {
                 company: "Autogrid",
                 role: "Summer Intern, Solutions and Data Science",
                 logo: (
-                  <div className="w-16 h-12 bg-[#111] rounded-lg flex flex-col items-center justify-center border border-slate-800 shadow-sm leading-none">
-                    <span className="text-[7px] font-sans font-black text-[#00aaff] tracking-tighter">Auto</span>
-                    <span className="text-[7px] font-sans font-black text-[#ff6600] tracking-tighter mt-0.5">grid</span>
+                  <div className="w-20 h-12 bg-white dark:bg-slate-900 rounded-lg flex items-center justify-center border border-[#D4AF37]/25 shadow-sm p-2">
+                    <span className="text-xs font-sans font-black tracking-tight text-[#00aaff]">Auto<span className="text-[#ff6600]">grid</span></span>
                   </div>
                 ),
-                accent: "border-l-4 border-l-orange-500",
+                accent: "border-l-4 border-l-orange-550",
               },
               {
                 company: "Sparkz Inc.",
                 role: "Business and Product Development Manager (Intern)",
                 logo: (
-                  <div className="w-16 h-12 bg-white rounded-lg flex items-center justify-center border border-slate-350 shadow-sm">
-                    <span className="text-[9px] font-mono font-black text-purple-700 tracking-tighter">⚡SPARKZ</span>
+                  <div className="w-20 h-12 bg-white dark:bg-slate-900 rounded-lg flex items-center justify-center border border-[#D4AF37]/25 shadow-sm p-2">
+                    <span className="text-xs font-mono font-black text-purple-600 dark:text-purple-400">⚡SPARKZ</span>
                   </div>
                 ),
-                accent: "border-l-4 border-l-violet-655",
+                accent: "border-l-4 border-l-violet-650",
               },
               {
                 company: "Averda",
                 role: "Operations Intern, COO Office",
                 logo: (
-                  <div className="w-16 h-12 bg-white rounded-lg flex items-center justify-center border border-slate-300 shadow-sm">
-                    <span className="text-[9px] font-sans font-black text-emerald-600 tracking-tight">averda</span>
+                  <div className="w-20 h-12 bg-white dark:bg-slate-900 rounded-lg flex items-center justify-center border border-[#D4AF37]/25 shadow-sm p-2">
+                    <span className="text-xs font-sans font-black text-emerald-600 dark:text-emerald-400">averda</span>
                   </div>
                 ),
                 accent: "border-l-4 border-l-green-655",
@@ -163,7 +155,7 @@ export default function FounderPage() {
                 <div className="flex-shrink-0 flex items-center justify-center">
                   {exp.logo}
                 </div>
-                <div className="h-10 w-px bg-slate-200 dark:bg-slate-850 flex-shrink-0" />
+                <div className="h-10 w-px bg-slate-200 dark:bg-slate-855 flex-shrink-0" />
                 <div>
                   <h3 className="text-base font-bold text-slate-900 dark:text-white">{exp.company}</h3>
                   <p className="text-sm text-slate-600 dark:text-slate-400 font-medium mt-0.5">{exp.role}</p>
@@ -188,10 +180,10 @@ export default function FounderPage() {
                 school: "Stanford University",
                 degree: "MBA",
                 sub: "Graduate School of Business",
-                border: "border-t-4 border-t-[#8C1515]",
+                border: "border-t-4 border-t-[#D4AF37]",
                 logo: (
-                  <div className="w-24 h-10 rounded bg-[#8C1515] flex items-center justify-center mb-4 shadow-sm">
-                    <span className="font-heading font-extrabold text-white text-sm tracking-wide">STANFORD</span>
+                  <div className="h-10 w-auto mb-4 flex items-center justify-start">
+                    <img src="/logos/stanford.svg" alt="Stanford Logo" className="h-8 w-auto" />
                   </div>
                 ),
               },
@@ -199,10 +191,10 @@ export default function FounderPage() {
                 school: "Stanford University",
                 degree: "MS in Environment and Resources",
                 sub: "School of Earth, Energy & Environmental Sciences",
-                border: "border-t-4 border-t-[#8C1515]",
+                border: "border-t-4 border-t-[#D4AF37]",
                 logo: (
-                  <div className="w-24 h-10 rounded bg-[#8C1515] flex items-center justify-center mb-4 shadow-sm">
-                    <span className="font-heading font-extrabold text-white text-sm tracking-wide">STANFORD</span>
+                  <div className="h-10 w-auto mb-4 flex items-center justify-start">
+                    <img src="/logos/stanford.svg" alt="Stanford Logo" className="h-8 w-auto" />
                   </div>
                 ),
               },
@@ -210,10 +202,10 @@ export default function FounderPage() {
                 school: "IIT Kanpur",
                 degree: "B.Tech, Materials & Metallurgical Engineering",
                 sub: "Indian Institute of Technology",
-                border: "border-t-4 border-t-sky-650",
+                border: "border-t-4 border-t-[#D4AF37]",
                 logo: (
-                  <div className="w-24 h-10 rounded bg-[#00529b] flex items-center justify-center mb-4 shadow-sm">
-                    <span className="font-heading font-extrabold text-white text-sm tracking-widest">IIT KANPUR</span>
+                  <div className="h-10 w-auto mb-4 flex items-center justify-start">
+                    <img src="/logos/iitk.svg" alt="IIT Kanpur Logo" className="h-8 w-auto dark:invert" />
                   </div>
                 ),
               },
