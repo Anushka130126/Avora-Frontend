@@ -1,8 +1,9 @@
+
 'use client';
 
 import { cn } from '@/lib/cn';
 import { useInView } from '@/hooks/useInView';
-import { Server, Activity, ShieldCheck, AreaChart } from 'lucide-react';
+import { Server, Activity, ShieldCheck, AreaChart, FlaskConical } from 'lucide-react';
 
 const projects = [
   {
@@ -37,16 +38,47 @@ const projects = [
   }
 ];
 
+const caseStudies = [
+  {
+    domain: "Medical AI",
+    context: "Rare Disease OCT Imaging",
+    headline: "87 cases → 50,000 training volumes",
+    metric: "AUC 0.72 → 0.91",
+    sub: "3 → 17 research groups in 6 months",
+  },
+  {
+    domain: "AgTech",
+    context: "Crop Stress Detection · 500 Farms",
+    headline: "800k drone images annotated",
+    metric: "3h → 25min scouting time",
+    sub: "$120K estimated annual savings per 1,000 acres",
+  },
+  {
+    domain: "Pharma",
+    context: "Clinical Trial Document Extraction",
+    headline: "2.1M pages · 47 data points · 35 trials",
+    metric: "F1: 0.94 · Kappa: 0.90",
+    sub: "$8.3M annual saving achieved",
+  },
+  {
+    domain: "Retail",
+    context: "Enterprise Demand Forecasting",
+    headline: "Ensemble model — 3 complementary modules",
+    metric: "680% ROI at 36 months",
+    sub: "+40% planner productivity · satisfaction 3.1 → 4.6/5.0",
+  },
+];
+
 export default function Ventures() {
   const { ref, isInView } = useInView({ once: true, threshold: 0.1 });
 
   return (
-    <section 
-      id="ventures" 
+    <section
+      id="ventures"
       className="relative py-24 md:py-32 overflow-hidden ventures-bg"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Section header */}
         <div
           ref={ref}
@@ -79,11 +111,11 @@ export default function Ventures() {
           {/* Project Spec Cards */}
           <div className="divide-y divide-slate-200 dark:divide-slate-800">
             {projects.map((proj, i) => (
-              <div 
-                key={i} 
+              <div
+                key={i}
                 className="p-6 md:p-8 flex flex-col lg:flex-row justify-between gap-8 hover:bg-black/[0.01] dark:hover:bg-white/[0.01] transition-all duration-150"
               >
-                
+
                 {/* Project Details */}
                 <div className="space-y-4 max-w-xl">
                   <div className="flex items-center gap-3">
@@ -94,11 +126,11 @@ export default function Ventures() {
                       {proj.status}
                     </span>
                   </div>
-                  
+
                   <p className="text-sm text-slate-650 dark:text-slate-400 font-sans leading-relaxed">
                     {proj.spec}
                   </p>
-                  
+
                   <div className="flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[10px] text-slate-500 dark:text-slate-500">
                     <span className="flex items-center gap-1.5"><AreaChart className="w-3.5 h-3.5 text-slate-500" /> Deployment ID: {proj.id}</span>
                     <span>•</span>
@@ -112,7 +144,7 @@ export default function Ventures() {
                     <span className="block text-[9px] font-mono font-bold text-slate-550 dark:text-slate-500 uppercase tracking-wider">Pipeline Speed</span>
                     <span className="text-sm font-mono font-bold text-slate-900 dark:text-white mt-1">{proj.throughput}</span>
                   </div>
-                  
+
                   <div className="border border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-[#0a0e16] p-4 rounded-lg min-w-[160px] text-center flex flex-col justify-center border-[#D4AF37]/25 shadow-[0_0_15px_rgba(212,175,55,0.05)]">
                     <span className="block text-[9px] font-mono font-bold text-[#D4AF37] uppercase tracking-wider">Performance Metric</span>
                     <span className="text-sm font-mono font-extrabold text-[#D4AF37] mt-1">{proj.metric}</span>
@@ -125,7 +157,41 @@ export default function Ventures() {
 
         </div>
 
+        {/* From the Field — Real Case Study Outcomes */}
+        <div className="mt-12">
+          <div className="flex items-center gap-2 mb-6">
+            <FlaskConical className="w-4 h-4 text-[#D4AF37]" />
+            <span className="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-widest">From the Field — Delivered Outcomes</span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+            {caseStudies.map((cs, i) => (
+              <div
+                key={i}
+                className="glass-panel rounded-xl p-5 flex flex-col gap-3 hover:border-[#D4AF37]/30 transition-all duration-150"
+              >
+                <div>
+                  <span className="text-[9px] font-mono font-bold text-[#D4AF37] uppercase tracking-widest block">{cs.domain}</span>
+                  <span className="text-[10px] font-sans text-slate-500 dark:text-slate-500 block mt-0.5">{cs.context}</span>
+                </div>
+
+                <div className="h-px bg-slate-200 dark:bg-slate-800" />
+
+                <p className="text-xs font-sans text-slate-700 dark:text-slate-300 leading-relaxed">
+                  {cs.headline}
+                </p>
+
+                <div>
+                  <span className="text-sm font-mono font-bold text-slate-900 dark:text-white block">{cs.metric}</span>
+                  <span className="text-[10px] font-sans text-slate-500 dark:text-slate-400 block mt-0.5">{cs.sub}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </div>
     </section>
   );
 }
+

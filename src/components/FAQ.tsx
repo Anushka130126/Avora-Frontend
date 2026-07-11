@@ -8,29 +8,37 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const faqs = [
   {
-    question: "What's included in outsourcing?",
-    answer: "We provide fully vetted, senior-level engineering talent tailored to your tech stack. This includes technical vetting, onboarding, continuous performance management, and replacement guarantees. You get dedicated resources without the overhead of traditional hiring.",
+    question: "What is included in your outsourcing service?",
+    answer: "We provide fully vetted, senior-level engineering talent matched to your tech stack. Included: structured technical vetting panels, onboarding into your codebase, continuous performance management, daily sprint telemetry, and a replacement guarantee. You scale engineering velocity without the overhead of traditional hiring — fixed costs convert to variable operating expense, engagement to engagement.",
   },
   {
-    question: "How fast can you deploy AI?",
-    answer: "Depending on the complexity, our standard MVP deployment ranges from 2 to 6 weeks. We prioritize rapid, measurable ROI by launching foundational workflows first, then iterating and scaling the capabilities once value is proven.",
+    question: "How fast can you deploy a custom AI solution?",
+    answer: "Our standard MVP deployment ranges from 2 to 6 weeks depending on scope. We start with the business problem — not a preferred algorithm — run a rapid discovery phase to scope constraints, then execute in tight iteration cycles with transparent metrics. The first deployment is treated as a validated hypothesis, not a final product. Scaling follows once value is proven.",
   },
   {
-    question: "Can I hire for short-term projects?",
-    answer: "Yes. Our Specialized Skill Hiring allows you to bring on fractional experts (like ML engineers or security specialists) for engagements as short as 5 to 50 days. You pay only for the specialized expertise you need, when you need it.",
+    question: "Can I engage specialists for short-term projects?",
+    answer: "Yes. Our Specialized Skill Hiring connects you with fractional experts — ML engineers, security auditors, data architects — for engagements as short as 5 to 50 days. You pay only for the depth of expertise you need, when you need it. Partners carry the domain risk, so your internal team stays focused on core strategy.",
+  },
+  {
+    question: "Is synthetic data reliable enough to train production models?",
+    answer: "When engineered correctly, yes. Poorly designed synthetic data can memorize and reproduce rare real combinations — that is a genuine risk. But well-designed synthetic data, validated on downstream task performance, can outperform scarce or noisy real data. One of our medical imaging engagements scaled a rare disease training library from 87 real cases to 50,000 synthetic volumes, improving diagnostic AUC from 0.72 to 0.91. The key is combining domain expert oversight, physics-informed generation, and explicit privacy-budget controls — not just labeling output as synthetic.",
+  },
+  {
+    question: "What does your data annotation process look like?",
+    answer: "Annotation begins with a requirement and ontology phase — defining exactly what the model must learn and building a consistent classification system before any labeling starts. We then write exhaustive guidelines with visual examples and edge-case handling. Execution uses modality-specific tooling (CVAT for vision, Prodigy for NLP) with model-assisted pre-labeling to cut manual effort by up to 60%. A senior expert reviews a sample of all annotations, and a third expert adjudicates disagreements. Inter-annotator Kappa targets 0.91 or above before any dataset is signed off.",
+  },
+  {
+    question: "How do you ensure data quality across large labeling workloads?",
+    answer: "Garbage in, gospel out is as dangerous as garbage in, garbage out — inconsistent labels do not just add noise, they create dangerous overconfidence. Our QA framework measures accuracy, completeness, consistency, timeliness, and inter-annotator agreement across every batch. We run multi-stage validation: statistical tests, downstream task performance checks, expert benchmarking, and formal sign-off against defined quality thresholds. Datasets are versioned like software releases and regenerated when source distributions drift.",
   },
   {
     question: "How does equity work in the venture studio?",
-    answer: "For select high-growth founders, we operate as a technical co-founder. We significantly discount our engineering and product development rates in exchange for a mutually agreed equity stake in the company we are building together.",
-  },
-  {
-    question: "Do you work with early-stage startups?",
-    answer: "Absolutely. We work with companies at every stage — from zero-to-one MVPs to scaling established products. Our engagement model is flexible enough to match your budget, timeline, and risk tolerance.",
+    answer: "For select high-growth founders, we operate as a technical co-founder. We significantly discount our engineering and product development rates in exchange for a mutually agreed equity stake in the company we are building together. This is reserved for engagements where Avora's technical contribution is foundational to the product architecture — not a bolt-on service relationship.",
   },
   {
     question: "What industries do you specialize in?",
-    answer: "Our core expertise spans fintech, energy & sustainability, healthcare, enterprise SaaS, and AI-native products. Backed by McKinsey consulting experience and deep technical execution, we apply proven frameworks across verticals.",
-  }
+    answer: "Our delivered work spans medical AI, pharmaceutical clinical trial automation, agricultural technology, retail demand forecasting, and enterprise infrastructure. Backed by McKinsey consulting experience and deep technical execution, we apply proven frameworks across verticals — with particular depth in regulated industries where data quality, explainability, and compliance are non-negotiable.",
+  },
 ];
 
 export default function FAQ() {
