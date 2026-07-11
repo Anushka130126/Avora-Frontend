@@ -36,7 +36,7 @@ export default function Process() {
 
   return (
     <section id="process" className="relative py-24 md:py-32 overflow-hidden bg-transparent">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section header */}
         <div

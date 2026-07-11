@@ -59,19 +59,19 @@ export default function Testimonials() {
 
   return (
     <section id="testimonials" className="py-24 relative overflow-hidden services-bg">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div ref={ref} className="text-center mb-16">
           <span className="section-eyebrow">Client Success</span>
-          <h2 className="section-heading mb-4">Operational Verification</h2>
+          <h2 className="section-heading mb-4" style={{ textShadow: '0 1px 8px rgba(0,0,0,0.35)' }}>Operational Verification</h2>
           <p className="section-subtext max-w-2xl mx-auto">
             Verified case outcomes compiled directly from partner platform engineering logs.
           </p>
         </div>
 
         {/* Verification Logs Carousel */}
-        <div className="glass-panel p-8 md:p-12 rounded-2xl flex flex-col justify-between min-h-[220px]">
+        <div className="glass-panel p-8 md:p-12 rounded-2xl flex flex-col">
           <div>
             <span className="text-[10px] font-mono text-slate-500 font-bold uppercase tracking-widest block mb-6">
               Verification Log // {t.verification}

@@ -71,7 +71,7 @@ export default function Services() {
 
   return (
     <section id="services" className="py-24 relative overflow-hidden services-bg">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div ref={ref} className="text-left mb-16 max-w-3xl">
@@ -85,7 +85,7 @@ export default function Services() {
         </div>
 
         {/* Tabular Specification Console */}
-        <div className="glass-panel rounded-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[500px]">
+        <div className="glass-panel rounded-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12">
           
           {/* Left Panel: Service Selection (Tab navigation) */}
           <div className="lg:col-span-4 border-r border-slate-205 dark:border-slate-850 divide-y divide-slate-205 dark:divide-slate-850/60 bg-black/[0.01] dark:bg-slate-950/30">
