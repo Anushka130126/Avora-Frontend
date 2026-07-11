@@ -17,6 +17,9 @@ export async function POST(req: Request) {
                "- AI Projects & Data Annotations: Milestone-based pricing after the discovery phase.\n\n" +
                "Please submit an inquiry via our contact form with your budget range so our technical leads can provide a detailed proposal.";
       sources = ["Avora_Commercial_Terms_2026.pdf"];
+    } else if (lowerQuery.includes("founder") || lowerQuery.includes("abhay") || lowerQuery.includes("jain") || lowerQuery.includes("ceo") || lowerQuery.includes("who is")) {
+      answer = "Avora Ventures was founded by Abhay Jain, a Stanford (MBA + MS Environment & Resources) and IIT Kanpur alumnus. His professional history includes key engineering and strategic leadership roles at McKinsey & Co., Mitsubishi Heavy Industries, NextEra Energy, and AutoGrid.";
+      sources = ["Avora_Capabilities_2026.pdf"];
     } else if (lowerQuery.includes("service") || lowerQuery.includes("what do you do") || lowerQuery.includes("capability") || lowerQuery.includes("what you offer")) {
       answer = "Avora Ventures provides specialized enterprise infrastructure and talent under four pillars:\n\n" +
                "1. Specialized Outsourcing: Vetted remote senior software engineers and architects.\n" +
@@ -27,15 +30,12 @@ export async function POST(req: Request) {
     } else if (lowerQuery.includes("outsourcing") || lowerQuery.includes("remote") || lowerQuery.includes("engineer") || lowerQuery.includes("hire developer")) {
       answer = "Our Specialized Outsourcing program gives you direct access to 500+ pre-vetted senior remote software developers and system architects. We handle all recruitment, validation, management, and compliance so you can scale your engineering velocity without overhead.";
       sources = ["Avora_Capabilities_2026.pdf"];
-    } else if (lowerQuery.includes("ai") || lowerQuery.includes("ml") || lowerQuery.includes("model") || lowerQuery.includes("machine learning") || lowerQuery.includes("automation")) {
+    } else if (/\b(ai|ml|rag|llm|automation|machine learning|models|model)\b/i.test(lowerQuery)) {
       answer = "We design, deploy, and scale custom machine learning solutions. From retrieval-augmented generation (RAG) pipelines to bespoke predictive models, our teams build the enterprise infrastructure that drives automated efficiency.";
       sources = ["ML_Pipeline_Specs.docx"];
     } else if (lowerQuery.includes("data") || lowerQuery.includes("annotation") || lowerQuery.includes("labeling") || lowerQuery.includes("dataset")) {
       answer = "Avora processes high-fidelity labeling workloads at scale. We have labeled over 10M+ data points across specialized domains, including medical text recognition, automated checkout systems, and custom image/video segmentation pipelines.";
       sources = ["Data_Annotation_Standards.pdf"];
-    } else if (lowerQuery.includes("founder") || lowerQuery.includes("abhay") || lowerQuery.includes("ceo") || lowerQuery.includes("who is")) {
-      answer = "Avora Ventures was founded by Abhay Jain, a Stanford (MBA + MS Environment & Resources) and IIT Kanpur alumnus. His professional history includes key engineering and strategic leadership roles at McKinsey & Co., Mitsubishi Heavy Industries, NextEra Energy, and AutoGrid.";
-      sources = ["Avora_Capabilities_2026.pdf"];
     } else if (lowerQuery.includes("contact") || lowerQuery.includes("hire") || lowerQuery.includes("call") || lowerQuery.includes("schedule") || lowerQuery.includes("talk") || lowerQuery.includes("email")) {
       answer = "To start a conversation or schedule a strategic call, please fill out the contact form at the bottom of the page, or email us directly at partnerships@avora.io. Our team will get back to you within 24 hours.";
       sources = ["Avora_Capabilities_2026.pdf"];
