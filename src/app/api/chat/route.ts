@@ -36,7 +36,7 @@ export async function POST(req: Request) {
     } else if (lowerQuery.includes("data") || lowerQuery.includes("annotation") || lowerQuery.includes("labeling") || lowerQuery.includes("dataset")) {
       answer = "Avora processes high-fidelity labeling workloads at scale. We have labeled over 10M+ data points across specialized domains, including medical text recognition, automated checkout systems, and custom image/video segmentation pipelines.";
       sources = ["Data_Annotation_Standards.pdf"];
-    } else if (lowerQuery.includes("process") || lowerQuery.includes("methodology") || lowerQuery.includes("aim") || lowerQuery.includes("phase")) {
+    } else if (lowerQuery.includes("process") || lowerQuery.includes("methodology") || lowerQuery.includes("aim") || lowerQuery.includes("a.i.m.") || lowerQuery.includes("phase")) {
       answer = "Avora operates under the A.I.M. (Discovery, Implementation, Scaling) framework:\n\n" +
                "- Phase 01 (Discovery): Architectural Bottleneck Audits producing a Technical Integration Specification.\n" +
                "- Phase 02 (Implementation): Core systems engineering and pipeline code construction verified via Consensus Logs.\n" +
