@@ -69,9 +69,9 @@ export default function FounderPage() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 bg-white dark:bg-slate-955 p-4 rounded-xl border border-slate-205 dark:border-slate-855 shadow-sm">
+              <div className="flex items-start gap-3 bg-black/30 dark:bg-black/50 p-4 rounded-xl border border-[#D4AF37]/20 shadow-sm">
                 <Globe2 className="w-5 h-5 text-[#D4AF37] flex-shrink-0 mt-0.5" />
-                <p className="text-sm text-slate-600 dark:text-slate-400">
+                <p className="text-sm text-slate-350 dark:text-slate-400">
                   Originally from the foothills of the Himalayas in India, lived in Japan for 4 years, and moved to the USA for higher education. When not working, I enjoy table tennis, pool, golf, road trips, and dancing.
                 </p>
               </div>
@@ -173,17 +173,16 @@ export default function FounderPage() {
             </div>
             <h2 className="text-3xl font-heading font-bold text-slate-900 dark:text-white">Education</h2>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-12">
+                   <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-12">
             {[
               {
                 school: "Stanford University",
                 degree: "MBA",
                 sub: "Graduate School of Business",
-                border: "border-t-4 border-t-[#D4AF37]",
+                border: "border-[#D4AF37]/35 hover:border-[#D4AF37]/60",
                 logo: (
-                  <div className="h-10 w-auto mb-4 flex items-center justify-start">
-                    <img src="/logos/stanford.svg" alt="Stanford Logo" className="h-8 w-auto" />
+                  <div className="h-12 w-auto mb-4 flex items-center justify-start">
+                    <img src="/logos/stanford.svg" alt="Stanford Logo" className="h-9 w-auto" />
                   </div>
                 ),
               },
@@ -191,10 +190,10 @@ export default function FounderPage() {
                 school: "Stanford University",
                 degree: "MS in Environment and Resources",
                 sub: "School of Earth, Energy & Environmental Sciences",
-                border: "border-t-4 border-t-[#D4AF37]",
+                border: "border-[#D4AF37]/35 hover:border-[#D4AF37]/60",
                 logo: (
-                  <div className="h-10 w-auto mb-4 flex items-center justify-start">
-                    <img src="/logos/stanford.svg" alt="Stanford Logo" className="h-8 w-auto" />
+                  <div className="h-12 w-auto mb-4 flex items-center justify-start">
+                    <img src="/logos/stanford.svg" alt="Stanford Logo" className="h-9 w-auto" />
                   </div>
                 ),
               },
@@ -202,18 +201,18 @@ export default function FounderPage() {
                 school: "IIT Kanpur",
                 degree: "B.Tech, Materials & Metallurgical Engineering",
                 sub: "Indian Institute of Technology",
-                border: "border-t-4 border-t-[#D4AF37]",
+                border: "border-[#D4AF37]/35 hover:border-[#D4AF37]/60",
                 logo: (
-                  <div className="h-10 w-auto mb-4 flex items-center justify-start">
-                    <img src="/logos/iitk.svg" alt="IIT Kanpur Logo" className="h-8 w-auto dark:invert" />
+                  <div className="h-12 w-auto mb-4 flex items-center justify-start">
+                    <img src="/logos/iitk.svg" alt="IIT Kanpur Logo" className="h-9 w-auto dark:invert" />
                   </div>
                 ),
               },
             ].map((edu, i) => (
-              <div key={i} className={cn("p-6 rounded-2xl border border-slate-205 dark:border-slate-855 bg-white dark:bg-slate-955 shadow-sm hover:shadow-md transition-all duration-200", edu.border)}>
+              <div key={i} className={cn("p-6 rounded-2xl border bg-black/45 dark:bg-slate-900/60 backdrop-blur-sm text-slate-100 shadow-lg transition-all duration-300", edu.border)}>
                 {edu.logo}
-                <h3 className="text-base font-bold mb-1 text-slate-900 dark:text-white">{edu.school}</h3>
-                <p className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">{edu.degree}</p>
+                <h3 className="text-base font-bold mb-1 text-slate-100 dark:text-white">{edu.school}</h3>
+                <p className="text-sm font-semibold text-slate-350 dark:text-slate-300 mb-1">{edu.degree}</p>
                 <p className="text-xs text-slate-500 dark:text-slate-500">{edu.sub}</p>
               </div>
             ))}
