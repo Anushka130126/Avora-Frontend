@@ -75,7 +75,7 @@ export default function HeroBento() {
       </div>
 
       {/* Bento Grid */}
-      <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         {stages.map((stage, index) => {
           const Icon = stage.icon;
           return (
