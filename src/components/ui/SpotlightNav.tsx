@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/cn';
@@ -16,6 +17,7 @@ const navItems = [
 ];
 
 export function SpotlightNav() {
+  const pathname = usePathname();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -59,26 +61,30 @@ export function SpotlightNav() {
             className="hidden md:flex items-center space-x-1 relative z-10"
             onMouseLeave={() => setHoveredIndex(null)}
           >
-            {navItems.map((item, index) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="relative px-4 py-2 text-sm font-sans font-medium text-slate-700 dark:text-slate-400 transition-colors hover:text-slate-900 dark:hover:text-white"
-                onMouseEnter={() => setHoveredIndex(index)}
-              >
-                {item.name}
-                {hoveredIndex === index && (
-                  <motion.div
-                    layoutId="spotlight"
-                    className="absolute inset-0 bg-slate-100 dark:bg-white/[0.06] rounded-lg -z-10"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ type: 'tween', ease: [0.16, 1, 0.3, 1], duration: 0.3 }}
-                  />
-                )}
-              </Link>
-            ))}
+            {navItems.map((item, index) => {
+              const isHash = item.href.startsWith('#');
+              const itemHref = isHash && pathname !== '/' ? `/${item.href}` : item.href;
+              return (
+                <Link
+                  key={item.name}
+                  href={itemHref}
+                  className="relative px-4 py-2 text-sm font-sans font-medium text-slate-700 dark:text-slate-400 transition-colors hover:text-slate-900 dark:hover:text-white"
+                  onMouseEnter={() => setHoveredIndex(index)}
+                >
+                  {item.name}
+                  {hoveredIndex === index && (
+                    <motion.div
+                      layoutId="spotlight"
+                      className="absolute inset-0 bg-slate-100 dark:bg-white/[0.06] rounded-lg -z-10"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ type: 'tween', ease: [0.16, 1, 0.3, 1], duration: 0.3 }}
+                    />
+                  )}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* ── Desktop Controls & CTA ── */}
@@ -95,7 +101,7 @@ export function SpotlightNav() {
             )}
 
             <Link
-              href="#contact"
+              href={pathname === '/' ? '#contact' : '/#contact'}
               className="inline-flex items-center justify-center px-5 py-2 text-sm font-sans font-semibold text-white bg-[#D4AF37] hover:bg-[#B8962D] transition-colors rounded-lg"
             >
               Partner With Us
@@ -137,18 +143,22 @@ export function SpotlightNav() {
             className="absolute top-full left-4 right-4 mt-2 px-4 pt-2 pb-6 glass-panel rounded-2xl z-40 md:hidden"
           >
             <div className="flex flex-col gap-4 p-4">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-base font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors py-2 border-b border-slate-200 dark:border-slate-800/20"
-                >
-                  {item.name}
-                </Link>
-              ))}
+              {navItems.map((item) => {
+                const isHash = item.href.startsWith('#');
+                const itemHref = isHash && pathname !== '/' ? `/${item.href}` : item.href;
+                return (
+                  <Link
+                    key={item.name}
+                    href={itemHref}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-base font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors py-2 border-b border-slate-200 dark:border-slate-800/20"
+                  >
+                    {item.name}
+                  </Link>
+                );
+              })}
               <Link
-                href="#contact"
+                href={pathname === '/' ? '#contact' : '/#contact'}
                 onClick={() => setMobileMenuOpen(false)}
                 className="w-full text-center px-5 py-3 text-sm font-sans font-semibold text-white bg-[#D4AF37] hover:bg-[#B8962D] transition-colors rounded-lg mt-2"
               >
