@@ -20,6 +20,7 @@
 
   html {
     scroll-behavior: smooth;
+    font-size: 118.75%; /* Globally scale page layout and text to look like 125% zoom scale */
   }
 
   body {
