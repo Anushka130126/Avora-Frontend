@@ -52,7 +52,7 @@ Avora/
 │   │   ├── dashboard/          # PM/Admin Venture Dashboard & Model Registry portals
 │   │   │   ├── loading.tsx     # Animated Skeleton load templates
 │   │   │   └── page.tsx        # Dashboard aggregation and KPI layout
-│   │   ├── founder/            # Abhay Jain's biography portfolio layout
+│   │   ├── founder/            # Founder/Leadership biography portfolio layout
 │   │   ├── layout.tsx          # Global Theme provider and top navigation configuration
 │   │   └── globals.css         # Styling system base, utility, and glass-panel definitions
 │   ├── components/             # Reusable UI component modules

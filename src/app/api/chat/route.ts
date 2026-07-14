@@ -17,8 +17,8 @@ export async function POST(req: Request) {
                "- AI Projects & Data Annotations: Milestone-based pricing after the discovery phase.\n\n" +
                "Please submit an inquiry via our contact form with your budget range so our technical leads can provide a detailed proposal.";
       sources = ["Avora_Commercial_Terms_2026.pdf"];
-    } else if (lowerQuery.includes("founder") || lowerQuery.includes("abhay") || lowerQuery.includes("jain") || lowerQuery.includes("ceo") || lowerQuery.includes("who is")) {
-      answer = "Avora Ventures was founded by Abhay Jain, a Stanford (MBA + MS Environment & Resources) and IIT Kanpur alumnus. His professional history includes key engineering and strategic leadership roles at McKinsey & Co., Mitsubishi Heavy Industries, NextEra Energy, and AutoGrid.";
+    } else if (lowerQuery.includes("founder") || lowerQuery.includes("ceo") || lowerQuery.includes("who is")) {
+      answer = "Avora Ventures was founded by a team of seasoned technology leaders, including Stanford (MBA + MS Environment & Resources) and IIT Kanpur alumni. The leadership team's professional history includes key engineering and strategic leadership roles at McKinsey & Co., Mitsubishi Heavy Industries, NextEra Energy, and AutoGrid.";
       sources = ["Avora_Capabilities_2026.pdf"];
     } else if (lowerQuery.includes("synthetic") || lowerQuery.includes("data generation") || lowerQuery.includes("rare data") || lowerQuery.includes("privacy data") || lowerQuery.includes("generated data")) {
       answer = "Synthetic data generation turns data scarcity into a strategic capability. We use five core methodologies depending on the data type: rule-based generators for structured patterns, statistical modeling with copulas and Markov chains, ML-based generation using GANs and diffusion models, agent-based simulation for complex emergent behaviour, and hybrid privacy-preserving methods with differential privacy guarantees.\n\n" +
