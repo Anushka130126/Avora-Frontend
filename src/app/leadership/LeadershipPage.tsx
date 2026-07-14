@@ -38,23 +38,23 @@ export default function LeadershipPage() {
               </p>
 
               {/* Credential logos strip */}
-              <div className="flex flex-wrap items-center gap-4 mb-5 py-4.5 px-6 bg-slate-900/80 dark:bg-black/60 border border-[#D4AF37]/35 rounded-xl shadow-lg backdrop-blur-md">
+              <div className="flex flex-wrap items-center gap-4 mb-5 py-4.5 px-6 bg-slate-100 dark:bg-black/60 border border-[#D4AF37]/35 rounded-xl shadow-lg backdrop-blur-md">
                 <span className="text-[11px] font-mono font-bold text-[#D4AF37] uppercase tracking-widest mr-2">Credentials</span>
                 
                 {/* Stanford */}
-                <div className="flex items-center gap-2 px-4 py-2 bg-black/40 rounded-lg border border-[#D4AF37]/20 shadow-sm">
+                <div className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-black/40 rounded-lg border border-[#D4AF37]/20 shadow-sm">
                   <img src="/logos/stanford.svg" alt="Stanford University Logo" className="h-6 w-auto" />
-                  <span className="text-xs text-slate-300 font-sans font-bold">MBA &middot; MS</span>
+                  <span className="text-xs text-slate-700 dark:text-slate-300 font-sans font-bold">MBA &middot; MS</span>
                 </div>
 
                 {/* IIT Kanpur */}
-                <div className="flex items-center gap-2 px-4 py-2 bg-black/40 rounded-lg border border-[#D4AF37]/20 shadow-sm">
+                <div className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-black/40 rounded-lg border border-[#D4AF37]/20 shadow-sm">
                   <img src="/logos/iitk.svg" alt="IIT Kanpur Logo" className="h-6 w-auto dark:invert" />
-                  <span className="text-xs text-slate-300 font-sans font-bold">B.Tech</span>
+                  <span className="text-xs text-slate-700 dark:text-slate-300 font-sans font-bold">B.Tech</span>
                 </div>
 
                 {/* McKinsey */}
-                <div className="flex items-center px-4 py-2 bg-black/40 rounded-lg border border-[#D4AF37]/20 shadow-sm">
+                <div className="flex items-center px-4 py-2 bg-white dark:bg-black/40 rounded-lg border border-[#D4AF37]/20 shadow-sm">
                   <img src="/logos/mckinsey.svg" alt="McKinsey Logo" className="h-5 w-auto dark:invert" />
                 </div>
               </div>
@@ -192,10 +192,10 @@ export default function LeadershipPage() {
                 ),
               },
             ].map((edu, i) => (
-              <div key={i} className={cn("p-6 rounded-2xl border bg-black/45 dark:bg-slate-900/60 backdrop-blur-sm text-slate-100 shadow-lg transition-all duration-300", edu.border)}>
+              <div key={i} className={cn("p-6 rounded-2xl border bg-white dark:bg-slate-900/60 backdrop-blur-sm text-slate-900 dark:text-slate-100 shadow-lg transition-all duration-300", edu.border)}>
                 {edu.logo}
-                <h3 className="text-base font-bold mb-1 text-slate-100 dark:text-white">{edu.school}</h3>
-                <p className="text-sm font-semibold text-slate-350 dark:text-slate-300 mb-1">{edu.degree}</p>
+                <h3 className="text-base font-bold mb-1 text-slate-900 dark:text-white">{edu.school}</h3>
+                <p className="text-sm font-semibold text-slate-600 dark:text-slate-300 mb-1">{edu.degree}</p>
                 <p className="text-xs text-slate-500 dark:text-slate-500">{edu.sub}</p>
               </div>
             ))}

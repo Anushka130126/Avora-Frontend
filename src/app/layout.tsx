@@ -85,11 +85,11 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(generateSchema()) }}
         />
       </head>
-      <body className="min-h-full flex flex-col font-sans bg-[#080b12] text-slate-100">
+      <body className="min-h-full flex flex-col font-sans bg-[var(--background)] text-[var(--foreground)]">
         {/* Skip to content — for keyboard/screen reader users */}
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[200] focus:px-4 focus:py-2 focus:bg-slate-900 focus:text-white focus:rounded-lg focus:shadow-lg focus:ring-2 focus:ring-teal-500 focus:outline-none text-sm font-medium"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[200] focus:px-4 focus:py-2 focus:bg-slate-900 dark:focus:bg-slate-900 focus:text-white dark:focus:text-white focus:rounded-lg focus:shadow-lg focus:ring-2 focus:ring-teal-500 focus:outline-none text-sm font-medium"
         >
           Skip to content
         </a>
@@ -98,7 +98,7 @@ export default function RootLayout({
             <SpotlightNav />
             {/* ponytail: inlined PageTransition — opacity/translate on mount via CSS */}
             <main id="main-content" className="flex-grow flex flex-col relative z-0 animate-in fade-in slide-in-from-bottom-2 duration-700">
-              <Suspense fallback={<div className="min-h-screen bg-[#080b12]" />}>
+              <Suspense fallback={<div className="min-h-screen bg-[var(--background)]" />}>
                 {children}
               </Suspense>
             </main>

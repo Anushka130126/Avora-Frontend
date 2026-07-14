@@ -6,7 +6,7 @@ export default function InsightsLayout({
   children: React.ReactNode;
 }) {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-[#080b12]" />}>
+    <Suspense fallback={<div className="min-h-screen bg-[var(--background)]" />}>
       {children}
     </Suspense>
   );

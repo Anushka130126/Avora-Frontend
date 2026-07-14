@@ -80,12 +80,12 @@ export function ChatbotWidget() {
         className={cn(
           "w-14 h-14 rounded-full flex items-center justify-center text-white border transition-all duration-300 transform hover:-translate-y-1 hover:rotate-2 active:scale-95",
           isOpen 
-            ? "bg-slate-800 border-slate-750 rotate-90 shadow-lg" 
-            : "bg-slate-950/90 border-[#D4AF37]/45 shadow-[0_4px_15px_rgba(212,175,55,0.15)] hover:bg-[#D4AF37]/15 hover:shadow-[0_12px_28px_rgba(212,175,55,0.3),_inset_0_-4px_8px_rgba(0,0,0,0.4)] hover:border-[#D4AF37]/70"
+            ? "bg-slate-200 dark:bg-slate-800 border-slate-300 dark:border-slate-750 rotate-90 shadow-lg" 
+            : "bg-slate-100 dark:bg-slate-950/90 border-[#D4AF37]/45 shadow-[0_4px_15px_rgba(212,175,55,0.15)] hover:bg-[#D4AF37]/15 hover:shadow-[0_12px_28px_rgba(212,175,55,0.3),_inset_0_-4px_8px_rgba(0,0,0,0.4)] hover:border-[#D4AF37]/70"
         )}
       >
         {isOpen ? (
-          <X className="w-6 h-6" />
+          <X className="w-6 h-6 text-slate-700 dark:text-white" />
         ) : (
           <svg className="w-7 h-7" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             {/* 3D Extrusion Side Shadow */}
@@ -113,26 +113,26 @@ export function ChatbotWidget() {
 
       {/* Main Panel */}
       {isOpen && (
-        <div className="absolute bottom-16 right-0 w-[360px] sm:w-[400px] h-[500px] bg-slate-950/95 border border-slate-850 rounded-2xl shadow-2xl flex flex-col overflow-hidden backdrop-blur-md animate-in slide-in-from-bottom-5 duration-300">
+        <div className="absolute bottom-16 right-0 w-[360px] sm:w-[400px] h-[500px] bg-white dark:bg-slate-950/95 border border-slate-200 dark:border-slate-850 rounded-2xl shadow-2xl flex flex-col overflow-hidden backdrop-blur-md animate-in slide-in-from-bottom-5 duration-300">
           {/* Header */}
-          <div className="p-4 bg-slate-900 border-b border-slate-850 flex justify-between items-center">
+          <div className="p-4 bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-850 flex justify-between items-center">
             <div className="flex items-center gap-2">
               <Terminal className="w-5 h-5 text-[#D4AF37]" />
               <div>
-                <h3 className="text-xs font-mono font-bold text-white tracking-wide">AVORA COGNITIVE ENGINE</h3>
+                <h3 className="text-xs font-mono font-bold text-slate-900 dark:text-white tracking-wide">AVORA COGNITIVE ENGINE</h3>
               </div>
             </div>
           </div>
 
           {/* Messages viewport */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent">
+          <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-slate-200 dark:scrollbar-thumb-slate-800 scrollbar-track-transparent">
             {messages.map((msg, index) => (
               <div key={index} className={cn("flex flex-col max-w-[85%]", msg.role === 'user' ? "ml-auto items-end" : "mr-auto items-start")}>
                 <div
                   className={cn(
                     "p-3.5 rounded-2xl text-sm leading-relaxed",
                     msg.role === 'user'
-                      ? "bg-slate-800 text-white rounded-br-none border border-slate-700/50"
+                      ? "bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white rounded-br-none border border-slate-300 dark:border-slate-700/50"
                       : "bg-[#D4AF37]/10 text-slate-800 dark:text-slate-100 border border-[#D4AF37]/20 rounded-bl-none"
                   )}
                 >
@@ -158,7 +158,7 @@ export function ChatbotWidget() {
           </div>
 
           {/* Chat Input form */}
-          <form onSubmit={handleSend} className="p-4 bg-slate-900/50 border-t border-slate-850 flex gap-2">
+          <form onSubmit={handleSend} className="p-4 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-200 dark:border-slate-850 flex gap-2">
             <input
               ref={inputRef}
               type="text"
@@ -167,7 +167,7 @@ export function ChatbotWidget() {
               onChange={e => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
               disabled={isTyping}
-              className="flex-1 px-4 py-2.5 bg-slate-950 border border-slate-800 focus:border-[#D4AF37]/60 focus:ring-1 focus:ring-[#D4AF37]/30 rounded-xl text-sm text-white placeholder-slate-500 outline-none transition-all"
+              className="flex-1 px-4 py-2.5 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-[#D4AF37]/60 focus:ring-1 focus:ring-[#D4AF37]/30 rounded-xl text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 outline-none transition-all"
             />
             <button
               type="submit"
