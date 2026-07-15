@@ -9,7 +9,7 @@ const ContactSchema = z.object({
   email: z.string().email('Invalid email address'),
   company: z.string().max(100).optional(),
   serviceType: z.string().max(50).optional(),
-  budgetRange: z.string().max(50).optional(),
+  industry: z.string().max(50).optional(),
   message: z.string().min(1, 'Message is required').max(2000),
   _honeypot: z.string().max(0, 'Bot detected').optional(), // honeypot field
 });

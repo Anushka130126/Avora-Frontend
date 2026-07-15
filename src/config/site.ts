@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Avora Ventures",
-  description: "Outsourcing, specialized skill hiring, AI solutions, and data annotations.",
+  description: "Data generation, annotation, labeling, quality auditing, and AI implementation pipelines.",
   url: "https://avora-3kyx.vercel.app",
   ogImage: "/og-image.png",
   links: {
@@ -12,8 +12,5 @@ export const siteConfig = {
   nav: [
     { label: "Home", href: "/#hero" },
     { label: "Services", href: "/#services" },
-    { label: "Process", href: "/#process" },
-    { label: "Insights", href: "/insights" },
-    { label: "Leadership", href: "/leadership" },
   ],
 };

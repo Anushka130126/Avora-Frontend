@@ -1,38 +1,82 @@
-export const services = [
+export interface Service {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  features: string[];
+  metrics: string;
+  icon: string;
+}
+
+export const services: Service[] = [
   {
-    id: "outsourcing",
-    title: "Specialized Outsourcing",
-    subtitle: "Knowledge-intensive, not generic",
-    description: "Specialized outsourcing delegates deep-expertise processes to external experts who do it better, faster, or more efficiently than building it in-house. Available at any stage of the data-to-deployment pipeline — from IT infrastructure to clinical trial management to computational chemistry. We source global specialists without the recruiting, retention, or benefits burden.",
-    metrics: "6-week engagement, $500K+ saved vs. in-house build",
-    features: ["Elite talent, zero ramp-up", "Fixed cost → variable operating expense", "Domain risk shared with specialist partner", "Scale up or down without headcount complexity"],
-    icon: "Users",
+    id: "data-generation",
+    title: "Data Generation",
+    subtitle: "High-fidelity synthetic dataset engineering",
+    description: "Engineering synthetic datasets to solve data scarcity, simulate rare edge cases, and enforce privacy controls across vision, language, and structured tabular systems.",
+    features: [
+      "Rule-based patterns & heuristics",
+      "GAN & diffusion architectures",
+      "Differential privacy controls",
+      "Downstream task validation"
+    ],
+    metrics: "10x dataset scale expansion",
+    icon: "Database"
   },
   {
-    id: "skill-hiring",
-    title: "Specialized Skill Hiring",
-    subtitle: "Fractional experts on-demand, defined scope",
-    description: "Need a principal Rust compiler developer, a smart contract security auditor, or an ML operations expert for a critical project slice? We source and deploy elite specialists for high-impact milestones — deployed against a defined scope, quality bar, and timeline, not an open-ended headcount request. Domain risk is shared with a partner who lives in that domain daily.",
-    metrics: "5–50 day engagements",
-    features: ["Vetted deep specialty indexing", "Fractional or full-time engagement", "Immediate project onboarding", "Partner carries domain risk"],
-    icon: "Briefcase",
+    id: "data-annotation",
+    title: "Data Annotation",
+    subtitle: "Structure, ontologies, and consensus design",
+    description: "Designing domain-specific guidelines, custom classification ontologies, and double-blind consensus workflows before labeling execution begins.",
+    features: [
+      "Exhaustive ontology design",
+      "Inter-annotator agreement tracking",
+      "Gold-standard validation checks",
+      "Expert-in-the-loop review"
+    ],
+    metrics: "Cohen's Kappa > 0.91 target",
+    icon: "Tag"
   },
   {
-    id: "ai-solutions",
-    title: "AI Solutions & Automation",
-    subtitle: "Seven components working in concert",
-    description: "A true AI solution isn't an impressive model — it's seven components working in concert: problem framing, data strategy, model development, system integration, deployment, change management, and monitoring. We engineer all seven, not just the algorithm. Human-in-the-loop by design ensures planners and operators retain oversight — AI handles routine work, humans focus on exceptions.",
-    metrics: "2–6 week MVP · 680% ROI at 36 months",
-    features: ["Problem framing tied to measurable KPIs", "SHAP-based explainability for stakeholder trust", "Ensemble models over single-model bias", "Drift monitoring and retraining built in"],
-    icon: "BrainCircuit",
+    id: "labeling",
+    title: "Labeling",
+    subtitle: "Consensus-verified annotation at scale",
+    description: "Scaling high-fidelity annotation workloads using model-assisted acceleration, expert workgroups, and multi-pass validation runs.",
+    features: [
+      "Model-assisted pre-labeling",
+      "Modality-optimized tooling",
+      "Multi-pass validation runs",
+      "Edge-case adjudication"
+    ],
+    metrics: "60% speed acceleration",
+    icon: "Tags"
   },
   {
-    id: "data-annotations",
-    title: "Data Annotation & Labeling",
-    subtitle: "Consensus-verified, eight-dimension quality",
-    description: "Annotation gives raw data meaning; labeling operationalizes it at scale; quality assurance is the gate that decides whether it's trustworthy enough to train on. We run all three as one continuous, auditable pipeline — with inter-annotator agreement (Cohen's Kappa) tracked and reported, not assumed.",
-    metrics: "0.94 entity-level F1 · 99.98% consensus confidence",
-    features: ["Ontology + guidelines before labeling starts", "Model-assisted pre-labeling, expert-reviewed", "Inter-annotator Kappa >0.91 achieved", "Eight-dimension quality scoring: accuracy, completeness, consistency, timeliness"],
-    icon: "Layers",
+    id: "auditing",
+    title: "Auditing",
+    subtitle: "Eight-dimension quality gate verification",
+    description: "Measuring dataset quality across accuracy, completeness, consistency, timeliness, and consensus reliability before model training.",
+    features: [
+      "Multi-stage QA matrix",
+      "Statistical drift checks",
+      "Discrepancy resolution panels",
+      "Downstream validation loops"
+    ],
+    metrics: "F1 > 0.94 score achieved",
+    icon: "ShieldCheck"
   },
+  {
+    id: "ai-implementation",
+    title: "AI Implementation",
+    subtitle: "Production-grade ML pipeline construction",
+    description: "Engineering production-ready machine learning pipelines, custom RAG integrations, domain-specific models, and explainable systems.",
+    features: [
+      "End-to-end pipeline coding",
+      "SHAP explainability mapping",
+      "Real-time drift telemetry",
+      "Three-phase A.I.M. framework"
+    ],
+    metrics: "2 to 6 week MVP cycle",
+    icon: "BrainCircuit"
+  }
 ];

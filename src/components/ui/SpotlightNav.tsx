@@ -11,8 +11,6 @@ import { Menu, X, Sun, Moon } from 'lucide-react';
 
 const navItems = [
   { name: 'Services', href: '#services' },
-  { name: 'Process', href: '#process' },
-  { name: 'Insights', href: '/insights' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -89,16 +87,6 @@ export function SpotlightNav() {
 
           {/* ── Desktop Controls & CTA ── */}
           <div className="hidden md:flex items-center gap-4 relative z-10">
-            {/* Theme Toggle Button */}
-            {mounted && (
-              <button
-                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                className="p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-black/20 hover:bg-slate-100/60 dark:hover:bg-white/5 transition-all text-slate-700 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
-                aria-label="Toggle theme"
-              >
-                {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-              </button>
-            )}
 
             <Link
               href={pathname === '/' ? '#contact' : '/#contact'}
@@ -108,18 +96,8 @@ export function SpotlightNav() {
             </Link>
           </div>
 
-          {/* ── Mobile Hamburger & Theme Toggle ── */}
+          {/* ── Mobile Hamburger ── */}
           <div className="flex md:hidden items-center gap-2 z-20">
-            {mounted && (
-              <button
-                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                className="p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-black/20 text-slate-700 dark:text-slate-400"
-                aria-label="Toggle theme"
-              >
-                {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-              </button>
-            )}
-
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 text-slate-700 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white focus:outline-none transition-colors"

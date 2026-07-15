@@ -1,18 +1,15 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useInView } from '@/hooks/useInView';
 import { cn } from '@/lib/cn';
-import { CheckCircle, AlertCircle } from 'lucide-react';
 
 export default function Contact() {
-  const { ref, isInView } = useInView({ once: true, threshold: 0.1 });
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     company: '',
     serviceType: '',
-    budgetRange: '',
+    industry: '',
     message: '',
   });
 
@@ -51,7 +48,7 @@ export default function Contact() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Submission failed.');
       setSuccess(true);
-      setFormData({ name: '', email: '', company: '', serviceType: '', budgetRange: '', message: '' });
+      setFormData({ name: '', email: '', company: '', serviceType: '', industry: '', message: '' });
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
     } finally {
@@ -69,52 +66,41 @@ export default function Contact() {
   return (
     <section 
       id="contact" 
-      className="py-24 md:py-32 relative overflow-hidden contact-bg"
+      className="py-24 relative overflow-hidden bg-slate-50 dark:bg-[#080b11] transition-colors duration-300"
     >
-      {/* ponytail: inlined TechnicalGrid — was its only callsite */}
-      <div className="absolute inset-0 -z-20 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'linear-gradient(to right, #94a3b8 1px, transparent 1px), linear-gradient(to bottom, #94a3b8 1px, transparent 1px)', backgroundSize: '4rem 4rem' }} />
-        <div className="absolute inset-0 opacity-[0.1]" style={{ backgroundImage: 'radial-gradient(#94a3b8 1px, transparent 1.5px)', backgroundSize: '4rem 4rem' }} />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,var(--background)_90%)]" />
-      </div>
-
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-4xl mx-auto px-6 sm:px-8 relative z-10">
         
-        {/* Section Header */}
-        <div ref={ref} className="text-center mb-16">
-          <span className="section-eyebrow">Contact Us</span>
-          <h2 className="section-heading mb-4">Start a Conversation</h2>
-          <p className="section-subtext max-w-2xl mx-auto">
-            Discuss your pipeline requirements, verification SLAs, and annotation workloads directly with our technical leads.
+        {/* Header */}
+        <div className="text-center mb-12 max-w-xl mx-auto">
+          <span className="section-eyebrow">Contact &amp; Scoping</span>
+          <h2 className="section-heading mb-4">
+            Initiate scoping.
+          </h2>
+          <p className="section-subtext text-sm">
+            Avora operates a structured intake process. Submit your telemetry requirements or pipeline constraints to begin.
           </p>
         </div>
 
-        {/* Contact Intake Console Card */}
-        <div className="max-w-2xl mx-auto glass-panel p-6 md:p-10 rounded-2xl">
+        {/* Console Box */}
+        <div className="glass-panel rounded-2xl p-6 sm:p-10 border border-slate-300 dark:border-slate-800">
           {success ? (
-            <div className="text-center py-12">
-              <div className="flex justify-center mb-6">
-                <div className="w-16 h-16 bg-teal-500/10 rounded-full flex items-center justify-center border border-teal-500/20">
-                  <CheckCircle className="w-8 h-8 text-teal-400" />
-                </div>
+            <div className="text-center py-12 space-y-4 animate-in fade-in zoom-in-95 duration-350">
+              <div className="w-12 h-12 rounded-full bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center mx-auto">
+                <svg className="w-6 h-6 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
               </div>
-              <h3 className="text-xl font-heading font-bold text-slate-900 dark:text-white mb-3">Inquiry Sent</h3>
-              <p className="text-slate-600 dark:text-slate-400 mb-8 max-w-sm mx-auto font-sans text-sm">
-                Thank you. Our team will reach out within 24 hours to discuss your specifications.
+              <h3 className="text-lg font-heading font-bold text-slate-900 dark:text-white">Submission Successful</h3>
+              <p className="text-sm font-sans text-slate-550 dark:text-slate-400 max-w-md mx-auto">
+                Your parameters have been logged. A systems architect will follow up within 24 hours.
               </p>
-              <button
-                onClick={() => setSuccess(false)}
-                className="px-5 py-2.5 border border-slate-300 dark:border-slate-800 bg-transparent text-slate-700 dark:text-white font-sans text-xs font-semibold rounded hover:bg-black/[0.02] dark:hover:bg-white/[0.04] transition-colors"
-              >
-                Send another inquiry
-              </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              
               {error && (
-                <div className="p-3 bg-red-500/10 border border-red-500/20 rounded flex gap-2">
-                  <AlertCircle className="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" />
-                  <p className="text-xs font-sans text-red-600 dark:text-red-300">{error}</p>
+                <div className="p-4 rounded border border-red-500/20 bg-red-500/5 text-red-500 text-xs font-sans">
+                  {error}
                 </div>
               )}
 
@@ -171,28 +157,31 @@ export default function Contact() {
                     style={selectStyle}
                   >
                     <option value="" className="bg-[#F8F5EE] dark:bg-[#0a0a0f] text-slate-900 dark:text-slate-300">Select a service</option>
-                    <option value="outsourcing" className="bg-[#F8F5EE] dark:bg-[#0a0a0f] text-slate-900 dark:text-slate-300">Specialized Outsourcing</option>
-                    <option value="skill-hiring" className="bg-[#F8F5EE] dark:bg-[#0a0a0f] text-slate-900 dark:text-slate-300">Specialized Skill Hiring</option>
-                    <option value="ai-solutions" className="bg-[#F8F5EE] dark:bg-[#0a0a0f] text-slate-900 dark:text-slate-300">AI Solutions &amp; Automation</option>
-                    <option value="data-annotations" className="bg-[#F8F5EE] dark:bg-[#0a0a0f] text-slate-900 dark:text-slate-300">Data Annotation &amp; Labeling</option>
+                    <option value="data-generation" className="bg-[#F8F5EE] dark:bg-[#0a0a0f] text-slate-900 dark:text-slate-300">Data Generation</option>
+                    <option value="data-annotation" className="bg-[#F8F5EE] dark:bg-[#0a0a0f] text-slate-900 dark:text-slate-300">Data Annotation</option>
+                    <option value="labeling" className="bg-[#F8F5EE] dark:bg-[#0a0a0f] text-slate-900 dark:text-slate-300">Data Labeling</option>
+                    <option value="auditing" className="bg-[#F8F5EE] dark:bg-[#0a0a0f] text-slate-900 dark:text-slate-300">Quality Auditing</option>
+                    <option value="ai-implementation" className="bg-[#F8F5EE] dark:bg-[#0a0a0f] text-slate-900 dark:text-slate-300">AI Implementation</option>
                   </select>
                 </div>
                 <div>
-                  <label htmlFor="budgetRange" className="block text-xs font-sans font-semibold text-slate-600 dark:text-slate-400 mb-1.5">
-                    Budget Range <span className="text-slate-500 font-normal">(Optional)</span>
+                  <label htmlFor="industry" className="block text-xs font-sans font-semibold text-slate-600 dark:text-slate-400 mb-1.5">
+                    Industry <span className="text-slate-500 font-normal">(Optional)</span>
                   </label>
                   <select
-                    id="budgetRange" name="budgetRange"
-                    value={formData.budgetRange} onChange={handleChange}
-                    onFocus={() => setFocusedField('budgetRange')} onBlur={() => setFocusedField(null)}
-                    className={cn(inputCls('budgetRange'), 'appearance-none bg-no-repeat dark:text-white')}
+                    id="industry" name="industry"
+                    value={formData.industry} onChange={handleChange}
+                    onFocus={() => setFocusedField('industry')} onBlur={() => setFocusedField(null)}
+                    className={cn(inputCls('industry'), 'appearance-none bg-no-repeat dark:text-white')}
                     style={selectStyle}
                   >
-                    <option value="" className="bg-[#F8F5EE] dark:bg-[#0a0a0f] text-slate-900 dark:text-slate-300">Select a range</option>
-                    <option value="under-5k" className="bg-[#F8F5EE] dark:bg-[#0a0a0f] text-slate-900 dark:text-slate-300">&lt;$5k</option>
-                    <option value="5k-25k" className="bg-[#F8F5EE] dark:bg-[#0a0a0f] text-slate-900 dark:text-slate-300">$5k–$25k</option>
-                    <option value="25k-100k" className="bg-[#F8F5EE] dark:bg-[#0a0a0f] text-slate-900 dark:text-slate-300">$25k–$100k</option>
-                    <option value="over-100k" className="bg-[#F8F5EE] dark:bg-[#0a0a0f] text-slate-900 dark:text-slate-300">&gt;$100k</option>
+                    <option value="" className="bg-[#F8F5EE] dark:bg-[#0a0a0f] text-slate-900 dark:text-slate-300">Select an industry</option>
+                    <option value="healthcare" className="bg-[#F8F5EE] dark:bg-[#0a0a0f] text-slate-900 dark:text-slate-300">Healthcare</option>
+                    <option value="finance" className="bg-[#F8F5EE] dark:bg-[#0a0a0f] text-slate-900 dark:text-slate-300">Finance</option>
+                    <option value="retail" className="bg-[#F8F5EE] dark:bg-[#0a0a0f] text-slate-900 dark:text-slate-300">Retail &amp; E-commerce</option>
+                    <option value="logistics" className="bg-[#F8F5EE] dark:bg-[#0a0a0f] text-slate-900 dark:text-slate-300">Logistics &amp; Supply Chain</option>
+                    <option value="energy" className="bg-[#F8F5EE] dark:bg-[#0a0a0f] text-slate-900 dark:text-slate-300">Energy &amp; Utilities</option>
+                    <option value="other" className="bg-[#F8F5EE] dark:bg-[#0a0a0f] text-slate-900 dark:text-slate-300">Other</option>
                   </select>
                 </div>
               </div>

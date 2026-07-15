@@ -2,61 +2,42 @@
 
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/cn';
-import { Award, Code2, Database, BrainCircuit, UserCheck } from 'lucide-react';
+import { Database, Tag, Tags, ShieldCheck, BrainCircuit, Cpu, ArrowRight } from 'lucide-react';
 import { useInView } from '@/hooks/useInView';
 import { useSearchParams } from 'next/navigation';
+import { services } from '@/config/services';
 
-interface Service {
-  id: string;
-  title: string;
-  subtitle: string;
-  description: string;
-  features: string[];
-  metrics: string;
-  category: 'trust-talent' | 'technology';
-}
+const iconMap: Record<string, React.ComponentType<any>> = {
+  Database,
+  Tag,
+  Tags,
+  ShieldCheck,
+  BrainCircuit,
+};
 
-const services: Service[] = [
+const aimSteps = [
   {
-    id: 'outsourcing',
-    title: 'Software Outsourcing',
-    subtitle: 'Elite engineering team composition & delivery',
-    description: 'Global specialists without recruiting, retention, or benefits burden. Fixed hiring costs convert to variable operating expense. We place structured squads of senior developers directly into your codebase — delivering fully integrated product sprints with continuous quality monitoring, replacing months of ramp-up with days.',
-    features: ['Active placement in under 10 days', 'Direct code integration SLAs', 'Daily agile sprint telemetry', 'Replacement capability guarantee'],
-    metrics: 'Active placement: < 10 days · $500K+ client savings demonstrated',
-    category: 'trust-talent',
+    phase: "01",
+    title: "Discovery",
+    deliverable: "Architectural Bottleneck Audit",
+    artifact: "Technical Integration Specification"
   },
   {
-    id: 'skill-hiring',
-    title: 'Specialized Skill Hiring',
-    subtitle: 'Rapid deployment of deep technical expertise',
-    description: 'Need a principal Rust compiler developer, a smart contract security auditor, or an ML operations expert for a critical project slice? We source and deploy elite specialists for high-impact milestones. Domain risk is shared with a partner who lives in that domain daily — without the cost of building in-house.',
-    features: ['Vetted deep specialty indexing', 'Fractional or full-time engagement', 'Immediate project onboarding', 'Partner carries domain risk'],
-    metrics: 'Deployment: 5 to 50 day engagements',
-    category: 'trust-talent',
+    phase: "02",
+    title: "Implementation",
+    deliverable: "Custom Pipeline Core",
+    artifact: "Consensus Verification Logs"
   },
   {
-    id: 'ai-solutions',
-    title: 'Custom AI & Automation',
-    subtitle: 'Enterprise-grade cognitive pipeline construction',
-    description: 'We start with the business problem, not a preferred algorithm. Our teams construct secure RAG pipelines, fine-tuned domain LLMs, and ensemble models with SHAP-based explainability built in from day one. Human-in-the-loop design ensures planners and operators retain oversight — AI handles routine work, humans focus on exceptions.',
-    features: ['Problem-first architecture scoping', 'Ensemble models over single-model bias', 'SHAP explainability for stakeholder trust', 'Human-in-the-loop by design'],
-    metrics: 'MVP delivery: 2 to 6 weeks · 680% client ROI demonstrated',
-    category: 'technology',
-  },
-  {
-    id: 'data-annotations',
-    title: 'High-Fidelity Data Operations',
-    subtitle: 'Consensus-verified human-in-the-loop datasets',
-    description: 'Inconsistent labels do not just add noise — they create dangerous overconfidence when test data shares annotation bias with training data. We deliver double-blind labeled image, lidar, audio, and structured text data through model-assisted pre-labeling, multi-annotator consensus matrices, and senior expert adjudication for all edge cases.',
-    features: ['Model-assisted pre-labeling (60% time reduction)', 'Inter-annotator Kappa targeting 0.91+', 'Senior expert adjudication on disagreements', 'Multi-stage QA with formal sign-off'],
-    metrics: 'F1 > 0.94 achieved · 99.98% consensus threshold',
-    category: 'technology',
-  },
+    phase: "03",
+    title: "Scaling",
+    deliverable: "Active Cloud Endpoint",
+    artifact: "Latency Telemetry Dashboard"
+  }
 ];
 
 export default function Services() {
-  const [activeTab, setActiveTab] = useState<string>('outsourcing');
+  const [activeTab, setActiveTab] = useState<string>('data-generation');
   const searchParams = useSearchParams();
   const { ref, isInView } = useInView({ once: true, threshold: 0.1 });
 
@@ -71,44 +52,48 @@ export default function Services() {
 
   return (
     <section id="services" className="py-24 relative overflow-hidden services-bg">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         
         {/* Section Header */}
         <div ref={ref} className="text-left mb-16 max-w-3xl">
           <span className="section-eyebrow">Services &amp; Capabilities</span>
           <h2 className="section-heading mb-4">
-            Elite Engineering. Proven Frameworks.
+            Five disciplines, one continuous pipeline.
           </h2>
           <p className="section-subtext max-w-xl">
-            Avora operates four core execution pillars designed for deep system safety, technical rigor, and zero marketing abstractions.
+            Avora operates a structured data-to-deployment sequence designed for deep safety, precision engineering, and zero operational abstractions.
           </p>
         </div>
 
         {/* Tabular Specification Console */}
-        <div className="glass-panel rounded-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12">
+        <div className="glass-panel rounded-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 border border-slate-300 dark:border-slate-800">
           
           {/* Left Panel: Service Selection (Tab navigation) */}
-          <div className="lg:col-span-4 border-b lg:border-b-0 lg:border-r border-slate-205 dark:border-slate-850 flex lg:flex-col overflow-x-auto scrollbar-hide bg-black/[0.01] dark:bg-slate-950/30">
-            {services.map((service) => {
+          <div className="lg:col-span-4 border-b lg:border-b-0 lg:border-r border-slate-300 dark:border-slate-800 flex lg:flex-col overflow-x-auto scrollbar-hide bg-black/[0.01] dark:bg-slate-950/30">
+            {services.map((service, index) => {
               const isActive = service.id === activeTab;
+              const Icon = iconMap[service.icon] || Database;
               return (
                 <button
                   key={service.id}
                   onClick={() => setActiveTab(service.id)}
                   className={cn(
-                    "flex-shrink-0 lg:w-full text-left p-4 lg:p-6 transition-all duration-150 flex flex-col gap-1 hover:bg-black/[0.02] dark:hover:bg-white/[0.01] border-b-2 lg:border-b-0 lg:border-l-2",
+                    "flex-shrink-0 lg:w-full text-left p-5 lg:p-6 transition-all duration-150 flex flex-col gap-1.5 hover:bg-black/[0.02] dark:hover:bg-white/[0.01] border-b-2 lg:border-b-0 lg:border-l-2",
                     isActive 
                       ? "bg-black/[0.02] dark:bg-white/[0.02] border-[#D4AF37]" 
                       : "border-transparent"
                   )}
                 >
-                  <span className={cn(
-                    "font-heading font-bold text-sm lg:text-lg whitespace-nowrap",
-                    isActive ? "text-slate-900 dark:text-white" : "text-slate-500 dark:text-slate-400"
-                  )}>
-                    {service.title}
-                  </span>
-                  <span className="hidden lg:inline text-xs text-slate-550 dark:text-slate-500 font-sans line-clamp-1">{service.subtitle}</span>
+                  <div className="flex items-center gap-2">
+                    <span className="font-mono text-xs font-bold text-[#D4AF37]">0{index + 1}</span>
+                    <span className={cn(
+                      "font-heading font-bold text-sm lg:text-base whitespace-nowrap",
+                      isActive ? "text-slate-900 dark:text-white" : "text-slate-500 dark:text-slate-400"
+                    )}>
+                      {service.title}
+                    </span>
+                  </div>
+                  <span className="hidden lg:inline text-xs text-slate-500 dark:text-slate-500 font-sans line-clamp-1">{service.subtitle}</span>
                 </button>
               );
             })}
@@ -126,13 +111,13 @@ export default function Services() {
                 <h3 className="text-2xl font-heading font-bold text-slate-900 dark:text-white tracking-tight">
                   {currentService.title}
                 </h3>
-                <p className="text-sm font-sans text-slate-550 dark:text-slate-400 mt-1">{currentService.subtitle}</p>
+                <p className="text-sm font-sans text-slate-500 dark:text-slate-400 mt-1">{currentService.subtitle}</p>
               </div>
 
               <div className="h-px bg-slate-200 dark:bg-slate-800" />
 
               <div className="space-y-4 font-sans text-sm">
-                <p className="leading-relaxed text-slate-650 dark:text-slate-400">
+                <p className="leading-relaxed text-slate-650 dark:text-slate-300">
                   {currentService.description}
                 </p>
                 
@@ -149,7 +134,7 @@ export default function Services() {
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-slate-200 dark:border-slate-850">
+              <div className="pt-4 border-t border-slate-200 dark:border-slate-800">
                 <span className="text-xs font-mono text-slate-500 dark:text-slate-500 uppercase block mb-1">Target SLA Objective:</span>
                 <span className="text-sm font-mono font-bold text-[#D4AF37] uppercase tracking-wider">
                   {currentService.metrics}
@@ -157,69 +142,97 @@ export default function Services() {
               </div>
             </div>
 
-            {/* Right block: Editorial Profile (Trust/Talent) OR Structural Diagram (Technical) */}
+            {/* Right block: Contextual Diagrams */}
             <div className="w-full md:w-72 flex-shrink-0 flex flex-col justify-center border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-[#0a0a0f] rounded-xl p-6">
               
-              {/* Outsourcing / Skill Hiring (Trust/Talent category) -> Clean Typographic References */}
-              {(activeTab === 'outsourcing' || activeTab === 'skill-hiring') && (
-                <div className="space-y-6 font-sans text-center">
-                  <div className="flex justify-center">
-                    <Award className="w-8 h-8 text-[#D4AF37]/60" />
-                  </div>
-                  <div className="space-y-2">
-                    <span className="text-[10px] font-mono text-slate-550 dark:text-slate-500 uppercase tracking-wider block">Placement Quality Guarantee</span>
-                    <p className="text-xs text-slate-650 dark:text-slate-300 leading-relaxed">
-                      Every engineer undergoes standard architectural assessments. Vetted via technical panels overseen by Stanford &amp; IIT leads.
-                    </p>
-                  </div>
-                  <div className="border-t border-slate-200 dark:border-slate-850 pt-4 text-[10px] font-mono text-slate-500">
-                    SLA: CONTINUOUS_COMPLIANCE
-                  </div>
-                </div>
-              )}
-
-              {/* Custom Machine Learning Pipelines (Technical category) -> Pipeline Flow Schematic */}
-              {activeTab === 'ai-solutions' && (
-                <div className="space-y-6">
+              {activeTab === 'data-generation' && (
+                <div className="space-y-4">
                   <div className="flex justify-between items-center border-b border-slate-200 dark:border-slate-800 pb-3">
-                    <span className="text-[10px] font-mono text-slate-600 dark:text-slate-400 font-bold uppercase tracking-wider">Pipeline Flow</span>
+                    <span className="text-[10px] font-mono text-slate-600 dark:text-slate-400 font-bold uppercase tracking-wider">Generation Engine</span>
                     <span className="text-[9px] font-mono text-[#D4AF37] uppercase font-bold">Active</span>
                   </div>
-                  
-                  {/* Micro-flow graphic */}
-                  <div className="space-y-3 text-[10px] font-mono text-slate-705 dark:text-slate-300">
+                  <div className="space-y-2 text-[10px] font-mono text-slate-600 dark:text-slate-400">
                     <div className="p-2 border border-slate-200 dark:border-slate-800 rounded bg-black/[0.01] dark:bg-white/[0.01]">
-                      <span className="text-slate-500 block">01 / INGESTION</span>
-                      <span className="text-slate-900 dark:text-white block mt-0.5">Stream Reader API</span>
+                      <span className="text-slate-550 block">Modality:</span>
+                      <span className="text-slate-900 dark:text-white block mt-0.5 font-bold">Tabular / Vision / Text</span>
                     </div>
                     <div className="p-2 border border-slate-200 dark:border-slate-800 rounded bg-black/[0.01] dark:bg-white/[0.01]">
-                      <span className="text-slate-500 block">02 / ORCHESTRATION</span>
-                      <span className="text-slate-900 dark:text-white block mt-0.5">Custom RAG Router</span>
-                    </div>
-                    <div className="p-2 border border-slate-200 dark:border-slate-800 rounded bg-black/[0.01] dark:bg-white/[0.01]">
-                      <span className="text-slate-500 block">03 / VALDIATION</span>
-                      <span className="text-teal-600 dark:text-teal-400 block mt-0.5">Drift Telemetry</span>
+                      <span className="text-slate-550 block">Verification:</span>
+                      <span className="text-slate-900 dark:text-white block mt-0.5 font-bold">Downstream Task Validation</span>
                     </div>
                   </div>
                 </div>
               )}
 
-              {/* High-Fidelity Data Labeling (Technical category) -> Double-Blind Consensus Diagram */}
-              {activeTab === 'data-annotations' && (
-                <div className="space-y-6">
+              {activeTab === 'data-annotation' && (
+                <div className="space-y-4">
                   <div className="flex justify-between items-center border-b border-slate-200 dark:border-slate-800 pb-3">
-                    <span className="text-[10px] font-mono text-slate-600 dark:text-slate-400 font-bold uppercase tracking-wider">Consensus Matrix</span>
+                    <span className="text-[10px] font-mono text-slate-600 dark:text-slate-400 font-bold uppercase tracking-wider">Ontology Framework</span>
+                    <span className="text-[9px] font-mono text-teal-650 dark:text-teal-400 uppercase font-bold">Configured</span>
+                  </div>
+                  <div className="space-y-2 text-[10px] font-mono text-slate-650 dark:text-slate-400">
+                    <div className="p-2 border border-slate-200 dark:border-slate-800 rounded bg-black/[0.01] dark:bg-white/[0.01]">
+                      <span className="text-slate-550 block">Consensus Metric:</span>
+                      <span className="text-slate-900 dark:text-white block mt-0.5 font-bold">Inter-Annotator Kappa</span>
+                    </div>
+                    <div className="p-2 border border-slate-200 dark:border-slate-800 rounded bg-black/[0.01] dark:bg-white/[0.01]">
+                      <span className="text-slate-550 block">Guidelines:</span>
+                      <span className="text-slate-900 dark:text-white block mt-0.5 font-bold">Multi-Pass Edge Case Rules</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'labeling' && (
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center border-b border-slate-200 dark:border-slate-800 pb-3">
+                    <span className="text-[10px] font-mono text-slate-600 dark:text-slate-400 font-bold uppercase tracking-wider">Consensus Overlap</span>
                     <span className="text-[9px] font-mono text-emerald-600 dark:text-emerald-400 uppercase font-bold">Verified</span>
                   </div>
-
-                  {/* Venn Diagram / overlap schematic */}
                   <div className="flex flex-col items-center justify-center py-2 space-y-4">
                     <div className="relative w-24 h-24 flex items-center justify-center">
-                      {/* Intersecting rings */}
-                      <div className="absolute top-0 left-2 w-14 h-14 rounded-full border border-[#D4AF37]/60 bg-[#D4AF37]/5 flex items-center justify-center text-[8px] text-slate-550 dark:text-slate-400 font-mono">Annotator_A</div>
-                      <div className="absolute bottom-0 right-2 w-14 h-14 rounded-full border border-teal-500/60 bg-teal-500/5 flex items-center justify-center text-[8px] text-slate-550 dark:text-slate-400 font-mono">Annotator_B</div>
+                      <div className="absolute top-0 left-2 w-14 h-14 rounded-full border border-[#D4AF37]/50 bg-[#D4AF37]/5 flex items-center justify-center text-[8px] text-slate-500 dark:text-slate-400 font-mono">Annotator_A</div>
+                      <div className="absolute bottom-0 right-2 w-14 h-14 rounded-full border border-teal-500/50 bg-teal-500/5 flex items-center justify-center text-[8px] text-slate-500 dark:text-slate-400 font-mono">Annotator_B</div>
                     </div>
-                    <p className="text-[10px] font-mono text-slate-500 dark:text-slate-400 text-center">Double-Blind Overlap consensus (99.98% Confidence Threshold)</p>
+                    <p className="text-[9px] font-mono text-slate-500 dark:text-slate-500 text-center">Double-Blind Overlap consensus (99.98% Confidence Threshold)</p>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'auditing' && (
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center border-b border-slate-200 dark:border-slate-800 pb-3">
+                    <span className="text-[10px] font-mono text-slate-600 dark:text-slate-400 font-bold uppercase tracking-wider">Quality Scoring</span>
+                    <span className="text-[9px] font-mono text-[#D4AF37] uppercase font-bold">System Gate</span>
+                  </div>
+                  <div className="space-y-3 text-[10px] font-mono text-slate-600 dark:text-slate-400">
+                    <div className="p-2 border border-slate-200 dark:border-slate-800 rounded bg-black/[0.01] dark:bg-white/[0.01]">
+                      <span className="text-slate-550 block">Accuracy Dimension:</span>
+                      <span className="text-slate-900 dark:text-white block mt-0.5 font-bold">Statistical Drift check</span>
+                    </div>
+                    <div className="p-2 border border-slate-200 dark:border-slate-800 rounded bg-black/[0.01] dark:bg-white/[0.01]">
+                      <span className="text-slate-550 block">Compliance Check:</span>
+                      <span className="text-slate-900 dark:text-white block mt-0.5 font-bold">Cohen&apos;s Kappa Adjudicated</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'ai-implementation' && (
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center border-b border-slate-200 dark:border-slate-800 pb-2">
+                    <span className="text-[10px] font-mono text-slate-600 dark:text-slate-400 font-bold uppercase tracking-wider">A.I.M. Framework</span>
+                    <span className="text-[9px] font-mono text-[#D4AF37] uppercase font-bold">Deployment</span>
+                  </div>
+                  
+                  {/* Embedded AIM steps */}
+                  <div className="space-y-2 font-mono text-[9px]">
+                    {aimSteps.map((step) => (
+                      <div key={step.phase} className="p-2 border border-slate-200 dark:border-slate-800 rounded bg-black/[0.01] dark:bg-white/[0.01]">
+                        <span className="text-[#D4AF37] block font-bold">PHASE {step.phase} / {step.title.toUpperCase()}</span>
+                        <span className="text-slate-600 dark:text-slate-400 block mt-0.5 font-sans leading-tight">{step.deliverable}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               )}

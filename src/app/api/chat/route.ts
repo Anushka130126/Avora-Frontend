@@ -12,13 +12,10 @@ export async function POST(req: Request) {
     let sources: string[] = [];
 
     if (lowerQuery === "pricing" || lowerQuery === "price" || lowerQuery.includes("price") || lowerQuery.includes("cost") || lowerQuery.includes("budget") || lowerQuery.includes("rate") || lowerQuery.includes("fee")) {
-      answer = "Our pricing is structured based on the specific operational pillar:\n\n" +
-               "- Outsourcing & Skill Hiring: Fixed monthly or fractional hourly rates based on seniority.\n" +
-               "- AI Projects & Data Annotations: Milestone-based pricing after the discovery phase.\n\n" +
-               "Please submit an inquiry via our contact form with your budget range so our technical leads can provide a detailed proposal.";
+      answer = "Our pricing is structured based on the specific operational pipeline steps and complexity of data operations. We provide structured milestone-based pricing after our initial scoping.\n\nPlease submit an inquiry via our contact form to discuss your requirements.";
       sources = ["Avora_Commercial_Terms_2026.pdf"];
     } else if (lowerQuery.includes("founder") || lowerQuery.includes("ceo") || lowerQuery.includes("who is")) {
-      answer = "Avora Ventures was founded by a team of seasoned technology leaders, including Stanford (MBA + MS Environment & Resources) and IIT Kanpur alumni. The leadership team's professional history includes key engineering and strategic leadership roles at McKinsey & Co., Mitsubishi Heavy Industries, NextEra Energy, and AutoGrid.";
+      answer = "Avora is operated by an institutional engineering team and data architects with backgrounds in scalable systems design and high-fidelity machine learning pipelines.";
       sources = ["Avora_Capabilities_2026.pdf"];
     } else if (lowerQuery.includes("synthetic") || lowerQuery.includes("data generation") || lowerQuery.includes("rare data") || lowerQuery.includes("privacy data") || lowerQuery.includes("generated data")) {
       answer = "Synthetic data generation turns data scarcity into a strategic capability. We use five core methodologies depending on the data type: rule-based generators for structured patterns, statistical modeling with copulas and Markov chains, ML-based generation using GANs and diffusion models, agent-based simulation for complex emergent behaviour, and hybrid privacy-preserving methods with differential privacy guarantees.\n\n" +
@@ -45,26 +42,24 @@ export async function POST(req: Request) {
                "5. Delivery: Certified dataset with standard metadata, version control, and formal sign-off against quality thresholds.";
       sources = ["AI_Delivery_Playbook_Stage02.pdf"];
     } else if (lowerQuery.includes("service") || lowerQuery.includes("what do you do") || lowerQuery.includes("capability") || lowerQuery.includes("what you offer")) {
-      answer = "Avora Ventures provides specialized enterprise infrastructure and talent under four pillars:\n\n" +
-               "1. Specialized Outsourcing: Vetted remote senior software engineers and architects.\n" +
-               "2. Specialized Skill Hiring: On-demand fractional ML leads, security experts, and data architects.\n" +
-               "3. AI Solutions & Automation: Custom end-to-end ML integration (RAG pipelines, custom LLMs).\n" +
-               "4. Data Annotation & Labeling: High-fidelity data processing, named entity recognition, and semantic segmentation.";
+      answer = "Avora Ventures provides a continuous data-to-deployment pipeline across five sequential steps:\n\n" +
+               "1. Data Generation: High-fidelity synthetic dataset engineering.\n" +
+               "2. Data Annotation: Structure, ontologies, and double-blind consensus design.\n" +
+               "3. Labeling: Consensus-verified annotation at scale.\n" +
+               "4. Auditing: Quality assurance gate metrics (Kappa validation).\n" +
+               "5. AI Implementation: Production-grade ML pipeline construction (integrating the A.I.M. framework).";
       sources = ["Avora_Capabilities_2026.pdf"];
     } else if (lowerQuery.includes("outsourcing") || lowerQuery.includes("remote") || lowerQuery.includes("engineer") || lowerQuery.includes("hire developer")) {
-      answer = "Our Specialized Outsourcing program gives you direct access to 500+ pre-vetted senior remote software developers and system architects. We handle all recruitment, validation, management, and compliance so you can scale your engineering velocity without overhead. Fixed hiring costs convert to variable operating expense — active placement in under 10 days.";
+      answer = "Avora focuses on custom machine learning pipeline engineering, data generation, data annotation, labeling, and QA auditing. We do not provide standard staff augmentation or outsourcing developer placement services.";
       sources = ["Avora_Capabilities_2026.pdf"];
     } else if (/\b(ai|ml|rag|llm|automation|machine learning|models|model)\b/i.test(lowerQuery)) {
       answer = "We design, deploy, and scale custom machine learning solutions. We start with the business problem — not a preferred algorithm. From retrieval-augmented generation pipelines to bespoke predictive models, our teams build enterprise infrastructure with SHAP-based explainability, human-in-the-loop design, and full production monitoring from day one.";
       sources = ["ML_Pipeline_Specs.docx"];
     } else if (lowerQuery.includes("data") || lowerQuery.includes("annotation") || lowerQuery.includes("labeling") || lowerQuery.includes("dataset")) {
-      answer = "Avora processes high-fidelity labeling workloads at scale. We have labeled over 10M+ data points across specialized domains, including medical imaging, clinical trial document extraction, agricultural stress detection, and custom image segmentation pipelines. Inter-annotator Kappa targets 0.91 or above on every engagement.";
+      answer = "Avora processes high-fidelity labeling workloads at scale. We design ontologies, track inter-annotator Kappa, and run consensus-verified annotation pipelines across specialized vision, NLP, and structured tabular datasets.";
       sources = ["Data_Annotation_Standards.pdf"];
     } else if (lowerQuery.includes("process") || lowerQuery.includes("methodology") || lowerQuery.includes("aim") || lowerQuery.includes("a.i.m.") || lowerQuery.includes("phase")) {
-      answer = "Avora operates under the A.I.M. (Discovery, Implementation, Scaling) framework:\n\n" +
-               "- Phase 01 (Discovery): Architectural Bottleneck Audits producing a Technical Integration Specification.\n" +
-               "- Phase 02 (Implementation): Core systems engineering and pipeline code construction verified via Consensus Logs.\n" +
-               "- Phase 03 (Scaling): Direct private cloud deployment, establishing telemetry dashboards and latency drift guards.";
+      answer = "Avora operates under the A.I.M. (Discovery, Implementation, Scaling) framework, integrated directly inside our AI Implementation step to build, audit, and deploy production-grade pipelines to private clouds.";
       sources = ["Avora_Capabilities_2026.pdf"];
     } else if (lowerQuery.includes("contact") || lowerQuery.includes("hire") || lowerQuery.includes("call") || lowerQuery.includes("schedule") || lowerQuery.includes("talk") || lowerQuery.includes("email")) {
       answer = "To start a conversation or schedule a strategic call, please fill out the contact form at the bottom of the page, or email us directly at partnerships@avora.io. Our team will get back to you within 24 hours.";
@@ -77,10 +72,10 @@ export async function POST(req: Request) {
                "Details can be found in the Avora Ventures Studio section of our homepage.";
       sources = ["Avora_Ventures_Studio_Specs.pdf"];
     } else if (lowerQuery.includes("avora") || lowerQuery.includes("who are you") || lowerQuery.includes("what is avora") || lowerQuery.includes("company")) {
-      answer = "Avora Ventures is an institutional Venture Studio & Infrastructure provider. We deliver elite remote engineering talent, custom AI and automation systems, and high-fidelity data operations under one integrated roof.\n\nCould you please clarify if you are interested in software outsourcing, custom AI development, or data annotation services?";
+      answer = "Avora Ventures is an institutional Venture Studio & Infrastructure provider. We deliver custom AI systems, high-fidelity data annotation/labeling operations, quality auditing, and synthetic data generation under one integrated roof.\n\nCould you please clarify if you are interested in synthetic data generation, data annotation/labeling, or custom AI implementation?";
       sources = ["Avora_Capabilities_2026.pdf"];
     } else {
-      answer = "Avora Ventures is an institutional Venture Studio & Infrastructure provider. We deliver elite remote engineering talent, custom AI and automation systems, and high-fidelity data operations under one integrated roof.\n\nCould you please clarify if you are interested in software outsourcing, custom AI development, or data annotation services?";
+      answer = "Avora Ventures is an institutional Venture Studio & Data Infrastructure provider. We deliver custom AI systems, high-fidelity data annotation/labeling operations, quality auditing, and synthetic data generation under one integrated roof.\n\nCould you please clarify if you are interested in synthetic data generation, data annotation/labeling, or custom AI implementation?";
       sources = ["Avora_Capabilities_2026.pdf"];
     }
 

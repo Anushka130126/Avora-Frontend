@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import type { Metadata, Viewport } from "next";
-import { Inter, Space_Grotesk, IBM_Plex_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, Space_Grotesk, IBM_Plex_Mono } from "next/font/google";
 import { Analytics } from '@vercel/analytics/next';
 import { siteConfig } from '@/config/site';
 import { generateSchema } from '@/app/schema';
@@ -12,9 +12,9 @@ import SmoothScrollProvider from '@/components/SmoothScrollProvider';
 import "./globals.css";
 
 
-const inter = Inter({
+const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-plus-jakarta-sans',
   display: 'swap',
 });
 
@@ -32,7 +32,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: `${siteConfig.name} | Outsourcing, Skill Hiring & AI Solutions`,
+  title: `${siteConfig.name} | Institutional AI Infrastructure & Data Operations`,
   description: siteConfig.description,
   openGraph: {
     title: siteConfig.name,
@@ -78,7 +78,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`scroll-smooth ${inter.variable} ${spaceGrotesk.variable} ${ibmPlexMono.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`scroll-smooth ${plusJakartaSans.variable} ${spaceGrotesk.variable} ${ibmPlexMono.variable}`}>
       <head>
         <script
           type="application/ld+json"
@@ -93,7 +93,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <SmoothScrollProvider>
             <SpotlightNav />
             {/* ponytail: inlined PageTransition — opacity/translate on mount via CSS */}

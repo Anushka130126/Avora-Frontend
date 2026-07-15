@@ -3,16 +3,14 @@ import { Logo } from './Logo';
 
 const footerLinks = {
   Services: [
-    { label: 'Specialized Outsourcing', href: '/#services?tab=outsourcing' },
-    { label: 'Skill Hiring', href: '/#services?tab=skill-hiring' },
-    { label: 'AI Solutions', href: '/#services?tab=ai-solutions' },
-    { label: 'Data Annotations', href: '/#services?tab=data-annotations' },
+    { label: 'Data Generation', href: '/#services?tab=data-generation' },
+    { label: 'Data Annotation', href: '/#services?tab=data-annotation' },
+    { label: 'Labeling', href: '/#services?tab=labeling' },
+    { label: 'Auditing', href: '/#services?tab=auditing' },
+    { label: 'AI Implementation', href: '/#services?tab=ai-implementation' },
   ],
   Company: [
     { label: 'Ventures Studio', href: '/#ventures' },
-    { label: 'Methodology', href: '/#process' },
-    { label: 'Leadership', href: '/leadership' },
-    { label: 'AI Playbook', href: '/insights' },
     { label: 'Contact', href: '/#contact' },
   ],
   Legal: [
@@ -33,7 +31,7 @@ export default function Footer() {
               <Logo size="md" className="h-9 w-auto text-slate-900 dark:text-white" />
             </Link>
             <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed max-w-xs font-sans">
-              Outsourcing, specialized skill hiring, AI solutions, and data annotations — built to scale your operations.
+              Data generation, annotation, labeling, quality auditing, and AI implementation pipelines.
             </p>
           </div>
 

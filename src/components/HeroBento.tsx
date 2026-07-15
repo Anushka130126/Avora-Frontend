@@ -10,7 +10,6 @@ import {
   Tags,
   ShieldCheck,
   BrainCircuit,
-  Users,
   ArrowRight,
 } from 'lucide-react';
 
@@ -20,42 +19,35 @@ const stages = [
     title: 'Data Generation',
     summary: 'Engineering synthetic data for scarcity, privacy, and scale',
     icon: Database,
-    href: '/insights#stage-01',
+    href: '/#services?tab=data-generation',
   },
   {
     number: '02',
     title: 'Data Annotation',
     summary: 'The foundational act of giving raw data meaning',
     icon: Tag,
-    href: '/insights#stage-02',
+    href: '/#services?tab=data-annotation',
   },
   {
     number: '03',
     title: 'Data Labeling',
     summary: 'Operationalising annotation at scale',
     icon: Tags,
-    href: '/insights#stage-03',
+    href: '/#services?tab=labeling',
   },
   {
     number: '04',
     title: 'Quality Assurance',
     summary: 'Making data fit for purpose across eight dimensions',
     icon: ShieldCheck,
-    href: '/insights#stage-04',
+    href: '/#services?tab=auditing',
   },
   {
     number: '05',
     title: 'AI Solutions',
     summary: 'Where quality data becomes engineered systems',
     icon: BrainCircuit,
-    href: '/insights#stage-05',
-  },
-  {
-    number: '06',
-    title: 'Specialized Outsourcing',
-    summary: 'The expertise layer that accelerates any stage',
-    icon: Users,
-    href: '/insights#stage-06',
+    href: '/#services?tab=ai-implementation',
   },
 ];
 
@@ -67,10 +59,10 @@ export default function HeroBento() {
       {/* Section Header */}
       <div className="mb-6">
         <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#D4AF37] mb-2 block">
-          AI Delivery Playbook
+          AI Delivery Pipeline
         </span>
         <p className="text-sm text-slate-500 dark:text-slate-400 font-sans">
-          Six disciplines, one continuous pipeline
+          Five disciplines, one continuous sequence
         </p>
       </div>
 
@@ -104,7 +96,7 @@ export default function HeroBento() {
               </h3>
 
               {/* Summary */}
-              <p className="text-xs text-slate-500 dark:text-slate-400 font-sans leading-relaxed line-clamp-2">
+              <p className="text-xs text-slate-550 dark:text-slate-400 font-sans leading-relaxed line-clamp-2">
                 {stage.summary}
               </p>
 
@@ -120,10 +112,10 @@ export default function HeroBento() {
       {/* CTA */}
       <div className="mt-5">
         <Link
-          href="/insights"
+          href="/#services"
           className="inline-flex items-center gap-2 text-sm font-sans font-semibold text-[#D4AF37] hover:text-[#B8962D] transition-colors group"
         >
-          Explore the full playbook
+          Explore the services pipeline
           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </Link>
       </div>

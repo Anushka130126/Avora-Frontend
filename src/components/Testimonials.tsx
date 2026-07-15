@@ -6,32 +6,32 @@ import { useInView } from '@/hooks/useInView';
 
 const testimonials = [
   {
-    quote: "Working with the Avora leadership team was a game-changer. They streamlined our entire operation and set us up for scalable growth. The strategic insight is unparalleled.",
-    author: "Michael Roberts",
-    role: "VP of Operations, TechFlow (USA)",
-    avatar: "MR",
+    quote: "Working with Avora was a game-changer. They streamlined our entire operation and set us up for scalable growth. The strategic insight is unparalleled.",
+    author: "Michael",
+    role: "VP of Operations, Technology & Logistics",
+    avatar: "M",
     verification: "OPERATIONAL_SCALING"
   },
   {
     quote: "The deep understanding of both manufacturing constraints and modern data science allowed them to deliver an incredibly effective optimization model for our supply chain.",
-    author: "Kenji Sato",
-    role: "Director of Engineering, Industrial Solutions (Japan)",
-    avatar: "KS",
+    author: "Kenji",
+    role: "Director of Engineering, Heavy Manufacturing",
+    avatar: "K",
     verification: "SUPPLY_CHAIN_OPT"
   },
   {
     quote: "Avora fundamentally transformed how we approach AI. Their ability to bridge complex technical challenges with business realities is exactly what we needed in the APAC market.",
-    author: "Priya Sharma",
-    role: "CTO, FinEdge Innovations (India)",
-    avatar: "PS",
+    author: "Priya",
+    role: "CTO, Financial Technologies & Services",
+    avatar: "P",
     verification: "APAC_AI_STRATEGY"
   },
   {
-    quote: "Their specialized talent sourcing helped us build a high-performing remote engineering team in record time. We couldn't have scaled our platform without them.",
-    author: "David Jenkins",
-    role: "Founder, ScaleTech (USA)",
-    avatar: "DJ",
-    verification: "TALENT_PLACEMENT"
+    quote: "Their consensus-verified data annotation pipeline delivered incredibly clean datasets for our production models, cutting our manual review time in half.",
+    author: "David",
+    role: "Founder, Enterprise SaaS Platforms",
+    avatar: "D",
+    verification: "DATA_OPERATIONS"
   }
 ];
 
