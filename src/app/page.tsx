@@ -3,9 +3,8 @@
 import { useEffect } from 'react';
 import Hero from '@/components/Hero';
 import Services from '@/components/Services';
+import WorkPreview from '@/components/WorkPreview';
 import Blog from '@/components/Blog';
-import Ventures from '@/components/Ventures';
-import Testimonials from '@/components/Testimonials';
 import FAQ from '@/components/FAQ';
 import Contact from '@/components/Contact';
 
@@ -38,9 +37,8 @@ export default function Home() {
       <HashScrollHandler />
       <Hero />
       <Services />
+      <WorkPreview />
       <Blog />
-      <Ventures />
-      <Testimonials />
       <FAQ />
       <Contact />
     </>

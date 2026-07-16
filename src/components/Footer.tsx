@@ -10,7 +10,7 @@ const footerLinks = {
     { label: 'AI Implementation', href: '/#services?tab=ai-implementation' },
   ],
   Company: [
-    { label: 'Ventures Studio', href: '/#ventures' },
+    { label: 'Delivered Work', href: '/work' },
     { label: 'Contact', href: '/#contact' },
   ],
   Legal: [
