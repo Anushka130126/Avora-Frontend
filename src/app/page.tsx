@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import Hero from '@/components/Hero';
 import Services from '@/components/Services';
 import WorkPreview from '@/components/WorkPreview';
-import Blog from '@/components/Blog';
+
 import FAQ from '@/components/FAQ';
 import Contact from '@/components/Contact';
 
@@ -38,7 +38,6 @@ export default function Home() {
       <Hero />
       <Services />
       <WorkPreview />
-      <Blog />
       <FAQ />
       <Contact />
     </>

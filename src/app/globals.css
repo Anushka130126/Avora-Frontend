@@ -3,18 +3,18 @@
 
 @layer base {
   :root {
-    /* Pristine light palette — cream, white, gold, deep brown */
-    --background: #FBF8F1;        /* Warm alabaster cream */
-    --background-alt: #F4EFE4;    /* Soft sand for section breaks */
-    --foreground: #2A1A0E;        /* Deep espresso brown for text */
-    --foreground-muted: #6B5642;  /* Warm taupe for secondary text */
-    --surface: #FFFFFF;            /* Pristine white cards */
-    --surface-raised: #FFFFFF;
+    /* Pristine light palette — slate-50, slate-900, slate-200 with gold accents */
+    --background: #f8fafc;        /* slate-50 */
+    --background-alt: #f1f5f9;    /* slate-100 */
+    --foreground: #0f172a;        /* slate-900 */
+    --foreground-muted: #475569;  /* slate-600 */
+    --surface: #ffffff;            
+    --surface-raised: #ffffff;
     --accent: #B8860B;            /* Deep, refined gold */
     --accent-soft: #D4AF37;       /* Lighter gold for highlights */
     --accent-tint: rgba(184, 134, 11, 0.08);
-    --border: rgba(42, 26, 14, 0.08);
-    --border-strong: rgba(42, 26, 14, 0.16);
+    --border: #e2e8f0;            /* slate-200 */
+    --border-strong: #cbd5e1;     /* slate-300 */
   }
 
   html {

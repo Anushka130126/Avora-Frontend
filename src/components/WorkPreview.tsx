@@ -1,70 +1,95 @@
 'use client';
 
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
-import { useReveal } from '@/hooks/useInView';
+import React, { useRef } from 'react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 
-const previews = [
-  { sector: 'Rare Disease Diagnostics', service: 'Data Generation', metric: 'AUC 0.72 → 0.91' },
-  { sector: 'Precision Agriculture', service: 'Data Annotation', metric: 'Scouting: 3h → 25min' },
-  { sector: 'Clinical Document Processing', service: 'Labeling', metric: 'F1: 0.94 · Kappa: 0.90' },
-  { sector: 'Retail Demand Forecasting', service: 'AI Implementation', metric: '680% ROI at 36 months' },
+const cases = [
+  {
+    title: 'AI-Native Digital Tools (Medical Diagnostics)',
+    execution: 'Scaled a rare disease training corpus from 87 confirmed cases to 50,000 synthetic volumes.',
+    outcome: 'Improved diagnostic AUC from 0.72 to 0.91, creating a highly scalable medical AI product.',
+    position: 'top-10 left-10 md:top-20 md:left-20',
+  },
+  {
+    title: 'Operational & Sourcing Models (Enterprise Infrastructure)',
+    execution: 'Automated high-volume clinical and document extraction processing via custom NLP labeling schemas.',
+    outcome: 'Reached a verified 0.95+ Kappa threshold, completely eliminating administrative processing bottlenecks.',
+    position: 'top-1/4 right-5 md:top-1/3 md:right-16',
+  },
+  {
+    title: 'Consumer & Emerging Verticals (Predictive Demand Logistics)',
+    execution: 'Deployed localized multi-SKU demand forecasting models integrated into operational supply chains.',
+    outcome: 'Reduced over-allocation risks and optimized inventory tracking with transparent performance metrics.',
+    position: 'bottom-10 left-1/4 md:bottom-20 md:left-1/3',
+  }
 ];
 
 export default function WorkPreview() {
-  const { ref, visible } = useReveal<HTMLDivElement>();
+  const container = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    const nodes = gsap.utils.toArray('.floating-node');
+    
+    nodes.forEach((node: any) => {
+      // Randomize float animation for each node
+      const randomX = gsap.utils.random(-20, 20);
+      const randomY = gsap.utils.random(-30, 30);
+      const randomDuration = gsap.utils.random(3, 5);
+      const randomDelay = gsap.utils.random(0, 2);
+
+      gsap.to(node, {
+        x: randomX,
+        y: randomY,
+        duration: randomDuration,
+        delay: randomDelay,
+        yoyo: true,
+        repeat: -1,
+        ease: 'sine.inOut',
+      });
+    });
+  }, { scope: container });
 
   return (
-    <section className="py-28 md:py-36 relative overflow-hidden bg-[var(--background-alt)]">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
-        <div
-          ref={ref}
-          className={`flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-14 transition-all duration-1000 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-        >
-          <div>
-            <span className="section-eyebrow">Delivered outcomes</span>
-            <h2 className="section-heading mt-2">Work from the field.</h2>
-            <p className="section-subtext mt-4 max-w-lg">
-              Anonymized engagement results. Sector, methodology, and verified outcome only —
-              no client names, by default.
-            </p>
-          </div>
-          <Link
-            href="/work"
-            className="group inline-flex items-center gap-2 text-sm font-semibold text-[var(--foreground)] hover:text-[var(--accent)] transition-colors flex-shrink-0"
-          >
-            See all engagements
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </Link>
+    <section id="portfolio" ref={container} className="relative min-h-screen py-32 overflow-hidden bg-slate-50 flex items-center justify-center">
+      {/* Central Typography */}
+      <div className="relative z-20 max-w-2xl mx-auto px-6 text-center pointer-events-none">
+        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-slate-200 bg-white/80 backdrop-blur-sm text-[11px] font-mono font-semibold tracking-[0.18em] uppercase text-[#B8860B] mb-8 shadow-sm">
+          Delivered Work
         </div>
+        <h2 className="text-5xl md:text-7xl font-heading font-bold text-slate-900 mb-6 tracking-tight leading-tight">
+          Proven Demand. <br />
+          <span className="text-slate-500">Sustainable Growth.</span>
+        </h2>
+        <p className="text-lg md:text-xl text-slate-600 leading-relaxed">
+          Our delivery logs reflect practical, high-performance deployments across our core operational verticals. To maintain strict corporate discipline, client data is compiled anonymously.
+        </p>
+      </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
-          {previews.map((p, i) => (
-            <Link
-              key={p.sector}
-              href="/work"
-              className="group card card-hover rounded-2xl p-7 flex flex-col gap-6"
-              style={{
-                opacity: visible ? 1 : 0,
-                transform: visible ? 'translateY(0)' : 'translateY(24px)',
-                transition: `opacity 0.7s cubic-bezier(0.16,1,0.3,1) ${i * 0.1}s, transform 0.7s cubic-bezier(0.16,1,0.3,1) ${i * 0.1}s`,
-              }}
-            >
+      {/* Floating Constellation Nodes */}
+      <div className="absolute inset-0 z-10 pointer-events-none">
+        {cases.map((c, i) => (
+          <div 
+            key={i} 
+            className={`floating-node absolute ${c.position} w-80 md:w-96 p-6 rounded-2xl glass-panel pointer-events-auto hover:border-[#B8860B]/40 transition-colors shadow-xl`}
+          >
+            <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center mb-4 text-[#B8860B] border border-slate-200">
+              <span className="font-mono font-bold text-xs">CS-0{i + 1}</span>
+            </div>
+            <h3 className="text-sm font-heading font-bold text-slate-900 mb-3">{c.title}</h3>
+            
+            <div className="space-y-3">
               <div>
-                <span className="text-[10px] font-mono font-semibold text-[var(--accent)] uppercase tracking-[0.2em] block mb-2">
-                  {p.service}
-                </span>
-                <span className="text-base font-heading font-bold text-[var(--foreground)] leading-snug block">
-                  {p.sector}
-                </span>
+                <span className="text-[10px] font-mono font-bold text-[#B8860B] uppercase tracking-wider block mb-1">Execution</span>
+                <p className="text-xs text-slate-600 leading-relaxed">{c.execution}</p>
               </div>
-              <div className="hairline-gold" />
-              <span className="text-xl font-heading font-bold text-[var(--foreground)] group-hover:text-[var(--accent)] transition-colors">
-                {p.metric}
-              </span>
-            </Link>
-          ))}
-        </div>
+              <div>
+                <span className="text-[10px] font-mono font-bold text-[#B8860B] uppercase tracking-wider block mb-1">Outcome</span>
+                <p className="text-xs font-semibold text-slate-800 leading-relaxed">{c.outcome}</p>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );
