@@ -28,7 +28,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="border-t border-slate-200/70" style={{ backgroundColor: 'rgba(255,255,255,0.65)', backdropFilter: 'blur(16px)' }}>
+    <section id="faq" className="border-t border-slate-200/70">
       <div className="max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-16">
 
         {/* Header â€” matches editorial style */}
@@ -90,6 +90,7 @@ export default function FAQ() {
     </section>
   );
 }
+
 
 
 

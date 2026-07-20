@@ -41,7 +41,7 @@ export default function Blog() {
     <section
       id="blog"
       className="py-28 md:py-36 relative overflow-hidden"
-      style={{ backgroundColor: 'rgba(255,255,255,0.65)', backdropFilter: 'blur(16px)' }}
+     
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         <div
@@ -111,6 +111,7 @@ export default function Blog() {
     </section>
   );
 }
+
 
 
 

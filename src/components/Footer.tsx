@@ -1,4 +1,4 @@
-﻿﻿import Link from 'next/link';
+﻿import Link from 'next/link';
 import { Logo } from './Logo';
 
 const footerLinks = {
@@ -21,7 +21,7 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <footer className="relative z-20 border-t border-slate-200/60" style={{ backgroundColor: 'rgba(255,255,255,0.65)', backdropFilter: 'blur(16px)' }}>
+    <footer className="relative z-20 border-t border-slate-200/60" style={{ backgroundColor: 'transparent' }}>
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8">
           <div className="lg:col-span-2">
@@ -29,7 +29,7 @@ export default function Footer() {
               <Logo size="md" className="h-9 w-auto text-[var(--foreground)]" />
             </Link>
             <p className="text-[15px] text-[var(--foreground-muted)] leading-relaxed max-w-xs">
-              Data generation, annotation, labeling, quality auditing, and AI implementation â€”
+              Data generation, annotation, labeling, quality auditing, and AI implementation —
               one continuous pipeline.
             </p>
           </div>
@@ -57,7 +57,7 @@ export default function Footer() {
 
         <div className="border-t border-[var(--border)] py-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-[13px] text-[var(--foreground-muted)]">
-            Â© {new Date().getFullYear()} Avora Ventures Inc. All rights reserved.
+            © {new Date().getFullYear()} Avora Ventures Inc. All rights reserved.
           </p>
           <div className="flex items-center gap-2 text-[11px] font-mono font-medium text-[var(--foreground-muted)] tracking-[0.18em] uppercase bg-white/60 px-3 py-1.5 border border-[var(--border)] rounded-full">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
@@ -68,6 +68,3 @@ export default function Footer() {
     </footer>
   );
 }
-
-
-
