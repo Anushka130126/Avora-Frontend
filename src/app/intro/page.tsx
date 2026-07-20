@@ -120,7 +120,7 @@ export default function IntroPage() {
 
   const enter = () => {
     if (leaving) return;
-    setLeaving(true); sessionStorage.setItem('avora_intro_seen', '1');
+    setLeaving(true); sessionStorage.setItem('avora_intro_seen', '1'); document.cookie = "avora_intro_seen=1; path=/; max-age=31536000";
     router.push('/home');
   };
 
@@ -207,6 +207,7 @@ export default function IntroPage() {
     </AnimatePresence>
   );
 }
+
 
 
 
