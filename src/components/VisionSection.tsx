@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useRef } from 'react';
 import gsap from 'gsap';
@@ -23,24 +23,36 @@ export default function VisionSection() {
     const rows = gsap.utils.toArray('.vertical-row') as HTMLElement[];
     rows.forEach((row, i) => {
       gsap.fromTo(row,
-        { opacity: 0, y: 40 },
+        { opacity: 0, y: 48, willChange: 'transform' },
         {
-          opacity: 1, y: 0, duration: 0.7, ease: 'power3.out',
+          opacity: 1, y: 0, duration: 1.0, ease: 'power4.out',
+          clearProps: 'willChange',
           scrollTrigger: {
             trigger: row,
-            start: 'top 85%',
+            start: 'top 88%',
           },
-          delay: i * 0.08,
+          delay: i * 0.10,
         }
       );
     });
+
+    gsap.fromTo('.vision-header',
+      { opacity: 0, y: 36 },
+      {
+        opacity: 1, y: 0, duration: 1.0, ease: 'power4.out',
+        scrollTrigger: { trigger: container.current, start: 'top 82%' },
+      }
+    );
   }, { scope: container });
 
   return (
-    <section ref={container} className="bg-white border-t border-slate-200">
-      {/* Header row */}
+    <section
+      ref={container}
+      className="border-t border-slate-200/70"
+      style={{ backgroundColor: 'rgba(255,255,255,0.88)', backdropFilter: 'blur(4px)' }}
+    >
       <div className="max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-16">
-        <div className="py-16 md:py-24 border-b border-slate-200">
+        <div className="vision-header py-16 md:py-24 border-b border-slate-200">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
             <div>
               <p className="font-mono text-[11px] tracking-[0.25em] uppercase text-[#B8860B] mb-4">
@@ -56,12 +68,13 @@ export default function VisionSection() {
           </div>
         </div>
 
-        {/* Table-style rows — no cards */}
+        {/* Table-style rows */}
         <div>
           {verticals.map((item, i) => (
             <div
               key={i}
-              className="vertical-row group border-b border-slate-200 py-10 md:py-14 grid grid-cols-12 gap-6 items-center hover:bg-slate-50 transition-colors duration-200 cursor-default"
+              className="vertical-row group border-b border-slate-200 py-10 md:py-14 grid grid-cols-12 gap-6 items-center hover:bg-white/30 transition-colors duration-300 cursor-default"
+              style={{ willChange: 'auto' }}
             >
               {/* Index */}
               <div className="col-span-1 md:col-span-1">
@@ -70,14 +83,14 @@ export default function VisionSection() {
 
               {/* Title */}
               <div className="col-span-11 md:col-span-4">
-                <h3 className="font-heading text-4xl md:text-5xl lg:text-6xl uppercase tracking-wide text-slate-900 leading-none group-hover:text-[#B8860B] transition-colors duration-300">
+                <h3 className="font-heading text-4xl md:text-5xl lg:text-6xl uppercase tracking-wide text-slate-900 leading-none group-hover:text-[#B8860B] transition-colors duration-400">
                   {item.title}
                 </h3>
               </div>
 
-              {/* Divider — only on desktop */}
+              {/* Divider — desktop only */}
               <div className="hidden md:block md:col-span-1">
-                <div className="h-px w-full bg-slate-200"></div>
+                <div className="h-px w-full bg-slate-200 group-hover:bg-[#B8860B]/30 transition-colors duration-300" />
               </div>
 
               {/* Description */}
@@ -86,7 +99,6 @@ export default function VisionSection() {
                   {item.desc}
                 </p>
               </div>
-
             </div>
           ))}
         </div>

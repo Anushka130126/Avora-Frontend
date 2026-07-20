@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useRef } from 'react';
 import gsap from 'gsap';
@@ -40,25 +40,39 @@ export default function WorkPreview() {
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
+    gsap.fromTo('.work-header',
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1, y: 0, duration: 1.0, ease: 'power4.out',
+        scrollTrigger: { trigger: container.current, start: 'top 80%' },
+      }
+    );
+
     const rows = gsap.utils.toArray('.outcome-row') as HTMLElement[];
     rows.forEach((row, i) => {
       gsap.fromTo(row,
-        { opacity: 0, y: 50 },
+        { opacity: 0, y: 56, willChange: 'transform' },
         {
-          opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
-          delay: i * 0.12,
-          scrollTrigger: { trigger: row, start: 'top 82%' }
+          opacity: 1, y: 0, duration: 1.0, ease: 'power4.out',
+          delay: i * 0.13,
+          clearProps: 'willChange',
+          scrollTrigger: { trigger: row, start: 'top 84%' },
         }
       );
     });
   }, { scope: container });
 
   return (
-    <section id="portfolio" ref={container} className="bg-white border-t border-slate-200">
+    <section
+      id="portfolio"
+      ref={container}
+      className="border-t border-slate-200/70"
+      style={{ backgroundColor: 'rgba(255,255,255,0.88)', backdropFilter: 'blur(4px)' }}
+    >
       <div className="max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-16">
 
         {/* Header */}
-        <div className="py-16 md:py-24 border-b border-slate-200 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+        <div className="work-header py-16 md:py-24 border-b border-slate-200 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
           <div>
             <p className="font-mono text-[11px] tracking-[0.25em] uppercase text-[#B8860B] mb-4">
               Network / 01
@@ -72,7 +86,7 @@ export default function WorkPreview() {
           </p>
         </div>
 
-        {/* Outcome rows — large stat + content, no cards */}
+        {/* Outcome rows */}
         <div>
           {outcomes.map((o, i) => (
             <div
@@ -88,9 +102,9 @@ export default function WorkPreview() {
                 <p className="font-mono text-[11px] tracking-[0.15em] text-slate-400 uppercase mt-3">{o.metricLabel}</p>
               </div>
 
-              {/* Center: Title + divider */}
+              {/* Center divider */}
               <div className="md:col-span-1 hidden md:flex items-start pt-2 justify-center">
-                <div className="w-px h-40 bg-slate-200"></div>
+                <div className="w-px h-40 bg-slate-200" />
               </div>
 
               {/* Right: execution + outcome */}

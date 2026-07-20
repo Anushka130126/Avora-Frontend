@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import { useReveal } from '@/hooks/useInView';
@@ -40,14 +40,15 @@ export default function Blog() {
   return (
     <section
       id="blog"
-      className="py-28 md:py-36 relative overflow-hidden bg-[var(--background)]"
+      className="py-28 md:py-36 relative overflow-hidden"
+      style={{ backgroundColor: 'rgba(255,255,255,0.78)', backdropFilter: 'blur(4px)' }}
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         <div
           ref={ref}
-          className={`max-w-3xl mb-16 transition-all duration-1000 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+          className={`max-w-3xl mb-16 transition-all duration-1000 ease-out ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
         >
-          <span className="section-eyebrow">Insights</span>
+          <span className="section-eyebrow">Blog</span>
           <h2 className="section-heading mb-5">Notes from the pipeline.</h2>
           <p className="section-subtext max-w-xl">
             Engineering updates, methodology notes, and operational lessons from the team that
@@ -59,11 +60,15 @@ export default function Blog() {
           {posts.map((post, index) => (
             <article
               key={index}
-              className="group card card-hover rounded-2xl p-8 flex flex-col justify-between cursor-pointer"
+              className="group card card-hover rounded-2xl p-8 flex flex-col justify-between cursor-default"
               style={{
                 opacity: visible ? 1 : 0,
-                transform: visible ? 'translateY(0)' : 'translateY(24px)',
-                transition: `opacity 0.7s cubic-bezier(0.16,1,0.3,1) ${index * 0.1}s, transform 0.7s cubic-bezier(0.16,1,0.3,1) ${index * 0.1}s`,
+                transform: visible ? 'translateY(0)' : 'translateY(28px)',
+                transition: `opacity 0.9s cubic-bezier(0.22,1,0.36,1) ${index * 0.12}s, transform 0.9s cubic-bezier(0.22,1,0.36,1) ${index * 0.12}s`,
+                willChange: 'transform, opacity',
+                background: 'rgba(255,255,255,0.82)',
+                backdropFilter: 'blur(12px)',
+                WebkitBackdropFilter: 'blur(12px)',
               }}
             >
               <div>

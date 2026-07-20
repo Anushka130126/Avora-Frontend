@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
@@ -28,10 +28,10 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="bg-slate-50 border-t border-slate-200">
+    <section id="faq" className="border-t border-slate-200/70" style={{ backgroundColor: 'rgba(248,250,252,0.88)', backdropFilter: 'blur(4px)' }}>
       <div className="max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-16">
 
-        {/* Header — matches editorial style */}
+        {/* Header â€” matches editorial style */}
         <div className="py-16 md:py-24 border-b border-slate-200">
           <p className="font-mono text-[11px] tracking-[0.25em] uppercase text-[#B8860B] mb-4">
             Common Questions
@@ -41,7 +41,7 @@ export default function FAQ() {
           </h2>
         </div>
 
-        {/* Accordion rows — no cards, just lines */}
+        {/* Accordion rows â€” no cards, just lines */}
         <div>
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
@@ -52,7 +52,7 @@ export default function FAQ() {
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                   aria-expanded={isOpen}
                 >
-                  {/* Question — use DM Sans, NOT Bebas Neue (avoid cramped caps) */}
+                  {/* Question â€” use DM Sans, NOT Bebas Neue (avoid cramped caps) */}
                   <span className="font-sans font-semibold text-xl md:text-2xl text-slate-800 leading-snug group-hover:text-[#B8860B] transition-colors duration-200 tracking-normal">
                     {faq.question}
                   </span>
@@ -90,3 +90,4 @@ export default function FAQ() {
     </section>
   );
 }
+

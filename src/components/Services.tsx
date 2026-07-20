@@ -1,9 +1,11 @@
-'use client';
+﻿'use client';
 
-import React, { useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -11,58 +13,84 @@ if (typeof window !== 'undefined') {
 
 const stages = [
   {
-    id: '01.01',
+    seq: 'SEQ.01',
     label: 'ANNOTATION',
     title: 'Data Generation',
     desc: 'We engineer robust, physics-informed synthetic datasets under expert domain oversight. This ensures our AI-native models have a high-fidelity foundation even when real-world market data is sparse.',
+    detail: 'Our data generation pipeline combines physics-informed simulation with domain expert validation. Every synthetic dataset passes through multi-layer fidelity checks before being approved for model training. Edge-case richness and statistical diversity are built in by design, not as afterthoughts.',
+    bgImage: '/Gold_Flow_Light.jpg.jpeg',
+    icon: '⬡',
+    stat: '60%',
+    statLabel: 'faster data readiness',
   },
   {
-    id: '01.02',
+    seq: 'SEQ.02',
     label: 'LABELING',
     title: 'Data Annotation & Labeling',
     desc: 'We divide execution into precise ontologies and high-volume deployment. Using modality-specific tooling and model-assisted automation, we accelerate data readiness by up to 60%.',
+    detail: 'Our annotation workflows use custom modality-specific tooling built for speed without sacrificing precision. Model-assisted pre-labeling reduces manual overhead while human review cycles ensure every ontology is correctly applied at volume.',
+    bgImage: '/Institutional_Network_Light.jpg.jpeg',
+    icon: '◈',
+    stat: '0.91+',
+    statLabel: 'Kappa agreement',
   },
   {
-    id: '01.03',
+    seq: 'SEQ.03',
     label: 'AUDITING',
     title: 'Data Auditing & QA',
     desc: 'Our multi-stage QA framework enforces strict inter-annotator agreement metrics (Kappa ≥ 0.91). Datasets are treated like versioned software releases.',
+    detail: 'Every dataset is version-controlled and passed through automated agreement scoring, expert spot-checks, and adversarial edge-case stress tests. Datasets failing our Kappa threshold are routed back to reannotation — never shipped.',
+    bgImage: '/Silicone_Gold_Light.jpg.jpeg',
+    icon: '◎',
+    stat: '100%',
+    statLabel: 'versioned releases',
   },
   {
-    id: '01.04',
+    seq: 'SEQ.04',
     label: 'IMPLEMENTATION',
     title: 'AI Implementation',
     desc: 'We build and launch custom MVPs within 2 to 6 weeks. We treat initial infrastructure as a measurable hypothesis, scaling computational resources only when commercial value is proven.',
+    detail: 'Post-validation, we architect secure, interpretable AI systems with SHAP-based explainability and drift monitoring built in from day one. Deployments are scoped as live hypotheses: lean, measurable, and ready to scale when the numbers say so.',
+    bgImage: '/Structural_Precision_Light.jpg.jpeg',
+    icon: '◉',
+    stat: '2–6wk',
+    statLabel: 'MVP to deployment',
   },
 ];
 
 export default function Services() {
   const container = useRef<HTMLDivElement>(null);
+  const [openIndex, setOpenIndex] = useState<number>(0);
 
   useGSAP(() => {
     gsap.fromTo('.pipeline-header',
-      { opacity: 0, y: 30 },
+      { opacity: 0, y: 40 },
       {
-        opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
-        scrollTrigger: { trigger: container.current, start: 'top 80%' }
+        opacity: 1, y: 0, duration: 1.0, ease: 'power4.out',
+        scrollTrigger: { trigger: container.current, start: 'top 80%' },
       }
     );
 
-    const cols = gsap.utils.toArray('.pipeline-col') as HTMLElement[];
-    cols.forEach((col, i) => {
-      gsap.fromTo(col,
-        { opacity: 0, y: 60 },
+    const cards = gsap.utils.toArray('.pipeline-card') as HTMLElement[];
+    cards.forEach((card, i) => {
+      gsap.fromTo(card,
+        { opacity: 0, y: 50 },
         {
-          opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
-          delay: i * 0.1,
-          scrollTrigger: { trigger: container.current, start: 'top 70%' }
+          opacity: 1, y: 0, duration: 0.9, ease: 'power4.out',
+          delay: i * 0.12,
+          scrollTrigger: { trigger: container.current, start: 'top 68%' },
         }
       );
     });
   }, { scope: container });
 
   return (
-    <section id="services" ref={container} className="bg-slate-50 border-t border-slate-200">
+    <section
+      id="services"
+      ref={container}
+      style={{ backgroundColor: 'rgba(248, 250, 252, 0.88)', backdropFilter: 'blur(4px)' }}
+      className="border-t border-slate-200/70"
+    >
       <div className="max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-16">
 
         {/* Header */}
@@ -73,7 +101,7 @@ export default function Services() {
                 Architecture / 01
               </p>
               <h2 className="font-heading text-7xl md:text-9xl lg:text-[9rem] leading-none text-slate-900 tracking-wide uppercase">
-                The Institutional<br/>Pipeline
+                The Institutional<br />Pipeline
               </h2>
             </div>
             <p className="text-base md:text-lg text-slate-500 max-w-sm leading-relaxed md:pb-4 font-sans">
@@ -82,58 +110,130 @@ export default function Services() {
           </div>
         </div>
 
-        {/* Pipeline Table — like the reference image */}
+        {/* Collapsible Pipeline Cards */}
         <div className="py-12 md:py-20">
-          {/* Column headers with rotated labels on top */}
-          <div className="grid grid-cols-4 gap-0 border border-slate-200">
-            {/* Row 1: Stage IDs */}
-            <div className="grid grid-cols-4 col-span-4 border-b border-slate-200">
-              {stages.map((s) => (
-                <div key={s.id} className="border-r border-slate-200 last:border-r-0 px-6 py-3">
-                  <span className="font-mono text-[10px] tracking-[0.2em] text-slate-400 uppercase">{s.id}</span>
-                </div>
-              ))}
-            </div>
+          <div className="flex flex-col gap-0 border border-slate-200/80 overflow-hidden rounded-sm">
+            {stages.map((stage, i) => {
+              const isOpen = openIndex === i;
+              return (
+                <div
+                  key={i}
+                  className="pipeline-card group relative border-b border-slate-200/80 last:border-b-0"
+                >
+                  {/* Background image — very low opacity */}
+                  <div
+                    className="absolute inset-0 bg-cover bg-center transition-opacity duration-700"
+                    style={{
+                      backgroundImage: `url('${stage.bgImage}')`,
+                      opacity: isOpen ? 0.07 : 0.03,
+                    }}
+                  />
 
-            {/* Row 2: Rotated labels */}
-            <div className="grid grid-cols-4 col-span-4 border-b border-slate-200">
-              {stages.map((s, i) => (
-                <div key={i} className="border-r border-slate-200 last:border-r-0 px-6 py-8 flex items-center justify-center">
-                  <span
-                    className="font-heading text-3xl md:text-4xl tracking-[0.15em] text-slate-900 uppercase"
-                    style={{ writingMode: 'vertical-rl', textOrientation: 'mixed', transform: 'rotate(180deg)' }}
+                  {/* Card trigger row */}
+                  <button
+                    className="relative w-full text-left focus:outline-none"
+                    onClick={() => setOpenIndex(isOpen ? -1 : i)}
+                    aria-expanded={isOpen}
                   >
-                    {s.label}
-                  </span>
-                </div>
-              ))}
-            </div>
+                    <div className={`grid grid-cols-12 items-center gap-4 px-6 md:px-10 transition-all duration-500 ${isOpen ? 'py-8 md:py-10' : 'py-6 md:py-8'}`}>
+                      {/* Seq number */}
+                      <div className="col-span-2 md:col-span-1">
+                        <span className={`font-mono text-[10px] tracking-[0.22em] uppercase transition-colors duration-300 ${isOpen ? 'text-[#B8860B]' : 'text-slate-400'}`}>
+                          {stage.seq}
+                        </span>
+                      </div>
 
-            {/* Row 3: Title + Description — bulk of the content */}
-            <div className="grid grid-cols-4 col-span-4 border-b border-slate-200">
-              {stages.map((s, i) => (
-                <div key={i} className="pipeline-col border-r border-slate-200 last:border-r-0 px-6 py-10 flex flex-col justify-between min-h-[260px]">
-                  <div>
-                    <h3 className="font-heading text-2xl md:text-3xl uppercase text-slate-900 mb-5 tracking-wide">
-                      {s.title}
-                    </h3>
-                    <p className="text-sm md:text-base text-slate-500 leading-relaxed font-sans">
-                      {s.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
+                      {/* Label */}
+                      <div className="col-span-7 md:col-span-7">
+                        <div className="flex items-center gap-4">
+                          <span className={`font-heading text-3xl md:text-4xl lg:text-5xl tracking-[0.08em] uppercase leading-none transition-colors duration-300 ${isOpen ? 'text-[#B8860B]' : 'text-slate-800 group-hover:text-slate-900'}`}>
+                            {stage.label}
+                          </span>
+                          {isOpen && (
+                            <span className="hidden md:inline font-mono text-[10px] tracking-[0.18em] uppercase text-slate-400 border-l border-slate-200 pl-4">
+                              {stage.title}
+                            </span>
+                          )}
+                        </div>
+                      </div>
 
-            {/* Row 4: Footer row */}
-            <div className="grid grid-cols-4 col-span-4">
-              {stages.map((s, i) => (
-                <div key={i} className="border-r border-slate-200 last:border-r-0 px-6 py-4 flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#B8860B]"></div>
-                  <span className="font-mono text-[10px] tracking-[0.15em] text-slate-400 uppercase">Stage {i + 1} of 4</span>
+                      {/* Stat — visible when open */}
+                      <div className="hidden md:flex col-span-2 flex-col items-end">
+                        <AnimatePresence>
+                          {isOpen && (
+                            <motion.div
+                              initial={{ opacity: 0, y: 4 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: 4 }}
+                              transition={{ duration: 0.3 }}
+                              className="text-right"
+                            >
+                              <div className="font-heading text-3xl text-[#B8860B] leading-none">{stage.stat}</div>
+                              <div className="font-mono text-[9px] tracking-[0.15em] uppercase text-slate-400 mt-1">{stage.statLabel}</div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+
+                      {/* Chevron */}
+                      <div className="col-span-3 md:col-span-2 flex justify-end">
+                        <div className={`w-9 h-9 flex items-center justify-center border transition-all duration-300 ${isOpen ? 'border-[#B8860B] bg-[#B8860B] text-white' : 'border-slate-200 text-slate-400 group-hover:border-slate-300'}`}>
+                          <ChevronDown className={`w-4 h-4 transition-transform duration-400 ${isOpen ? 'rotate-180' : ''}`} />
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+
+                  {/* Expandable content */}
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        key="content"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                        style={{ overflow: 'hidden' }}
+                      >
+                        <div className="relative px-6 md:px-10 pb-10 md:pb-12">
+                          <div className="border-t border-slate-200/60 pt-8">
+                            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
+                              {/* Left: short desc */}
+                              <div className="md:col-span-5">
+                                <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-[#B8860B] mb-4">Overview</p>
+                                <p className="text-slate-600 text-base md:text-lg leading-relaxed font-sans">
+                                  {stage.desc}
+                                </p>
+                              </div>
+                              {/* Right: detail */}
+                              <div className="md:col-span-7">
+                                <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-slate-400 mb-4">Methodology</p>
+                                <p className="text-slate-500 text-base leading-relaxed font-sans">
+                                  {stage.detail}
+                                </p>
+                                {/* Stat row on mobile */}
+                                <div className="mt-6 md:hidden flex items-center gap-3">
+                                  <div className="font-heading text-4xl text-[#B8860B]">{stage.stat}</div>
+                                  <div className="font-mono text-[9px] tracking-[0.15em] uppercase text-slate-400">{stage.statLabel}</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
-              ))}
-            </div>
+              );
+            })}
+          </div>
+
+          {/* Footer label */}
+          <div className="mt-8 flex items-center gap-3">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#B8860B]" />
+            <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-slate-400">
+              Four-stage institutional validation — click any stage to expand
+            </span>
           </div>
         </div>
       </div>

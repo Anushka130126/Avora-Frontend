@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState } from 'react';
 import { cn } from '@/lib/cn';
@@ -76,7 +76,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-28 md:py-36 relative overflow-hidden bg-slate-50">
+    <section id="contact" className="py-28 md:py-36 relative overflow-hidden" style={{ backgroundColor: 'rgba(248,250,252,0.88)', backdropFilter: 'blur(4px)' }}>
       <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left: copy */}
@@ -90,7 +90,7 @@ export default function Contact() {
               With Us.
             </h2>
             <p className="text-lg text-slate-600 mb-8 max-w-md leading-relaxed">
-              If you are looking to deploy commercial discipline, advanced technical execution, and lean operational structures to a high-potential market gap, let’s connect.
+              If you are looking to deploy commercial discipline, advanced technical execution, and lean operational structures to a high-potential market gap, letâ€™s connect.
             </p>
 
             <div className="space-y-4 pt-6 border-t border-slate-200">
@@ -232,7 +232,7 @@ export default function Contact() {
                     disabled={isSubmitting}
                     className="btn-primary w-full py-4 disabled:opacity-60 bg-[#1e293b] text-white"
                   >
-                    {isSubmitting ? 'Sending…' : 'Submit Structural Overview'}
+                    {isSubmitting ? 'Sendingâ€¦' : 'Submit Structural Overview'}
                   </button>
                 </form>
               )}
@@ -243,3 +243,4 @@ export default function Contact() {
     </section>
   );
 }
+

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -11,7 +11,7 @@ import { Menu, X } from 'lucide-react';
 const navItems = [
   { name: 'Services', href: '#services' },
   { name: 'Work', href: '/work' },
-  { name: 'Insights', href: '/blog' },
+  { name: 'Blog', href: '/blog' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -69,7 +69,7 @@ export function SpotlightNav() {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
-                      transition={{ type: 'tween', ease: [0.16, 1, 0.3, 1], duration: 0.3 }}
+                      transition={{ type: 'tween', ease: [0.22, 1, 0.36, 1], duration: 0.3 }}
                     />
                   )}
                 </Link>
@@ -104,7 +104,7 @@ export function SpotlightNav() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
             className="absolute top-full left-4 right-4 mt-2 px-4 pt-2 pb-6 glass-panel-strong rounded-2xl z-40 md:hidden"
           >
             <div className="flex flex-col gap-2 p-4">
