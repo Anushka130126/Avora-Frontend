@@ -193,27 +193,20 @@ export default function IntroPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.8, duration: 0.8, ease: [0.22,1,0.36,1] }}
               onClick={enter}
-              className="group relative flex items-center gap-3 px-8 py-4 border border-white/50 text-white font-sans font-semibold text-sm tracking-[0.12em] uppercase hover:bg-white/10 transition-all duration-400"
+              className="group relative flex items-center gap-3 px-8 py-4 bg-slate-900 border border-slate-900 text-white font-sans font-semibold text-sm tracking-[0.12em] uppercase hover:bg-slate-800 shadow-lg transition-all duration-400"
             >
               <span>Explore Services</span>
               <span className="text-white transition-transform duration-300 group-hover:translate-x-1">→</span>
             </motion.button>
 
-            {/* Scroll hint */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.6 }}
-              transition={{ delay: 2.4, duration: 1.0 }}
-              className="absolute bottom-10 font-mono text-[10px] tracking-[0.25em] uppercase text-white/60"
-            >
-              or scroll down
-            </motion.p>
+            
           </div>
         </motion.div>
       )}
     </AnimatePresence>
   );
 }
+
 
 
 

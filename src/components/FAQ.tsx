@@ -28,7 +28,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="border-t border-slate-200/70" style={{ backgroundColor: 'rgba(255,255,255,0.35)', backdropFilter: 'blur(16px)' }}>
+    <section id="faq" className="border-t border-slate-200/70" style={{ backgroundColor: 'rgba(255,255,255,0.65)', backdropFilter: 'blur(16px)' }}>
       <div className="max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-16">
 
         {/* Header â€” matches editorial style */}
@@ -60,7 +60,7 @@ export default function FAQ() {
                     'flex-shrink-0 w-10 h-10 border flex items-center justify-center transition-all duration-300',
                     isOpen
                       ? 'border-[#B8860B] bg-[#B8860B] text-white'
-                      : 'border-slate-300 text-slate-500 group-hover:border-[#B8860B] group-hover:text-[#B8860B]'
+                      : 'border-slate-300 text-slate-900 group-hover:border-[#B8860B] group-hover:text-[#B8860B]'
                   )}>
                     <ChevronDown className={cn('w-5 h-5 transition-transform duration-300', isOpen && 'rotate-180')} />
                   </div>
@@ -75,7 +75,7 @@ export default function FAQ() {
                       transition={{ type: 'tween', ease: 'easeInOut', duration: 0.3 }}
                     >
                       <div className="pb-10 max-w-3xl">
-                        <p className="font-sans text-lg md:text-xl text-slate-600 leading-loose tracking-normal font-normal">
+                        <p className="font-sans text-lg md:text-xl text-slate-900 leading-loose tracking-normal font-normal">
                           {faq.answer}
                         </p>
                       </div>

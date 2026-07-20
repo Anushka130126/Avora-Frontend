@@ -88,7 +88,7 @@ export default function Services() {
     <section
       id="services"
       ref={container}
-      style={{ backgroundColor: 'rgba(255,255,255,0.35)', backdropFilter: 'blur(16px)' }}
+      style={{ backgroundColor: 'rgba(255,255,255,0.65)', backdropFilter: 'blur(16px)' }}
       className="border-t border-slate-200/70"
     >
       <div className="max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-16">
@@ -104,7 +104,7 @@ export default function Services() {
                 The Institutional<br />Pipeline
               </h2>
             </div>
-            <p className="text-base md:text-lg text-slate-500 max-w-sm leading-relaxed md:pb-4 font-sans">
+            <p className="text-base md:text-lg text-slate-900 max-w-sm leading-relaxed md:pb-4 font-sans">
               We do not build on assumptions. Every AI-native model passes through a strict, four-stage validation framework.
             </p>
           </div>
@@ -125,7 +125,7 @@ export default function Services() {
                     className="absolute inset-0 bg-cover bg-center transition-opacity duration-700"
                     style={{
                       backgroundImage: `url('${stage.bgImage}')`,
-                      opacity: isOpen ? 0.07 : 0.03,
+                      opacity: isOpen ? 0.35 : 0.15,
                     }}
                   />
 
@@ -138,7 +138,7 @@ export default function Services() {
                     <div className={`grid grid-cols-12 items-center gap-4 px-6 md:px-10 transition-all duration-500 ${isOpen ? 'py-8 md:py-10' : 'py-6 md:py-8'}`}>
                       {/* Seq number */}
                       <div className="col-span-2 md:col-span-1">
-                        <span className={`font-mono text-[10px] tracking-[0.22em] uppercase transition-colors duration-300 ${isOpen ? 'text-[#B8860B]' : 'text-slate-400'}`}>
+                        <span className={`font-mono text-[10px] tracking-[0.22em] uppercase transition-colors duration-300 ${isOpen ? 'text-[#B8860B]' : 'text-slate-700'}`}>
                           {stage.seq}
                         </span>
                       </div>
@@ -150,7 +150,7 @@ export default function Services() {
                             {stage.label}
                           </span>
                           {isOpen && (
-                            <span className="hidden md:inline font-mono text-[10px] tracking-[0.18em] uppercase text-slate-400 border-l border-slate-200 pl-4">
+                            <span className="hidden md:inline font-mono text-[10px] tracking-[0.18em] uppercase text-slate-700 border-l border-slate-200 pl-4">
                               {stage.title}
                             </span>
                           )}
@@ -169,7 +169,7 @@ export default function Services() {
                               className="text-right"
                             >
                               <div className="font-heading text-3xl text-[#B8860B] leading-none">{stage.stat}</div>
-                              <div className="font-mono text-[9px] tracking-[0.15em] uppercase text-slate-400 mt-1">{stage.statLabel}</div>
+                              <div className="font-mono text-[9px] tracking-[0.15em] uppercase text-slate-700 mt-1">{stage.statLabel}</div>
                             </motion.div>
                           )}
                         </AnimatePresence>
@@ -177,7 +177,7 @@ export default function Services() {
 
                       {/* Chevron */}
                       <div className="col-span-3 md:col-span-2 flex justify-end">
-                        <div className={`w-9 h-9 flex items-center justify-center border transition-all duration-300 ${isOpen ? 'border-[#B8860B] bg-[#B8860B] text-white' : 'border-slate-200 text-slate-400 group-hover:border-slate-300'}`}>
+                        <div className={`w-9 h-9 flex items-center justify-center border transition-all duration-300 ${isOpen ? 'border-[#B8860B] bg-[#B8860B] text-white' : 'border-slate-200 text-slate-700 group-hover:border-slate-300'}`}>
                           <ChevronDown className={`w-4 h-4 transition-transform duration-400 ${isOpen ? 'rotate-180' : ''}`} />
                         </div>
                       </div>
@@ -201,20 +201,20 @@ export default function Services() {
                               {/* Left: short desc */}
                               <div className="md:col-span-5">
                                 <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-[#B8860B] mb-4">Overview</p>
-                                <p className="text-slate-600 text-base md:text-lg leading-relaxed font-sans">
+                                <p className="text-slate-900 text-base md:text-lg leading-relaxed font-sans">
                                   {stage.desc}
                                 </p>
                               </div>
                               {/* Right: detail */}
                               <div className="md:col-span-7">
-                                <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-slate-400 mb-4">Methodology</p>
-                                <p className="text-slate-500 text-base leading-relaxed font-sans">
+                                <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-slate-700 mb-4">Methodology</p>
+                                <p className="text-slate-900 text-base leading-relaxed font-sans">
                                   {stage.detail}
                                 </p>
                                 {/* Stat row on mobile */}
                                 <div className="mt-6 md:hidden flex items-center gap-3">
                                   <div className="font-heading text-4xl text-[#B8860B]">{stage.stat}</div>
-                                  <div className="font-mono text-[9px] tracking-[0.15em] uppercase text-slate-400">{stage.statLabel}</div>
+                                  <div className="font-mono text-[9px] tracking-[0.15em] uppercase text-slate-700">{stage.statLabel}</div>
                                 </div>
                               </div>
                             </div>
@@ -231,7 +231,7 @@ export default function Services() {
           {/* Footer label */}
           <div className="mt-8 flex items-center gap-3">
             <div className="w-1.5 h-1.5 rounded-full bg-[#B8860B]" />
-            <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-slate-400">
+            <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-slate-700">
               Four-stage institutional validation — click any stage to expand
             </span>
           </div>
@@ -240,5 +240,6 @@ export default function Services() {
     </section>
   );
 }
+
 
 

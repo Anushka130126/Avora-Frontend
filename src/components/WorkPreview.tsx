@@ -67,7 +67,7 @@ export default function WorkPreview() {
       id="portfolio"
       ref={container}
       className="border-t border-slate-200/70"
-      style={{ backgroundColor: 'rgba(255,255,255,0.35)', backdropFilter: 'blur(16px)' }}
+      style={{ backgroundColor: 'rgba(255,255,255,0.65)', backdropFilter: 'blur(16px)' }}
     >
       <div className="max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-16">
 
@@ -81,7 +81,7 @@ export default function WorkPreview() {
               Work-Tested<br/>Outcomes
             </h2>
           </div>
-          <p className="text-base md:text-lg text-slate-500 max-w-sm leading-relaxed md:pb-4 font-sans">
+          <p className="text-base md:text-lg text-slate-900 max-w-sm leading-relaxed md:pb-4 font-sans">
             Our delivery logs reflect practical, high-performance deployments across our core operational verticals. Client data is compiled anonymously.
           </p>
         </div>
@@ -95,11 +95,11 @@ export default function WorkPreview() {
             >
               {/* Left: ID + big stat */}
               <div className="md:col-span-3">
-                <p className="font-mono text-[11px] tracking-[0.2em] text-slate-400 uppercase mb-6">{o.id} / To: {o.metricLabel.split(' ')[0].toUpperCase()}</p>
+                <p className="font-mono text-[11px] tracking-[0.2em] text-slate-700 uppercase mb-6">{o.id} / To: {o.metricLabel.split(' ')[0].toUpperCase()}</p>
                 <div className="font-heading text-8xl md:text-9xl lg:text-[9rem] leading-none text-[#B8860B] tracking-tight">
                   {o.metric}
                 </div>
-                <p className="font-mono text-[11px] tracking-[0.15em] text-slate-400 uppercase mt-3">{o.metricLabel}</p>
+                <p className="font-mono text-[11px] tracking-[0.15em] text-slate-700 uppercase mt-3">{o.metricLabel}</p>
               </div>
 
               {/* Center divider */}
@@ -116,7 +116,7 @@ export default function WorkPreview() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
                     <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-[#B8860B] mb-3">Execution</p>
-                    <p className="text-slate-600 leading-relaxed text-base md:text-lg font-sans">{o.execution}</p>
+                    <p className="text-slate-900 leading-relaxed text-base md:text-lg font-sans">{o.execution}</p>
                   </div>
                   <div>
                     <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-slate-900 mb-3">Outcome</p>

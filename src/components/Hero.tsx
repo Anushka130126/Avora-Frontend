@@ -41,7 +41,7 @@ export default function Hero() {
     <section
       ref={container}
       className="relative min-h-screen flex flex-col justify-end pb-16 md:pb-24 overflow-hidden"
-      style={{ backgroundColor: 'rgba(255,255,255,0.35)', backdropFilter: 'blur(16px)' }}
+      style={{ backgroundColor: 'rgba(255,255,255,0.65)', backdropFilter: 'blur(16px)' }}
     >
       {/* Very subtle texture overlay — lets shader glow through */}
       <div ref={gridRef} className="absolute inset-[-40px] z-0 pointer-events-none">
@@ -51,7 +51,7 @@ export default function Hero() {
       {/* Eyebrow bar pinned to top */}
       <div className="absolute top-0 left-0 right-0 z-10 border-b border-slate-200/60">
         <div className="max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-16 py-4 flex items-center justify-between">
-          <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-slate-400">
+          <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-slate-700">
             &gt; AI-first infrastructure
           </p>
           <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-[#B8860B]">
@@ -78,7 +78,7 @@ export default function Hero() {
         {/* Bottom row: subtext + CTAs */}
         <div className="border-t border-slate-200/60 pt-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
           <div className="hero-sub md:col-span-5" style={{ willChange: 'transform, opacity' }}>
-            <p className="text-slate-600 text-base md:text-lg leading-relaxed font-sans max-w-md">
+            <p className="text-slate-900 text-base md:text-lg leading-relaxed font-sans max-w-md">
               We specialize in production-grade AI solutions for high-stakes environments, bridging proprietary data quality to deliver systems that perform when outcomes matter.
             </p>
           </div>

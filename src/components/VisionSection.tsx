@@ -49,7 +49,7 @@ export default function VisionSection() {
     <section
       ref={container}
       className="border-t border-slate-200/70"
-      style={{ backgroundColor: 'rgba(255,255,255,0.35)', backdropFilter: 'blur(16px)' }}
+      style={{ backgroundColor: 'rgba(255,255,255,0.65)', backdropFilter: 'blur(16px)' }}
     >
       <div className="max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-16">
         <div className="vision-header py-16 md:py-24 border-b border-slate-200">
@@ -62,7 +62,7 @@ export default function VisionSection() {
                 The Portfolio
               </h2>
             </div>
-            <p className="text-base md:text-lg text-slate-500 max-w-md leading-relaxed md:pb-4 font-sans">
+            <p className="text-base md:text-lg text-slate-900 max-w-md leading-relaxed md:pb-4 font-sans">
               We protect capital by engineering products around absolute, proven demand. Four distinct verticals, each validated before scale.
             </p>
           </div>
@@ -78,7 +78,7 @@ export default function VisionSection() {
             >
               {/* Index */}
               <div className="col-span-1 md:col-span-1">
-                <span className="font-mono text-[11px] tracking-[0.2em] text-slate-400">{item.id}</span>
+                <span className="font-mono text-[11px] tracking-[0.2em] text-slate-700">{item.id}</span>
               </div>
 
               {/* Title */}
@@ -95,7 +95,7 @@ export default function VisionSection() {
 
               {/* Description */}
               <div className="col-span-12 md:col-span-5 md:pl-4">
-                <p className="text-slate-500 text-base md:text-lg leading-relaxed font-sans">
+                <p className="text-slate-900 text-base md:text-lg leading-relaxed font-sans">
                   {item.desc}
                 </p>
               </div>

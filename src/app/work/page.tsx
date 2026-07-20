@@ -56,7 +56,7 @@ const cases = [
 
 export default function WorkPage() {
   return (
-    <main className="min-h-screen" style={{ backgroundColor: 'rgba(255,255,255,0.35)', backdropFilter: 'blur(16px)' }}>
+    <main className="min-h-screen" style={{ backgroundColor: 'rgba(255,255,255,0.65)', backdropFilter: 'blur(16px)' }}>
       {/* Page header */}
       <div className="border-b border-slate-200 pt-36 pb-16 md:pb-24">
         <div className="max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-16">
@@ -69,7 +69,7 @@ export default function WorkPage() {
                 Work From<br/>The Field.
               </h1>
             </div>
-            <p className="text-base md:text-lg text-slate-500 max-w-sm leading-relaxed md:pb-4 font-sans">
+            <p className="text-base md:text-lg text-slate-900 max-w-sm leading-relaxed md:pb-4 font-sans">
               Anonymized engagement outcomes. No client names — sector, methodology, and verified result only. All engagements are NDA-protected.
             </p>
           </div>
@@ -85,13 +85,13 @@ export default function WorkPage() {
           >
             {/* Left: Big metric */}
             <div className="md:col-span-3">
-              <p className="font-mono text-[11px] tracking-[0.2em] text-slate-400 uppercase mb-4">
+              <p className="font-mono text-[11px] tracking-[0.2em] text-slate-700 uppercase mb-4">
                 {c.id} / {c.service.toUpperCase()}
               </p>
               <div className="font-heading text-7xl md:text-8xl lg:text-[7rem] leading-none text-[#B8860B] tracking-tight">
                 {c.metric}
               </div>
-              <p className="font-mono text-[11px] tracking-[0.15em] text-slate-400 uppercase mt-3">{c.metricLabel}</p>
+              <p className="font-mono text-[11px] tracking-[0.15em] text-slate-700 uppercase mt-3">{c.metricLabel}</p>
             </div>
 
             {/* Divider */}
@@ -105,7 +105,7 @@ export default function WorkPage() {
                 <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-[#B8860B] border border-[#B8860B]/30 px-3 py-1.5">
                   {c.service}
                 </span>
-                <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-slate-500">
+                <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-slate-900">
                   {c.sector} — {c.tag}
                 </span>
               </div>
@@ -122,7 +122,7 @@ export default function WorkPage() {
                 ].map((row, i) => (
                   <div key={i} className="pt-8 pr-0 md:pr-10 pb-4 border-r border-slate-200 last:border-r-0 mr-0 md:mr-10 last:mr-0">
                     <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-[#B8860B] mb-4">{row.label}</p>
-                    <p className="font-sans text-base text-slate-600 leading-relaxed">{row.body}</p>
+                    <p className="font-sans text-base text-slate-900 leading-relaxed">{row.body}</p>
                   </div>
                 ))}
               </div>
@@ -130,7 +130,7 @@ export default function WorkPage() {
           </article>
         ))}
 
-        <p className="py-10 font-mono text-[11px] text-slate-400 tracking-[0.15em] uppercase">
+        <p className="py-10 font-mono text-[11px] text-slate-700 tracking-[0.15em] uppercase">
           Metrics verified through partner delivery logs. Client names withheld by default under NDA.
         </p>
       </div>
