@@ -60,7 +60,7 @@ void main() {
   float line2 = pow(flow, 28.0);
   
   // Add the bright gold lines
-  color += gold * (line1 + line2 * 0.5) * 1.2;
+  color += highlight * (line1 + line2 * 0.5) * 1.2;
 
   // Very slight grain
   float grain = fract(sin(dot(v_uv+u_time*0.007,vec2(12.9898,78.233)))*43758.5453);
