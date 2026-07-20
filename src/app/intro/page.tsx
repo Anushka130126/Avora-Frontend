@@ -13,7 +13,7 @@ uniform vec2 u_resolution;
 varying vec2 v_uv;
 
 void main() {
-    float zoom = 0.5;
+    float zoom = 1.8;
     float speed = 0.5;
     float wave_intensity = 1.19;
     float brightness = 0.017;
@@ -214,5 +214,6 @@ export default function IntroPage() {
     </AnimatePresence>
   );
 }
+
 
 

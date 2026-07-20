@@ -46,31 +46,21 @@ void main() {
   
   // Light, airy pastel blues
   vec3 lightCyan = vec3(0.55, 0.85, 0.95);
-  vec3 veryPaleBlue = vec3(0.85, 0.95, 1.0);
-  vec3 gold = vec3(0.85, 0.65, 0.15);
-  vec3 darkGold = vec3(0.50, 0.35, 0.05);
+  vec3 veryPaleBlue = vec3(0.90, 0.96, 1.0);
+  // Bright metallic gold
+  vec3 gold = vec3(0.95, 0.75, 0.20); 
 
   float flow = abs(sin(p.x*1.2+p.y*1.2+t*0.5));
 
   // Base background (bright rippling water)
-  float shadow = smoothstep(0.10, 0.90, flow);
-  vec3 color = mix(lightCyan, veryPaleBlue, shadow);
+  vec3 color = mix(lightCyan, veryPaleBlue, smoothstep(0.1, 0.9, flow));
 
-  // Gold veins (highly contrasty)
-  float vein = smoothstep(0.32, 0.62, flow);
-  color = mix(color, gold, vein * 0.7);
-
-  // Dark gold in troughs for depth
-  float trough = smoothstep(0.0, 0.30, flow);
-  color = mix(color, darkGold, trough * 0.3);
-
-  // Specular highlights (shiny liquid gold and bright water reflections)
-  float ridge = pow(max(0.0,1.0-flow), 14.0);
-  color += vec3(1.0, 0.9, 0.5) * ridge * 0.8; // More yellowish-white specular
-
-  // Warm shimmer wave
-  float shimmer = sin(p.x*3.0+p.y*2.0+t*2.0)*0.5+0.5;
-  color += gold * shimmer * 0.08;
+  // Fine gold lines (creates a sharp peak when flow is close to 0 or 1)
+  float line1 = pow(1.0 - flow, 28.0);
+  float line2 = pow(flow, 28.0);
+  
+  // Add the bright gold lines
+  color += gold * (line1 + line2 * 0.5) * 1.2;
 
   // Very slight grain
   float grain = fract(sin(dot(v_uv+u_time*0.007,vec2(12.9898,78.233)))*43758.5453);
@@ -147,5 +137,6 @@ void main() {
     />
   );
 }
+
 
 
