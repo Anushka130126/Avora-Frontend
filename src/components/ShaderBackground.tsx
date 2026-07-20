@@ -44,16 +44,16 @@ void main() {
     p.y+=0.4/n*sin(n*p.x+t+0.4*n)-mouse.y*0.04;
   }
   
-  // Light, airy pastel blues
-  vec3 lightCyan = vec3(0.55, 0.85, 0.95);
-  vec3 veryPaleBlue = vec3(0.90, 0.96, 1.0);
-  // Bright metallic gold
-  vec3 gold = vec3(1.0, 1.0, 1.0); 
+  // Bright gold instead of pastel blue
+  vec3 brightGold = vec3(0.92, 0.75, 0.20);
+  vec3 veryPaleCream = vec3(1.0, 0.98, 0.92);
+  // Bright metallic highlight
+  vec3 highlight = vec3(1.0, 1.0, 1.0); 
 
   float flow = abs(sin(p.x*1.2+p.y*1.2+t*0.5));
 
-  // Base background (bright rippling water)
-  vec3 color = mix(lightCyan, veryPaleBlue, smoothstep(0.1, 0.9, flow));
+  // Base background (bright rippling gold)
+  vec3 color = mix(brightGold, veryPaleCream, smoothstep(0.1, 0.9, flow));
 
   // Fine gold lines (creates a sharp peak when flow is close to 0 or 1)
   float line1 = pow(1.0 - flow, 28.0);
