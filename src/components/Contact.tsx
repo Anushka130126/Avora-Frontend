@@ -84,12 +84,12 @@ export default function Contact() {
             ref={ref}
             className={`lg:col-span-5 transition-all duration-1000 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
           >
-            <span className="section-eyebrow">Contact Us</span>
+            
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold tracking-tight leading-[1.05] text-slate-900 mb-5">
               Build <br className="hidden sm:block" />
               With Us.
             </h2>
-            <p className="text-lg text-slate-900 mb-8 max-w-md leading-relaxed">
+            <p className="text-xl text-slate-900 mb-8 max-w-lg leading-relaxed">
               If you are looking to deploy commercial discipline, advanced technical execution, and lean operational structures to a high-potential market gap, let's connect.
             </p>
 
@@ -199,10 +199,10 @@ export default function Contact() {
                       style={selectStyle}
                     >
                       <option value="">Select a focus area</option>
-                      <option value="ai-native">AI-Native Tools</option>
-                      <option value="consumer-lifestyle">Consumer/Lifestyle</option>
-                      <option value="sourcing-export">Sourcing/Export</option>
-                      <option value="operational-ventures">Operational Ventures</option>
+                      <option value="data-generation">Data Generation</option>
+                      <option value="data-annotation">Data Annotation</option>
+                      <option value="data-auditing">Data Auditing & QA</option>
+                      <option value="ai-implementation">AI Implementation</option>
                     </select>
                   </div>
 
@@ -243,6 +243,7 @@ export default function Contact() {
     </section>
   );
 }
+
 
 
 

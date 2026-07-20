@@ -10,8 +10,7 @@ import { Menu, X } from 'lucide-react';
 
 const navItems = [
   { name: 'Services', href: '#services' },
-  { name: 'Work', href: '/work' },
-  { name: 'Blog', href: '/blog' },
+    { name: 'Blog', href: '/blog' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -136,5 +135,6 @@ export function SpotlightNav() {
     </header>
   );
 }
+
 
 
