@@ -10,10 +10,6 @@ const authMiddleware = withAuth({
 
 export default async function middleware(request: NextRequest, event: NextFetchEvent) {
   if (request.nextUrl.pathname === '/') {
-    const hasSeenIntro = request.cookies.has('avora_intro_seen');
-    if (hasSeenIntro) {
-      return NextResponse.redirect(new URL('/home', request.url));
-    }
     return NextResponse.redirect(new URL('/intro', request.url));
   }
   
@@ -27,3 +23,4 @@ export default async function middleware(request: NextRequest, event: NextFetchE
 export const config = {
   matcher: ["/", "/dashboard/:path*"],
 };
+
