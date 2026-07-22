@@ -32,7 +32,7 @@ export default function Hero() {
          */}
          <div 
            className="absolute top-1/2 left-1/2 w-[100vh] h-[100vw] -translate-x-1/2 -translate-y-1/2 rotate-90 bg-cover bg-center opacity-80"
-           style={{ backgroundImage: "url('/Orange on black.jpg')" }}
+           style={{ backgroundImage: "url('/abstract.jpg')" }}
          />
          {/* Gradients to ensure text readability against the bright orange pattern */}
          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/30 to-transparent" />
