@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 import { usePathname } from 'next/navigation';
 import { SpotlightNav } from '@/components/ui/SpotlightNav';
 import Footer from '@/components/Footer';

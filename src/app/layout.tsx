@@ -1,4 +1,4 @@
-﻿import { Suspense } from 'react';
+import { Suspense } from 'react';
 import type { Metadata, Viewport } from "next";
 import { DM_Sans, Bebas_Neue, IBM_Plex_Mono } from "next/font/google";
 import { Analytics } from '@vercel/analytics/next';

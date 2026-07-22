@@ -1,4 +1,4 @@
-﻿import { getProjects } from '@/actions/project.actions';
+import { getProjects } from '@/actions/project.actions';
 import { getClients } from '@/actions/client.actions';
 import ProjectModal from '@/components/dashboard/ProjectModal';
 

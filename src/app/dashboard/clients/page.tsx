@@ -1,4 +1,4 @@
-﻿import { getClients } from '@/actions/client.actions';
+import { getClients } from '@/actions/client.actions';
 import ClientModal from '@/components/dashboard/ClientModal';
 
 export const dynamic = 'force-dynamic';
