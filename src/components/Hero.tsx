@@ -51,8 +51,8 @@ export default function Hero() {
           }}
         >
           Scale Your{' '}
-          {/* Deep indigo for sharp contrast against the light pink/purple background */}
-          <span className="text-[#312e81]">AI Vision</span>
+          {/* Bright cyan as requested */}
+          <span className="text-[#06b6d4]">AI Vision</span>
           <br />
           With Precision
           <br />

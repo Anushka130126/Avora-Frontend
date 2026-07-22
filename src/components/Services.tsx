@@ -95,12 +95,12 @@ export default function Services() {
       {services.map((service, i) => (
         <div
           key={i}
-          className={`service-slide ${i % 2 === 0 ? 'bg-white' : 'bg-slate-50'}`}
+          className={`service-slide py-16 md:py-24 ${i % 2 === 0 ? 'bg-white' : 'bg-slate-50'}`}
         >
           <div className="max-w-screen-xl mx-auto px-8 sm:px-12 lg:px-20">
             <div className={`grid grid-cols-1 lg:grid-cols-2 min-h-[400px] gap-10 lg:gap-16 ${!service.imageRight ? '' : ''}`}>
 
-              <div className={`slide-text flex flex-col justify-center py-12 md:py-20 ${
+              <div className={`slide-text flex flex-col justify-center ${
                 !service.imageRight ? 'lg:order-2' : ''
               }`}>
                 {/* Reduced Big Gold Heading size */}
