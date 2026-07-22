@@ -4,69 +4,53 @@ import React, { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
+// Same Unsplash neural-network image used in the services intro
+const HERO_BG = 'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=1920&q=90&fit=crop&auto=format';
+
 export default function Hero() {
   const container = useRef<HTMLElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!gridRef.current) return;
-      const { innerWidth, innerHeight } = window;
-      const x = (e.clientX / innerWidth - 0.5) * 20;
-      const y = (e.clientY / innerHeight - 0.5) * 20;
-      gsap.to(gridRef.current, { x, y, duration: 1.6, ease: 'power2.out' });
-    };
-
-    // Entrance animations — staggered editorial feel
-    gsap.fromTo('.hero-label',
-      { opacity: 0, y: 12 },
-      { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', delay: 0.1 }
-    );
     gsap.fromTo('.hero-headline',
       { opacity: 0, y: 60 },
-      { opacity: 1, y: 0, duration: 1.2, ease: 'power4.out', delay: 0.25 }
+      { opacity: 1, y: 0, duration: 1.3, ease: 'power4.out', delay: 0.2 }
     );
-    gsap.fromTo('.hero-descriptor',
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', delay: 0.65 }
+    gsap.fromTo('.hero-sub',
+      { opacity: 0, y: 24 },
+      { opacity: 1, y: 0, duration: 1.0, ease: 'power4.out', delay: 0.7 }
     );
-    gsap.fromTo('.hero-index',
-      { opacity: 0 },
-      { opacity: 1, duration: 0.7, ease: 'power2.out', delay: 0.9 }
-    );
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, { scope: container });
 
   return (
     <section
       ref={container}
-      className="relative min-h-screen flex flex-col overflow-hidden"
-      style={{ backgroundColor: 'rgba(255,255,255,0.68)', backdropFilter: 'blur(16px)' }}
+      className="relative min-h-screen flex flex-col justify-end overflow-hidden"
     >
-      {/* Parallax texture layer */}
-      <div ref={gridRef} className="absolute inset-[-40px] z-0 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-white/40" />
-      </div>
+      {/* Full-bleed background image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url('${HERO_BG}')` }}
+      />
 
-      {/* Top meta row */}
-      <div className="hero-label relative z-10 flex items-center justify-between px-6 sm:px-10 lg:px-16 pt-28 md:pt-32"
-        style={{ willChange: 'transform, opacity' }}>
-        <span className="font-mono text-[10px] tracking-[0.28em] uppercase text-slate-400">
-          AI Infrastructure
-        </span>
-        <span className="font-mono text-[10px] tracking-[0.28em] uppercase text-slate-400">
-          Est. 2024
-        </span>
-      </div>
+      {/*
+        Vertical white gradient — same style as the services intro:
+        White/opaque at the bottom (where the headline lives),
+        fading to fully transparent near the top (image shows through).
+      */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            'linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,0.97) 25%, rgba(255,255,255,0.75) 48%, rgba(255,255,255,0.20) 68%, transparent 100%)',
+        }}
+      />
 
-      {/* Main headline — left-anchored, large but controlled */}
-      <div className="relative z-10 flex-1 flex flex-col justify-center px-6 sm:px-10 lg:px-16 pt-12 pb-8">
+      {/* Content — anchored to bottom, readable against the white gradient */}
+      <div className="relative z-10 max-w-screen-xl mx-auto px-8 sm:px-12 lg:px-20 w-full pb-20 md:pb-28">
         <h1
-          className="hero-headline font-heading leading-[0.88] tracking-wide uppercase text-slate-900"
+          className="hero-headline font-heading uppercase tracking-wide text-slate-900 leading-[0.9] mb-10"
           style={{
-            fontSize: 'clamp(3.2rem, 8vw, 7rem)',
+            fontSize: 'clamp(3rem, 7.5vw, 6.5rem)',
             willChange: 'transform, opacity',
           }}
         >
@@ -77,29 +61,12 @@ export default function Hero() {
           <br />
           And Fidelity.
         </h1>
-      </div>
 
-      {/* Bottom divider row — service index left, descriptor right */}
-      <div className="relative z-10 px-6 sm:px-10 lg:px-16 pb-16 md:pb-24">
-        <div className="border-t border-slate-200/70 pt-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
-
-          {/* Left: service label index */}
-          <div className="hero-index flex flex-wrap gap-x-6 gap-y-2" style={{ willChange: 'opacity' }}>
-            {['Data Generation', 'Data Annotation', 'Data Auditing', 'AI Implementation'].map((s, i) => (
-              <span key={i} className="flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] uppercase text-slate-400">
-                <span className="text-[#B8860B]">0{i + 1}</span>
-                {s}
-              </span>
-            ))}
-          </div>
-
-          {/* Right: descriptor text */}
-          <div className="hero-descriptor" style={{ willChange: 'transform, opacity' }}>
-            <p className="font-sans text-slate-600 text-[15px] md:text-base leading-[1.8] md:text-right">
-              Production-grade AI solutions for high-stakes environments —
-              bridging data quality to systems that perform when outcomes matter.
-            </p>
-          </div>
+        <div className="hero-sub border-t border-slate-300/50 pt-8" style={{ willChange: 'transform, opacity' }}>
+          <p className="font-sans text-slate-600 text-base md:text-[17px] leading-[1.8] max-w-xl">
+            We specialize in production-grade AI solutions for high-stakes environments —
+            bridging data quality to deliver systems that perform when outcomes matter.
+          </p>
         </div>
       </div>
     </section>
