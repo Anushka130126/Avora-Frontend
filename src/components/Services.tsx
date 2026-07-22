@@ -76,12 +76,12 @@ export default function Services() {
   }, { scope: container });
 
   return (
-    // Removed border-t
-    <section id="services" ref={container} className="pt-16 md:pt-28 pb-10 bg-white">
+    // Halved the empty space above the section title (was pt-16 md:pt-28)
+    <section id="services" ref={container} className="pt-8 md:pt-14 pb-10 bg-white">
 
-      <div className="services-heading max-w-screen-xl mx-auto px-8 sm:px-12 lg:px-20 text-center mb-16 md:mb-24">
+      <div className="services-heading max-w-screen-xl mx-auto px-8 sm:px-12 lg:px-20 text-center mb-12 md:mb-16">
         <h2 
-          className="font-heading uppercase tracking-wide text-slate-900 leading-tight mb-6" 
+          className="font-heading uppercase tracking-wide text-slate-900 leading-tight mb-4" 
           style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}
         >
           Our Services
@@ -98,15 +98,15 @@ export default function Services() {
           className={`service-slide ${i % 2 === 0 ? 'bg-white' : 'bg-slate-50'}`}
         >
           <div className="max-w-screen-xl mx-auto px-8 sm:px-12 lg:px-20">
-            <div className={`grid grid-cols-1 lg:grid-cols-2 min-h-[500px] gap-12 lg:gap-20 ${!service.imageRight ? '' : ''}`}>
+            <div className={`grid grid-cols-1 lg:grid-cols-2 min-h-[400px] gap-10 lg:gap-16 ${!service.imageRight ? '' : ''}`}>
 
-              <div className={`slide-text flex flex-col justify-center py-16 md:py-24 ${
+              <div className={`slide-text flex flex-col justify-center py-12 md:py-20 ${
                 !service.imageRight ? 'lg:order-2' : ''
               }`}>
-                {/* Big Gold Heading */}
+                {/* Reduced Big Gold Heading size */}
                 <h3
-                  className="font-heading uppercase tracking-wide text-[#B8860B] leading-[1.05] mb-4"
-                  style={{ fontSize: 'clamp(2.8rem, 5vw, 4rem)' }}
+                  className="font-heading uppercase tracking-wide text-[#B8860B] leading-[1.05] mb-3"
+                  style={{ fontSize: 'clamp(2.2rem, 4vw, 3.2rem)' }}
                 >
                   {service.label}
                 </h3>

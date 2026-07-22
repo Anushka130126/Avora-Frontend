@@ -26,7 +26,7 @@ export default function Contact() {
 
   const inputCls = (field: string) =>
     cn(
-      'w-full px-5 py-4 text-base md:text-lg rounded-xl transition-all duration-200 outline-none bg-white/70 border',
+      'w-full px-4 py-3 text-sm md:text-[15px] rounded-xl transition-all duration-200 outline-none bg-white/70 border',
       focusedField === field
         ? 'border-[#B8860B] ring-2 ring-[#B8860B]/20 bg-white text-slate-900'
         : 'border-slate-200 hover:border-[#B8860B]/40 text-slate-900 placeholder:text-slate-500'
@@ -102,12 +102,12 @@ export default function Contact() {
 
         {/* Centered Form */}
         <div className={`transition-all duration-1000 delay-200 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="glass-panel-strong rounded-2xl p-8 md:p-12 border border-slate-200 shadow-sm bg-white/80 max-w-3xl mx-auto">
+          <div className="glass-panel-strong rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm bg-white/80 max-w-2xl mx-auto">
             {success ? (
-              <div className="text-center py-16 space-y-5 animate-in fade-in zoom-in-95 duration-500">
-                <div className="w-16 h-16 rounded-full bg-[#B8860B]/10 border border-[#B8860B]/30 flex items-center justify-center mx-auto">
+              <div className="text-center py-12 space-y-5 animate-in fade-in zoom-in-95 duration-500">
+                <div className="w-14 h-14 rounded-full bg-[#B8860B]/10 border border-[#B8860B]/30 flex items-center justify-center mx-auto">
                   <svg
-                    className="w-8 h-8 text-[#B8860B]"
+                    className="w-7 h-7 text-[#B8860B]"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -120,17 +120,17 @@ export default function Contact() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-heading font-bold text-slate-900">
+                <h3 className="text-xl font-heading font-bold text-slate-900">
                   Submission received
                 </h3>
-                <p className="text-lg text-slate-700 max-w-sm mx-auto">
+                <p className="text-base text-slate-700 max-w-sm mx-auto">
                   We have received your details. Our team will review the provided context and follow up within 1 business day.
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-5">
                 {error && (
-                  <div className="p-4 rounded-xl border border-red-300/40 bg-red-50 text-red-700 text-base">
+                  <div className="p-3 rounded-xl border border-red-300/40 bg-red-50 text-red-700 text-sm">
                     {error}
                   </div>
                 )}
@@ -227,7 +227,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="btn-primary w-full py-4 md:py-5 text-lg font-medium disabled:opacity-60 bg-[#1e293b] text-white rounded-xl hover:bg-[#B8860B] transition-colors"
+                  className="btn-primary w-full py-3.5 md:py-4 text-base font-medium disabled:opacity-60 bg-[#1e293b] text-white rounded-xl hover:bg-[#B8860B] transition-colors"
                 >
                   {isSubmitting ? 'Sending...' : 'Submit Structural Overview'}
                 </button>
