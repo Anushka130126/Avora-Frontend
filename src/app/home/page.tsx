@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import Hero from '@/components/Hero';
 import Services from '@/components/Services';
+import Blog from '@/components/Blog';
 import Contact from '@/components/Contact';
 
 function HashScrollHandler() {
@@ -32,6 +33,7 @@ export default function HomePage() {
       <HashScrollHandler />
       <Hero />
       <Services />
+      <Blog />
       <Contact />
     </>
   );

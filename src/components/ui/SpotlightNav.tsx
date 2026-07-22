@@ -10,7 +10,7 @@ import { Menu, X } from 'lucide-react';
 
 const navItems = [
   { name: 'Services', href: '#services' },
-    { name: 'Blog', href: '/blog' },
+  { name: 'Blog', href: '/blog' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -52,7 +52,7 @@ export function SpotlightNav() {
           >
             {navItems.map((item, index) => {
               const isHash = item.href.startsWith('#');
-              const itemHref = isHash && pathname !== '/home' ? `/${item.href}` : item.href;
+              const itemHref = isHash && pathname !== '/home' ? `/home${item.href}` : item.href;
               return (
                 <Link
                   key={item.name}
@@ -78,7 +78,7 @@ export function SpotlightNav() {
 
           <div className="hidden md:flex items-center gap-4 relative z-10">
             <Link
-              href={pathname === '/home' ? '#contact' : '/#contact'}
+              href={pathname === '/home' ? '#contact' : '/home#contact'}
               className="btn-primary text-sm px-5 py-2"
             >
               Partner with us
@@ -109,7 +109,7 @@ export function SpotlightNav() {
             <div className="flex flex-col gap-2 p-4">
               {navItems.map((item) => {
                 const isHash = item.href.startsWith('#');
-                const itemHref = isHash && pathname !== '/home' ? `/${item.href}` : item.href;
+                const itemHref = isHash && pathname !== '/home' ? `/home${item.href}` : item.href;
                 return (
                   <Link
                     key={item.name}
@@ -122,7 +122,7 @@ export function SpotlightNav() {
                 );
               })}
               <Link
-                href={pathname === '/home' ? '#contact' : '/#contact'}
+                href={pathname === '/home' ? '#contact' : '/home#contact'}
                 onClick={() => setMobileMenuOpen(false)}
                 className="btn-primary w-full mt-3 py-3"
               >

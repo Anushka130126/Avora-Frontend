@@ -3,15 +3,14 @@ import { Logo } from './Logo';
 
 const footerLinks = {
   Services: [
-    { label: 'Data Generation', href: '/#services?tab=data-generation' },
-    { label: 'Data Annotation', href: '/#services?tab=data-annotation' },
-    { label: 'Labeling', href: '/#services?tab=labeling' },
-    { label: 'Auditing', href: '/#services?tab=auditing' },
-    { label: 'AI Implementation', href: '/#services?tab=ai-implementation' },
+    { label: 'Data Generation', href: '/home#services' },
+    { label: 'Data Annotation', href: '/home#services' },
+    { label: 'Data Auditing', href: '/home#services' },
+    { label: 'AI Implementation', href: '/home#services' },
   ],
   Company: [
-    { label: 'Delivered Work', href: '/work' },
-    { label: 'Contact', href: '/#contact' },
+    { label: 'Blog', href: '/blog' },
+    { label: 'Contact', href: '/home#contact' },
   ],
   Legal: [
     { label: 'Privacy Policy', href: '/privacy' },

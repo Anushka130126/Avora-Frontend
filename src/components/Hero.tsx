@@ -54,7 +54,7 @@ export default function Hero() {
       <div className="relative z-10 max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-16 w-full pt-32">
         {/* Giant display heading */}
         <h1
-          className="hero-headline font-heading text-[13vw] md:text-[11vw] lg:text-[10vw] leading-[0.9] tracking-wide uppercase text-slate-900 mb-12"
+          className="hero-headline font-heading text-[11vw] md:text-[8.5vw] lg:text-[7.5vw] leading-[0.92] tracking-wide uppercase text-slate-900 mb-12"
           style={{ willChange: 'transform, opacity' }}
         >
           Scale Your{' '}
@@ -68,7 +68,7 @@ export default function Hero() {
         {/* Bottom row: subtext + CTAs */}
         <div className="border-t border-slate-200/60 pt-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
           <div className="hero-sub md:col-span-5" style={{ willChange: 'transform, opacity' }}>
-            <p className="text-slate-900 text-xl md:text-2xl leading-relaxed font-sans font-medium max-w-md">
+            <p className="text-slate-700 text-base md:text-lg leading-relaxed font-sans max-w-md">
               We specialize in production-grade AI solutions for high-stakes environments, bridging proprietary data quality to deliver systems that perform when outcomes matter.
             </p>
           </div>
