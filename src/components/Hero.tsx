@@ -4,7 +4,7 @@ import React, { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
-// Using a clean, abstract, light gradient image to ensure dark text is perfectly visible
+// Using a clean, abstract, light gradient image
 const HERO_BG = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1920&q=90&fit=crop&auto=format';
 
 export default function Hero() {
@@ -32,11 +32,7 @@ export default function Hero() {
         style={{ backgroundImage: `url('${HERO_BG}')` }}
       />
 
-      {/*
-        Vertical white gradient:
-        White/opaque at the bottom (where the headline lives),
-        fading to fully transparent near the top (image shows through).
-      */}
+      {/* Vertical white gradient */}
       <div
         className="absolute inset-0"
         style={{
@@ -45,8 +41,8 @@ export default function Hero() {
         }}
       />
 
-      {/* Content — anchored to bottom, readable against the white gradient */}
-      <div className="relative z-10 max-w-screen-xl mx-auto px-8 sm:px-12 lg:px-20 w-full pb-20 md:pb-28">
+      {/* Content — Centered */}
+      <div className="relative z-10 max-w-screen-xl mx-auto px-8 sm:px-12 lg:px-20 w-full pb-20 md:pb-28 text-center flex flex-col items-center">
         <h1
           className="hero-headline font-heading uppercase tracking-wide text-slate-900 leading-[0.9] mb-10"
           style={{
@@ -55,15 +51,17 @@ export default function Hero() {
           }}
         >
           Scale Your{' '}
-          <span className="text-[#B8860B]">AI Vision</span>
+          {/* A vibrant, slightly lighter golden-amber that contrasts better */}
+          <span className="text-[#eab308]">AI Vision</span>
           <br />
           With Precision
           <br />
           And Fidelity.
         </h1>
 
-        <div className="hero-sub border-t border-slate-300/50 pt-8" style={{ willChange: 'transform, opacity' }}>
-          <p className="font-sans text-slate-600 text-base md:text-[17px] leading-[1.8] max-w-xl">
+        {/* Removed border-t to remove the light line before the caption */}
+        <div className="hero-sub pt-4" style={{ willChange: 'transform, opacity' }}>
+          <p className="font-sans text-slate-600 text-base md:text-[17px] leading-[1.8] max-w-xl mx-auto">
             We specialize in production-grade AI solutions for high-stakes environments —
             bridging data quality to deliver systems that perform when outcomes matter.
           </p>

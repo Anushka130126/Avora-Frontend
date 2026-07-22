@@ -11,32 +11,33 @@ if (typeof window !== 'undefined') {
 
 const services = [
   {
-    label: 'Data Generation',
-    title: 'Synthetic Data Engineering',
+    // Swapped label and title as requested
+    label: 'Synthetic Data Engineering',
+    title: 'Data Generation',
     desc: 'We engineer robust, physics-informed synthetic datasets under expert domain oversight — ensuring AI models have a high-fidelity foundation even when real-world data is scarce or inaccessible.',
     detail: 'Every synthetic dataset passes through multi-layer fidelity checks before approval. Edge-case richness and statistical diversity are built in by design, not retrofitted.',
     image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=85&fit=crop&auto=format',
     imageRight: true,
   },
   {
-    label: 'Data Annotation',
-    title: 'Precision Labeling Workflows',
+    label: 'Precision Labeling Workflows',
+    title: 'Data Annotation',
     desc: 'We deploy precise ontologies and high-volume labeling using modality-specific tooling and model-assisted automation — accelerating data readiness without compromising accuracy.',
     detail: 'Model-assisted pre-labeling reduces manual overhead while structured human review cycles ensure every ontology is correctly applied at scale.',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1400&q=85&fit=crop&auto=format',
     imageRight: false,
   },
   {
-    label: 'Data Auditing',
-    title: 'Quality Assurance & Validation',
+    label: 'Quality Assurance & Validation',
+    title: 'Data Auditing',
     desc: 'Our multi-stage QA framework enforces strict inter-annotator agreement metrics. Datasets are version-controlled and treated like software releases — never shipped until they pass.',
     detail: 'Automated agreement scoring, expert spot-checks, and adversarial edge-case stress tests run in sequence. Datasets that fall short are re-annotated, not delivered.',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=85&fit=crop&auto=format',
     imageRight: true,
   },
   {
-    label: 'AI Implementation',
-    title: 'Custom Model Deployment',
+    label: 'Custom Model Deployment',
+    title: 'AI Implementation',
     desc: 'We build and launch custom AI MVPs rapidly — treating initial infrastructure as a measurable hypothesis and scaling computational resources only when commercial value is proven.',
     detail: 'Post-validation, we architect secure, interpretable AI systems with SHAP-based explainability and drift monitoring from day one. Deployments are lean, measurable, and built to scale.',
     image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1400&q=85&fit=crop&auto=format',
@@ -48,7 +49,6 @@ export default function Services() {
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    // Simple fade for the main text header
     gsap.fromTo('.services-heading',
       { opacity: 0, y: 20 },
       {
@@ -79,7 +79,6 @@ export default function Services() {
   return (
     <section id="services" ref={container} className="border-t border-slate-200/60 pt-16 md:pt-28 pb-10 bg-white">
 
-      {/* ── Simple text heading instead of big image block ── */}
       <div className="services-heading max-w-screen-xl mx-auto px-8 sm:px-12 lg:px-20 text-center mb-16 md:mb-24">
         <h2 
           className="font-heading uppercase tracking-wide text-slate-900 leading-tight mb-6" 
@@ -92,7 +91,6 @@ export default function Services() {
         </p>
       </div>
 
-      {/* ── Individual service slides ── */}
       {services.map((service, i) => (
         <div
           key={i}
@@ -101,18 +99,18 @@ export default function Services() {
           <div className="max-w-screen-xl mx-auto px-8 sm:px-12 lg:px-20">
             <div className={`grid grid-cols-1 lg:grid-cols-2 min-h-[500px] gap-12 lg:gap-20 ${!service.imageRight ? '' : ''}`}>
 
-              {/* Text Panel */}
               <div className={`slide-text flex flex-col justify-center py-16 md:py-24 ${
                 !service.imageRight ? 'lg:order-2' : ''
               }`}>
-                {/* Category label */}
+                {/* Category label (now the longer descriptive text) */}
                 <span className="font-mono text-[10px] font-semibold tracking-[0.24em] uppercase text-[#B8860B] mb-6 block">
                   {service.label}
                 </span>
 
+                {/* Main Headline (now Data Generation, Data Annotation, etc.) */}
                 <h3
                   className="font-heading uppercase tracking-wide text-slate-900 leading-[0.95] mb-6"
-                  style={{ fontSize: 'clamp(1.8rem, 3vw, 2.75rem)' }}
+                  style={{ fontSize: 'clamp(2.2rem, 4vw, 3.5rem)' }}
                 >
                   {service.title}
                 </h3>
@@ -125,7 +123,6 @@ export default function Services() {
                 </p>
               </div>
 
-              {/* Image Panel */}
               <div className={`slide-image relative overflow-hidden rounded-sm min-h-[320px] lg:min-h-0 ${
                 !service.imageRight ? 'lg:order-1' : ''
               }`}>
@@ -143,7 +140,6 @@ export default function Services() {
             </div>
           </div>
 
-          {/* Full-width divider between slides */}
           {i < services.length - 1 && (
             <div className="border-b border-slate-200/50 mx-8 sm:mx-12 lg:mx-20" />
           )}
