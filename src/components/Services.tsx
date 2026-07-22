@@ -11,7 +11,6 @@ if (typeof window !== 'undefined') {
 
 const services = [
   {
-    // Swapped label and title as requested
     label: 'Synthetic Data Engineering',
     title: 'Data Generation',
     desc: 'We engineer robust, physics-informed synthetic datasets under expert domain oversight — ensuring AI models have a high-fidelity foundation even when real-world data is scarce or inaccessible.',
@@ -77,7 +76,8 @@ export default function Services() {
   }, { scope: container });
 
   return (
-    <section id="services" ref={container} className="border-t border-slate-200/60 pt-16 md:pt-28 pb-10 bg-white">
+    // Removed border-t
+    <section id="services" ref={container} className="pt-16 md:pt-28 pb-10 bg-white">
 
       <div className="services-heading max-w-screen-xl mx-auto px-8 sm:px-12 lg:px-20 text-center mb-16 md:mb-24">
         <h2 
@@ -86,7 +86,8 @@ export default function Services() {
         >
           Our Services
         </h2>
-        <p className="font-sans text-slate-600 text-base md:text-lg max-w-2xl mx-auto leading-[1.7]">
+        {/* Increased base text size as requested */}
+        <p className="font-sans text-slate-600 text-lg md:text-xl max-w-3xl mx-auto leading-[1.7]">
           We engineer AI foundations from the ground up — synthetic data, precision annotation, rigorous auditing, and production deployment.
         </p>
       </div>
@@ -102,23 +103,24 @@ export default function Services() {
               <div className={`slide-text flex flex-col justify-center py-16 md:py-24 ${
                 !service.imageRight ? 'lg:order-2' : ''
               }`}>
-                {/* Category label (now the longer descriptive text) */}
-                <span className="font-mono text-[10px] font-semibold tracking-[0.24em] uppercase text-[#B8860B] mb-6 block">
-                  {service.label}
-                </span>
-
-                {/* Main Headline (now Data Generation, Data Annotation, etc.) */}
+                {/* Big Gold Heading */}
                 <h3
-                  className="font-heading uppercase tracking-wide text-slate-900 leading-[0.95] mb-6"
-                  style={{ fontSize: 'clamp(2.2rem, 4vw, 3.5rem)' }}
+                  className="font-heading uppercase tracking-wide text-[#B8860B] leading-[1.05] mb-4"
+                  style={{ fontSize: 'clamp(2.8rem, 5vw, 4rem)' }}
                 >
-                  {service.title}
+                  {service.label}
                 </h3>
 
-                <p className="font-sans text-slate-700 text-[15px] md:text-base leading-[1.85] mb-4">
+                {/* Small Black Subheading */}
+                <span className="font-mono text-sm md:text-[17px] font-bold tracking-[0.2em] uppercase text-slate-900 mb-8 block">
+                  {service.title}
+                </span>
+
+                {/* Captions made overall bigger */}
+                <p className="font-sans text-slate-700 text-lg md:text-[19px] leading-[1.85] mb-5">
                   {service.desc}
                 </p>
-                <p className="font-sans text-slate-500 text-[14px] md:text-[15px] leading-[1.85]">
+                <p className="font-sans text-slate-500 text-base md:text-[17px] leading-[1.85]">
                   {service.detail}
                 </p>
               </div>
@@ -139,10 +141,7 @@ export default function Services() {
 
             </div>
           </div>
-
-          {i < services.length - 1 && (
-            <div className="border-b border-slate-200/50 mx-8 sm:mx-12 lg:mx-20" />
-          )}
+          {/* Removed horizontal border line */}
         </div>
       ))}
     </section>

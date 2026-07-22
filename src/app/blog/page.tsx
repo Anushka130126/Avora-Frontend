@@ -107,7 +107,7 @@ export default function BlogPage() {
     <main ref={container} className="min-h-screen" style={{ backgroundColor: 'rgba(255,255,255,0.72)', backdropFilter: 'blur(16px)' }}>
 
       {/* Page Header */}
-      <div className="pt-24 pb-12 md:pt-32 md:pb-16 border-b border-slate-200/60 bg-white">
+      <div className="pt-24 pb-12 md:pt-32 md:pb-16 bg-white">
       <div className="max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-16">
         <div className="blog-header max-w-2xl mx-auto text-center">
           <span className="font-mono text-[10px] font-semibold tracking-[0.25em] uppercase text-[#B8860B] mb-5 block">
