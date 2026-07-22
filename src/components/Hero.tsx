@@ -4,8 +4,8 @@ import React, { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
-// Same Unsplash neural-network image used in the services intro
-const HERO_BG = 'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=1920&q=90&fit=crop&auto=format';
+// Using a clean, abstract, light gradient image to ensure dark text is perfectly visible
+const HERO_BG = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1920&q=90&fit=crop&auto=format';
 
 export default function Hero() {
   const container = useRef<HTMLElement>(null);
@@ -28,12 +28,12 @@ export default function Hero() {
     >
       {/* Full-bleed background image */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-80"
         style={{ backgroundImage: `url('${HERO_BG}')` }}
       />
 
       {/*
-        Vertical white gradient — same style as the services intro:
+        Vertical white gradient:
         White/opaque at the bottom (where the headline lives),
         fading to fully transparent near the top (image shows through).
       */}
@@ -41,7 +41,7 @@ export default function Hero() {
         className="absolute inset-0"
         style={{
           background:
-            'linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,0.97) 25%, rgba(255,255,255,0.75) 48%, rgba(255,255,255,0.20) 68%, transparent 100%)',
+            'linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,0.95) 30%, rgba(255,255,255,0.60) 60%, rgba(255,255,255,0.15) 80%, transparent 100%)',
         }}
       />
 

@@ -107,23 +107,22 @@ export default function BlogPage() {
     <main ref={container} className="min-h-screen" style={{ backgroundColor: 'rgba(255,255,255,0.72)', backdropFilter: 'blur(16px)' }}>
 
       {/* Page Header */}
-      <div className="border-b border-slate-200 pt-32 pb-14 md:pb-20">
-        <div className="max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-16">
-          <div className="blog-header flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-            <div>
-              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#B8860B] mb-3 block">
-                Insights & Research
-              </span>
-              <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl leading-none text-slate-900 tracking-wide uppercase">
-                From the<br />Pipeline
-              </h1>
-            </div>
-            <p className="text-slate-500 text-base md:text-lg max-w-md leading-relaxed md:pb-2 font-sans">
-              Curated articles from IBM, McKinsey, Wikipedia and more — on the data and AI technologies that power our services.
-            </p>
-          </div>
+      <div className="pt-24 pb-12 md:pt-32 md:pb-16 border-b border-slate-200/60 bg-white">
+      <div className="max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-16">
+        <div className="blog-header max-w-2xl mx-auto text-center">
+          <span className="font-mono text-[10px] font-semibold tracking-[0.25em] uppercase text-[#B8860B] mb-5 block">
+            Intelligence
+          </span>
+          <h1 className="font-heading uppercase tracking-wide text-slate-900 leading-[0.9] mb-6"
+              style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)' }}>
+            Insights &amp;<br/>Research
+          </h1>
+          <p className="font-sans text-slate-600 text-lg md:text-[19px] leading-[1.7] max-w-lg mx-auto">
+            Curated articles on synthetic data, annotation frameworks, quality auditing, and the engineering of production AI.
+          </p>
         </div>
       </div>
+    </div>
 
       <div className="max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-16 py-14 md:py-20">
 

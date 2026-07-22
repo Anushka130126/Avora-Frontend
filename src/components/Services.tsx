@@ -9,8 +9,6 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const INTRO_BG = 'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=1920&q=85&fit=crop&auto=format';
-
 const services = [
   {
     label: 'Data Generation',
@@ -50,11 +48,12 @@ export default function Services() {
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    gsap.fromTo('.services-intro-content > *',
-      { opacity: 0, y: 28 },
+    // Simple fade for the main text header
+    gsap.fromTo('.services-heading',
+      { opacity: 0, y: 20 },
       {
-        opacity: 1, y: 0, duration: 1.0, stagger: 0.15, ease: 'power4.out',
-        scrollTrigger: { trigger: '.services-intro', start: 'top 80%' },
+        opacity: 1, y: 0, duration: 1.0, ease: 'power3.out',
+        scrollTrigger: { trigger: '.services-heading', start: 'top 85%' },
       }
     );
 
@@ -78,50 +77,27 @@ export default function Services() {
   }, { scope: container });
 
   return (
-    <section id="services" ref={container} className="border-t border-slate-200/60">
+    <section id="services" ref={container} className="border-t border-slate-200/60 pt-16 md:pt-28 pb-10 bg-white">
 
-      {/* ── Services intro: full-bleed image + vertical white gradient ── */}
-      <div className="services-intro relative min-h-[80vh] flex flex-col justify-end overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url('${INTRO_BG}')` }}
-        />
-        {/* White rises from bottom, image shows through at top */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(to top, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.90) 28%, rgba(255,255,255,0.50) 52%, rgba(255,255,255,0.10) 72%, transparent 100%)',
-          }}
-        />
-
-        <div className="services-intro-content relative z-10 max-w-screen-xl mx-auto px-8 sm:px-12 lg:px-20 pb-16 md:pb-20 w-full">
-          <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-[#B8860B] mb-5 block">
-            Our Services
-          </span>
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-            <h2
-              className="font-heading uppercase tracking-wide text-slate-900 leading-[0.92]"
-              style={{ fontSize: 'clamp(2.4rem, 5.5vw, 5rem)' }}
-            >
-              The Full Data &amp;<br />AI Lifecycle
-            </h2>
-            <p className="font-sans text-slate-600 text-[15px] md:text-base leading-[1.8] max-w-sm md:text-right md:pb-1">
-              We engineer AI foundations from the ground up — synthetic data, precision
-              annotation, rigorous auditing, and production deployment.
-            </p>
-          </div>
-        </div>
+      {/* ── Simple text heading instead of big image block ── */}
+      <div className="services-heading max-w-screen-xl mx-auto px-8 sm:px-12 lg:px-20 text-center mb-16 md:mb-24">
+        <h2 
+          className="font-heading uppercase tracking-wide text-slate-900 leading-tight mb-6" 
+          style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}
+        >
+          Our Services
+        </h2>
+        <p className="font-sans text-slate-600 text-base md:text-lg max-w-2xl mx-auto leading-[1.7]">
+          We engineer AI foundations from the ground up — synthetic data, precision annotation, rigorous auditing, and production deployment.
+        </p>
       </div>
 
       {/* ── Individual service slides ── */}
       {services.map((service, i) => (
         <div
           key={i}
-          className={`service-slide ${i % 2 === 0 ? 'bg-white/75' : 'bg-slate-50/75'}`}
-          style={{ backdropFilter: 'blur(12px)' }}
+          className={`service-slide ${i % 2 === 0 ? 'bg-white' : 'bg-slate-50'}`}
         >
-          {/* Horizontal gap: generous padding on the outer container */}
           <div className="max-w-screen-xl mx-auto px-8 sm:px-12 lg:px-20">
             <div className={`grid grid-cols-1 lg:grid-cols-2 min-h-[500px] gap-12 lg:gap-20 ${!service.imageRight ? '' : ''}`}>
 
@@ -129,7 +105,7 @@ export default function Services() {
               <div className={`slide-text flex flex-col justify-center py-16 md:py-24 ${
                 !service.imageRight ? 'lg:order-2' : ''
               }`}>
-                {/* Category label only — no number */}
+                {/* Category label */}
                 <span className="font-mono text-[10px] font-semibold tracking-[0.24em] uppercase text-[#B8860B] mb-6 block">
                   {service.label}
                 </span>
@@ -157,7 +133,6 @@ export default function Services() {
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-700 hover:scale-[1.04]"
                   style={{ backgroundImage: `url('${service.image}')` }}
                 />
-                {/* Soft edge fade toward text panel */}
                 <div className={`absolute inset-0 ${
                   service.imageRight
                     ? 'bg-gradient-to-r from-white/15 via-transparent to-transparent'
