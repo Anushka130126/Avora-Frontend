@@ -43,7 +43,7 @@ const services = [
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=85&fit=crop&auto=format',
     imageRight: true,
     shortDesc: 'Multi-stage QA framework enforcing strict inter-annotator agreement metrics.',
-    posClasses: 'bottom-[8%] right-[2%] md:bottom-[12%] md:right-[10%] lg:right-[15%]',-[20%]',
+    posClasses: 'bottom-[8%] right-[2%] md:bottom-[12%] md:right-[10%] lg:right-[15%]',
   },
 ];
 
