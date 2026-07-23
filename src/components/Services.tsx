@@ -52,25 +52,25 @@ export default function Services() {
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    // Organic floating animation
+    // Organic floating animation - faster and more movement
     services.forEach((_, i) => {
       gsap.to(`.float-item-${i}`, {
-        y: i % 2 === 0 ? -20 : 20,
-        duration: 3.5 + i * 0.2,
+        y: i % 2 === 0 ? -30 : 30,
+        duration: 2.2 + i * 0.2,
         ease: 'sine.inOut',
         yoyo: true,
         repeat: -1,
       });
       gsap.to(`.float-item-${i}`, {
-        x: i % 2 === 0 ? 15 : -15,
-        duration: 4.2 + i * 0.3,
+        x: i % 2 === 0 ? 25 : -25,
+        duration: 2.6 + i * 0.3,
         ease: 'sine.inOut',
         yoyo: true,
         repeat: -1,
       });
       gsap.to(`.float-item-${i}`, {
-        rotation: i % 2 === 0 ? 5 : -5,
-        duration: 3.8 + i * 0.2,
+        rotation: i % 2 === 0 ? 8 : -8,
+        duration: 2.4 + i * 0.2,
         ease: 'sine.inOut',
         yoyo: true,
         repeat: -1,
@@ -132,7 +132,7 @@ export default function Services() {
               <span className="font-sans font-semibold text-[#1e293b] bg-[#eef6fc] px-4 py-2 rounded-2xl shadow-sm text-sm sm:text-base text-center whitespace-normal break-words max-w-[140px] md:max-w-[180px] border border-[#dbeafe] leading-tight">
                 {service.title}
               </span>
-              <div className={`absolute ${i < 2 ? 'top-full mt-4 sm:mt-6' : 'bottom-full mb-4 sm:mb-6'} w-60 sm:w-72 bg-white p-4 sm:p-5 rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus:opacity-100 group-focus:visible transition-all duration-300 z-30 pointer-events-none border border-slate-100`}>
+              <div className={`absolute ${i < 2 ? 'top-full mt-4 sm:mt-6' : 'bottom-full mb-4 sm:mb-6'} ${i % 2 === 0 ? 'left-0 sm:left-1/2 sm:-translate-x-1/2' : 'right-0 sm:right-1/2 sm:translate-x-1/2'} w-56 sm:w-72 bg-white p-4 sm:p-5 rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus:opacity-100 group-focus:visible transition-all duration-300 z-30 pointer-events-none border border-slate-100`}>
                 <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-sans">{service.shortDesc}</p>
               </div>
             </div>
