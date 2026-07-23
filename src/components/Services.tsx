@@ -17,7 +17,7 @@ const services = [
     image: '/data annotation.png',
     imageRight: false,
     shortDesc: 'Accurate and fast data labeling powered by smart tools and human experts.',
-    posClasses: 'top-[5%] left-[2%] md:top-[10%] md:left-[10%] lg:left-[15%]',
+    posClasses: 'top-[2%] left-[2%] md:top-[8%] md:left-[5%] lg:left-[10%]',
   },
   {
     title: 'Data Generation',
@@ -26,7 +26,7 @@ const services = [
     image: '/data generation.png',
     imageRight: true,
     shortDesc: 'Creating realistic artificial data when real-world data is hard to get.',
-    posClasses: 'top-[10%] right-[2%] md:top-[15%] md:right-[10%] lg:right-[15%]',
+    posClasses: 'top-[28%] right-[2%] md:top-[15%] md:right-[5%] lg:right-[10%]',
   },
   {
     title: 'AI Implementation',
@@ -35,7 +35,7 @@ const services = [
     image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1400&q=85&fit=crop&auto=format',
     imageRight: false,
     shortDesc: 'Rapidly building and launching custom AI solutions tailored to your needs.',
-    posClasses: 'bottom-[15%] left-[2%] md:bottom-[20%] md:left-[10%] lg:left-[15%]',
+    posClasses: 'bottom-[28%] left-[2%] md:bottom-[18%] md:left-[5%] lg:left-[10%]',
   },
   {
     title: 'Quality Testing and Analysis',
@@ -44,7 +44,7 @@ const services = [
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=85&fit=crop&auto=format',
     imageRight: true,
     shortDesc: 'Thorough testing to guarantee your data and models work perfectly.',
-    posClasses: 'bottom-[8%] right-[2%] md:bottom-[12%] md:right-[10%] lg:right-[15%]',
+    posClasses: 'bottom-[2%] right-[2%] md:bottom-[8%] md:right-[5%] lg:right-[10%]',
   },
 ];
 
@@ -125,8 +125,8 @@ export default function Services() {
               tabIndex={0}
               className={`absolute float-item-${i} group flex flex-col items-center cursor-pointer transition-transform duration-300 hover:!scale-110 focus:!scale-110 z-20 outline-none ${service.posClasses}`}
             >
-              <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-[2rem] overflow-hidden shadow-xl border-4 border-white mb-3 md:mb-4 bg-white">
-                <img src={service.image} alt={service.title} className="w-full h-full object-contain object-center p-1" />
+              <div className="w-32 h-20 sm:w-40 sm:h-24 md:w-48 md:h-28 rounded-2xl overflow-hidden shadow-xl border-4 border-white mb-2 md:mb-3 bg-white">
+                <img src={service.image} alt={service.title} className="w-full h-full object-cover object-center" />
               </div>
               <span className="font-sans font-semibold text-[#1e293b] bg-[#eef6fc] backdrop-blur-sm px-4 py-2 rounded-2xl shadow-sm text-sm sm:text-base text-center whitespace-normal break-words max-w-[140px] md:max-w-[180px] border border-[#dbeafe] leading-tight">
                 {service.title}

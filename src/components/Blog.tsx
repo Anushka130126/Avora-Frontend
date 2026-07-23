@@ -87,14 +87,14 @@ export default function Blog() {
             <Link
               key={index}
               href={post.href}
-              className="home-blog-item group flex flex-col sm:flex-row sm:items-center justify-between gap-5 p-6 md:p-8 bg-slate-50 border border-slate-100 hover:border-slate-200 hover:shadow-sm rounded-sm transition-all duration-200"
+              className="home-blog-item group flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 md:p-6 bg-slate-50 border border-slate-100 hover:border-slate-200 hover:shadow-sm rounded-sm transition-all duration-200"
             >
               <div className="flex flex-col sm:flex-row sm:items-center gap-5 flex-1 min-w-0">
                 <span className="font-mono text-[11px] md:text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 whitespace-nowrap shrink-0">
                   {post.category}
                 </span>
-                {/* Increased title size */}
-                <h3 className="font-sans font-medium text-xl md:text-2xl text-slate-800 group-hover:text-[#B8860B] transition-colors leading-tight">
+                {/* Adjusted title size */}
+                <h3 className="font-sans font-medium text-lg md:text-xl text-slate-800 group-hover:text-[#B8860B] transition-colors leading-tight">
                   {post.title}
                 </h3>
               </div>
