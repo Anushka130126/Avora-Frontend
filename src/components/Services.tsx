@@ -55,22 +55,22 @@ export default function Services() {
     // Organic floating animation
     services.forEach((_, i) => {
       gsap.to(`.float-item-${i}`, {
-        y: i % 2 === 0 ? -25 : 25,
-        duration: 1.2 + i * 0.2,
+        y: i % 2 === 0 ? -20 : 20,
+        duration: 3.5 + i * 0.2,
         ease: 'sine.inOut',
         yoyo: true,
         repeat: -1,
       });
       gsap.to(`.float-item-${i}`, {
         x: i % 2 === 0 ? 15 : -15,
-        duration: 1.5 + i * 0.2,
+        duration: 4.2 + i * 0.3,
         ease: 'sine.inOut',
         yoyo: true,
         repeat: -1,
       });
       gsap.to(`.float-item-${i}`, {
-        rotation: i % 2 === 0 ? 6 : -6,
-        duration: 1.3 + i * 0.2,
+        rotation: i % 2 === 0 ? 5 : -5,
+        duration: 3.8 + i * 0.2,
         ease: 'sine.inOut',
         yoyo: true,
         repeat: -1,
@@ -124,11 +124,12 @@ export default function Services() {
               key={i} 
               tabIndex={0}
               className={`absolute float-item-${i} group flex flex-col items-center cursor-pointer transition-transform duration-300 hover:!scale-110 focus:!scale-110 z-20 outline-none ${service.posClasses}`}
+              style={{ willChange: 'transform' }}
             >
-              <div className="w-32 h-20 sm:w-40 sm:h-24 md:w-48 md:h-28 rounded-2xl overflow-hidden shadow-xl border-4 border-white mb-2 md:mb-3 bg-white">
+              <div className="w-32 h-20 sm:w-40 sm:h-24 md:w-48 md:h-28 rounded-2xl overflow-hidden shadow-lg border-4 border-white mb-2 md:mb-3 bg-white">
                 <img src={service.image} alt={service.title} className="w-full h-full object-cover object-center" />
               </div>
-              <span className="font-sans font-semibold text-[#1e293b] bg-[#eef6fc] backdrop-blur-sm px-4 py-2 rounded-2xl shadow-sm text-sm sm:text-base text-center whitespace-normal break-words max-w-[140px] md:max-w-[180px] border border-[#dbeafe] leading-tight">
+              <span className="font-sans font-semibold text-[#1e293b] bg-[#eef6fc] px-4 py-2 rounded-2xl shadow-sm text-sm sm:text-base text-center whitespace-normal break-words max-w-[140px] md:max-w-[180px] border border-[#dbeafe] leading-tight">
                 {service.title}
               </span>
               <div className={`absolute ${i < 2 ? 'top-full mt-4 sm:mt-6' : 'bottom-full mb-4 sm:mb-6'} w-60 sm:w-72 bg-white p-4 sm:p-5 rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus:opacity-100 group-focus:visible transition-all duration-300 z-30 pointer-events-none border border-slate-100`}>
@@ -172,17 +173,20 @@ export default function Services() {
                   </p>
                 </div>
 
-                <div className={`slide-image relative overflow-hidden rounded-sm min-h-[320px] lg:min-h-0 ${
+                <div className={`slide-image relative overflow-hidden rounded-xl min-h-[320px] h-full w-full bg-white shadow-sm ${
                   !service.imageRight ? 'lg:order-1' : ''
                 }`}>
-                  <div
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 hover:scale-[1.04]"
-                    style={{ backgroundImage: `url('${service.image}')` }}
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className={`absolute inset-0 w-full h-full transition-transform duration-700 hover:scale-[1.03] ${
+                      i < 2 ? 'object-contain p-6 md:p-10' : 'object-cover object-center'
+                    }`}
                   />
-                  <div className={`absolute inset-0 ${
+                  <div className={`absolute inset-0 pointer-events-none ${
                     service.imageRight
-                      ? 'bg-gradient-to-r from-white/15 via-transparent to-transparent'
-                      : 'bg-gradient-to-l from-white/15 via-transparent to-transparent'
+                      ? 'bg-gradient-to-r from-slate-50/20 via-transparent to-transparent'
+                      : 'bg-gradient-to-l from-white/20 via-transparent to-transparent'
                   }`} />
                 </div>
 
