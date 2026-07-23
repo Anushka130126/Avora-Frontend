@@ -13,11 +13,10 @@ const services = [
   {
     title: 'Data Annotation and Labelling',
     desc: 'We deploy precise ontologies and high-volume labeling using modality-specific tooling and model-assisted automation — accelerating data readiness without compromising accuracy.',
-    detail: 'Model-assisted pre-labeling reduces manual overhead while structured human review cycles ensure every ontology is correctly applied at scale.',
-    image: '/data annotation.png',
+    detail: 'Model-assisted pre-labeling reduces manual overhead while structured human review cycles ensure every ontology is correctly applied at scale.',    image: '/data annotation.png',
     imageRight: false,
     shortDesc: 'Precise ontologies and high-volume labeling with expert tooling.',
-    posClasses: 'top-[10%] left-[5%] sm:top-[15%] sm:left-[15%]',
+    posClasses: 'top-[5%] left-[2%] md:top-[10%] md:left-[10%] lg:left-[15%]',
   },
   {
     title: 'Data Generation',
@@ -26,17 +25,16 @@ const services = [
     image: '/data generation.png',
     imageRight: true,
     shortDesc: 'Robust, physics-informed synthetic datasets under expert domain oversight.',
-    posClasses: 'top-[20%] right-[5%] sm:top-[20%] sm:right-[15%]',
+    posClasses: 'top-[10%] right-[2%] md:top-[15%] md:right-[10%] lg:right-[15%]',
   },
   {
-
     title: 'AI Implementation',
     desc: 'We build and launch custom AI MVPs rapidly — treating initial infrastructure as a measurable hypothesis and scaling computational resources only when commercial value is proven.',
     detail: 'Post-validation, we architect secure, interpretable AI systems with SHAP-based explainability and drift monitoring from day one. Deployments are lean, measurable, and built to scale.',
     image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1400&q=85&fit=crop&auto=format',
     imageRight: false,
     shortDesc: 'Custom AI MVPs built rapidly with secure, interpretable architecture.',
-    posClasses: 'bottom-[20%] left-[5%] sm:bottom-[20%] sm:left-[20%]',
+    posClasses: 'bottom-[15%] left-[2%] md:bottom-[20%] md:left-[10%] lg:left-[15%]',
   },
   {
     title: 'Quality Testing and Analysis',
@@ -45,7 +43,7 @@ const services = [
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=85&fit=crop&auto=format',
     imageRight: true,
     shortDesc: 'Multi-stage QA framework enforcing strict inter-annotator agreement metrics.',
-    posClasses: 'bottom-[10%] right-[5%] sm:bottom-[15%] sm:right-[20%]',
+    posClasses: 'bottom-[8%] right-[2%] md:bottom-[12%] md:right-[10%] lg:right-[15%]',-[20%]',
   },
 ];
 
@@ -53,13 +51,25 @@ export default function Services() {
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    // Intro floating animation
+    // Organic floating animation
     services.forEach((_, i) => {
       gsap.to(`.float-item-${i}`, {
-        y: i % 2 === 0 ? -20 : 20,
+        y: i % 2 === 0 ? -25 : 25,
+        duration: 3 + i * 0.4,
+        ease: 'sine.inOut',
+        yoyo: true,
+        repeat: -1,
+      });
+      gsap.to(`.float-item-${i}`, {
         x: i % 2 === 0 ? 15 : -15,
-        rotation: i % 2 === 0 ? 3 : -3,
-        duration: 3.5 + i * 0.4,
+        duration: 4 + i * 0.5,
+        ease: 'sine.inOut',
+        yoyo: true,
+        repeat: -1,
+      });
+      gsap.to(`.float-item-${i}`, {
+        rotation: i % 2 === 0 ? 6 : -6,
+        duration: 3.5 + i * 0.3,
         ease: 'sine.inOut',
         yoyo: true,
         repeat: -1,
@@ -115,9 +125,9 @@ export default function Services() {
               className={`absolute float-item-${i} group flex flex-col items-center cursor-pointer transition-transform duration-300 hover:!scale-110 focus:!scale-110 z-20 outline-none ${service.posClasses}`}
             >
               <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-[2rem] overflow-hidden shadow-xl border-4 border-white mb-3 md:mb-4">
-                <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
+                <img src={service.image} alt={service.title} className="w-full h-full object-cover object-center" />
               </div>
-              <span className="font-sans font-semibold text-[#1e293b] bg-[#eef6fc] backdrop-blur-sm px-4 py-1.5 rounded-full shadow-sm text-sm sm:text-base text-center whitespace-nowrap border border-[#dbeafe]">
+              <span className="font-sans font-semibold text-[#1e293b] bg-[#eef6fc] backdrop-blur-sm px-4 py-2 rounded-2xl shadow-sm text-sm sm:text-base text-center whitespace-normal break-words max-w-[140px] md:max-w-[180px] border border-[#dbeafe] leading-tight">
                 {service.title}
               </span>
               <div className="absolute top-full mt-3 sm:mt-4 w-60 sm:w-72 bg-white p-4 sm:p-5 rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus:opacity-100 group-focus:visible transition-all duration-300 z-30 pointer-events-none border border-slate-100">
