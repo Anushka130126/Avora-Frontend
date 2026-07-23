@@ -12,37 +12,38 @@ if (typeof window !== 'undefined') {
 const services = [
   {
     title: 'Data Annotation and Labelling',
-    desc: 'We deploy precise ontologies and high-volume labeling using modality-specific tooling and model-assisted automation — accelerating data readiness without compromising accuracy.',
-    detail: 'Model-assisted pre-labeling reduces manual overhead while structured human review cycles ensure every ontology is correctly applied at scale.',    image: '/data annotation.png',
+    desc: 'We carefully label your data so that AI models can easily understand it. Our mix of smart tools and human experts ensures high accuracy at any scale.',
+    detail: 'We use AI to speed up the first pass of labeling, and then our expert team double-checks everything to guarantee top-tier quality.',
+    image: '/data annotation.png',
     imageRight: false,
-    shortDesc: 'Precise ontologies and high-volume labeling with expert tooling.',
+    shortDesc: 'Accurate and fast data labeling powered by smart tools and human experts.',
     posClasses: 'top-[5%] left-[2%] md:top-[10%] md:left-[10%] lg:left-[15%]',
   },
   {
     title: 'Data Generation',
-    desc: 'We engineer robust, physics-informed synthetic datasets under expert domain oversight — ensuring AI models have a high-fidelity foundation even when real-world data is scarce or inaccessible.',
-    detail: 'Every synthetic dataset passes through multi-layer fidelity checks before approval. Edge-case richness and statistical diversity are built in by design, not retrofitted.',
+    desc: 'We create highly realistic artificial data for training AI when real-world data is hard to find, too expensive, or restricted by privacy rules.',
+    detail: 'Every generated dataset is rigorously tested to ensure it matches real-world scenarios, including rare edge cases that your AI needs to learn.',
     image: '/data generation.png',
     imageRight: true,
-    shortDesc: 'Robust, physics-informed synthetic datasets under expert domain oversight.',
+    shortDesc: 'Creating realistic artificial data when real-world data is hard to get.',
     posClasses: 'top-[10%] right-[2%] md:top-[15%] md:right-[10%] lg:right-[15%]',
   },
   {
     title: 'AI Implementation',
-    desc: 'We build and launch custom AI MVPs rapidly — treating initial infrastructure as a measurable hypothesis and scaling computational resources only when commercial value is proven.',
-    detail: 'Post-validation, we architect secure, interpretable AI systems with SHAP-based explainability and drift monitoring from day one. Deployments are lean, measurable, and built to scale.',
+    desc: 'We quickly build and launch custom AI solutions tailored to your business, helping you test your ideas in the real world before scaling up.',
+    detail: 'Once proven, we turn your prototype into a secure, scalable, and easy-to-understand system that continuously monitors its own performance.',
     image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1400&q=85&fit=crop&auto=format',
     imageRight: false,
-    shortDesc: 'Custom AI MVPs built rapidly with secure, interpretable architecture.',
+    shortDesc: 'Rapidly building and launching custom AI solutions tailored to your needs.',
     posClasses: 'bottom-[15%] left-[2%] md:bottom-[20%] md:left-[10%] lg:left-[15%]',
   },
   {
     title: 'Quality Testing and Analysis',
-    desc: 'Our multi-stage QA framework enforces strict inter-annotator agreement metrics. Datasets are version-controlled and treated like software releases — never shipped until they pass.',
-    detail: 'Automated agreement scoring, expert spot-checks, and adversarial edge-case stress tests run in sequence. Datasets that fall short are re-annotated, not delivered.',
+    desc: 'We thoroughly test your datasets and AI models to make sure everything works perfectly. We treat data quality with the same strict standards as software code.',
+    detail: 'Through automated checks and expert reviews, we push your systems to their limits. If something falls short, we fix it before it ever reaches you.',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=85&fit=crop&auto=format',
     imageRight: true,
-    shortDesc: 'Multi-stage QA framework enforcing strict inter-annotator agreement metrics.',
+    shortDesc: 'Thorough testing to guarantee your data and models work perfectly.',
     posClasses: 'bottom-[8%] right-[2%] md:bottom-[12%] md:right-[10%] lg:right-[15%]',
   },
 ];
@@ -55,21 +56,21 @@ export default function Services() {
     services.forEach((_, i) => {
       gsap.to(`.float-item-${i}`, {
         y: i % 2 === 0 ? -25 : 25,
-        duration: 3 + i * 0.4,
+        duration: 1.2 + i * 0.2,
         ease: 'sine.inOut',
         yoyo: true,
         repeat: -1,
       });
       gsap.to(`.float-item-${i}`, {
         x: i % 2 === 0 ? 15 : -15,
-        duration: 4 + i * 0.5,
+        duration: 1.5 + i * 0.2,
         ease: 'sine.inOut',
         yoyo: true,
         repeat: -1,
       });
       gsap.to(`.float-item-${i}`, {
         rotation: i % 2 === 0 ? 6 : -6,
-        duration: 3.5 + i * 0.3,
+        duration: 1.3 + i * 0.2,
         ease: 'sine.inOut',
         yoyo: true,
         repeat: -1,
@@ -124,13 +125,13 @@ export default function Services() {
               tabIndex={0}
               className={`absolute float-item-${i} group flex flex-col items-center cursor-pointer transition-transform duration-300 hover:!scale-110 focus:!scale-110 z-20 outline-none ${service.posClasses}`}
             >
-              <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-[2rem] overflow-hidden shadow-xl border-4 border-white mb-3 md:mb-4">
-                <img src={service.image} alt={service.title} className="w-full h-full object-cover object-center" />
+              <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-[2rem] overflow-hidden shadow-xl border-4 border-white mb-3 md:mb-4 bg-white">
+                <img src={service.image} alt={service.title} className="w-full h-full object-contain object-center p-1" />
               </div>
               <span className="font-sans font-semibold text-[#1e293b] bg-[#eef6fc] backdrop-blur-sm px-4 py-2 rounded-2xl shadow-sm text-sm sm:text-base text-center whitespace-normal break-words max-w-[140px] md:max-w-[180px] border border-[#dbeafe] leading-tight">
                 {service.title}
               </span>
-              <div className="absolute top-full mt-3 sm:mt-4 w-60 sm:w-72 bg-white p-4 sm:p-5 rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus:opacity-100 group-focus:visible transition-all duration-300 z-30 pointer-events-none border border-slate-100">
+              <div className={`absolute ${i < 2 ? 'top-full mt-4 sm:mt-6' : 'bottom-full mb-4 sm:mb-6'} w-60 sm:w-72 bg-white p-4 sm:p-5 rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus:opacity-100 group-focus:visible transition-all duration-300 z-30 pointer-events-none border border-slate-100`}>
                 <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-sans">{service.shortDesc}</p>
               </div>
             </div>
