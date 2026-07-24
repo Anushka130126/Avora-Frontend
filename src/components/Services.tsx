@@ -17,7 +17,7 @@ const services = [
     image: '/data annotation.webp',
     imageRight: false,
     shortDesc: 'Accurate and fast data labeling powered by smart tools and human experts.',
-    posClasses: 'top-[8%] left-[5%] md:top-[15%] md:left-[18%] lg:top-[15%] lg:left-[25%]',
+    posClasses: 'top-[5%] left-[2%] md:top-[10%] md:left-[5%] lg:top-[10%] lg:left-[10%]',
   },
   {
     title: 'Data Generation',
@@ -26,7 +26,7 @@ const services = [
     image: '/data generation.webp',
     imageRight: true,
     shortDesc: 'Creating realistic artificial data when real-world data is hard to get.',
-    posClasses: 'top-[8%] right-[5%] md:top-[15%] md:right-[18%] lg:top-[15%] lg:right-[25%]',
+    posClasses: 'top-[5%] right-[2%] md:top-[10%] md:right-[5%] lg:top-[10%] lg:right-[10%]',
   },
   {
     title: 'AI Implementation',
@@ -35,7 +35,7 @@ const services = [
     image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1400&q=85&fit=crop&auto=format',
     imageRight: false,
     shortDesc: 'Rapidly building and launching custom AI solutions tailored to your needs.',
-    posClasses: 'bottom-[8%] left-[5%] md:bottom-[15%] md:left-[18%] lg:bottom-[15%] lg:left-[25%]',
+    posClasses: 'bottom-[5%] left-[2%] md:bottom-[10%] md:left-[5%] lg:bottom-[10%] lg:left-[10%]',
   },
   {
     title: 'Quality Testing and Analysis',
@@ -44,7 +44,7 @@ const services = [
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=85&fit=crop&auto=format',
     imageRight: true,
     shortDesc: 'Thorough testing to guarantee your data and models work perfectly.',
-    posClasses: 'bottom-[8%] right-[5%] md:bottom-[15%] md:right-[18%] lg:bottom-[15%] lg:right-[25%]',
+    posClasses: 'bottom-[5%] right-[2%] md:bottom-[10%] md:right-[5%] lg:bottom-[10%] lg:right-[10%]',
   },
 ];
 
@@ -56,21 +56,21 @@ export default function Services() {
     // Organic floating animation - faster and more movement
     services.forEach((_, i) => {
       gsap.to(`.float-item-${i}`, {
-        y: i % 2 === 0 ? -30 : 30,
+        y: i % 2 === 0 ? -60 : 60,
         duration: 2.2 + i * 0.2,
         ease: 'sine.inOut',
         yoyo: true,
         repeat: -1,
       });
       gsap.to(`.float-item-${i}`, {
-        x: i % 2 === 0 ? 25 : -25,
+        x: i % 2 === 0 ? 50 : -50,
         duration: 2.6 + i * 0.3,
         ease: 'sine.inOut',
         yoyo: true,
         repeat: -1,
       });
       gsap.to(`.float-item-${i}`, {
-        rotation: i % 2 === 0 ? 8 : -8,
+        rotation: i % 2 === 0 ? 15 : -15,
         duration: 2.4 + i * 0.2,
         ease: 'sine.inOut',
         yoyo: true,
@@ -119,10 +119,8 @@ export default function Services() {
       {/* Intro Section */}
       <div className="relative w-full min-h-[65vh] md:min-h-[75vh] flex items-center justify-center overflow-hidden bg-slate-50 border-b border-t border-slate-200 py-16">
         <div className="text-center z-10 pointer-events-none px-4 max-w-md transition-opacity duration-300">
-          <p className="font-sans text-xl md:text-2xl text-slate-700 leading-relaxed">
-            {hoveredIndex !== null 
-              ? services[hoveredIndex].shortDesc 
-              : 'Hover over an icon to see details'}
+          <p className="font-sans text-xl md:text-2xl text-slate-700 leading-relaxed min-h-[60px] flex items-center justify-center">
+            {hoveredIndex !== null ? services[hoveredIndex].shortDesc : ''}
           </p>
         </div>
 
@@ -151,7 +149,7 @@ export default function Services() {
       </div>
 
       <div className="pt-16 md:pt-24">
-        <div className="services-heading max-w-screen-xl mx-auto px-8 sm:px-12 lg:px-20 text-center mb-8 md:mb-12">
+        <div className="services-heading max-w-screen-xl mx-auto px-8 sm:px-12 lg:px-20 text-center mb-16 md:mb-28">
           <p className="font-sans text-slate-600 text-base md:text-lg max-w-3xl mx-auto leading-[1.7]">
             We engineer AI foundations from the ground up — synthetic data, precision annotation, rigorous auditing, and production deployment.
           </p>
@@ -160,7 +158,7 @@ export default function Services() {
         {services.map((service, i) => (
           <div
             key={i}
-            className={`service-slide ${i === 0 ? 'pb-16 md:pb-24 pt-4 md:pt-6' : 'py-16 md:py-24'} ${i % 2 === 0 ? 'bg-white' : 'bg-slate-50'}`}
+            className={`service-slide ${i === 0 ? 'pb-16 md:pb-24 pt-8 md:pt-12' : 'py-16 md:py-24'} ${i % 2 === 0 ? 'bg-white' : 'bg-slate-50'}`}
           >
             <div className="max-w-screen-xl mx-auto px-8 sm:px-12 lg:px-20">
               <div className={`grid grid-cols-1 lg:grid-cols-2 min-h-[400px] gap-10 lg:gap-16`}>
