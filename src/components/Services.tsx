@@ -53,7 +53,7 @@ export default function Services() {
   const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
   const touchActive = useRef(false);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const handleOutsideClick = (e: MouseEvent | TouchEvent) => {
       const target = e.target as HTMLElement;
       if (!target.closest('.float-item')) {
