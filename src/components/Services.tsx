@@ -17,7 +17,7 @@ const services = [
     image: '/data annotation.webp',
     imageRight: false,
     shortDesc: 'Accurate and fast data labeling powered by smart tools and human experts.',
-    posClasses: 'top-[5%] left-[2%] md:top-[10%] md:left-[5%] lg:left-[10%]',
+    posClasses: 'top-[8%] left-[5%] md:top-[15%] md:left-[18%] lg:top-[15%] lg:left-[25%]',
   },
   {
     title: 'Data Generation',
@@ -26,7 +26,7 @@ const services = [
     image: '/data generation.webp',
     imageRight: true,
     shortDesc: 'Creating realistic artificial data when real-world data is hard to get.',
-    posClasses: 'top-[5%] right-[2%] md:top-[10%] md:right-[5%] lg:right-[10%]',
+    posClasses: 'top-[8%] right-[5%] md:top-[15%] md:right-[18%] lg:top-[15%] lg:right-[25%]',
   },
   {
     title: 'AI Implementation',
@@ -35,7 +35,7 @@ const services = [
     image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1400&q=85&fit=crop&auto=format',
     imageRight: false,
     shortDesc: 'Rapidly building and launching custom AI solutions tailored to your needs.',
-    posClasses: 'bottom-[5%] left-[2%] md:bottom-[10%] md:left-[5%] lg:left-[10%]',
+    posClasses: 'bottom-[8%] left-[5%] md:bottom-[15%] md:left-[18%] lg:bottom-[15%] lg:left-[25%]',
   },
   {
     title: 'Quality Testing and Analysis',
@@ -44,12 +44,13 @@ const services = [
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=85&fit=crop&auto=format',
     imageRight: true,
     shortDesc: 'Thorough testing to guarantee your data and models work perfectly.',
-    posClasses: 'bottom-[5%] right-[2%] md:bottom-[10%] md:right-[5%] lg:right-[10%]',
+    posClasses: 'bottom-[8%] right-[5%] md:bottom-[15%] md:right-[18%] lg:bottom-[15%] lg:right-[25%]',
   },
 ];
 
 export default function Services() {
   const container = useRef<HTMLDivElement>(null);
+  const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
 
   useGSAP(() => {
     // Organic floating animation - faster and more movement
@@ -105,16 +106,24 @@ export default function Services() {
   }, { scope: container });
 
   return (
-    <section id="services" ref={container} className="bg-white">
+    <section id="services" ref={container} className="bg-white pt-24 md:pt-32">
+      <div className="text-center px-4 max-w-screen-xl mx-auto mb-10">
+        <h2 
+          className="font-heading uppercase tracking-wide text-[#B8860B] leading-tight" 
+          style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}
+        >
+          Our Services
+        </h2>
+      </div>
+
       {/* Intro Section */}
-      <div className="relative w-full min-h-[70vh] md:min-h-[80vh] flex items-center justify-center overflow-hidden bg-slate-50 border-b border-slate-200 py-16">
-        <div className="text-center z-10 pointer-events-none px-4 max-w-sm mb-12">
-          <h2 
-            className="font-heading uppercase tracking-wide text-[#B8860B] leading-tight mb-4" 
-            style={{ fontSize: 'clamp(3rem, 6vw, 4.5rem)' }}
-          >
-            Our Services
-          </h2>
+      <div className="relative w-full min-h-[65vh] md:min-h-[75vh] flex items-center justify-center overflow-hidden bg-slate-50 border-b border-t border-slate-200 py-16">
+        <div className="text-center z-10 pointer-events-none px-4 max-w-md transition-opacity duration-300">
+          <p className="font-sans text-xl md:text-2xl text-slate-700 leading-relaxed">
+            {hoveredIndex !== null 
+              ? services[hoveredIndex].shortDesc 
+              : 'Hover over an icon to see details'}
+          </p>
         </div>
 
         {/* Floating Icons */}
@@ -123,18 +132,19 @@ export default function Services() {
             <div 
               key={i} 
               tabIndex={0}
+              onMouseEnter={() => setHoveredIndex(i)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              onFocus={() => setHoveredIndex(i)}
+              onBlur={() => setHoveredIndex(null)}
               className={`absolute float-item-${i} group flex flex-col items-center cursor-pointer transition-transform duration-300 hover:!scale-110 focus:!scale-110 z-20 outline-none ${service.posClasses}`}
               style={{ willChange: 'transform' }}
             >
-              <div className="w-32 h-20 sm:w-40 sm:h-24 md:w-48 md:h-28 rounded-2xl overflow-hidden shadow-lg border-4 border-white mb-2 md:mb-3 bg-white">
+              <div className="w-28 h-18 sm:w-36 sm:h-24 md:w-44 md:h-28 rounded-2xl overflow-hidden shadow-lg border-4 border-white mb-2 md:mb-3 bg-white">
                 <img src={service.image} alt={service.title} className="w-full h-full object-cover object-center" />
               </div>
-              <span className="font-sans font-semibold text-[#1e293b] bg-[#eef6fc] px-4 py-2 rounded-2xl shadow-sm text-sm sm:text-base text-center whitespace-normal break-words max-w-[140px] md:max-w-[180px] border border-[#dbeafe] leading-tight">
+              <span className="font-sans font-semibold text-[#1e293b] bg-[#eef6fc] px-4 py-2 rounded-2xl shadow-sm text-xs sm:text-sm md:text-base text-center whitespace-normal break-words max-w-[120px] sm:max-w-[150px] md:max-w-[170px] border border-[#dbeafe] leading-tight">
                 {service.title}
               </span>
-              <div className={`absolute ${i < 2 ? 'top-full mt-4 sm:mt-6' : 'bottom-full mb-4 sm:mb-6'} ${i % 2 === 0 ? 'left-0 sm:left-1/2 sm:-translate-x-1/2' : 'right-0 sm:right-1/2 sm:translate-x-1/2'} w-56 sm:w-72 bg-white p-4 sm:p-5 rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus:opacity-100 group-focus:visible transition-all duration-300 z-30 pointer-events-none border border-slate-100`}>
-                <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-sans">{service.shortDesc}</p>
-              </div>
             </div>
           ))}
         </div>
