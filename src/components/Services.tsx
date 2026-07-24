@@ -17,7 +17,7 @@ const services = [
     image: '/data annotation.webp',
     imageRight: false,
     shortDesc: 'Accurate and fast data labeling powered by smart tools and human experts.',
-    posClasses: 'top-[12%] left-[10%] md:top-[15%] md:left-[15%] lg:top-[15%] lg:left-[22%]',
+    posClasses: 'top-[12%] left-[2%] md:top-[15%] md:left-[5%] lg:top-[12%] lg:left-[10%]',
   },
   {
     title: 'Data Generation',
@@ -26,7 +26,7 @@ const services = [
     image: '/data generation.webp',
     imageRight: true,
     shortDesc: 'Creating realistic artificial data when real-world data is hard to get.',
-    posClasses: 'top-[12%] right-[10%] md:top-[15%] md:right-[15%] lg:top-[15%] lg:right-[22%]',
+    posClasses: 'top-[12%] right-[2%] md:top-[15%] md:right-[5%] lg:top-[12%] lg:right-[10%]',
   },
   {
     title: 'AI Implementation',
@@ -35,7 +35,7 @@ const services = [
     image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1400&q=85&fit=crop&auto=format',
     imageRight: false,
     shortDesc: 'Rapidly building and launching custom AI solutions tailored to your needs.',
-    posClasses: 'bottom-[12%] left-[10%] md:bottom-[15%] md:left-[15%] lg:bottom-[15%] lg:left-[22%]',
+    posClasses: 'bottom-[12%] left-[2%] md:bottom-[15%] md:left-[5%] lg:bottom-[12%] lg:left-[10%]',
   },
   {
     title: 'Quality Testing and Analysis',
@@ -44,33 +44,49 @@ const services = [
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=85&fit=crop&auto=format',
     imageRight: true,
     shortDesc: 'Thorough testing to guarantee your data and models work perfectly.',
-    posClasses: 'bottom-[12%] right-[10%] md:bottom-[15%] md:right-[15%] lg:bottom-[15%] lg:right-[22%]',
+    posClasses: 'bottom-[12%] right-[2%] md:bottom-[15%] md:right-[5%] lg:bottom-[12%] lg:right-[10%]',
   },
 ];
 
 export default function Services() {
   const container = useRef<HTMLDivElement>(null);
   const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
+  const touchActive = useRef(false);
+
+  useEffect(() => {
+    const handleOutsideClick = (e: MouseEvent | TouchEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest('.float-item')) {
+        setHoveredIndex(null);
+      }
+    };
+    document.addEventListener('mousedown', handleOutsideClick);
+    document.addEventListener('touchstart', handleOutsideClick, { passive: true });
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+      document.removeEventListener('touchstart', handleOutsideClick);
+    };
+  }, []);
 
   useGSAP(() => {
-    // Organic floating animation - faster and more movement
+    // Organic floating animation - balanced for all screen sizes
     services.forEach((_, i) => {
       gsap.to(`.float-item-${i}`, {
-        y: i % 2 === 0 ? -60 : 60,
+        y: i % 2 === 0 ? -25 : 25,
         duration: 2.2 + i * 0.2,
         ease: 'sine.inOut',
         yoyo: true,
         repeat: -1,
       });
       gsap.to(`.float-item-${i}`, {
-        x: i % 2 === 0 ? 50 : -50,
+        x: i % 2 === 0 ? 20 : -20,
         duration: 2.6 + i * 0.3,
         ease: 'sine.inOut',
         yoyo: true,
         repeat: -1,
       });
       gsap.to(`.float-item-${i}`, {
-        rotation: i % 2 === 0 ? 15 : -15,
+        rotation: i % 2 === 0 ? 8 : -8,
         duration: 2.4 + i * 0.2,
         ease: 'sine.inOut',
         yoyo: true,
@@ -118,8 +134,8 @@ export default function Services() {
 
       {/* Intro Section */}
       <div className="relative w-full min-h-[65vh] md:min-h-[75vh] flex items-center justify-center overflow-hidden bg-white py-16">
-        <div className="text-center z-10 pointer-events-none px-4 max-w-md transition-opacity duration-300">
-          <p className="font-sans text-xl md:text-2xl text-slate-700 leading-relaxed min-h-[60px] flex items-center justify-center">
+        <div className="text-center z-10 pointer-events-none px-4 max-w-[240px] sm:max-w-xs md:max-w-sm lg:max-w-lg transition-opacity duration-300">
+          <p className="font-sans text-lg sm:text-xl md:text-2xl text-slate-700 leading-relaxed min-h-[60px] flex items-center justify-center">
             {hoveredIndex !== null ? services[hoveredIndex].shortDesc : ''}
           </p>
         </div>
@@ -130,18 +146,22 @@ export default function Services() {
             <div 
               key={i} 
               tabIndex={0}
-              onMouseEnter={() => setHoveredIndex(i)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              onFocus={() => setHoveredIndex(i)}
-              onBlur={() => setHoveredIndex(null)}
-              onClick={() => setHoveredIndex(hoveredIndex === i ? null : i)}
-              className={`absolute float-item-${i} group flex flex-col items-center cursor-pointer transition-transform duration-300 hover:!scale-110 focus:!scale-110 z-20 outline-none ${service.posClasses}`}
+              onTouchStart={() => { touchActive.current = true; }}
+              onMouseEnter={() => { if (!touchActive.current) setHoveredIndex(i); }}
+              onMouseLeave={() => { if (!touchActive.current) setHoveredIndex(null); }}
+              onClick={(e) => {
+                e.stopPropagation();
+                if (touchActive.current) {
+                  setHoveredIndex(hoveredIndex === i ? null : i);
+                }
+              }}
+              className={`absolute float-item float-item-${i} group flex flex-col items-center cursor-pointer transition-transform duration-300 hover:!scale-110 focus:!scale-110 z-20 outline-none ${service.posClasses}`}
               style={{ willChange: 'transform' }}
             >
-              <div className="w-28 h-18 sm:w-36 sm:h-24 md:w-44 md:h-28 rounded-2xl overflow-hidden shadow-lg border-4 border-white mb-2 md:mb-3 bg-white">
+              <div className="w-24 h-16 sm:w-32 sm:h-20 md:w-40 md:h-24 lg:w-44 lg:h-28 rounded-2xl overflow-hidden shadow-lg border-2 md:border-4 border-white mb-2 md:mb-3 bg-white">
                 <img src={service.image} alt={service.title} className="w-full h-full object-cover object-center" />
               </div>
-              <span className="font-sans font-semibold text-[#1e293b] bg-white px-4 py-2 rounded-2xl shadow-md text-xs sm:text-sm md:text-base text-center whitespace-normal break-words max-w-[120px] sm:max-w-[150px] md:max-w-[170px] border border-slate-100 leading-tight">
+              <span className="font-sans font-semibold text-[#1e293b] bg-white px-2 py-1 sm:px-3 sm:py-2 rounded-2xl shadow-md text-[10px] sm:text-xs md:text-sm lg:text-base text-center whitespace-normal break-words max-w-[100px] sm:max-w-[130px] md:max-w-[160px] border border-slate-100 leading-tight">
                 {service.title}
               </span>
             </div>
