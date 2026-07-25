@@ -30,7 +30,7 @@ export default function TermsPage() {
           Back to home
         </Link>
 
-        <h1 className="text-4xl md:text-5xl font-heading font-bold text-[var(--foreground)] mb-3">
+        <h1 className="text-4xl md:text-5xl font-heading font-bold tracking-wide text-[var(--foreground)] mb-3">
           Terms of Service
         </h1>
         <p className="text-sm text-[var(--foreground-muted)] mb-12">
@@ -44,7 +44,7 @@ export default function TermsPage() {
 
         <div className="space-y-8 text-[var(--foreground)]">
           <section>
-            <h2 className="text-xl font-heading font-semibold text-[var(--foreground)] mb-3">
+            <h2 className="text-xl font-heading font-semibold tracking-wide text-[var(--foreground)] mb-3">
               1. Services
             </h2>
             <p className="text-[15px] text-[var(--foreground-muted)] leading-relaxed">
@@ -55,7 +55,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-heading font-semibold text-[var(--foreground)] mb-3">
+            <h2 className="text-xl font-heading font-semibold tracking-wide text-[var(--foreground)] mb-3">
               2. Website use
             </h2>
             <p className="text-[15px] text-[var(--foreground-muted)] leading-relaxed">
@@ -66,7 +66,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-heading font-semibold text-[var(--foreground)] mb-3">
+            <h2 className="text-xl font-heading font-semibold tracking-wide text-[var(--foreground)] mb-3">
               3. Contact form
             </h2>
             <p className="text-[15px] text-[var(--foreground-muted)] leading-relaxed">
@@ -77,7 +77,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-heading font-semibold text-[var(--foreground)] mb-3">
+            <h2 className="text-xl font-heading font-semibold tracking-wide text-[var(--foreground)] mb-3">
               4. Intellectual property
             </h2>
             <p className="text-[15px] text-[var(--foreground-muted)] leading-relaxed">
@@ -88,7 +88,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-heading font-semibold text-[var(--foreground)] mb-3">
+            <h2 className="text-xl font-heading font-semibold tracking-wide text-[var(--foreground)] mb-3">
               5. Limitation of liability
             </h2>
             <p className="text-[15px] text-[var(--foreground-muted)] leading-relaxed">
@@ -99,7 +99,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-heading font-semibold text-[var(--foreground)] mb-3">
+            <h2 className="text-xl font-heading font-semibold tracking-wide text-[var(--foreground)] mb-3">
               6. Governing law
             </h2>
             <p className="text-[15px] text-[var(--foreground-muted)] leading-relaxed">
@@ -109,7 +109,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-heading font-semibold text-[var(--foreground)] mb-3">
+            <h2 className="text-xl font-heading font-semibold tracking-wide text-[var(--foreground)] mb-3">
               7. Contact
             </h2>
             <p className="text-[15px] text-[var(--foreground-muted)] leading-relaxed">
