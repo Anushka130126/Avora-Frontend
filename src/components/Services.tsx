@@ -146,12 +146,12 @@ export default function Services() {
                 <div className="flip-card-front absolute inset-0 w-full h-full rounded-2xl overflow-hidden bg-white">
                   <img src={service.image} alt={service.title} className="w-full h-full object-cover object-center" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6 md:p-8">
-                    <h3 className="text-white font-heading text-xl md:text-2xl font-bold drop-shadow-lg">{service.title}</h3>
+                    <h3 className="text-white font-heading text-xl md:text-2xl font-bold uppercase tracking-widest drop-shadow-lg">{service.title}</h3>
                   </div>
                 </div>
                 {/* Back */}
                 <div className="flip-card-back absolute inset-0 w-full h-full bg-slate-50 rounded-2xl border border-slate-200 p-6 md:p-8 flex flex-col items-center justify-center text-center">
-                  <h3 className="font-heading font-bold text-xl md:text-2xl text-[#B8860B] mb-4">{service.title}</h3>
+                  <h3 className="font-heading font-bold uppercase tracking-widest text-xl md:text-2xl text-[#B8860B] mb-4">{service.title}</h3>
                   <p className="font-sans text-slate-700 text-sm md:text-base leading-relaxed">{service.desc}</p>
                 </div>
               </div>
