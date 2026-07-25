@@ -56,7 +56,7 @@ export default function Services() {
   React.useEffect(() => {
     const handleOutsideClick = (e: MouseEvent | TouchEvent) => {
       const target = e.target as HTMLElement;
-      if (!target.closest('.float-item')) {
+      if (!target.closest('.flip-card-container')) {
         setHoveredIndex(null);
       }
     };
@@ -69,31 +69,6 @@ export default function Services() {
   }, []);
 
   useGSAP(() => {
-    // Organic floating animation - balanced for all screen sizes
-    services.forEach((_, i) => {
-      gsap.to(`.float-item-${i}`, {
-        y: i % 2 === 0 ? -25 : 25,
-        duration: 2.2 + i * 0.2,
-        ease: 'sine.inOut',
-        yoyo: true,
-        repeat: -1,
-      });
-      gsap.to(`.float-item-${i}`, {
-        x: i % 2 === 0 ? 20 : -20,
-        duration: 2.6 + i * 0.3,
-        ease: 'sine.inOut',
-        yoyo: true,
-        repeat: -1,
-      });
-      gsap.to(`.float-item-${i}`, {
-        rotation: i % 2 === 0 ? 8 : -8,
-        duration: 2.4 + i * 0.2,
-        ease: 'sine.inOut',
-        yoyo: true,
-        repeat: -1,
-      });
-    });
-
     gsap.fromTo('.services-heading',
       { opacity: 0, y: 20 },
       {
@@ -132,38 +107,54 @@ export default function Services() {
         </h2>
       </div>
 
-      {/* Intro Section */}
-      <div className="relative w-full min-h-[65vh] md:min-h-[75vh] flex items-center justify-center overflow-hidden bg-white py-16">
-        <div className="text-center z-10 pointer-events-none px-4 max-w-[240px] sm:max-w-xs md:max-w-sm lg:max-w-lg transition-opacity duration-300">
-          <p className="font-sans text-lg sm:text-xl md:text-2xl text-slate-700 leading-relaxed min-h-[60px] flex items-center justify-center">
-            {hoveredIndex !== null ? services[hoveredIndex].shortDesc : ''}
-          </p>
-        </div>
+      <style dangerouslySetInnerHTML={{__html: `
+        .flip-card-inner {
+          transition: transform 0.6s;
+          transform-style: preserve-3d;
+        }
+        @media (hover: hover) {
+          .flip-card-container:hover .flip-card-inner {
+            transform: rotateY(180deg);
+          }
+        }
+        .flip-card-front, .flip-card-back {
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+        }
+        .flip-card-back {
+          transform: rotateY(180deg);
+        }
+      `}} />
 
-        {/* Floating Icons */}
-        <div className="absolute inset-0 max-w-screen-xl mx-auto">
+      {/* Flashcards Section */}
+      <div className="w-full bg-white pb-16 pt-8 px-4">
+        <div className="max-w-screen-lg mx-auto grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
           {services.map((service, i) => (
             <div 
-              key={i} 
-              tabIndex={0}
-              onTouchStart={() => { touchActive.current = true; }}
-              onMouseEnter={() => { if (!touchActive.current) setHoveredIndex(i); }}
-              onMouseLeave={() => { if (!touchActive.current) setHoveredIndex(null); }}
-              onClick={(e) => {
-                e.stopPropagation();
-                if (touchActive.current) {
-                  setHoveredIndex(hoveredIndex === i ? null : i);
-                }
-              }}
-              className={`absolute float-item float-item-${i} group flex flex-col items-center cursor-pointer transition-transform duration-300 hover:!scale-110 focus:!scale-110 z-20 outline-none ${service.posClasses}`}
-              style={{ willChange: 'transform' }}
+              key={i}
+              className="flip-card-container relative w-full aspect-square max-w-[400px] mx-auto cursor-pointer"
+              style={{ perspective: '1000px' }}
+              onClick={() => setHoveredIndex(hoveredIndex === i ? null : i)}
             >
-              <div className="w-24 h-16 sm:w-32 sm:h-20 md:w-40 md:h-24 lg:w-44 lg:h-28 rounded-2xl overflow-hidden shadow-lg border-2 md:border-4 border-white mb-2 md:mb-3 bg-white">
-                <img src={service.image} alt={service.title} className="w-full h-full object-cover object-center" />
+              <div 
+                className="flip-card-inner w-full h-full relative rounded-2xl shadow-xl"
+                style={{
+                  transform: hoveredIndex === i ? 'rotateY(180deg)' : undefined
+                }}
+              >
+                {/* Front */}
+                <div className="flip-card-front absolute inset-0 w-full h-full rounded-2xl overflow-hidden bg-white">
+                  <img src={service.image} alt={service.title} className="w-full h-full object-cover object-center" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6 md:p-8">
+                    <h3 className="text-white font-heading text-xl md:text-2xl font-bold drop-shadow-lg">{service.title}</h3>
+                  </div>
+                </div>
+                {/* Back */}
+                <div className="flip-card-back absolute inset-0 w-full h-full bg-slate-50 rounded-2xl border border-slate-200 p-6 md:p-8 flex flex-col items-center justify-center text-center">
+                  <h3 className="font-heading font-bold text-xl md:text-2xl text-[#B8860B] mb-4">{service.title}</h3>
+                  <p className="font-sans text-slate-700 text-sm md:text-base leading-relaxed">{service.desc}</p>
+                </div>
               </div>
-              <span className="font-sans font-semibold text-[#1e293b] bg-white px-2 py-1 sm:px-3 sm:py-2 rounded-2xl shadow-md text-[10px] sm:text-xs md:text-sm lg:text-base text-center whitespace-normal break-words max-w-[100px] sm:max-w-[130px] md:max-w-[160px] border border-slate-100 leading-tight">
-                {service.title}
-              </span>
             </div>
           ))}
         </div>
