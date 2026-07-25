@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "Avora Ventures",
   description: "Data generation, annotation, labeling, quality auditing, and AI implementation pipelines.",
-  url: "https://www.avoraventure.com",
+  url: "https://github.com/Nutricalboii/Avora",
   ogImage: "/og-image.png",
   links: {
     github: "https://github.com/Nutricalboii/Avora",

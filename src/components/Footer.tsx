@@ -84,6 +84,16 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <a
+                  href="https://github.com/Nutricalboii/Avora"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[15px] text-[var(--foreground)] hover:text-[#B8860B] transition-colors duration-200"
+                >
+                  GitHub
+                </a>
+              </li>
+              <li>
                 <button
                   onClick={() => scrollTo('contact')}
                   className="text-[15px] text-[var(--foreground)] hover:text-[#B8860B] transition-colors duration-200 text-left"
