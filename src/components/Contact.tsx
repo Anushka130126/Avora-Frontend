@@ -77,25 +77,25 @@ export default function Contact() {
 
   return (
     // Removed border and changed layout to match Insights
-    <section id="contact" className="py-24 md:py-32 relative overflow-hidden" style={{ backgroundColor: 'rgba(255,255,255,0.65)', backdropFilter: 'blur(16px)' }}>
-      <div className="max-w-4xl mx-auto px-6 sm:px-10 lg:px-12 relative z-10">
+    <section id="contact" className="py-16 sm:py-24 md:py-32 relative overflow-hidden" style={{ backgroundColor: 'rgba(255,255,255,0.65)', backdropFilter: 'blur(16px)' }}>
+      <div className="max-w-4xl mx-auto px-5 sm:px-8 md:px-10 lg:px-12 relative z-10">
         
         <div
           ref={ref}
-          className={`transition-all duration-1000 text-center mb-16 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+          className={`transition-all duration-1000 text-center mb-10 sm:mb-14 md:mb-16 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
         >
           {/* Big Gold Heading */}
           <h2 
-            className="font-heading uppercase tracking-wide text-[#B8860B] leading-tight mb-4"
-            style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}
+            className="font-heading uppercase tracking-wide text-[#B8860B] leading-tight mb-3 sm:mb-4"
+            style={{ fontSize: 'clamp(1.75rem, 4vw, 3rem)' }}
           >
             Build With Us
           </h2>
           {/* Small Black Subheading */}
-          <span className="font-mono text-sm md:text-base font-bold uppercase tracking-[0.2em] text-slate-900 mb-6 block">
+          <span className="font-mono text-xs sm:text-sm md:text-base font-bold uppercase tracking-[0.2em] text-slate-900 mb-4 sm:mb-6 block">
             Partner Inquiries
           </span>
-          <p className="font-sans text-slate-600 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
+          <p className="font-sans text-slate-600 text-base sm:text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
             If you are looking to deploy commercial discipline, advanced technical execution, and lean operational structures to a high-potential market gap, let's connect.
           </p>
         </div>

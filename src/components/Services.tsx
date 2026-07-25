@@ -127,12 +127,12 @@ export default function Services() {
       `}} />
 
       {/* Flashcards Section */}
-      <div className="w-full bg-white pb-16 pt-8 px-4">
-        <div className="max-w-screen-lg mx-auto grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
+      <div className="w-full bg-white pb-12 sm:pb-16 pt-6 sm:pt-8 px-4 sm:px-6 md:px-8">
+        <div className="max-w-screen-lg mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12">
           {services.map((service, i) => (
             <div 
               key={i}
-              className="flip-card-container relative w-full aspect-square max-w-[400px] mx-auto cursor-pointer"
+              className="flip-card-container relative w-full aspect-[4/3] sm:aspect-square max-w-[360px] sm:max-w-[400px] mx-auto cursor-pointer"
               style={{ perspective: '1000px' }}
               onClick={() => setHoveredIndex(hoveredIndex === i ? null : i)}
             >
@@ -145,14 +145,14 @@ export default function Services() {
                 {/* Front */}
                 <div className="flip-card-front absolute inset-0 w-full h-full rounded-2xl overflow-hidden bg-white">
                   <img src={service.image} alt={service.title} className="w-full h-full object-cover object-center" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6 md:p-8">
-                    <h3 className="text-white font-heading text-xl md:text-2xl font-bold uppercase tracking-widest drop-shadow-lg">{service.title}</h3>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent flex items-end p-5 sm:p-6 md:p-8">
+                    <h3 className="text-white font-heading text-lg sm:text-xl md:text-2xl font-bold uppercase tracking-widest drop-shadow-lg">{service.title}</h3>
                   </div>
                 </div>
                 {/* Back */}
-                <div className="flip-card-back absolute inset-0 w-full h-full bg-slate-50 rounded-2xl border border-slate-200 p-6 md:p-8 flex flex-col items-center justify-center text-center">
-                  <h3 className="font-heading font-bold uppercase tracking-widest text-xl md:text-2xl text-[#B8860B] mb-4">{service.title}</h3>
-                  <p className="font-sans text-slate-700 text-sm md:text-base leading-relaxed">{service.desc}</p>
+                <div className="flip-card-back absolute inset-0 w-full h-full bg-slate-50 rounded-2xl border border-slate-200 p-5 sm:p-6 md:p-8 flex flex-col items-center justify-center text-center">
+                  <h3 className="font-heading font-bold uppercase tracking-widest text-lg sm:text-xl md:text-2xl text-[#B8860B] mb-3 sm:mb-4">{service.title}</h3>
+                  <p className="font-sans text-slate-700 text-xs sm:text-sm md:text-base leading-relaxed">{service.desc}</p>
                 </div>
               </div>
             </div>
@@ -160,9 +160,9 @@ export default function Services() {
         </div>
       </div>
 
-      <div className="pt-16 md:pt-24">
-        <div className="services-heading max-w-screen-xl mx-auto px-8 sm:px-12 lg:px-20 text-center mb-12 md:mb-20">
-          <p className="font-sans text-slate-600 text-base md:text-lg max-w-3xl mx-auto leading-[1.7]">
+      <div className="pt-12 sm:pt-16 md:pt-24">
+        <div className="services-heading max-w-screen-xl mx-auto px-5 sm:px-8 md:px-12 lg:px-20 text-center mb-10 sm:mb-14 md:mb-20">
+          <p className="font-sans text-slate-600 text-sm sm:text-base md:text-lg max-w-3xl mx-auto leading-relaxed sm:leading-[1.7]">
             We engineer AI foundations from the ground up — synthetic data, precision annotation, rigorous auditing, and production deployment.
           </p>
         </div>
@@ -170,30 +170,30 @@ export default function Services() {
         {services.map((service, i) => (
           <div
             key={i}
-            className={`service-slide ${i === 0 ? 'pb-16 md:pb-24 pt-6 md:pt-10' : 'py-16 md:py-24'} ${i % 2 === 0 ? 'bg-white' : 'bg-slate-50'}`}
+            className={`service-slide ${i === 0 ? 'pb-12 sm:pb-16 md:pb-24 pt-4 sm:pt-6 md:pt-10' : 'py-12 sm:py-16 md:py-24'} ${i % 2 === 0 ? 'bg-white' : 'bg-slate-50'}`}
           >
-            <div className="max-w-screen-xl mx-auto px-8 sm:px-12 lg:px-20">
-              <div className={`grid grid-cols-1 lg:grid-cols-2 min-h-[400px] gap-10 lg:gap-16`}>
+            <div className="max-w-screen-xl mx-auto px-5 sm:px-8 md:px-12 lg:px-20">
+              <div className={`grid grid-cols-1 lg:grid-cols-2 min-h-[300px] sm:min-h-[360px] lg:min-h-[400px] gap-8 sm:gap-10 lg:gap-16`}>
 
                 <div className={`slide-text flex flex-col justify-center ${
                   !service.imageRight ? 'lg:order-2' : ''
                 }`}>
                   <h3
-                    className="font-heading uppercase tracking-wide text-[#B8860B] leading-[1.05] mb-5"
-                    style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)' }}
+                    className="font-heading uppercase tracking-wide text-[#B8860B] leading-[1.05] mb-4 sm:mb-5"
+                    style={{ fontSize: 'clamp(1.5rem, 3.5vw, 2.5rem)' }}
                   >
                     {service.title}
                   </h3>
 
-                  <p className="font-sans text-slate-700 text-base md:text-lg leading-[1.85] mb-5">
+                  <p className="font-sans text-slate-700 text-base md:text-lg leading-relaxed sm:leading-[1.85] mb-3 sm:mb-5">
                     {service.desc}
                   </p>
-                  <p className="font-sans text-slate-500 text-sm md:text-base leading-[1.85]">
+                  <p className="font-sans text-slate-500 text-sm md:text-base leading-relaxed sm:leading-[1.85]">
                     {service.detail}
                   </p>
                 </div>
 
-                <div className={`slide-image relative overflow-hidden rounded-xl min-h-[320px] h-full w-full bg-white shadow-sm ${
+                <div className={`slide-image relative overflow-hidden rounded-xl min-h-[260px] sm:min-h-[320px] h-full w-full bg-white shadow-sm ${
                   !service.imageRight ? 'lg:order-1' : ''
                 }`}>
                   <img

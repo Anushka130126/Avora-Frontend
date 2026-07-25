@@ -109,37 +109,46 @@ export function SpotlightNav() {
 
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute top-full left-4 right-4 mt-2 px-4 pt-2 pb-6 glass-panel-strong rounded-2xl z-40 md:hidden"
-          >
-            <div className="flex flex-col gap-2 p-4">
-              {navItems.map((item) => {
-                const isHash = item.href.startsWith('#');
-                const itemHref = isHash && pathname !== '/home' ? `/home${item.href}` : item.href;
-                return (
-                  <Link
-                    key={item.name}
-                    href={itemHref}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="text-base font-medium text-[var(--foreground)] hover:text-[var(--accent)] transition-colors py-3 border-b border-[var(--border)]"
-                  >
-                    {item.name}
-                  </Link>
-                );
-              })}
-              <Link
-                href={pathname === '/home' ? '#contact' : '/home#contact'}
-                onClick={() => setMobileMenuOpen(false)}
-                className="btn-primary w-full mt-3 py-3"
-              >
-                Partner with us
-              </Link>
-            </div>
-          </motion.div>
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMobileMenuOpen(false)}
+              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-30 md:hidden"
+            />
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute top-full left-4 right-4 mt-2 px-4 pt-2 pb-6 glass-panel-strong rounded-2xl z-40 md:hidden shadow-2xl"
+            >
+              <div className="flex flex-col gap-2 p-4">
+                {navItems.map((item) => {
+                  const isHash = item.href.startsWith('#');
+                  const itemHref = isHash && pathname !== '/home' ? `/home${item.href}` : item.href;
+                  return (
+                    <Link
+                      key={item.name}
+                      href={itemHref}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="text-base font-medium text-[var(--foreground)] hover:text-[#B8860B] transition-colors py-3 border-b border-[var(--border)]"
+                    >
+                      {item.name}
+                    </Link>
+                  );
+                })}
+                <Link
+                  href={pathname === '/home' ? '#contact' : '/home#contact'}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="btn-primary w-full mt-3 py-3"
+                >
+                  Partner with us
+                </Link>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>
