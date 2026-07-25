@@ -196,10 +196,10 @@ export default function Contact() {
                     style={selectStyle}
                   >
                     <option value="">Select a focus area</option>
+                    <option value="data-annotation">Data Annotation & Labelling</option>
                     <option value="data-generation">Data Generation</option>
-                    <option value="data-annotation">Data Annotation</option>
-                    <option value="data-auditing">Data Auditing & QA</option>
                     <option value="ai-implementation">AI Implementation</option>
+                    <option value="quality-testing">Quality Testing & Analysis</option>
                   </select>
                 </div>
 
