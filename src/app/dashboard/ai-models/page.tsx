@@ -1,4 +1,4 @@
-﻿import { getAiModels } from '@/actions/ai.actions';
+import { getAiModels } from '@/actions/ai.actions';
 import { getProjects } from '@/actions/project.actions';
 import AiModelModal from '@/components/dashboard/AiModelModal';
 

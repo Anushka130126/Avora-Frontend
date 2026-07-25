@@ -1,4 +1,4 @@
-﻿import { getVentures } from '@/actions/venture.actions';
+import { getVentures } from '@/actions/venture.actions';
 import VentureModal from '@/components/dashboard/VentureModal';
 import Link from 'next/link';
 

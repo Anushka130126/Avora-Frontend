@@ -1,4 +1,4 @@
-﻿import Link from 'next/link';
+import Link from 'next/link';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -11,7 +11,7 @@ export default function PrivacyPage() {
     <div className="pt-36 pb-24 min-h-screen bg-[var(--background)]">
       <div className="max-w-3xl mx-auto px-6 sm:px-8 lg:px-12">
         <Link
-          href="/"
+          href="/home"
           className="group inline-flex items-center gap-2 text-sm font-semibold text-[var(--foreground-muted)] hover:text-[var(--accent)] transition-colors mb-10"
         >
           <svg
@@ -30,7 +30,7 @@ export default function PrivacyPage() {
           Back to home
         </Link>
 
-        <h1 className="text-4xl md:text-5xl font-heading font-bold text-[var(--foreground)] mb-3">
+        <h1 className="text-4xl md:text-5xl font-heading font-bold tracking-wide text-[var(--foreground)] mb-3">
           Privacy Policy
         </h1>
         <p className="text-sm text-[var(--foreground-muted)] mb-12">
@@ -44,7 +44,7 @@ export default function PrivacyPage() {
 
         <div className="space-y-8 text-[var(--foreground)]">
           <section>
-            <h2 className="text-xl font-heading font-semibold text-[var(--foreground)] mb-3">
+            <h2 className="text-xl font-heading font-semibold tracking-wide text-[var(--foreground)] mb-3">
               1. Information we collect
             </h2>
             <p className="text-[15px] text-[var(--foreground-muted)] leading-relaxed">
@@ -55,7 +55,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-heading font-semibold text-[var(--foreground)] mb-3">
+            <h2 className="text-xl font-heading font-semibold tracking-wide text-[var(--foreground)] mb-3">
               2. How we use your information
             </h2>
             <p className="text-[15px] text-[var(--foreground-muted)] leading-relaxed">
@@ -66,7 +66,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-heading font-semibold text-[var(--foreground)] mb-3">
+            <h2 className="text-xl font-heading font-semibold tracking-wide text-[var(--foreground)] mb-3">
               3. Data storage
             </h2>
             <p className="text-[15px] text-[var(--foreground-muted)] leading-relaxed">
@@ -76,7 +76,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-heading font-semibold text-[var(--foreground)] mb-3">
+            <h2 className="text-xl font-heading font-semibold tracking-wide text-[var(--foreground)] mb-3">
               4. Cookies
             </h2>
             <p className="text-[15px] text-[var(--foreground-muted)] leading-relaxed">
@@ -86,7 +86,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-heading font-semibold text-[var(--foreground)] mb-3">
+            <h2 className="text-xl font-heading font-semibold tracking-wide text-[var(--foreground)] mb-3">
               5. Your rights
             </h2>
             <p className="text-[15px] text-[var(--foreground-muted)] leading-relaxed">
@@ -103,7 +103,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-heading font-semibold text-[var(--foreground)] mb-3">
+            <h2 className="text-xl font-heading font-semibold tracking-wide text-[var(--foreground)] mb-3">
               6. Analytics
             </h2>
             <p className="text-[15px] text-[var(--foreground-muted)] leading-relaxed">
@@ -113,7 +113,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-heading font-semibold text-[var(--foreground)] mb-3">
+            <h2 className="text-xl font-heading font-semibold tracking-wide text-[var(--foreground)] mb-3">
               7. Contact
             </h2>
             <p className="text-[15px] text-[var(--foreground-muted)] leading-relaxed">

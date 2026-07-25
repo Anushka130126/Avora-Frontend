@@ -1,4 +1,4 @@
-﻿import { getVentureById } from '@/actions/venture.actions';
+import { getVentureById } from '@/actions/venture.actions';
 import { notFound } from 'next/navigation';
 import CapTable from '@/components/dashboard/CapTable';
 import Link from 'next/link';
