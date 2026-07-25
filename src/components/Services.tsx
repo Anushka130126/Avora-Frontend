@@ -14,7 +14,7 @@ const services = [
     title: 'Data Annotation and Labelling',
     desc: 'We carefully label your data so that AI models can easily understand it. Our mix of smart tools and human experts ensures high accuracy at any scale.',
     detail: 'We use AI to speed up the first pass of labeling, and then our expert team double-checks everything to guarantee top-tier quality.',
-    image: '/data annotation.webp',
+    image: '/data annot.webp',
     imageRight: false,
     shortDesc: 'Accurate and fast data labeling powered by smart tools and human experts.',
     posClasses: 'top-[12%] left-[2%] md:top-[15%] md:left-[5%] lg:top-[12%] lg:left-[10%]',
