@@ -10,7 +10,7 @@ const authMiddleware = withAuth({
 
 export default async function middleware(request: NextRequest, event: NextFetchEvent) {
   if (request.nextUrl.pathname === '/') {
-    return NextResponse.redirect(new URL('/intro', request.url));
+    return NextResponse.redirect(new URL('/home', request.url));
   }
   
   if (request.nextUrl.pathname.startsWith('/dashboard')) {

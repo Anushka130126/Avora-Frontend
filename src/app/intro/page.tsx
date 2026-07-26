@@ -208,10 +208,3 @@ export default function IntroPage() {
     </AnimatePresence>
   );
 }
-
-
-
-
-
-
-
