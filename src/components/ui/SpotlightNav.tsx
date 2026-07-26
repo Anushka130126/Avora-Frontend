@@ -51,7 +51,7 @@ export function SpotlightNav() {
             <Link href="/" aria-label="Avora Ventures" className="block">
               <Logo className={cn(
                 "w-auto transition-all duration-500",
-                isScrolled ? "h-8 md:h-9" : "h-12 md:h-14",
+                isScrolled ? "h-8 md:h-9" : "h-14 md:h-16",
                 logoClass
               )} />
             </Link>
