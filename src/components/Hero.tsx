@@ -21,7 +21,7 @@ export default function Hero() {
   return (
     <section
       ref={container}
-      className="relative min-h-[90vh] md:min-h-[85vh] lg:min-h-screen flex flex-col justify-center lg:justify-end overflow-hidden bg-black py-16 sm:py-20 md:py-24 lg:py-0"
+      className="relative min-h-[100dvh] flex flex-col justify-center lg:justify-end overflow-hidden bg-black py-16 sm:py-20 md:py-24 lg:py-0"
     >
       {/* Background image container rotated 90deg to landscape */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-black">
