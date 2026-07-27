@@ -43,10 +43,10 @@ export default function Hero() {
             willChange: 'transform, opacity',
           }}
         >
-          Scale Your<br />
-          <span className="text-[#f59e0b]">AI Vision</span><br />
-          With Precision<br />
-          And Fidelity.
+          Deploying<br />
+          <span className="text-[#f59e0b]">intelligent</span><br />
+          infrastructure<br />
+          at scale.
         </h1>
 
         {/* Sleek caption on the bottom */}
