@@ -1,0 +1,73 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-sans); }
+.wrap { padding: 4px 0 24px; }
+.section-title { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin: 28px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+.issue { display: flex; gap: 12px; align-items: flex-start; padding: 10px 12px; border-radius: 8px; margin-bottom: 6px; background: var(--surface-1); border: 1px solid var(--border); }
+.issue:hover { border-color: var(--border-strong); }
+.badge { display: inline-flex; align-items: center; justify-content: center; border-radius: 4px; font-size: 10px; font-weight: 500; padding: 2px 7px; flex-shrink: 0; margin-top: 2px; min-width: 56px; text-align: center; }
+.badge.crit { background: #FCEBEB; color: #A32D2D; }
+.badge.high { background: #FAEEDA; color: #633806; }
+.badge.med  { background: #EAF3DE; color: #27500A; }
+.badge.info { background: #E6F1FB; color: #0C447C; }
+.issue-body { flex: 1; min-width: 0; }
+.issue-title { font-size: 13px; font-weight: 500; color: var(--text-primary); margin-bottom: 2px; }
+.issue-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+.fix { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+.fix span { color: var(--text-accent); font-weight: 500; }
+.code { font-family: monospace; background: var(--surface-2); padding: 1px 5px; border-radius: 4px; font-size: 11px; }
+</style>
+<div class="wrap">
+
+<div class="section-title">🔴 Critical — Confirmed in the code, not guessed</div>
+
+<div class="issue">
+  <div class="badge crit">CRITICAL</div>
+  <div class="issue-body">
+    <div class="issue-title">The bare domain serves a blank page to crawlers and link-preview bots</div>
+    <div class="issue-desc"><span class="code">src/app/page.tsx</span> — the root route is a client-only component: <span class="code">'use client'</span>, does nothing but <span class="code">router.replace()</span> inside a <span class="code">useEffect</span>, returns <span class="code">null</span>. There is no server-rendered content and no page-specific metadata at <span class="code">avoraventure.com/</span>. Anything that reads HTML without running JS — Google's initial crawl pass, Slack/LinkedIn/Twitter link-unfurl bots, a curl request — gets an empty body.</div>
+    <div class="fix"><span>Fix:</span> Make root either a real server component with proper content + metadata, or a server-side redirect (<span class="code">redirect()</span> in a server component, or a Next.js <span class="code">next.config.ts</span> rewrite) instead of a client-side one. Crawlers need something in the initial HTML response.</div>
+  </div>
+</div>
+
+<div class="issue">
+  <div class="badge crit">CRITICAL</div>
+  <div class="issue-body">
+    <div class="issue-title">Every cold link forces a click-through before any content loads</div>
+    <div class="issue-desc">Root → redirects to <span class="code">/intro</span> (a full-screen WebGL shader splash: logo, "Institutional AI Infrastructure," one button) → user must click "Explore Services" → <em>then</em> lands on <span class="code">/home</span>, which has the real page. This is gated per-session via <span class="code">sessionStorage</span>, so every new tab, incognito visit, or freshly clicked link from an ad, cold email, or LinkedIn post hits the splash first. For a first-time cold visitor — the exact audience paid acquisition exists to reach — that's an extra click and a few seconds of shader animation between them and any actual information.</div>
+    <div class="fix"><span>Fix:</span> Keep the splash for direct brand-visit traffic if you like the moment, but bypass it for traffic arriving with UTM params, from paid campaigns, or via direct deep-links to <span class="code">/home</span>, <span class="code">/work</span>, <span class="code">/blog</span>. Cold traffic should never pay an extra click for a first impression it didn't ask for.</div>
+  </div>
+</div>
+
+<div class="section-title">🟠 High — Real bugs, not style opinions</div>
+
+<div class="issue">
+  <div class="badge high">HIGH</div>
+  <div class="issue-body">
+    <div class="issue-title">Services pipeline labels are systematically off by one</div>
+    <div class="issue-desc"><span class="code">src/components/Services.tsx</span> — every service's category <span class="code">label</span> field names the <em>next</em> step, not itself: SEQ.01's <span class="code">title</span> is "Data Generation" but its <span class="code">label</span> reads "ANNOTATION." SEQ.02 is titled "Data Annotation & Labeling" but labeled "LABELING." SEQ.03 is "Data Auditing & QA" but labeled "AUDITING." This reads exactly as it does in your paste — <span class="code">SEQ.01 ANNOTATIONData Generation</span> — because the wrong word is genuinely sitting next to the right one, no spacing to fix, a data bug to fix.</div>
+    <div class="fix"><span>Fix:</span> In the services array, shift every <span class="code">label</span> value down one position (or better, derive <span class="code">label</span> from <span class="code">title</span> automatically so they can't drift apart again — this looks like a leftover from when Annotation and Labeling were merged into one step and the label field didn't get re-synced).</div>
+  </div>
+</div>
+
+<div class="issue">
+  <div class="badge high">HIGH</div>
+  <div class="issue-body">
+    <div class="issue-title">Contact form dropdown doesn't match the services nav — confirmed, exact code</div>
+    <div class="issue-desc"><span class="code">src/components/Contact.tsx</span> — "Primary Focus Area" offers exactly: <span class="code">AI-Native Tools / Consumer-Lifestyle / Sourcing-Export / Operational Ventures</span>. A visitor who came in through the Services nav (Data Generation, Annotation, Labeling, Auditing, AI Implementation) has no option that names what they want to talk about — the closest is the vague catch-all "AI-Native Tools." This is the same split-identity problem as before, but it's not a copy issue anymore — it's a form that structurally can't route a data-pipeline inquiry correctly.</div>
+    <div class="fix"><span>Fix:</span> Depends entirely on which company this is (see below) — either add the 5 real service options, or if the portfolio verticals are the real focus, remove the AI pipeline services from primary nav so the two don't compete for the same visitor's attention.</div>
+  </div>
+</div>
+
+<div class="section-title">🟡 Still open from last time</div>
+
+<div class="issue">
+  <div class="badge med">UNRESOLVED</div>
+  <div class="issue-body">
+    <div class="issue-title">The positioning question wasn't answered yet</div>
+    <div class="issue-desc">Everything above compounds the same root issue flagged last message: is Avora the AI data/infrastructure company, or a venture studio where AI tooling is one of four bets? The label bug, the contact form mismatch, and the splash screen's tagline ("Institutional AI Infrastructure" — pipeline framing) vs. "The Portfolio" section (four unrelated verticals) all trace back to this one unanswered decision. Every fix above is a patch on the symptom until this is settled.</div>
+  </div>
+</div>
+
+</div>

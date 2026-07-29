@@ -6,12 +6,15 @@ const ContactSchema = z.object({
   email: z.string().email('Invalid email address'),
   company: z.string().max(100).optional(),
   serviceType: z.string().max(50).optional(),
+  focusArea: z.string().max(50).optional(),
   industry: z.string().max(50).optional(),
   message: z.string().min(1, 'Message is required').max(2000),
-  _honeypot: z.string().max(0, 'Bot detected').optional(),
+  // Honeypot: no max constraint so bot-filled values pass validation
+  // and reach the silent-success trap below instead of getting a 422
+  _honeypot: z.string().optional(),
 });
 
-// Generous rate limit — 10 submissions per 15 min per IP
+// Rate limit — 10 submissions per 15 min per IP
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
 const RATE_LIMIT = 10;
 const WINDOW_MS = 15 * 60 * 1000;
@@ -29,9 +32,11 @@ function isRateLimited(ip: string): boolean {
 }
 
 export async function POST(req: NextRequest) {
+  // Use x-real-ip (set by Vercel's edge from TCP connection, not client-suppliable)
+  // Fall back to x-forwarded-for only as last resort
   const ip =
-    req.headers.get('x-forwarded-for')?.split(',')[0].trim() ??
     req.headers.get('x-real-ip') ??
+    req.headers.get('x-forwarded-for')?.split(',')[0].trim() ??
     'unknown';
 
   if (isRateLimited(ip)) {
@@ -58,29 +63,38 @@ export async function POST(req: NextRequest) {
 
   const { _honeypot, ...data } = parsed.data;
 
+  // Honeypot trap: bot fills hidden field → silent fake success (bot never learns)
   if (_honeypot && _honeypot.length > 0) {
     return NextResponse.json({ success: true });
   }
 
   const GOOGLE_SCRIPT_URL = process.env.GOOGLE_SCRIPT_URL;
 
-  // If no Google Script URL is configured, log it and succeed gracefully
-  // so the form works during development / demo without a backend
+  // Dev mode: no backend configured — log locally and succeed gracefully
   if (!GOOGLE_SCRIPT_URL) {
     console.warn('[Contact] GOOGLE_SCRIPT_URL not set — logging submission locally:', data);
     return NextResponse.json({ success: true });
   }
 
   try {
-    await fetch(GOOGLE_SCRIPT_URL, {
+    const res = await fetch(GOOGLE_SCRIPT_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
     });
+    if (!res.ok) {
+      console.error('[Contact] Google Script returned non-OK status:', res.status);
+      return NextResponse.json(
+        { error: 'Submission could not be delivered. Please try again or email us directly.' },
+        { status: 502 }
+      );
+    }
     return NextResponse.json({ success: true });
   } catch (err) {
-    console.error('Google Script submission error:', err);
-    // Still return success to avoid frustrating the user — data was at least logged
-    return NextResponse.json({ success: true });
+    console.error('[Contact] Google Script submission error:', err);
+    return NextResponse.json(
+      { error: 'Submission could not be delivered. Please try again or email us directly.' },
+      { status: 502 }
+    );
   }
 }

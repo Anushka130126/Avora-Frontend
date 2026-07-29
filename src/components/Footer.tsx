@@ -84,16 +84,6 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <a
-                  href="https://github.com/Nutricalboii/Avora"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[15px] text-[var(--foreground)] hover:text-[#B8860B] transition-colors duration-200"
-                >
-                  GitHub
-                </a>
-              </li>
-              <li>
                 <button
                   onClick={() => scrollTo('contact')}
                   className="text-[15px] text-[var(--foreground)] hover:text-[#B8860B] transition-colors duration-200 text-left"
@@ -132,10 +122,6 @@ export default function Footer() {
           <p className="text-[14px] text-[var(--foreground-muted)]">
             © {new Date().getFullYear()} Avora Ventures Inc. All rights reserved.
           </p>
-          <div className="flex items-center gap-2 text-xs font-mono font-medium text-[var(--foreground-muted)] tracking-[0.18em] uppercase bg-white/60 px-4 py-2 rounded-full">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
-            All systems operational
-          </div>
         </div>
       </div>
     </footer>

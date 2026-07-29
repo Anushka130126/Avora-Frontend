@@ -16,7 +16,7 @@ export function generateSchema() {
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'Sales',
-      email: 'contact@avora.ventures',
+      email: 'contact@avoraventure.com',
     },
   };
 }
