@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useRef } from 'react';
+import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
@@ -160,58 +161,18 @@ export default function Services() {
         </div>
       </div>
 
-      <div className="pt-12 sm:pt-16 md:pt-24">
-        <div className="services-heading max-w-screen-xl mx-auto px-5 sm:px-8 md:px-12 lg:px-20 text-center mb-10 sm:mb-14 md:mb-20">
-          <p className="font-sans text-slate-600 text-sm sm:text-base md:text-lg max-w-3xl mx-auto leading-relaxed sm:leading-[1.7]">
+      <div className="pt-16 pb-16 md:pt-24 md:pb-24">
+        <div className="services-heading max-w-screen-xl mx-auto px-8 sm:px-12 lg:px-20 text-center">
+          <p className="font-sans text-slate-600 text-base md:text-lg max-w-3xl mx-auto leading-[1.7] mb-8">
             We engineer AI foundations from the ground up — synthetic data, precision annotation, rigorous auditing, and production deployment.
           </p>
-        </div>
-
-        {services.map((service, i) => (
-          <div
-            key={i}
-            className={`service-slide ${i === 0 ? 'pb-12 sm:pb-16 md:pb-24 pt-4 sm:pt-6 md:pt-10' : 'py-12 sm:py-16 md:py-24'} ${i % 2 === 0 ? 'bg-white' : 'bg-slate-50'}`}
+          <Link
+            href="/services"
+            className="inline-flex items-center justify-center btn-primary text-sm md:text-base px-8 py-3"
           >
-            <div className="max-w-screen-xl mx-auto px-5 sm:px-8 md:px-12 lg:px-20">
-              <div className={`grid grid-cols-1 lg:grid-cols-2 min-h-[300px] sm:min-h-[360px] lg:min-h-[400px] gap-8 sm:gap-10 lg:gap-16`}>
-
-                <div className={`slide-text flex flex-col justify-center ${
-                  !service.imageRight ? 'lg:order-2' : ''
-                }`}>
-                  <h3
-                    className="font-heading uppercase tracking-wide text-[#B8860B] leading-[1.05] mb-4 sm:mb-5"
-                    style={{ fontSize: 'clamp(1.5rem, 3.5vw, 2.5rem)' }}
-                  >
-                    {service.title}
-                  </h3>
-
-                  <p className="font-sans text-slate-700 text-base md:text-lg leading-relaxed sm:leading-[1.85] mb-3 sm:mb-5">
-                    {service.desc}
-                  </p>
-                  <p className="font-sans text-slate-500 text-sm md:text-base leading-relaxed sm:leading-[1.85]">
-                    {service.detail}
-                  </p>
-                </div>
-
-                <div className={`slide-image relative overflow-hidden rounded-xl min-h-[260px] sm:min-h-[320px] h-full w-full bg-white shadow-sm ${
-                  !service.imageRight ? 'lg:order-1' : ''
-                }`}>
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 hover:scale-[1.03]"
-                  />
-                  <div className={`absolute inset-0 pointer-events-none ${
-                    service.imageRight
-                      ? 'bg-gradient-to-r from-slate-50/20 via-transparent to-transparent'
-                      : 'bg-gradient-to-l from-white/20 via-transparent to-transparent'
-                  }`} />
-                </div>
-
-              </div>
-            </div>
-          </div>
-        ))}
+            Explore Detailed Services
+          </Link>
+        </div>
       </div>
     </section>
   );

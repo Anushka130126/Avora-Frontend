@@ -91,7 +91,7 @@ export function ChatbotWidget() {
       </button>
 
       {isOpen && (
-        <div className="absolute bottom-16 right-0 w-[360px] sm:w-[400px] h-[500px] glass-panel-strong rounded-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-5 duration-300">
+        <div className="absolute bottom-16 right-0 w-[calc(100vw-3rem)] max-w-[360px] sm:max-w-none sm:w-[400px] h-[500px] max-h-[calc(100vh-8rem)] glass-panel-strong rounded-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-5 duration-300">
           <div className="p-4 bg-[var(--accent-tint)] border-b border-[var(--border)] flex items-center gap-2">
             <Sparkles className="w-5 h-5 text-[var(--accent)]" />
             <h3 className="text-xs font-mono font-semibold text-[var(--foreground)] tracking-[0.14em] uppercase">
