@@ -1,6 +1,5 @@
 import React from 'react';
 import { SpotlightNav } from '@/components/ui/SpotlightNav';
-import Footer from '@/components/Footer';
 
 const services = [
   {
@@ -95,8 +94,6 @@ export default function ServicesPage() {
           </div>
         ))}
       </main>
-
-      <Footer />
     </div>
   );
 }

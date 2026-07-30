@@ -98,7 +98,7 @@ export default function Services() {
   }, { scope: container });
 
   return (
-    <section id="services" ref={container} className="bg-white pt-20 md:pt-28">
+    <section id="services" ref={container} className="pt-20 md:pt-28 relative overflow-hidden" style={{ backgroundColor: 'rgba(255,255,255,0.65)', backdropFilter: 'blur(16px)' }}>
       <div className="text-center px-4 max-w-screen-xl mx-auto mb-10">
         <h2 
           className="font-heading uppercase tracking-wide text-[#B8860B] leading-tight" 
@@ -128,7 +128,7 @@ export default function Services() {
       `}} />
 
       {/* Flashcards Section */}
-      <div className="w-full bg-white pb-12 sm:pb-16 pt-6 sm:pt-8 px-4 sm:px-6 md:px-8">
+      <div className="w-full pb-12 sm:pb-16 pt-6 sm:pt-8 px-4 sm:px-6 md:px-8">
         <div className="max-w-screen-lg mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12">
           {services.map((service, i) => (
             <div 
