@@ -9,6 +9,7 @@ import { Logo } from '../Logo';
 import { Menu, X } from 'lucide-react';
 
 const navItems = [
+  { name: 'Home', href: '/' },
   { name: 'Services', href: '/services' },
   { name: 'Blog', href: '/blog' },
   { name: 'Contact', href: '#contact' },

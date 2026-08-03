@@ -13,46 +13,29 @@ if (typeof window !== 'undefined') {
 const services = [
   {
     title: 'Data Annotation and Labelling',
-    desc: 'We carefully label your data so that AI models can easily understand it. Our mix of smart tools and human experts ensures high accuracy at any scale.',
-    detail: 'We use AI to speed up the first pass of labeling, and then our expert team double-checks everything to guarantee top-tier quality.',
+    desc: 'Transform raw data into highly accurate, structured assets. We craft precise, context-aware datasets tailored to your complex ML requirements using a hybrid approach of cutting-edge AI and human expertise.',
     image: '/data annot.webp',
-    imageRight: false,
-    shortDesc: 'Accurate and fast data labeling powered by smart tools and human experts.',
-    posClasses: 'top-[12%] left-[2%] md:top-[15%] md:left-[5%] lg:top-[12%] lg:left-[10%]',
   },
   {
     title: 'Data Generation',
-    desc: 'We create highly realistic artificial data for training AI when real-world data is hard to find, too expensive, or restricted by privacy rules.',
-    detail: 'Every generated dataset is rigorously tested to ensure it matches real-world scenarios, including rare edge cases that your AI needs to learn.',
+    desc: 'Unlock infinite possibilities with hyper-realistic, privacy-compliant synthetic data. We engineer diverse and robust artificial datasets that precisely mirror real-world complexities and rare edge cases.',
     image: '/data generation.webp',
-    imageRight: true,
-    shortDesc: 'Creating realistic artificial data when real-world data is hard to get.',
-    posClasses: 'top-[12%] right-[2%] md:top-[15%] md:right-[5%] lg:top-[12%] lg:right-[10%]',
   },
   {
     title: 'AI Implementation',
-    desc: 'We quickly build and launch custom AI solutions tailored to your business, helping you test your ideas in the real world before scaling up.',
-    detail: 'Once proven, we turn your prototype into a secure, scalable, and easy-to-understand system that continuously monitors its own performance.',
+    desc: 'Accelerate digital transformation with bespoke AI architectures. From concept to deployment, we build and integrate scalable, secure, and self-monitoring solutions for immediate business impact.',
     image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1400&q=85&fit=crop&auto=format',
-    imageRight: false,
-    shortDesc: 'Rapidly building and launching custom AI solutions tailored to your needs.',
-    posClasses: 'bottom-[12%] left-[2%] md:bottom-[15%] md:left-[5%] lg:bottom-[12%] lg:left-[10%]',
   },
   {
     title: 'Quality Testing and Analysis',
-    desc: 'We thoroughly test your datasets and AI models to make sure everything works perfectly. We treat data quality with the same strict standards as software code.',
-    detail: 'Through automated checks and expert reviews, we push your systems to their limits. If something falls short, we fix it before it ever reaches you.',
+    desc: 'Fortify your AI with uncompromising quality assurance. Through automated stress tests and expert adversarial evaluations, we push your algorithms to their absolute limits to ensure precise performance.',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=85&fit=crop&auto=format',
-    imageRight: true,
-    shortDesc: 'Thorough testing to guarantee your data and models work perfectly.',
-    posClasses: 'bottom-[12%] right-[2%] md:bottom-[15%] md:right-[5%] lg:bottom-[12%] lg:right-[10%]',
   },
 ];
 
 export default function Services() {
   const container = useRef<HTMLDivElement>(null);
   const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
-  const touchActive = useRef(false);
 
   React.useEffect(() => {
     const handleOutsideClick = (e: MouseEvent | TouchEvent) => {
@@ -78,22 +61,14 @@ export default function Services() {
       }
     );
 
-    const slides = gsap.utils.toArray('.service-slide') as HTMLElement[];
-    slides.forEach((slide) => {
-      const textEl = slide.querySelector('.slide-text');
-      const imageEl = slide.querySelector('.slide-image');
-      if (textEl) {
-        gsap.fromTo(textEl, { opacity: 0, x: -30 }, {
-          opacity: 1, x: 0, duration: 1.0, ease: 'power4.out',
-          scrollTrigger: { trigger: slide, start: 'top 78%' },
-        });
-      }
-      if (imageEl) {
-        gsap.fromTo(imageEl, { opacity: 0, scale: 0.97 }, {
-          opacity: 1, scale: 1, duration: 1.1, ease: 'power4.out',
-          scrollTrigger: { trigger: slide, start: 'top 78%' },
-        });
-      }
+    const flipCards = gsap.utils.toArray('.flip-card-container') as HTMLElement[];
+    flipCards.forEach((card) => {
+      ScrollTrigger.create({
+        trigger: card,
+        start: 'top 65%',
+        end: 'bottom 35%',
+        toggleClass: 'is-scrolled-flipped',
+      });
     });
   }, { scope: container });
 
@@ -115,6 +90,11 @@ export default function Services() {
         }
         @media (hover: hover) {
           .flip-card-container:hover .flip-card-inner {
+            transform: rotateY(180deg);
+          }
+        }
+        @media (hover: none) {
+          .flip-card-container.is-scrolled-flipped .flip-card-inner {
             transform: rotateY(180deg);
           }
         }
@@ -153,7 +133,7 @@ export default function Services() {
                 {/* Back */}
                 <div className="flip-card-back absolute inset-0 w-full h-full bg-slate-50 rounded-2xl border border-slate-200 p-5 sm:p-6 md:p-8 flex flex-col items-center justify-center text-center">
                   <h3 className="font-heading font-bold uppercase tracking-widest text-lg sm:text-xl md:text-2xl text-[#B8860B] mb-3 sm:mb-4">{service.title}</h3>
-                  <p className="font-sans text-slate-700 text-xs sm:text-sm md:text-base leading-relaxed">{service.desc}</p>
+                  <p className="font-sans text-slate-700 text-[11px] sm:text-xs md:text-sm leading-relaxed md:leading-relaxed">{service.desc}</p>
                 </div>
               </div>
             </div>
