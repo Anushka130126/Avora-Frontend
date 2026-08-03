@@ -20,14 +20,14 @@ const services = [
     title: 'AI Implementation',
     desc: 'Accelerate your digital transformation with bespoke AI architectures designed for immediate impact. From initial concept to seamless deployment, we architect, build, and integrate intelligent solutions that solve your most pressing business challenges and drive measurable ROI.',
     detail: 'We transition your visionary prototypes into robust, enterprise-grade systems. Our solutions feature scalable cloud infrastructure, secure data pipelines, and continuous self-monitoring capabilities, ensuring sustained performance and adaptability as your business evolves.',
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1400&q=85&fit=crop&auto=format',
+    image: '/ai.webp',
     imageRight: false,
   },
   {
     title: 'Quality Testing and Analysis',
     desc: 'Fortify your AI ecosystem with uncompromising quality assurance and rigorous model auditing. We treat data integrity and model reliability with the exacting standards of mission-critical software engineering, identifying vulnerabilities before they impact your operations.',
     detail: 'Through a combination of automated stress tests, adversarial evaluations, and deep expert analysis, we push your algorithms to their absolute limits. We pinpoint inaccuracies, mitigate biases, and optimize performance, ensuring your AI remains trustworthy and precise.',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=85&fit=crop&auto=format',
+    image: '/dqa.png',
     imageRight: true,
   },
 ];

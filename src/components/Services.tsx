@@ -24,12 +24,12 @@ const services = [
   {
     title: 'AI Implementation',
     desc: 'Accelerate digital transformation with bespoke AI architectures. From concept to deployment, we build and integrate scalable, secure, and self-monitoring solutions for immediate business impact.',
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1400&q=85&fit=crop&auto=format',
+    image: '/ai.webp',
   },
   {
     title: 'Quality Testing and Analysis',
     desc: 'Fortify your AI with uncompromising quality assurance. Through automated stress tests and expert adversarial evaluations, we push your algorithms to their absolute limits to ensure precise performance.',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=85&fit=crop&auto=format',
+    image: '/dqa.png',
   },
 ];
 
